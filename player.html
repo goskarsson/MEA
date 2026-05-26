@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="is">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Má ég aðeins 2026 — Mín síða</title>
+<meta property="og:title" content="Má ég aðeins 2026 — Mín síða" />
+<meta property="og:description" content="Persónuleg tölfræði leikmanns úr MEA 2026 sæsónunni." />
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #f5f6f8; color: #1d2433; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+/* ── HEADER ── */
+header.app-header { position: relative; color: #fff; padding: 24px 24px; border-radius: 14px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.3); overflow: hidden; min-height: 110px; background: linear-gradient(120deg, #0e1c08 0%, #1c2e10 30%, #2a4a1c 55%, #c8a430 85%, #d4601a 100%); }
+header.app-header .header-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,16,4,.6) 0%, rgba(8,16,4,.25) 55%, rgba(8,16,4,.05) 100%); z-index: 1; }
+header.app-header .header-content { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+header.app-header .header-left { display: flex; align-items: center; gap: 14px; }
+header.app-header .header-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(200,164,48,.6); box-shadow: 0 2px 8px rgba(0,0,0,.4); flex-shrink: 0; }
+header.app-header h1 { margin: 0; font-size: 22px; letter-spacing: 0.3px; text-shadow: 0 2px 6px rgba(0,0,0,.5); }
+header.app-header .sub { opacity: .95; margin-top: 4px; font-size: 13px; text-shadow: 0 1px 4px rgba(0,0,0,.5); }
+header.app-header .back { color: #fff; font-size: 13px; text-decoration: none; padding: 6px 12px; border: 1px solid rgba(200,164,48,.5); border-radius: 999px; background: rgba(0,0,0,.25); }
+header.app-header .back:hover { background: rgba(0,0,0,.4); }
+
+/* ── PLAYER PICKER ── */
+.player-picker { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.player-picker label { font-size: 13px; color: #5b6478; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+.player-picker select { padding: 8px 14px; border: 1px solid #d3d8e0; border-radius: 8px; background: #fff; font-size: 14px; font-weight: 500; cursor: pointer; min-width: 240px; }
+.player-picker select:focus { outline: none; border-color: #2d7a4f; box-shadow: 0 0 0 3px rgba(45,122,79,.1); }
+
+/* ── PROFILE CARD ── */
+.profile-card { display: flex; align-items: center; gap: 18px; background: #fff; border: 1px solid #e8eaef; border-radius: 14px; padding: 20px 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.04); flex-wrap: wrap; }
+.avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #1a4a2e, #2d7a4f); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 700; flex-shrink: 0; }
+.avatar.F { background: linear-gradient(135deg, #9d174d, #c8488a); }
+.profile-info h2 { margin: 0; font-size: 22px; }
+.profile-info .meta { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; color: #5b6478; align-items: center; }
+.badge-par { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #e8f4ee; color: #2d7a4f; font-size: 11px; font-weight: 700; }
+.badge-gender { display: inline-flex; align-items: center; justify-content: center; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+.badge-gender.M { background: #dbeafe; color: #1e40af; }
+.badge-gender.F { background: #fce7f3; color: #9d174d; }
+.rtag { display: inline-block; padding: 2px 7px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+.rtag.POR   { background: #e8f4ee; color: #1a5c35; }
+.rtag.SK    { background: #fef3c7; color: #7a520a; }
+.rtag.BLAND { background: #ede9fe; color: #4c1d95; }
+.rtag.RYDER { background: #fee2e2; color: #991b1b; }
+
+/* ── HERO STATS ── */
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.hero-stat { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.hero-stat .label { font-size: 11px; color: #5b6478; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.hero-stat .value { font-size: 32px; font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; line-height: 1; }
+.hero-stat .value .unit { font-size: 14px; font-weight: 500; color: #98a0b0; margin-left: 4px; }
+.hero-stat .delta { font-size: 11px; color: #5b6478; margin-top: 4px; }
+
+/* ── CARDS ── */
+.card { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; padding: 16px 18px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.card h3 { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #5b6478; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; }
+.card h3 .icon { font-size: 17px; }
+
+/* ── ROUNDS TABLE ── */
+.rounds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.rounds-table th { background: #fafbfc; text-align: left; padding: 8px 10px; font-weight: 700; color: #5b6478; font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid #e8eaef; white-space: nowrap; }
+.rounds-table th.num { text-align: right; }
+.rounds-table td { padding: 8px 10px; border-bottom: 1px solid #f0f1f4; vertical-align: middle; white-space: nowrap; }
+.rounds-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.rounds-table tr:last-child td { border-bottom: 0; }
+.rounds-table tr.total-row td { font-weight: 700; color: #2d7a4f; background: #f8fdf9; }
+.rounds-table .empty { color: #c3c8d2; }
+.rounds-table .best-round td { background: #f0fbf4; }
+.pts-hi { font-weight: 700; color: #2d7a4f; }
+.pts-lo { color: #ef4444; }
+
+/* ── TWO COL GRID ── */
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.side-card { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; padding: 16px 18px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.side-card h3 { margin: 0 0 12px; font-size: 13px; font-weight: 700; color: #5b6478; text-transform: uppercase; letter-spacing: 0.4px; display: flex; align-items: center; gap: 8px; }
+.side-card .big { font-size: 28px; font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; margin-bottom: 6px; }
+.side-card .big .unit { font-size: 13px; font-weight: 500; color: #98a0b0; margin-left: 4px; }
+.small-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; border-bottom: 1px solid #f0f1f4; }
+.small-row:last-child { border: 0; }
+.small-row .lbl { color: #5b6478; }
+.small-row .val { font-weight: 600; font-variant-numeric: tabular-nums; }
+.empty-note { color: #c3c8d2; font-style: italic; font-size: 12px; padding: 4px 0; }
+
+/* ── CUP ── */
+.cup-status { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 10px; margin-bottom: 10px; }
+.cup-status.active { background: #e8f4ee; }
+.cup-status.eliminated { background: #fee2e2; }
+.cup-status.pending { background: #f5f6f8; }
+.cup-status .cs-icon { font-size: 22px; }
+.cup-status .cs-label { font-size: 13px; font-weight: 600; }
+.cup-status .cs-sub { font-size: 12px; color: #5b6478; margin-top: 2px; }
+.match-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid #f0f1f4; font-size: 13px; }
+.match-row:last-child { border: 0; }
+.match-row .mr-round { background: #eef5f0; color: #2d7a4f; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.match-row .mr-opp { flex: 1; }
+.match-row .mr-res { font-weight: 700; }
+.match-row.win .mr-res { color: #2d7a4f; }
+.match-row.loss .mr-res { color: #ef4444; }
+.match-row.tbd .mr-res { color: #c3c8d2; font-style: italic; }
+
+/* ── ACHIEVEMENTS ── */
+.achievements { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+.achievement { background: linear-gradient(135deg, #fdf5e6, #fcecbc); border: 1px solid #e6cf9a; border-radius: 10px; padding: 10px 14px; font-size: 13px; display: flex; align-items: center; gap: 8px; min-width: 140px; }
+.achievement .icon { font-size: 22px; }
+.achievement .text { font-weight: 600; color: #8a6e3a; line-height: 1.2; }
+.achievement .text .sub { display: block; font-weight: 500; color: #b89466; font-size: 11px; margin-top: 2px; }
+.achievement.locked { background: #f5f6f8; border-color: #e8eaef; opacity: 0.45; }
+.achievement.locked .text { color: #98a0b0; }
+
+footer { text-align: center; color: #98a0b0; font-size: 12px; padding: 24px 0 8px; }
+footer a { color: #2d7a4f; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 12px; }
+  header.app-header h1 { font-size: 20px; }
+  .hero-stat .value { font-size: 26px; }
+  .profile-card { gap: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="app-header">
+  <div class="header-overlay"></div>
+  <div class="header-content">
+    <div class="header-left">
+      <img class="header-logo" src="MaEgAdeins2026.png" alt="MEA logo" />
+      <div>
+        <h1>Má ég aðeins 2026 — Mín síða</h1>
+        <div class="sub">Persónulegt mælaborð · Tímabil 2026</div>
+      </div>
+    </div>
+    <a class="back" href="index.html">← Aðalmælaborð</a>
+  </div>
+</header>
+
+<div class="player-picker">
+  <label for="player-select">Veldu leikmann</label>
+  <select id="player-select"></select>
+</div>
+
+<div class="profile-card" id="profile-card"></div>
+<div class="hero-stats" id="hero-stats"></div>
+
+<div class="card">
+  <h3><span class="icon">📅</span> Hringur fyrir hring</h3>
+  <div style="overflow-x:auto"><table class="rounds-table" id="rounds-table"></table></div>
+</div>
+
+<div class="two-col">
+  <div class="side-card" id="par-card"></div>
+  <div class="side-card" id="cup-card"></div>
+</div>
+
+<div class="two-col">
+  <div class="side-card" id="ctp-card"></div>
+  <div class="side-card" id="birdie-card"></div>
+</div>
+
+<div class="card" id="achievements-card"></div>
+
+<footer>
+  <a href="index.html">← Til baka á aðalmælaborð</a>
+</footer>
+
+</div><!-- /wrap -->
+
+<!-- ═══ DATA ═══ -->
+<script type="application/json" id="snapshot">
+{
+  "lastUpdated": "2026-05-25T22:45:00Z",
+  "bikar": {
+    "r1": [
+      { "p1": 17, "p2": 18, "winner": 17, "margin": "4&3" },
+      { "p1": 1,  "p2": 15, "winner": 15, "margin": "5&4" }
+    ],
+    "r2": [
+      { "p1": 14, "p2": 17, "winner": 0 },
+      { "p1": 13, "p2": 11, "winner": 0 },
+      { "p1": 6,  "p2": 5,  "winner": 0 },
+      { "p1": 8,  "p2": 3,  "winner": 0 },
+      { "p1": 18, "p2": 7,  "winner": 0 },
+      { "p1": 15, "p2": 9,  "winner": 0 },
+      { "p1": 4,  "p2": 12, "winner": 0 },
+      { "p1": 10, "p2": 16, "winner": 0 }
+    ],
+    "qf": [],
+    "sf": [],
+    "f":  []
+  },
+  "players": {
+    "1":  { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":3}, "playingHcp": {"r1":12} },
+    "2":  { "points": {"r1":27}, "strokes": {"r1":98},  "birdies": {"r1":1}, "playingHcp": {"r1":16} },
+    "3":  { "points": {"r1":35}, "strokes": {"r1":90},  "birdies": {"r1":1}, "playingHcp": {"r1":17} },
+    "4":  { "points": {"r1":34}, "strokes": {"r1":98},  "birdies": {"r1":0}, "playingHcp": {"r1":24}, "ctp": [{"round":"r1","hole":6,"cm":300}] },
+    "5":  { "points": {"r1":29}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":13} },
+    "6":  { "points": {"r1":34}, "strokes": {"r1":96},  "birdies": {"r1":0}, "playingHcp": {"r1":22}, "ctp": [{"round":"r1","hole":12,"cm":500}] },
+    "7":  { "points": {"r1":19}, "strokes": {"r1":113}, "birdies": {"r1":0}, "playingHcp": {"r1":22} },
+    "8":  { "points": {"r1":31}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":23} },
+    "9":  { "points": {"r1":30}, "strokes": {"r1":85},  "birdies": {"r1":0}, "playingHcp": {"r1":7}  },
+    "10": { "points": {"r1":37}, "strokes": {"r1":99},  "birdies": {"r1":0}, "playingHcp": {"r1":28} },
+    "11": { "points": {"r1":30}, "strokes": {"r1":90},  "birdies": {"r1":0}, "playingHcp": {"r1":11} },
+    "12": { "points": {"r1":37}, "strokes": {"r1":86},  "birdies": {"r1":2}, "playingHcp": {"r1":14} },
+    "13": { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":12} },
+    "14": { "points": {"r1":32}, "strokes": {"r1":103}, "birdies": {"r1":1}, "playingHcp": {"r1":26}, "ctp": [{"round":"r1","hole":17,"cm":350}] },
+    "15": { "points": {"r1":35}, "strokes": {"r1":79},  "birdies": {"r1":3}, "playingHcp": {"r1":6},  "ctp": [{"round":"r1","hole":4,"cm":380}] },
+    "16": { "points": {"r1":35}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":28} },
+    "17": { "points": {"r1":29}, "strokes": {"r1":93},  "birdies": {"r1":0}, "playingHcp": {"r1":14} },
+    "18": { "points": {"r1":43}, "strokes": {"r1":93},  "birdies": {"r1":3}, "playingHcp": {"r1":28} }
+  }
+}
+</script>
+
+<!-- ═══ APP ═══ -->
+<script>
+const PLAYERS = [
+  { id:1,  name:"Hlynur Halldórsson",               short:"Hlynur",    par:1, gender:"M", hcp:11.6 },
+  { id:2,  name:"Eva Harpa Loftsdóttir",             short:"Eva Harpa", par:1, gender:"F", hcp:14.7 },
+  { id:3,  name:"Ólafur Freyr Guðmundsson",          short:"Óli",       par:2, gender:"M", hcp:16.1 },
+  { id:4,  name:"Kristjana Björg Arnbjörnsdóttir",   short:"Kristjana", par:2, gender:"F", hcp:21.8 },
+  { id:5,  name:"Róbert Sævar Magnússon",            short:"Robbi",     par:3, gender:"M", hcp:11.9 },
+  { id:6,  name:"Berglind Guðmundsdóttir",           short:"Begga",     par:3, gender:"F", hcp:19.5 },
+  { id:7,  name:"Ásmundur Edvardsson",               short:"Ási",       par:4, gender:"M", hcp:20.0 },
+  { id:8,  name:"Berglind Ragnarsdóttir",            short:"Berglind",  par:4, gender:"F", hcp:19.8 },
+  { id:9,  name:"Magnús Magnússon",                  short:"Maggi",     par:5, gender:"M", hcp:7.2  },
+  { id:10, name:"Nína Edvardsdóttir",                short:"Nína",      par:5, gender:"F", hcp:24.5 },
+  { id:11, name:"Guðmundur Örn Óskarsson",           short:"Gummi",     par:6, gender:"M", hcp:10.0 },
+  { id:12, name:"Björk Svarfdal Hauksdóttir",        short:"Björk",     par:6, gender:"F", hcp:13.0 },
+  { id:13, name:"Heiðar Bergmann Heiðarsson",        short:"Heisi",     par:7, gender:"M", hcp:14.1 },
+  { id:14, name:"Sigrún Einarsdóttir",               short:"Sigrún",    par:7, gender:"F", hcp:24.1 },
+  { id:15, name:"Andri Ragnarsson",                  short:"Andri",     par:8, gender:"M", hcp:5.6  },
+  { id:16, name:"Rósa Ólafsdóttir",                  short:"Rósa",      par:8, gender:"F", hcp:24.9 },
+  { id:17, name:"Sigurgeir Hlíðar Sigurjónsson",     short:"Geiri",     par:9, gender:"M", hcp:12.9 },
+  { id:18, name:"Súsanna Eva Helgadóttir",           short:"Eva Helga", par:9, gender:"F", hcp:25.3 }
+];
+
+const ROUNDS = [
+  { num:1,  key:"r1",  date:"25. maí",    wday:"Mán",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
+  { num:2,  key:"r2",  date:"31. maí",    wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
+  { num:3,  key:"r3",  date:"7. júní",    wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
+  { num:4,  key:"r4",  date:"14. júní",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Parakeppni",         label:"M4"  },
+  { num:5,  key:"r5",  date:"21. júní",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Stableford",         label:"M5"  },
+  { num:6,  key:"r6",  date:"28. júní",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"Parakeppni",         label:"M6"  },
+  { num:7,  key:"r7",  date:"5. júlí",    wday:"Sun",  course:"Annar völlur",    type:"BLAND", format:"Stableford",         label:"M7"  },
+  { num:8,  key:"r8",  date:"12. júlí",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",     label:"M8"  },
+  { num:9,  key:"r9",  date:"18. júlí",   wday:"Lau",  course:"Flúðir",          type:"RYDER", format:"Ryder",              label:"M9"  },
+  { num:10, key:"r10", date:"19. júlí",   wday:"Sun",  course:"Selfoss",         type:"RYDER", format:"Ryder",              label:"M10" },
+  { num:11, key:"r11", date:"26. júlí",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M11" },
+  { num:12, key:"r12", date:"3. ágúst",   wday:"Mán",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M12" },
+  { num:13, key:"r13", date:"9. ágúst",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Stableford",         label:"M13" },
+  { num:14, key:"r14", date:"16. ágúst",  wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Parakeppni",         label:"M14" },
+  { num:15, key:"r15", date:"23. ágúst",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Gulur bolti",        label:"M15" },
+  { num:16, key:"r16", date:"30. ágúst",  wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Parakeppni",         label:"M16" },
+  { num:17, key:"r17", date:"6. sept.",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M17" },
+  { num:18, key:"r18", date:"13. sept.",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Bikar + Stableford", label:"M18" },
+  { num:19, key:"r19", date:"20. sept.",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M19" }
+];
+
+const MEA_TOP_N = 8;
+const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
+const PDATA = SNAP.players;
+const BIKAR = SNAP.bikar;
+const STORAGE_KEY = "mea_player_prefs";
+
+function pd(pid)    { return PDATA[String(pid)] || {}; }
+function pts(pid)   { return pd(pid).points || {}; }
+function str(pid)   { return pd(pid).strokes || {}; }
+function bir(pid)   { return pd(pid).birdies || {}; }
+function phcp(pid)  { return pd(pid).playingHcp || {}; }
+function ctps(pid)  { return pd(pid).ctp || []; }
+
+function topN(arr, n) {
+  if (!arr.length) return 0;
+  return arr.slice().sort((a,b)=>b-a).slice(0,n).reduce((s,v)=>s+v,0);
+}
+
+/* played rounds */
+const playedKeys = new Set();
+PLAYERS.forEach(p => {
+  ROUNDS.forEach(r => { if (typeof pts(p.id)[r.key] === "number") playedKeys.add(r.key); });
+});
+const playedRounds = ROUNDS.filter(r => playedKeys.has(r.key));
+
+/* MEA score */
+function meaScore(pid) {
+  const vals = ROUNDS.map(r => pts(pid)[r.key]).filter(v => typeof v === "number");
+  return topN(vals, MEA_TOP_N);
+}
+
+/* cup: find all matches for player */
+function cupMatches(pid) {
+  const rounds = [
+    { key:"r1", label:"Umferð 1" },
+    { key:"r2", label:"Umferð 2" },
+    { key:"qf", label:"Fjórðungsúrslit" },
+    { key:"sf", label:"Hálfleikur" },
+    { key:"f",  label:"Úrslit" }
+  ];
+  const matches = [];
+  rounds.forEach(rd => {
+    const arr = BIKAR[rd.key] || [];
+    arr.forEach(m => {
+      if (m.p1 === pid || m.p2 === pid) {
+        const opp = m.p1 === pid ? m.p2 : m.p1;
+        let status = "tbd";
+        if (m.winner > 0) status = m.winner === pid ? "win" : "loss";
+        matches.push({ round: rd.label, opp, status, margin: m.margin || "" });
+      }
+    });
+  });
+  return matches;
+}
+
+/* cup: is player eliminated? */
+function cupStatus(pid) {
+  const m1 = (BIKAR.r1 || []).find(m => m.p1 === pid || m.p2 === pid);
+  if (m1 && m1.winner > 0 && m1.winner !== pid) return "eliminated_r1";
+  const m2 = (BIKAR.r2 || []).find(m => m.p1 === pid || m.p2 === pid);
+  if (m2 && m2.winner > 0 && m2.winner !== pid) return "eliminated_r2";
+  const qf = (BIKAR.qf || []).find(m => m.p1 === pid || m.p2 === pid);
+  if (qf && qf.winner > 0 && qf.winner !== pid) return "eliminated_qf";
+  const sf = (BIKAR.sf || []).find(m => m.p1 === pid || m.p2 === pid);
+  if (sf && sf.winner > 0 && sf.winner !== pid) return "eliminated_sf";
+  return "active";
+}
+
+/* par group combined score */
+function parScore(parNum) {
+  const members = PLAYERS.filter(p => p.par === parNum);
+  const porPlayed = ROUNDS.filter(r => r.type === "POR" && playedKeys.has(r.key));
+  return porPlayed.map(r => {
+    const vals = members.map(p => pts(p.id)[r.key]).filter(v => typeof v === "number");
+    return vals.length === 2 ? vals[0] + vals[1] : null;
+  }).filter(v => v !== null);
+}
+
+/* ── PLAYER SELECT ── */
+function buildSelect(currentId) {
+  const sel = document.getElementById("player-select");
+  sel.innerHTML = "";
+  PLAYERS.forEach(p => {
+    const opt = document.createElement("option");
+    opt.value = p.id;
+    opt.textContent = `${p.short} (Par ${p.par})`;
+    if (p.id === currentId) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  sel.onchange = () => { loadPlayer(parseInt(sel.value)); };
+}
+
+/* ── RENDER ── */
+function loadPlayer(pid) {
+  const player = PLAYERS.find(p => p.id === pid);
+  if (!player) return;
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ pid })); } catch(e) {}
+  buildSelect(pid);
+  renderProfile(player);
+  renderHero(player);
+  renderRoundsTable(player);
+  renderParCard(player);
+  renderCupCard(player);
+  renderCtpCard(player);
+  renderBirdieCard(player);
+  renderAchievements(player);
+}
+
+function renderProfile(p) {
+  const el = document.getElementById("profile-card");
+  const initials = p.short.slice(0,2).toUpperCase();
+  el.innerHTML = `
+    <div class="avatar ${p.gender}">${initials}</div>
+    <div class="profile-info">
+      <h2>${p.name}</h2>
+      <div class="meta">
+        <span>Par <span class="badge-par">${p.par}</span></span>
+        <span class="badge-gender ${p.gender}">${p.gender === "M" ? "Karl" : "Kona"}</span>
+        <span>Hcp <strong>${p.hcp}</strong></span>
+        <span>${meaScore(p.id)} MEA stig</span>
+      </div>
+    </div>`;
+}
+
+function renderHero(p) {
+  const el = document.getElementById("hero-stats");
+  const allPts = ROUNDS.map(r => pts(p.id)[r.key]).filter(v => typeof v === "number");
+  const mea = topN(allPts, MEA_TOP_N);
+  const played = allPts.length;
+  const totalBirdies = Object.values(bir(p.id)).reduce((s,v)=>s+v, 0);
+  const ctpCount = ctps(p.id).length;
+  const best = allPts.length ? Math.max(...allPts) : "—";
+  const avg = allPts.length ? Math.round(allPts.reduce((s,v)=>s+v,0)/allPts.length) : "—";
+
+  el.innerHTML = `
+    <div class="hero-stat">
+      <div class="label">MEA stig</div>
+      <div class="value">${mea}<span class="unit">pts</span></div>
+      <div class="delta">Bestu ${MEA_TOP_N} hringir</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Hringir spilaðir</div>
+      <div class="value">${played}<span class="unit">/ ${ROUNDS.length}</span></div>
+      <div class="delta">Af ${ROUNDS.length} hringjum</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Besti hringur</div>
+      <div class="value">${best}<span class="unit">stig</span></div>
+      <div class="delta">Meðaltal: ${avg}</div>
+    </div>
+    <div class="hero-stat">
+      <div class="label">Fuglar</div>
+      <div class="value">${totalBirdies}<span class="unit">🐦</span></div>
+      <div class="delta">${ctpCount} næst holu</div>
+    </div>`;
+}
+
+function renderRoundsTable(p) {
+  const tbl = document.getElementById("rounds-table");
+  const allPts = playedRounds.map(r => pts(p.id)[r.key]).filter(v => typeof v === "number");
+  const bestPts = allPts.length ? Math.max(...allPts) : -1;
+
+  let html = `<thead><tr>
+    <th>Leikur</th>
+    <th>Dagsetning</th>
+    <th>Völlur</th>
+    <th>Tegund</th>
+    <th class="num">Stig</th>
+    <th class="num">Högg</th>
+    <th class="num">Spil. hcp</th>
+    <th class="num">Fuglar</th>
+  </tr></thead><tbody>`;
+
+  let totalPts = 0, totalStr = 0, totalBir = 0, rowCount = 0;
+  playedRounds.forEach(r => {
+    const p_pts  = pts(p.id)[r.key];
+    const p_str  = str(p.id)[r.key];
+    const p_hcp  = phcp(p.id)[r.key];
+    const p_bir  = bir(p.id)[r.key] || 0;
+    const hasPts = typeof p_pts === "number";
+    const isBest = hasPts && p_pts === bestPts && allPts.length > 1;
+    if (hasPts) { totalPts += p_pts; totalStr += (p_str||0); totalBir += p_bir; rowCount++; }
+    html += `<tr${isBest?' class="best-round"':''}>
+      <td>${r.label}</td>
+      <td>${r.wday}, ${r.date}</td>
+      <td>${r.course}</td>
+      <td><span class="rtag ${r.type}">${r.type}</span></td>
+      <td class="num ${hasPts?(isBest?'pts-hi':''):'empty'}">${hasPts ? p_pts : '—'}</td>
+      <td class="num ${hasPts?'':' empty'}">${typeof p_str==="number" ? p_str : '—'}</td>
+      <td class="num ${hasPts?'':' empty'}">${typeof p_hcp==="number" ? p_hcp : '—'}</td>
+      <td class="num ${hasPts?'':' empty'}">${hasPts ? (p_bir > 0 ? '🐦'.repeat(Math.min(p_bir,5))+(p_bir>5?` +${p_bir-5}`:'') : '—') : '—'}</td>
+    </tr>`;
+  });
+
+  if (rowCount > 0) {
+    html += `<tr class="total-row">
+      <td colspan="4">Samtals (${rowCount} hringir)</td>
+      <td class="num">${totalPts}</td>
+      <td class="num">${totalStr}</td>
+      <td class="num">—</td>
+      <td class="num">${totalBir > 0 ? totalBir + ' 🐦' : '—'}</td>
+    </tr>`;
+  }
+  html += "</tbody>";
+  tbl.innerHTML = html;
+}
+
+function renderParCard(p) {
+  const el = document.getElementById("par-card");
+  const partner = PLAYERS.find(x => x.par === p.par && x.id !== p.id);
+  const scores = parScore(p.par);
+  const parTotal = topN(scores, 6);
+  const porPlayed = ROUNDS.filter(r => r.type === "POR" && playedKeys.has(r.key));
+
+  let roundRows = "";
+  porPlayed.forEach(r => {
+    const myPts = pts(p.id)[r.key];
+    const partPts = partner ? pts(partner.id)[r.key] : null;
+    const combined = typeof myPts === "number" && typeof partPts === "number"
+      ? myPts + partPts : null;
+    roundRows += `<div class="small-row">
+      <span class="lbl">${r.label}</span>
+      <span class="val">${combined !== null ? combined + ' stig' : '—'}
+        <span style="font-size:11px;color:#8a95a5;font-weight:400">
+          ${typeof myPts==="number"?'('+myPts+' + '+(partPts||'?')+')':''}
+        </span>
+      </span>
+    </div>`;
+  });
+
+  el.innerHTML = `
+    <h3><span class="icon">👫</span> Par ${p.par} — Parakeppni</h3>
+    <div class="big">${parTotal}<span class="unit">stig</span></div>
+    <div style="font-size:12px;color:#5b6478;margin-bottom:10px">Bestu 6 Pör hringir · með ${partner ? partner.short : '?'}</div>
+    ${roundRows || '<div class="empty-note">Engir Pör hringir spilaðir.</div>'}`;
+}
+
+function renderCupCard(p) {
+  const el = document.getElementById("cup-card");
+  const matches = cupMatches(p.id);
+  const status = cupStatus(p.id);
+
+  let statusHtml = "";
+  if (status === "eliminated_r1") {
+    statusHtml = `<div class="cup-status eliminated"><span class="cs-icon">❌</span><div><div class="cs-label">Úrskorinn — Umferð 1</div></div></div>`;
+  } else if (status === "eliminated_r2") {
+    statusHtml = `<div class="cup-status eliminated"><span class="cs-icon">❌</span><div><div class="cs-label">Úrskorinn — Umferð 2</div></div></div>`;
+  } else if (status === "eliminated_qf") {
+    statusHtml = `<div class="cup-status eliminated"><span class="cs-icon">❌</span><div><div class="cs-label">Úrskorinn — Fjórðungsúrslit</div></div></div>`;
+  } else if (status === "eliminated_sf") {
+    statusHtml = `<div class="cup-status eliminated"><span class="cs-icon">❌</span><div><div class="cs-label">Úrskorinn — Hálfleikur</div></div></div>`;
+  } else {
+    statusHtml = `<div class="cup-status active"><span class="cs-icon">🏆</span><div><div class="cs-label">Enn í keppni</div></div></div>`;
+  }
+
+  let matchRows = matches.map(m => {
+    const oppPlayer = PLAYERS.find(x => x.id === m.opp);
+    const oppName = oppPlayer ? oppPlayer.short : "?";
+    const resText = m.status === "win" ? `Sigur ${m.margin}` : m.status === "loss" ? `Tap ${m.margin}` : "Óspilað";
+    return `<div class="match-row ${m.status}">
+      <span class="mr-round">${m.round}</span>
+      <span class="mr-opp">vs ${oppName}</span>
+      <span class="mr-res">${resText}</span>
+    </div>`;
+  }).join("");
+
+  if (!matchRows) matchRows = '<div class="empty-note">Engar bikaursleikir.</div>';
+
+  el.innerHTML = `<h3><span class="icon">🥊</span> Bikarinn 2026</h3>${statusHtml}${matchRows}`;
+}
+
+function renderCtpCard(p) {
+  const el = document.getElementById("ctp-card");
+  const entries = ctps(p.id);
+  let rows = "";
+  entries.forEach(c => {
+    const r = ROUNDS.find(x => x.key === c.round);
+    const courseName = r ? r.course : "Keilir";
+    rows += `<div class="small-row">
+      <span class="lbl">📍 Hola ${c.hole}, ${courseName} — ${r ? r.label : c.round}</span>
+      <span class="val">${c.cm} cm</span>
+    </div>`;
+  });
+  el.innerHTML = `<h3><span class="icon">📍</span> Næst holu</h3>
+    <div class="big">${entries.length}<span class="unit">CTP</span></div>
+    ${rows || '<div class="empty-note">Engar næst holu skráðar.</div>'}`;
+}
+
+function renderBirdieCard(p) {
+  const el = document.getElementById("birdie-card");
+  const birdies = bir(p.id);
+  let total = 0;
+  let rows = "";
+  playedRounds.forEach(r => {
+    const b = birdies[r.key];
+    if (typeof b === "number" && b > 0) {
+      total += b;
+      rows += `<div class="small-row">
+        <span class="lbl">${r.label} — ${r.date}</span>
+        <span class="val">${'🐦'.repeat(Math.min(b,5))} ${b > 1 ? b + ' fuglar' : '1 fugl'}</span>
+      </div>`;
+    }
+  });
+  el.innerHTML = `<h3><span class="icon">🐦</span> Fuglarnir</h3>
+    <div class="big">${total}<span class="unit">fuglar</span></div>
+    ${rows || '<div class="empty-note">Engir fuglar skráðir.</div>'}`;
+}
+
+function renderAchievements(p) {
+  const el = document.getElementById("achievements-card");
+  const allPts = ROUNDS.map(r => pts(p.id)[r.key]).filter(v => typeof v === "number");
+  const totalBirdies = Object.values(bir(p.id)).reduce((s,v)=>s+v, 0);
+  const ctpCount = ctps(p.id).length;
+  const best = allPts.length ? Math.max(...allPts) : 0;
+  const status = cupStatus(p.id);
+
+  const achievements = [
+    { icon:"⛳", label:"Fyrsti hringurinn", sub:"M1 spilaður", earned: allPts.length >= 1 },
+    { icon:"🎯", label:"Næst holu", sub:"1 CTP fengin", earned: ctpCount >= 1 },
+    { icon:"🐦", label:"Fuglasöfnuður", sub:"3+ fuglar", earned: totalBirdies >= 3 },
+    { icon:"🔥", label:"40+ stig", sub:"Einn hringur ≥ 40", earned: best >= 40 },
+    { icon:"🥊", label:"Bikarinn — Umferð 2", sub:"Kominn í 16", earned: status === "active" && (BIKAR.r2||[]).some(m => m.p1 === p.id || m.p2 === p.id) },
+    { icon:"🏆", label:"Sigurvegari", sub:"Bestu 8 hringir", earned: false }
+  ];
+
+  const html = achievements.map(a => `
+    <div class="achievement${a.earned?'':' locked'}">
+      <span class="icon">${a.icon}</span>
+      <div class="text">${a.label}<span class="sub">${a.sub}</span></div>
+    </div>`).join("");
+
+  el.innerHTML = `<h3><span class="icon">🏅</span> Afrek</h3><div class="achievements">${html}</div>`;
+}
+
+/* ── INIT ── */
+let startId = 11; // default: Gummi
+try {
+  const params = new URLSearchParams(location.search);
+  if (params.get("id")) startId = parseInt(params.get("id"));
+  else {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    if (saved.pid) startId = saved.pid;
+  }
+} catch(e) {}
+
+loadPlayer(startId);
+</script>
+</body>
+</html>
