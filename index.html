@@ -114,6 +114,22 @@ tr:hover td { background: #fafbfc; }
 .par-table td, .par-table th { text-align: center; }
 .par-table td:nth-child(2), .par-table th:nth-child(2) { text-align: left; }
 
+/* ── CHARTS ── */
+.chart-section { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04); margin-bottom: 24px; overflow: hidden; }
+.chart-section summary { padding: 14px 18px; font-size: 13px; font-weight: 700; color: #5b6478; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; gap: 7px; border-bottom: 1px solid #f0f1f4; list-style: none; }
+.chart-section summary::-webkit-details-marker { display: none; }
+.chart-section summary::before { content: "▶"; font-size: 10px; color: #b0b8c8; transition: transform .15s; }
+.chart-section[open] summary::before { transform: rotate(90deg); }
+.chart-inner { padding: 16px 18px; }
+.ctabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.ctab { border: 1px solid #d3d8e0; background: #fff; color: #1d2433; padding: 5px 14px; border-radius: 999px; cursor: pointer; font-size: 12px; font-weight: 500; transition: all .15s; }
+.ctab:hover { border-color: #2d7a4f; color: #2d7a4f; }
+.ctab.active { background: #2d7a4f; color: #fff; border-color: #2d7a4f; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; font-size: 12px; color: #5b6478; }
+.chart-legend span { display: flex; align-items: center; gap: 5px; }
+.chart-legend .ldot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.chart-note { font-size: 11px; color: #a0a8b8; margin-top: 8px; font-style: italic; }
+
 /* ── PROGRESS ── */
 .prog-up   { color: #16a34a; font-weight: 700; font-size: 12px; white-space: nowrap; }
 .prog-down { color: #dc2626; font-weight: 700; font-size: 12px; white-space: nowrap; }
@@ -140,7 +156,7 @@ tr:hover td { background: #fafbfc; }
       <img class="header-logo" src="MaEgAdeins2026.png" alt="MEA logo" />
       <div>
         <h1>Má ég aðeins 2026</h1>
-        <div class="sub" id="hdr-sub">Sæsónan 2026 — Lifandi staða</div>
+        <div class="sub" id="hdr-sub">Tímabilið 2026 — Lifandi staða</div>
       </div>
     </div>
     <a class="my-page-btn" href="player.html">👤 Mín síða</a>
@@ -158,6 +174,46 @@ tr:hover td { background: #fafbfc; }
 
 <!-- QUICK STATS (birdies + CTP count) — above main table -->
 <div class="cards" id="quick-stats-area"></div>
+
+<!-- CHARTS -->
+<details class="chart-section" id="chart-section" open>
+  <summary>📊 Myndir og gröf</summary>
+  <div class="chart-inner">
+    <div class="ctabs" id="ctabs">
+      <button class="ctab active" data-ct="bar">Súlurit — stig, högg &amp; forgjöf</button>
+      <button class="ctab" data-ct="line">Þróun tímabils</button>
+      <button class="ctab" data-ct="par">Par keppni</button>
+    </div>
+
+    <div id="ct-bar">
+      <div class="chart-legend">
+        <span><span class="ldot" style="background:#2d7a4f"></span>Stig (neðri ás)</span>
+        <span><span class="ldot" style="background:#c8a430"></span>Högg (efri ás)</span>
+        <span style="margin-left:auto;color:#a0a8b8;font-size:11px">Y-ás: nafn (forgjöf)</span>
+      </div>
+      <div style="position:relative;width:100%" id="bar-wrap">
+        <canvas id="chart-bar" role="img" aria-label="Horizontal grouped bar chart showing M1 points and strokes for all players"></canvas>
+      </div>
+    </div>
+
+    <div id="ct-line" style="display:none">
+      <div class="chart-legend" id="line-legend"></div>
+      <div style="position:relative;width:100%;height:340px">
+        <canvas id="chart-line" role="img" aria-label="Line chart showing score progression over the season for top players"></canvas>
+      </div>
+      <p class="chart-note">Sýnir topp 8 leikmenn — fleiri hringir = betri yfirsýn.</p>
+    </div>
+
+    <div id="ct-par" style="display:none">
+      <div class="chart-legend">
+        <span><span class="ldot" style="background:#2d7a4f"></span>Samanlögð stig (Pör hringir)</span>
+      </div>
+      <div style="position:relative;width:100%;height:400px">
+        <canvas id="chart-par" role="img" aria-label="Horizontal bar chart showing combined Par group scores in Parakeppni rounds"></canvas>
+      </div>
+    </div>
+  </div>
+</details>
 
 <!-- MAIN LEADERBOARD -->
 <div class="table-section">
@@ -844,6 +900,286 @@ function render() {
 
 buildHeader();
 render();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+/* ── CHARTS ── */
+const _charts = {};
+function destroyChart(id) { if (_charts[id]) { _charts[id].destroy(); delete _charts[id]; } }
+
+/* active chart tab */
+let activeChartTab = "bar";
+
+function initChartTabs() {
+  document.querySelectorAll(".ctab").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeChartTab = btn.dataset.ct;
+      document.querySelectorAll(".ctab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.querySelectorAll("#ct-bar,#ct-line,#ct-par").forEach(el => el.style.display = "none");
+      document.getElementById("ct-" + activeChartTab).style.display = "block";
+      buildActiveChart();
+    });
+  });
+}
+
+function buildActiveChart() {
+  if (activeChartTab === "bar")  buildBarChart();
+  if (activeChartTab === "line") buildLineChart();
+  if (activeChartTab === "par")  buildParChart();
+}
+
+/* ── BAR CHART: stig + högg, sorted by stig, y-label = name(forgjöf) ── */
+function buildBarChart() {
+  destroyChart("bar");
+  if (!playedRounds.length) return;
+
+  /* which round to show: active filter or last played */
+  const rk = (filterKey !== "all" && playedKeys.has(filterKey)) ? filterKey : playedRounds[playedRounds.length-1].key;
+  const round = ROUNDS.find(r => r.key === rk);
+
+  const data = PLAYERS.map(p => ({
+    p,
+    pts:  getPoints(p.id)[rk],
+    str:  getStrokes(p.id)[rk],
+    phcp: (pd => pd.playingHcp ? pd.playingHcp[rk] : undefined)(PDATA[p.id] || {})
+  })).filter(x => typeof x.pts === "number")
+    .sort((a, b) => b.pts - a.pts);
+
+  const labels  = data.map(d => `${d.p.short}${d.phcp !== undefined ? " (" + d.phcp + ")" : ""}`);
+  const stigVals = data.map(d => d.pts);
+  const hoggVals = data.map(d => d.str ?? null);
+
+  /* dynamic height: 44px per player */
+  const wrap = document.getElementById("bar-wrap");
+  wrap.style.height = (data.length * 46 + 80) + "px";
+
+  const ctx = document.getElementById("chart-bar").getContext("2d");
+  _charts.bar = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Stig",
+          data: stigVals,
+          backgroundColor: data.map(d => d.p.gender === "M" ? "#2d7a4f" : "#c8488a"),
+          borderRadius: 3,
+          borderWidth: 0,
+          xAxisID: "xStig"
+        },
+        {
+          label: "Högg",
+          data: hoggVals,
+          backgroundColor: "rgba(200,164,48,.55)",
+          borderRadius: 3,
+          borderWidth: 0,
+          xAxisID: "xHogg"
+        }
+      ]
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: items => data[items[0].dataIndex].p.name,
+            label: item => {
+              const d = data[item.dataIndex];
+              if (item.datasetIndex === 0)
+                return [` Stig: ${d.pts}`, ` Högg: ${d.str ?? "—"}`, ` Forgjöf: ${d.phcp ?? "—"}`];
+              return [];
+            }
+          },
+          filter: item => item.datasetIndex === 0
+        }
+      },
+      scales: {
+        y: {
+          grid: { display: false },
+          ticks: {
+            font: { size: 12 },
+            color: data.map(d => d.p.gender === "M" ? "#1a5c35" : "#9d174d")
+          }
+        },
+        xStig: {
+          position: "bottom",
+          min: 0, max: 50,
+          title: { display: true, text: "Stig", color: "#2d7a4f", font: { size: 11 } },
+          grid: { color: "rgba(0,0,0,.05)" },
+          ticks: { font: { size: 11 }, color: "#5b6478" }
+        },
+        xHogg: {
+          position: "top",
+          min: 60, max: 120,
+          title: { display: true, text: "Högg", color: "#c8a430", font: { size: 11 } },
+          grid: { display: false },
+          ticks: { font: { size: 11 }, color: "#c8a430" }
+        }
+      }
+    }
+  });
+
+  /* update legend round label */
+  const firstTab = document.querySelector(".ctab[data-ct='bar']");
+  if (firstTab && round) firstTab.textContent = `Súlurit — ${round.label} · stig, högg & forgjöf`;
+}
+
+/* ── LINE CHART: MEA score progression ── */
+const LINE_PALETTE = ["#2d7a4f","#c8488a","#c8a430","#1e40af","#7c3aed","#d4601a","#0891b2","#16a34a"];
+
+function buildLineChart() {
+  destroyChart("line");
+  if (!playedRounds.length) return;
+
+  /* rank players by current MEA score, take top 8 */
+  const ranked = PLAYERS.map(p => ({
+    p,
+    score: meaScore(p.id),
+    vals: playedRounds.map(r => {
+      const v = getPoints(p.id)[r.key];
+      return typeof v === "number" ? v : null;
+    })
+  })).filter(x => x.vals.some(v => v !== null))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+
+  const legend = document.getElementById("line-legend");
+  legend.innerHTML = ranked.map((x, i) =>
+    `<span><span class="ldot" style="background:${LINE_PALETTE[i]}"></span>${x.p.short}</span>`
+  ).join("");
+
+  const ctx = document.getElementById("chart-line").getContext("2d");
+  _charts.line = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: playedRounds.map(r => r.label),
+      datasets: ranked.map((x, i) => ({
+        label: x.p.short,
+        data: x.vals,
+        borderColor: LINE_PALETTE[i],
+        backgroundColor: LINE_PALETTE[i] + "18",
+        pointBackgroundColor: LINE_PALETTE[i],
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        tension: 0.35,
+        borderWidth: 2,
+        spanGaps: true
+      }))
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { mode: "index", intersect: false }
+      },
+      scales: {
+        y: {
+          min: 15, max: 50,
+          grid: { color: "rgba(0,0,0,.05)" },
+          ticks: { font: { size: 11 }, color: "#5b6478" },
+          title: { display: true, text: "Stig", font: { size: 11 }, color: "#5b6478" }
+        },
+        x: {
+          grid: { display: false },
+          ticks: { font: { size: 12 } }
+        }
+      }
+    }
+  });
+}
+
+/* ── PAR CHART: combined Par group scores (POR rounds) ── */
+function buildParChart() {
+  destroyChart("par");
+  const porPlayed = ROUNDS.filter(r => r.type === "POR" && playedKeys.has(r.key));
+  if (!porPlayed.length) return;
+
+  const parData = [1,2,3,4,5,6,7,8,9].map(n => {
+    const members = PLAYERS.filter(p => p.par === n);
+    const roundScores = porPlayed.map(r => {
+      const vals = members.map(p => getPoints(p.id)[r.key]).filter(v => typeof v === "number");
+      return vals.length ? vals.reduce((s,v) => s+v, 0) : 0;
+    });
+    const total = roundScores.reduce((s,v) => s+v, 0);
+    const names = members.map(p => p.short).join(" & ");
+    return { n, total, names, roundScores };
+  }).sort((a, b) => b.total - a.total);
+
+  const labels = parData.map(d => `Par ${d.n} · ${d.names}`);
+  const colors = parData.map((_, i) =>
+    i === 0 ? "#2d7a4f" : i === 1 ? "#3d9a60" : i === 2 ? "#4dba75" : "rgba(45,122,79,.38)"
+  );
+
+  const ctx = document.getElementById("chart-par").getContext("2d");
+  _charts.par = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: porPlayed.map((r, ri) => ({
+        label: r.label,
+        data: parData.map(d => d.roundScores[ri]),
+        backgroundColor: ri === 0
+          ? parData.map((_, i) => i === 0 ? "#2d7a4f" : i === 1 ? "#3d9a60" : i === 2 ? "#4dba75" : "rgba(45,122,79,.38)")
+          : parData.map(() => "rgba(200,164,48,.45)"),
+        borderRadius: 3,
+        borderWidth: 0
+      }))
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: porPlayed.length > 1,
+          position: "bottom",
+          labels: { font: { size: 11 }, boxWidth: 12 }
+        },
+        tooltip: { mode: "index", intersect: false }
+      },
+      scales: {
+        x: {
+          stacked: porPlayed.length > 1,
+          grid: { color: "rgba(0,0,0,.05)" },
+          ticks: { font: { size: 11 }, color: "#5b6478" },
+          title: { display: true, text: "Samanlögð stig", font: { size: 11 }, color: "#5b6478" }
+        },
+        y: { stacked: porPlayed.length > 1, grid: { display: false }, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+/* ── INIT CHARTS ── */
+function buildCharts() {
+  initChartTabs();
+  buildBarChart();
+}
+
+/* re-build active chart when filter changes */
+const _origRender = render;
+window.addEventListener("load", () => {
+  buildCharts();
+  /* patch render to also refresh active chart */
+  const origRender = window._renderPatched ? null : render;
+  if (origRender) {
+    window._renderPatched = true;
+    window._origBuildCharts = buildActiveChart;
+  }
+});
+
+/* also rebuild bar chart when filter changes (it might target a specific round) */
+document.addEventListener("click", e => {
+  if (e.target.closest("#filter-tabs")) {
+    setTimeout(buildActiveChart, 50);
+  }
+});
 </script>
 </body>
 </html>
