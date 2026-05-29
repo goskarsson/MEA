@@ -27,7 +27,7 @@ header.app-header .my-page-btn:hover { background: rgba(0,0,0,.4); }
 .stats-filter { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
 .stats-filter .label { font-size: 13px; color: #5b6478; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
 .stats-filter .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.stats-filter button { border: 1px solid #d3d8e0; background: #fff; color: #1d2433; padding: 5px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; }
+.stats-filter button { border: 1px solid #d3d8e0; background: #fff; color: #1d2433; padding: 5px 12px; border-radius: 999px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all .15s; text-align: center; line-height: 1; }
 .stats-filter button:hover { border-color: #c8860a; color: #7a520a; }
 .stats-filter button.active { background: #2d7a4f; color: #fff; border-color: #2d7a4f; }
 
@@ -130,6 +130,30 @@ tr:hover td { background: #fafbfc; }
 .chart-legend .ldot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 .chart-note { font-size: 11px; color: #a0a8b8; margin-top: 8px; font-style: italic; }
 
+/* ── SIGURVEGARI DAGSINS ── */
+.sig-list { display: flex; flex-direction: column; gap: 0; }
+.sig-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid #f3f4f7; }
+.sig-row:last-child { border-bottom: 0; }
+.sig-badge { min-width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, #c8a430 0%, #d4601a 100%); color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; letter-spacing: 0.2px; box-shadow: 0 1px 4px rgba(200,164,48,.3); }
+.sig-info { flex: 1; min-width: 0; }
+.sig-name { font-size: 14px; font-weight: 700; color: #1e2a3a; }
+.sig-sub { font-size: 11px; color: #8a95a5; margin-top: 1px; }
+.sig-pts { font-size: 15px; font-weight: 800; color: #1c2e10; white-space: nowrap; }
+.sig-count { font-size: 11px; background: #fef9c3; color: #854d0e; padding: 2px 9px; border-radius: 10px; font-weight: 700; }
+
+/* ── HREYFINGAR DAGSINS ── */
+.hrey-round-tag { font-size: 11px; background: #e8eaef; color: #5b6478; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
+.hrey-cols { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 8px; }
+.hrey-divider { width: 1px; background: #e8eaef; margin: 0 12px; }
+.hrey-col-head { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
+.hrey-col-up .hrey-col-head { color: #16a34a; }
+.hrey-col-dn .hrey-col-head { color: #dc2626; }
+.hrey-entry { display: flex; justify-content: space-between; align-items: center; padding: 3px 0; gap: 6px; }
+.hrey-nm { font-size: 13px; color: #1e2a3a; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hrey-val { font-size: 13px; font-weight: 700; white-space: nowrap; }
+.hrey-col-up .hrey-val { color: #16a34a; }
+.hrey-col-dn .hrey-val { color: #dc2626; }
+
 /* ── PROGRESS ── */
 .prog-up   { color: #16a34a; font-weight: 700; font-size: 12px; white-space: nowrap; }
 .prog-down { color: #dc2626; font-weight: 700; font-size: 12px; white-space: nowrap; }
@@ -187,9 +211,9 @@ tr:hover td { background: #fafbfc; }
 
     <div id="ct-bar">
       <div class="chart-legend">
-        <span><span class="ldot" style="background:#2d7a4f"></span>Stig (neðri ás)</span>
-        <span><span class="ldot" style="background:#c8a430"></span>Högg (efri ás)</span>
-        <span style="margin-left:auto;color:#a0a8b8;font-size:11px">Y-ás: nafn (forgjöf)</span>
+        <span><span class="ldot" style="background:#2d7a4f"></span>Karlar</span>
+        <span><span class="ldot" style="background:#c8488a"></span>Konur</span>
+        <span style="margin-left:auto;color:#a0a8b8;font-size:11px">Y-ás: nafn (forgjöf) · Merki: punktar | högg</span>
       </div>
       <div style="position:relative;width:100%" id="bar-wrap">
         <canvas id="chart-bar" role="img" aria-label="Horizontal grouped bar chart showing M1 points and strokes for all players"></canvas>
@@ -228,7 +252,7 @@ tr:hover td { background: #fafbfc; }
 <div class="table-section">
   <div class="ts-header">
     <span class="ts-title"><span class="icon">👫</span> Parakeppni — Par stigatafla</span>
-    <span style="font-size:12px;color:#8a95a5">Bestu <span id="par-n"></span> Pör hringir teljast</span>
+    <span style="font-size:12px;color:#8a95a5">Bestu <span id="par-n"></span> hringir telja</span>
   </div>
   <div class="table-wrap"><table id="par-table" class="par-table"></table></div>
 </div>
@@ -348,6 +372,22 @@ const MEA_TOP_N = 8;
 const PAR_TOP_N = 6;
 const STORAGE_KEY = "mea_view_prefs";
 
+const PAR_COLORS = {
+  1: { bg:"#dbeafe", color:"#1e3a8a" },
+  2: { bg:"#ede9fe", color:"#5b21b6" },
+  3: { bg:"#ccfbf1", color:"#0f766e" },
+  4: { bg:"#ffedd5", color:"#9a3412" },
+  5: { bg:"#e8f4ee", color:"#1a5c35" },
+  6: { bg:"#fce7f3", color:"#9d174d" },
+  7: { bg:"#fef9c3", color:"#854d0e" },
+  8: { bg:"#e0e7ff", color:"#3730a3" },
+  9: { bg:"#fee2e2", color:"#991b1b" }
+};
+function parBadge(n) {
+  const c = PAR_COLORS[n] || { bg:"#e8eaef", color:"#5b6478" };
+  return `<span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:${c.bg};color:${c.color};font-size:11px;font-weight:700">${n}</span>`;
+}
+
 /* ── PARSE SNAPSHOT ── */
 const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
 const PDATA = SNAP.players;
@@ -416,10 +456,17 @@ function savePrefs() {
 function buildFilterTabs() {
   const el = document.getElementById("filter-tabs");
   el.innerHTML = "";
-  const btns = [{ key:"all", label:"Allir hringir" }, ...playedRounds.map(r => ({ key: r.key, label: r.label }))];
+  const btns = [
+    { key:"all", label:"Allir hringir", date: null },
+    ...playedRounds.map(r => ({ key: r.key, label: r.label, date: r.date }))
+  ];
   btns.forEach(b => {
     const btn = document.createElement("button");
-    btn.textContent = b.label;
+    if (b.date) {
+      btn.innerHTML = `<span style="display:block;line-height:1.2">${b.label}</span><span style="display:block;font-size:10px;opacity:.75;font-weight:400;line-height:1.3">${b.date}</span>`;
+    } else {
+      btn.textContent = b.label;
+    }
     if (b.key === filterKey) btn.classList.add("active");
     btn.onclick = () => { filterKey = b.key; savePrefs(); render(); };
     el.appendChild(btn);
@@ -450,8 +497,39 @@ function buildCards() {
     ? playedRounds.map(r => r.key)
     : (playedKeys.has(filterKey) ? [filterKey] : []);
 
-  // Day top 3
-  if (rkeys.length) {
+  // Sigurvegari dagsins — history card (all) or single-round top-3
+  if (filterKey === "all") {
+    if (playedRounds.length > 0) {
+      const winners = playedRounds.map(r => {
+        const scored = PLAYERS.map(p => ({ p, pts: getPoints(p.id)[r.key] }))
+          .filter(x => typeof x.pts === "number")
+          .sort((a,b) => b.pts - a.pts);
+        if (!scored.length) return null;
+        const best = scored[0].pts;
+        const tied = scored.filter(x => x.pts === best);
+        return { round: r, winners: tied, pts: best };
+      }).filter(Boolean);
+      if (winners.length) {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<div class="card-title" style="display:flex;justify-content:space-between;align-items:center">
+          <span><span class="icon">🥇</span> Sigurvegari dagsins</span>
+          <span class="sig-count">ÖLL ${winners.length}</span>
+        </div>
+        <div class="sig-list">${winners.map(w => `
+          <div class="sig-row">
+            <div class="sig-badge">${w.round.label}</div>
+            <div class="sig-info">
+              <div class="sig-name">${w.winners.map(x => x.p.short).join(" / ")}</div>
+              <div class="sig-sub">${w.round.date} · ${w.round.course}</div>
+            </div>
+            <div class="sig-pts">${w.pts} stig</div>
+          </div>`).join("")}
+        </div>`;
+        area.appendChild(card);
+      }
+    }
+  } else if (rkeys.length) {
     rkeys.forEach(rk => {
       const round = ROUNDS.find(r => r.key === rk);
       if (!round) return;
@@ -459,13 +537,12 @@ function buildCards() {
         .filter(x => typeof x.pts === "number")
         .sort((a,b) => b.pts - a.pts);
       if (!scored.length) return;
-      // Collapse ties, show top 3 distinct positions
       const top3 = [];
-      let rank = 0, prev = null;
+      let rank2 = 0, prevPts = null;
       for (const x of scored) {
-        if (x.pts !== prev) { rank++; prev = x.pts; }
-        if (rank > 3) break;
-        top3.push({ ...x, rank });
+        if (x.pts !== prevPts) { rank2++; prevPts = x.pts; }
+        if (rank2 > 3) break;
+        top3.push({ ...x, rank: rank2 });
       }
       const card = document.createElement("div");
       card.className = "card";
@@ -502,28 +579,6 @@ function buildCards() {
     area.appendChild(card);
   }
 
-  // CTP card
-  const ctpEntries = [];
-  PLAYERS.forEach(p => {
-    getCtp(p.id).forEach(c => {
-      if (rkeys.includes(c.round)) ctpEntries.push({ p, ...c });
-    });
-  });
-  if (ctpEntries.length) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<div class="card-title"><span class="icon">📍</span> Næst holu</div>
-      <div class="podium">${ctpEntries.map((c,i) => `
-        <div class="pod-row">
-          <span class="pod-rank">${rankMedal(i)}</span>
-          <span class="pod-name">${c.p.short}</span>
-          <span class="pod-val">${c.cm} cm</span>
-          <span class="pod-sub">Hola ${c.hole}, Keilir</span>
-        </div>`).join("")}
-      </div>`;
-    area.appendChild(card);
-  }
-
   // Fewest strokes — best 8 rounds (lowest stroke totals)
   const strokeLeader = PLAYERS.map(p => {
     const s = getStrokes(p.id);
@@ -550,7 +605,7 @@ function buildCards() {
 
 /* ── MAIN TABLE ── */
 let mainSortCol = "mea";
-let mainSortDir = -1;
+let mainSortDir = 1;
 
 // Compute rank snapshot for progress: rank by MEA score excluding last round
 function prevRankMap() {
@@ -600,19 +655,20 @@ function buildMainTable() {
 
   const shownRounds = filterKey === "all" ? playedRounds : playedRounds.filter(r => r.key === filterKey);
   const showProgress = filterKey === "all" && playedRounds.length >= 2;
+  const leaderScore = rows.length ? Math.max(...rows.map(r => r.total)) : 0;
 
   let html = "<thead><tr>";
   html += `<th style="width:32px">#</th>`;
   if (showProgress) html += `<th style="width:36px" title="Breyting í sæti">△</th>`;
-  html += `<th class="${mainSortCol==='name'?'sorted':''}" data-col="name">Nafn <span class="sort-arrow">${mainSortCol==='name'?(mainSortDir===-1?'↓':'↑'):'↕'}</span></th>`;
+  html += `<th class="${mainSortCol==='name'?'sorted':''}" data-col="name">Nafn <span class="sort-arrow">${mainSortCol==='name'?(mainSortDir===1?'↓':'↑'):'↕'}</span></th>`;
   html += `<th>Par</th>`;
   html += `<th>Kyn</th>`;
   shownRounds.forEach(r => {
     const sc = mainSortCol === r.key ? "sorted" : "";
-    const arr = mainSortCol === r.key ? (mainSortDir===-1?'↓':'↑') : '↕';
+    const arr = mainSortCol === r.key ? (mainSortDir===1?'↓':'↑') : '↕';
     html += `<th class="${sc}" data-col="${r.key}">${r.label} <span class="sort-arrow">${arr}</span></th>`;
   });
-  html += `<th class="${mainSortCol==='mea'?'sorted':''}" data-col="mea">${filterKey==="all"?"MEA":"Samtals"} <span class="sort-arrow">${mainSortCol==='mea'?(mainSortDir===-1?'↓':'↑'):'↕'}</span></th>`;
+  html += `<th class="${mainSortCol==='mea'?'sorted':''}" data-col="mea">${filterKey==="all"?"MEA":"Samtals"} <span class="sort-arrow">${mainSortCol==='mea'?(mainSortDir===1?'↓':'↑'):'↕'}</span></th>`;
   html += `<th></th>`;
   html += "</tr></thead><tbody>";
 
@@ -632,7 +688,7 @@ function buildMainTable() {
       html += `<td style="text-align:center">${prog}</td>`;
     }
     html += `<td class="name-cell"><a href="player.html?id=${row.p.id}">${row.p.short}</a></td>`;
-    html += `<td><span class="badge-par">${row.p.par}</span></td>`;
+    html += `<td>${parBadge(row.p.par)}</td>`;
     html += `<td><span class="badge-gender ${row.p.gender}">${row.p.gender}</span></td>`;
 
     const filteredNums = rkeys.map(k => getPoints(row.p.id)[k]).filter(v => typeof v === "number");
@@ -648,7 +704,8 @@ function buildMainTable() {
       }
     });
 
-    html += `<td class="pts-cell">${row.total || "—"}</td>`;
+    const gap = row.total && leaderScore > row.total ? `<span style="font-size:10px;font-weight:500;color:#dc2626;margin-left:5px">-${leaderScore - row.total}</span>` : "";
+    html += `<td class="pts-cell">${row.total || "—"}${gap}</td>`;
     html += `<td class="form-icon">${row.formIcon}</td>`;
     html += `</tr>`;
   });
@@ -660,7 +717,7 @@ function buildMainTable() {
     th.addEventListener("click", () => {
       const col = th.dataset.col;
       if (mainSortCol === col) mainSortDir *= -1;
-      else { mainSortCol = col; mainSortDir = -1; }
+      else { mainSortCol = col; mainSortDir = 1; }
       buildMainTable();
     });
   });
@@ -689,11 +746,16 @@ function buildParTable() {
   playedPorRounds.forEach(r => { html += `<th>${r.label}</th>`; });
   html += "<th>Samtals</th></tr></thead><tbody>";
 
+  const parLeader = rows.length ? rows[0].total : 0;
   rows.forEach((row, i) => {
-    const names = row.members.map(p => p.short).join(" & ");
+    const pc = PAR_COLORS[row.parNum] || { bg:"#e8eaef", color:"#5b6478" };
+    const names = row.members.map(p =>
+      `<span style="display:inline-block;padding:1px 7px;border-radius:5px;background:${pc.bg};color:${pc.color};font-weight:600">${p.short}</span>`
+    ).join(" <span style='color:#8a95a5'>&amp;</span> ");
+    const gap = row.total && parLeader > row.total ? `<span style="font-size:10px;font-weight:500;color:#dc2626;margin-left:5px">-${parLeader - row.total}</span>` : "";
     html += `<tr>
       <td class="rank-cell">${rankMedal(i)}</td>
-      <td><span class="badge-par">${row.parNum}</span></td>
+      <td>${parBadge(row.parNum)}</td>
       <td class="name-cell">${names}</td>`;
     playedPorRounds.forEach(r => {
       const entry = row.roundScores.find(x => x.key === r.key);
@@ -701,7 +763,7 @@ function buildParTable() {
         ? `<td class="round-cell">${entry.score}</td>`
         : `<td class="round-cell empty">—</td>`;
     });
-    html += `<td class="pts-cell">${row.total || "—"}</td></tr>`;
+    html += `<td class="pts-cell">${row.total || "—"}${gap}</td></tr>`;
   });
 
   html += "</tbody>";
@@ -811,7 +873,29 @@ function buildQuickStats() {
     area.appendChild(card);
   }
 
-  // CTP count
+  // CTP — distances card
+  const ctpEntries = [];
+  PLAYERS.forEach(p => {
+    getCtp(p.id).forEach(c => {
+      if (rkeys.includes(c.round)) ctpEntries.push({ p, ...c });
+    });
+  });
+  if (ctpEntries.length) {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `<div class="card-title"><span class="icon">📍</span> Næst holu — Fjarlægð</div>
+      <div class="podium">${ctpEntries.map((c,i) => `
+        <div class="pod-row">
+          <span class="pod-rank">${rankMedal(i)}</span>
+          <span class="pod-name">${c.p.short}</span>
+          <span class="pod-val">${c.cm} cm</span>
+          <span class="pod-sub">Hola ${c.hole}, Keilir</span>
+        </div>`).join("")}
+      </div>`;
+    area.appendChild(card);
+  }
+
+  // CTP — count card
   const ctpRows = PLAYERS.map(p => {
     const ctps = getCtp(p.id).filter(c => rkeys.includes(c.round));
     return { p, count: ctps.length, best: ctps.reduce((m,c) => Math.min(m, c.cm), Infinity) };
@@ -833,57 +917,53 @@ function buildQuickStats() {
   }
 }
 
-/* ── EXTRA CARDS (movers) ── */
+/* ── EXTRA CARDS (hreyfingar) ── */
 function buildExtraCards() {
   const area = document.getElementById("extra-cards");
   area.innerHTML = "";
 
   if (playedRounds.length < 2 || filterKey !== "all") return;
 
-  const last  = playedRounds[playedRounds.length - 1];
-  const prev  = playedRounds[playedRounds.length - 2];
+  const last = playedRounds[playedRounds.length - 1];
+  const prev = playedRounds[playedRounds.length - 2];
 
   const movers = PLAYERS.map(p => {
     const ptsMap = getPoints(p.id);
     const l  = ptsMap[last.key];
     const pr = ptsMap[prev.key];
     if (typeof l !== "number" || typeof pr !== "number") return null;
-    return { p, diff: l - pr, last: l, prev: pr };
+    return { p, diff: l - pr };
   }).filter(Boolean).sort((a,b) => b.diff - a.diff);
 
-  // Risers
-  const risers = movers.filter(x => x.diff > 0).slice(0,3);
-  if (risers.length) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<div class="card-title"><span class="icon">🔥</span> Mesta bæting — ${last.label}</div>
-      <div class="podium">${risers.map((x,i) => `
-        <div class="pod-row">
-          <span class="pod-rank">${rankMedal(i)}</span>
-          <span class="pod-name">${x.p.short}</span>
-          <span class="pod-val" style="color:#16a34a">+${x.diff} stig</span>
-          <span class="pod-sub">${x.prev}→${x.last}</span>
-        </div>`).join("")}
-      </div>`;
-    area.appendChild(card);
-  }
+  const risers  = movers.filter(x => x.diff > 0).slice(0, 5);
+  const fallers = [...movers].sort((a,b) => a.diff - b.diff).filter(x => x.diff < 0).slice(0, 5);
 
-  // Fallers
-  const fallers = [...movers].sort((a,b) => a.diff - b.diff).filter(x => x.diff < 0).slice(0,3);
-  if (fallers.length) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `<div class="card-title"><span class="icon">❄️</span> Mesta lækkun — ${last.label}</div>
-      <div class="podium">${fallers.map((x,i) => `
-        <div class="pod-row">
-          <span class="pod-rank">${rankMedal(i)}</span>
-          <span class="pod-name">${x.p.short}</span>
-          <span class="pod-val" style="color:#dc2626">${x.diff} stig</span>
-          <span class="pod-sub">${x.prev}→${x.last}</span>
-        </div>`).join("")}
-      </div>`;
-    area.appendChild(card);
-  }
+  if (!risers.length && !fallers.length) return;
+
+  const card = document.createElement("div");
+  card.className = "card";
+  card.style.gridColumn = "1 / -1";
+  card.innerHTML = `
+    <div class="card-title" style="display:flex;justify-content:space-between;align-items:center">
+      <span><span class="icon">📈</span> Hreyfingar dagsins</span>
+      <span class="hrey-round-tag">${prev.label}→${last.label}</span>
+    </div>
+    <div class="hrey-cols">
+      <div class="hrey-col-up">
+        <div class="hrey-col-head">▲ Bætt sig</div>
+        ${risers.length
+          ? risers.map(x => `<div class="hrey-entry"><span class="hrey-nm">${x.p.short}</span><span class="hrey-val">+${x.diff}</span></div>`).join("")
+          : `<div style="color:#c3c8d2;font-size:12px">—</div>`}
+      </div>
+      <div class="hrey-divider"></div>
+      <div class="hrey-col-dn">
+        <div class="hrey-col-head">▼ Versnað</div>
+        ${fallers.length
+          ? fallers.map(x => `<div class="hrey-entry"><span class="hrey-nm">${x.p.short}</span><span class="hrey-val">${x.diff}</span></div>`).join("")
+          : `<div style="color:#c3c8d2;font-size:12px">—</div>`}
+      </div>
+    </div>`;
+  area.appendChild(card);
 }
 
 /* ── RENDER ── */
@@ -903,8 +983,10 @@ render();
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <script>
 /* ── CHARTS ── */
+Chart.register(ChartDataLabels);
 const _charts = {};
 function destroyChart(id) { if (_charts[id]) { _charts[id].destroy(); delete _charts[id]; } }
 
@@ -930,12 +1012,11 @@ function buildActiveChart() {
   if (activeChartTab === "par")  buildParChart();
 }
 
-/* ── BAR CHART: stig + högg, sorted by stig, y-label = name(forgjöf) ── */
+/* ── BAR CHART: stig only, datalabel = "XX punktar | XX högg" ── */
 function buildBarChart() {
   destroyChart("bar");
   if (!playedRounds.length) return;
 
-  /* which round to show: active filter or last played */
   const rk = (filterKey !== "all" && playedKeys.has(filterKey)) ? filterKey : playedRounds[playedRounds.length-1].key;
   const round = ROUNDS.find(r => r.key === rk);
 
@@ -943,46 +1024,34 @@ function buildBarChart() {
     p,
     pts:  getPoints(p.id)[rk],
     str:  getStrokes(p.id)[rk],
-    phcp: (pd => pd.playingHcp ? pd.playingHcp[rk] : undefined)(PDATA[p.id] || {})
+    phcp: (PDATA[p.id]?.playingHcp ?? {})[rk]
   })).filter(x => typeof x.pts === "number")
     .sort((a, b) => b.pts - a.pts);
 
-  const labels  = data.map(d => `${d.p.short}${d.phcp !== undefined ? " (" + d.phcp + ")" : ""}`);
-  const stigVals = data.map(d => d.pts);
-  const hoggVals = data.map(d => d.str ?? null);
+  const labels = data.map(d => `${d.p.short}${d.phcp !== undefined ? " (" + d.phcp + ")" : ""}`);
 
-  /* dynamic height: 44px per player */
+  /* dynamic height */
   const wrap = document.getElementById("bar-wrap");
-  wrap.style.height = (data.length * 46 + 80) + "px";
+  wrap.style.height = (data.length * 46 + 70) + "px";
 
   const ctx = document.getElementById("chart-bar").getContext("2d");
   _charts.bar = new Chart(ctx, {
     type: "bar",
     data: {
       labels,
-      datasets: [
-        {
-          label: "Stig",
-          data: stigVals,
-          backgroundColor: data.map(d => d.p.gender === "M" ? "#2d7a4f" : "#c8488a"),
-          borderRadius: 3,
-          borderWidth: 0,
-          xAxisID: "xStig"
-        },
-        {
-          label: "Högg",
-          data: hoggVals,
-          backgroundColor: "rgba(200,164,48,.55)",
-          borderRadius: 3,
-          borderWidth: 0,
-          xAxisID: "xHogg"
-        }
-      ]
+      datasets: [{
+        label: "Stig",
+        data: data.map(d => d.pts),
+        backgroundColor: data.map(d => d.p.gender === "M" ? "#2d7a4f" : "#c8488a"),
+        borderRadius: 4,
+        borderWidth: 0
+      }]
     },
     options: {
       indexAxis: "y",
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { right: 160 } },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -990,43 +1059,41 @@ function buildBarChart() {
             title: items => data[items[0].dataIndex].p.name,
             label: item => {
               const d = data[item.dataIndex];
-              if (item.datasetIndex === 0)
-                return [` Stig: ${d.pts}`, ` Högg: ${d.str ?? "—"}`, ` Forgjöf: ${d.phcp ?? "—"}`];
-              return [];
+              return [` Stig: ${d.pts}`, ` Högg: ${d.str ?? "—"}`, ` Forgjöf: ${d.phcp ?? "—"}`];
             }
+          }
+        },
+        datalabels: {
+          anchor: "end",
+          align: "end",
+          clamp: false,
+          font: { size: 11.5, weight: "bold" },
+          color: (ctx) => data[ctx.dataIndex].p.gender === "M" ? "#1a5c35" : "#831a5a",
+          formatter: (value, ctx) => {
+            const d = data[ctx.dataIndex];
+            const hogg = d.str !== undefined ? ` | ${d.str} högg` : "";
+            return `${value} punktar${hogg}`;
           },
-          filter: item => item.datasetIndex === 0
+          padding: { left: 6 }
         }
       },
       scales: {
         y: {
           grid: { display: false },
-          ticks: {
-            font: { size: 12 },
-            color: data.map(d => d.p.gender === "M" ? "#1a5c35" : "#9d174d")
-          }
+          ticks: { font: { size: 12 }, color: data.map(d => d.p.gender === "M" ? "#1a5c35" : "#9d174d") }
         },
-        xStig: {
-          position: "bottom",
+        x: {
           min: 0, max: 50,
-          title: { display: true, text: "Stig", color: "#2d7a4f", font: { size: 11 } },
           grid: { color: "rgba(0,0,0,.05)" },
-          ticks: { font: { size: 11 }, color: "#5b6478" }
-        },
-        xHogg: {
-          position: "top",
-          min: 60, max: 120,
-          title: { display: true, text: "Högg", color: "#c8a430", font: { size: 11 } },
-          grid: { display: false },
-          ticks: { font: { size: 11 }, color: "#c8a430" }
+          ticks: { font: { size: 11 }, color: "#5b6478" },
+          title: { display: true, text: "Stig", color: "#5b6478", font: { size: 11 } }
         }
       }
     }
   });
 
-  /* update legend round label */
   const firstTab = document.querySelector(".ctab[data-ct='bar']");
-  if (firstTab && round) firstTab.textContent = `Súlurit — ${round.label} · stig, högg & forgjöf`;
+  if (firstTab && round) firstTab.textContent = `Súlurit — ${round.label} · stig & högg`;
 }
 
 /* ── LINE CHART: MEA score progression ── */
@@ -1076,6 +1143,7 @@ function buildLineChart() {
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
+        datalabels: { display: false },
         tooltip: { mode: "index", intersect: false }
       },
       scales: {
@@ -1141,6 +1209,7 @@ function buildParChart() {
           position: "bottom",
           labels: { font: { size: 11 }, boxWidth: 12 }
         },
+        datalabels: { display: false },
         tooltip: { mode: "index", intersect: false }
       },
       scales: {
