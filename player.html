@@ -171,7 +171,7 @@ footer a { color: #2d7a4f; }
 <!-- ═══ DATA ═══ -->
 <script type="application/json" id="snapshot">
 {
-  "lastUpdated": "2026-05-25T22:45:00Z",
+  "lastUpdated": "2026-05-31T16:00:00Z",
   "bikar": {
     "r1": [
       { "p1": 17, "p2": 18, "winner": 17, "margin": "4&3" },
@@ -192,24 +192,36 @@ footer a { color: #2d7a4f; }
     "f":  []
   },
   "players": {
-    "1":  { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":3}, "playingHcp": {"r1":12} },
-    "2":  { "points": {"r1":27}, "strokes": {"r1":98},  "birdies": {"r1":1}, "playingHcp": {"r1":16} },
-    "3":  { "points": {"r1":35}, "strokes": {"r1":90},  "birdies": {"r1":1}, "playingHcp": {"r1":17} },
-    "4":  { "points": {"r1":34}, "strokes": {"r1":98},  "birdies": {"r1":0}, "playingHcp": {"r1":24}, "ctp": [{"round":"r1","hole":6,"cm":300}] },
-    "5":  { "points": {"r1":29}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":13} },
-    "6":  { "points": {"r1":34}, "strokes": {"r1":96},  "birdies": {"r1":0}, "playingHcp": {"r1":22}, "ctp": [{"round":"r1","hole":12,"cm":500}] },
-    "7":  { "points": {"r1":19}, "strokes": {"r1":113}, "birdies": {"r1":0}, "playingHcp": {"r1":22} },
-    "8":  { "points": {"r1":31}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":23} },
-    "9":  { "points": {"r1":30}, "strokes": {"r1":85},  "birdies": {"r1":0}, "playingHcp": {"r1":7}  },
-    "10": { "points": {"r1":37}, "strokes": {"r1":99},  "birdies": {"r1":0}, "playingHcp": {"r1":28} },
-    "11": { "points": {"r1":30}, "strokes": {"r1":90},  "birdies": {"r1":0}, "playingHcp": {"r1":11} },
-    "12": { "points": {"r1":37}, "strokes": {"r1":86},  "birdies": {"r1":2}, "playingHcp": {"r1":14} },
-    "13": { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":12} },
-    "14": { "points": {"r1":32}, "strokes": {"r1":103}, "birdies": {"r1":1}, "playingHcp": {"r1":26}, "ctp": [{"round":"r1","hole":17,"cm":350}] },
-    "15": { "points": {"r1":35}, "strokes": {"r1":79},  "birdies": {"r1":3}, "playingHcp": {"r1":6},  "ctp": [{"round":"r1","hole":4,"cm":380}] },
-    "16": { "points": {"r1":35}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":28} },
-    "17": { "points": {"r1":29}, "strokes": {"r1":93},  "birdies": {"r1":0}, "playingHcp": {"r1":14} },
-    "18": { "points": {"r1":43}, "strokes": {"r1":93},  "birdies": {"r1":3}, "playingHcp": {"r1":28} }
+    "1":  { "points": {"r2":28,"r3":28}, "strokes": {"r2":92,"r3":94},  "birdies": {"r2":1,"r3":1}, "playingHcp": {"r2":12,"r3":12} },
+    "2":  { "points": {"r2":27,"r3":33}, "strokes": {"r2":98,"r3":92},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":16,"r3":16},
+            "ctp": [{"round":"r2","hole":12,"cm":600}] },
+    "3":  { "points": {"r1":37,"r2":35,"r3":35}, "strokes": {"r1":88,"r2":90,"r3":90},  "birdies": {"r1":1,"r2":1,"r3":0}, "playingHcp": {"r1":17,"r2":17,"r3":17} },
+    "4":  { "points": {"r1":34,"r2":34,"r3":25}, "strokes": {"r1":98,"r2":98,"r3":107}, "birdies": {"r1":0,"r2":0,"r3":0}, "playingHcp": {"r1":24,"r2":24,"r3":24},
+            "ctp": [{"round":"r2","hole":6,"cm":300}] },
+    "5":  { "points": {"r2":29,"r3":33}, "strokes": {"r2":92,"r3":88},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":13,"r3":13},
+            "ctp": [{"round":"r3","hole":4,"cm":500}] },
+    "6":  { "points": {"r2":34,"r3":28}, "strokes": {"r2":96,"r3":102}, "birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":22,"r3":22},
+            "ctp": [{"round":"r2","hole":12,"cm":500}] },
+    "7":  { "points": {"r2":19,"r3":26}, "strokes": {"r2":113,"r3":106},"birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":22,"r3":22} },
+    "8":  { "points": {"r2":31},         "strokes": {"r2":101},          "birdies": {"r2":0},        "playingHcp": {"r2":23},
+            "ctp": [{"round":"r2","hole":12,"cm":1000}] },
+    "9":  { "points": {"r1":32,"r2":30,"r3":32}, "strokes": {"r1":83,"r2":85,"r3":84},  "birdies": {"r1":0,"r2":0,"r3":1}, "playingHcp": {"r1":7,"r2":7,"r3":7},
+            "ctp": [{"round":"r1","hole":12,"cm":800},{"round":"r2","hole":6,"cm":750}] },
+    "10": { "points": {"r1":33,"r2":37,"r3":34}, "strokes": {"r1":102,"r2":99,"r3":101}, "birdies": {"r1":0,"r2":0,"r3":0}, "playingHcp": {"r1":27,"r2":28,"r3":27} },
+    "11": { "points": {"r2":30,"r3":38}, "strokes": {"r2":90,"r3":81},  "birdies": {"r2":0,"r3":1}, "playingHcp": {"r2":11,"r3":11},
+            "ctp": [{"round":"r3","hole":6,"cm":500}] },
+    "12": { "points": {"r2":37,"r3":24}, "strokes": {"r2":86,"r3":99},  "birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":14,"r3":14},
+            "ctp": [{"round":"r2","hole":12,"cm":830},{"round":"r3","hole":12,"cm":300},{"round":"r3","hole":17,"cm":1200}] },
+    "13": { "points": {"r2":28,"r3":27}, "strokes": {"r2":92,"r3":96},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":12,"r3":15} },
+    "14": { "points": {"r2":32,"r3":37}, "strokes": {"r2":103,"r3":100},"birdies": {"r2":0,"r3":1}, "playingHcp": {"r2":26,"r3":26},
+            "ctp": [{"round":"r2","hole":4,"cm":750},{"round":"r2","hole":17,"cm":350}] },
+    "15": { "points": {"r2":35,"r3":30}, "strokes": {"r2":79,"r3":84},  "birdies": {"r2":2,"r3":1}, "playingHcp": {"r2":6,"r3":6},
+            "ctp": [{"round":"r2","hole":4,"cm":380}] },
+    "16": { "points": {"r1":35,"r2":35,"r3":30}, "strokes": {"r1":101,"r2":101,"r3":106},"birdies": {"r1":0,"r2":1,"r3":0}, "playingHcp": {"r1":28,"r2":28,"r3":28} },
+    "17": { "points": {"r1":34,"r2":29,"r3":35}, "strokes": {"r1":88,"r2":93,"r3":87},  "birdies": {"r1":1,"r2":0,"r3":2}, "playingHcp": {"r1":14,"r2":14,"r3":14},
+            "ctp": [{"round":"r1","hole":6,"cm":1100},{"round":"r2","hole":4,"cm":800},{"round":"r2","hole":17,"cm":1700}] },
+    "18": { "points": {"r1":29,"r2":43,"r3":32}, "strokes": {"r1":107,"r2":93,"r3":104},"birdies": {"r1":0,"r2":1,"r3":1}, "playingHcp": {"r1":27,"r2":28,"r3":27},
+            "ctp": [{"round":"r1","hole":4,"cm":200},{"round":"r1","hole":17,"cm":280}] }
   }
 }
 </script>
@@ -238,9 +250,9 @@ const PLAYERS = [
 ];
 
 const ROUNDS = [
-  { num:1,  key:"r1",  date:"25. maí",    wday:"Mán",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
-  { num:2,  key:"r2",  date:"31. maí",    wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
-  { num:3,  key:"r3",  date:"7. júní",    wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
+  { num:1,  key:"r1",  date:"17. maí",    wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
+  { num:2,  key:"r2",  date:"25. maí",    wday:"Mán",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
+  { num:3,  key:"r3",  date:"31. maí",    wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
   { num:4,  key:"r4",  date:"14. júní",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Parakeppni",         label:"M4"  },
   { num:5,  key:"r5",  date:"21. júní",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Stableford",         label:"M5"  },
   { num:6,  key:"r6",  date:"28. júní",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"Parakeppni",         label:"M6"  },

@@ -61,8 +61,8 @@ tr:hover td { background: #fafbfc; }
 .name-cell { font-weight: 600; }
 .name-cell a { color: inherit; text-decoration: none; }
 .name-cell a:hover { color: #2d7a4f; text-decoration: underline; }
-.pts-cell { font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; }
-.round-cell { font-variant-numeric: tabular-nums; text-align: right; color: #4a5568; }
+.pts-cell { font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; text-align: center; }
+.round-cell { font-variant-numeric: tabular-nums; text-align: center; color: #4a5568; }
 .round-cell.best { color: #2d7a4f; font-weight: 600; }
 .round-cell.empty { color: #c8cdd8; }
 .badge-par { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #e8f4ee; color: #2d7a4f; font-size: 10px; font-weight: 700; }
@@ -206,7 +206,7 @@ tr:hover td { background: #fafbfc; }
     <div class="ctabs" id="ctabs">
       <button class="ctab active" data-ct="bar">Súlurit — stig, högg &amp; forgjöf</button>
       <button class="ctab" data-ct="line">Þróun tímabils</button>
-      <button class="ctab" data-ct="par">Par keppni</button>
+      <button class="ctab" data-ct="par">Para keppni</button>
     </div>
 
     <div id="ct-bar">
@@ -225,7 +225,7 @@ tr:hover td { background: #fafbfc; }
       <div style="position:relative;width:100%;height:340px">
         <canvas id="chart-line" role="img" aria-label="Line chart showing score progression over the season for top players"></canvas>
       </div>
-      <p class="chart-note">Sýnir topp 8 leikmenn — fleiri hringir = betri yfirsýn.</p>
+      <p class="chart-note">Allir leikmenn · fleiri hringir = betri yfirsýn.</p>
     </div>
 
     <div id="ct-par" style="display:none">
@@ -279,7 +279,7 @@ tr:hover td { background: #fafbfc; }
 <!-- ═══════════════════════════════════════════════════ DATA ═══ -->
 <script type="application/json" id="snapshot">
 {
-  "lastUpdated": "2026-05-25T22:45:00Z",
+  "lastUpdated": "2026-05-31T20:00:00Z",
   "bikar": {
     "r1": [
       { "p1": 17, "p2": 18, "winner": 17, "margin": "4&3" },
@@ -287,37 +287,49 @@ tr:hover td { background: #fafbfc; }
     ],
     "r2": [
       { "p1": 14, "p2": 17, "winner": 0 },
-      { "p1": 13, "p2": 11, "winner": 0 },
-      { "p1": 6,  "p2": 5,  "winner": 0 },
+      { "p1": 13, "p2": 11, "winner": 11, "margin": "6&5" },
+      { "p1": 6,  "p2": 5,  "winner": 6,  "margin": "1UP" },
       { "p1": 8,  "p2": 3,  "winner": 0 },
       { "p1": 18, "p2": 7,  "winner": 0 },
-      { "p1": 15, "p2": 9,  "winner": 0 },
-      { "p1": 4,  "p2": 12, "winner": 0 },
-      { "p1": 10, "p2": 16, "winner": 0 }
+      { "p1": 15, "p2": 9,  "winner": 15, "margin": "1UP" },
+      { "p1": 4,  "p2": 12, "winner": 4,  "margin": "1UP" },
+      { "p1": 10, "p2": 16, "winner": 16, "margin": "1UP" }
     ],
     "qf": [],
     "sf": [],
     "f":  []
   },
   "players": {
-    "1":  { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":3}, "playingHcp": {"r1":12} },
-    "2":  { "points": {"r1":27}, "strokes": {"r1":98},  "birdies": {"r1":1}, "playingHcp": {"r1":16} },
-    "3":  { "points": {"r1":35}, "strokes": {"r1":90},  "birdies": {"r1":1}, "playingHcp": {"r1":17} },
-    "4":  { "points": {"r1":34}, "strokes": {"r1":98},  "birdies": {"r1":0}, "playingHcp": {"r1":24}, "ctp": [{"round":"r1","hole":6,"cm":300}] },
-    "5":  { "points": {"r1":29}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":13} },
-    "6":  { "points": {"r1":34}, "strokes": {"r1":96},  "birdies": {"r1":0}, "playingHcp": {"r1":22}, "ctp": [{"round":"r1","hole":12,"cm":500}] },
-    "7":  { "points": {"r1":19}, "strokes": {"r1":113}, "birdies": {"r1":0}, "playingHcp": {"r1":22} },
-    "8":  { "points": {"r1":31}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":23} },
-    "9":  { "points": {"r1":30}, "strokes": {"r1":85},  "birdies": {"r1":0}, "playingHcp": {"r1":7}  },
-    "10": { "points": {"r1":37}, "strokes": {"r1":99},  "birdies": {"r1":0}, "playingHcp": {"r1":28} },
-    "11": { "points": {"r1":30}, "strokes": {"r1":90},  "birdies": {"r1":0}, "playingHcp": {"r1":11} },
-    "12": { "points": {"r1":37}, "strokes": {"r1":86},  "birdies": {"r1":2}, "playingHcp": {"r1":14} },
-    "13": { "points": {"r1":28}, "strokes": {"r1":92},  "birdies": {"r1":1}, "playingHcp": {"r1":12} },
-    "14": { "points": {"r1":32}, "strokes": {"r1":103}, "birdies": {"r1":1}, "playingHcp": {"r1":26}, "ctp": [{"round":"r1","hole":17,"cm":350}] },
-    "15": { "points": {"r1":35}, "strokes": {"r1":79},  "birdies": {"r1":3}, "playingHcp": {"r1":6},  "ctp": [{"round":"r1","hole":4,"cm":380}] },
-    "16": { "points": {"r1":35}, "strokes": {"r1":101}, "birdies": {"r1":0}, "playingHcp": {"r1":28} },
-    "17": { "points": {"r1":29}, "strokes": {"r1":93},  "birdies": {"r1":0}, "playingHcp": {"r1":14} },
-    "18": { "points": {"r1":43}, "strokes": {"r1":93},  "birdies": {"r1":3}, "playingHcp": {"r1":28} }
+    "1":  { "points": {"r2":28,"r3":28}, "strokes": {"r2":92,"r3":94},  "birdies": {"r2":1,"r3":1}, "playingHcp": {"r2":12,"r3":12} },
+    "2":  { "points": {"r2":27,"r3":33}, "strokes": {"r2":98,"r3":92},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":16,"r3":16},
+            "ctp": [{"round":"r2","hole":12,"cm":600}] },
+    "3":  { "points": {"r1":37,"r2":35,"r3":35}, "strokes": {"r1":88,"r2":90,"r3":90},  "birdies": {"r1":1,"r2":1,"r3":0}, "playingHcp": {"r1":17,"r2":17,"r3":17} },
+    "4":  { "points": {"r1":34,"r2":34,"r3":25}, "strokes": {"r1":98,"r2":98,"r3":107}, "birdies": {"r1":0,"r2":0,"r3":0}, "playingHcp": {"r1":24,"r2":24,"r3":24},
+            "ctp": [{"round":"r2","hole":6,"cm":300}] },
+    "5":  { "points": {"r2":29,"r3":33}, "strokes": {"r2":92,"r3":88},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":13,"r3":13},
+            "ctp": [{"round":"r3","hole":4,"cm":500}] },
+    "6":  { "points": {"r2":34,"r3":28}, "strokes": {"r2":96,"r3":102}, "birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":22,"r3":22},
+            "ctp": [{"round":"r2","hole":12,"cm":500}] },
+    "7":  { "points": {"r2":19,"r3":26}, "strokes": {"r2":113,"r3":106},"birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":22,"r3":22} },
+    "8":  { "points": {"r2":31},         "strokes": {"r2":101},          "birdies": {"r2":0},        "playingHcp": {"r2":23},
+            "ctp": [{"round":"r2","hole":12,"cm":1000}] },
+    "9":  { "points": {"r1":32,"r2":30,"r3":32}, "strokes": {"r1":83,"r2":85,"r3":84},  "birdies": {"r1":0,"r2":0,"r3":1}, "playingHcp": {"r1":7,"r2":7,"r3":7},
+            "ctp": [{"round":"r1","hole":12,"cm":800},{"round":"r2","hole":6,"cm":750}] },
+    "10": { "points": {"r1":33,"r2":37,"r3":34}, "strokes": {"r1":102,"r2":99,"r3":101}, "birdies": {"r1":0,"r2":0,"r3":0}, "playingHcp": {"r1":27,"r2":28,"r3":27} },
+    "11": { "points": {"r2":30,"r3":38}, "strokes": {"r2":90,"r3":81},  "birdies": {"r2":0,"r3":1}, "playingHcp": {"r2":11,"r3":11},
+            "ctp": [{"round":"r3","hole":6,"cm":500}] },
+    "12": { "points": {"r2":37,"r3":24}, "strokes": {"r2":86,"r3":99},  "birdies": {"r2":0,"r3":0}, "playingHcp": {"r2":14,"r3":14},
+            "ctp": [{"round":"r2","hole":12,"cm":830},{"round":"r3","hole":12,"cm":300},{"round":"r3","hole":17,"cm":1200}] },
+    "13": { "points": {"r2":28,"r3":27}, "strokes": {"r2":92,"r3":96},  "birdies": {"r2":1,"r3":0}, "playingHcp": {"r2":12,"r3":15} },
+    "14": { "points": {"r2":32,"r3":37}, "strokes": {"r2":103,"r3":100},"birdies": {"r2":0,"r3":1}, "playingHcp": {"r2":26,"r3":26},
+            "ctp": [{"round":"r2","hole":4,"cm":750},{"round":"r2","hole":17,"cm":350}] },
+    "15": { "points": {"r2":35,"r3":30}, "strokes": {"r2":79,"r3":84},  "birdies": {"r2":2,"r3":1}, "playingHcp": {"r2":6,"r3":6},
+            "ctp": [{"round":"r2","hole":4,"cm":380}] },
+    "16": { "points": {"r1":35,"r2":35,"r3":30}, "strokes": {"r1":101,"r2":101,"r3":106},"birdies": {"r1":0,"r2":1,"r3":0}, "playingHcp": {"r1":28,"r2":28,"r3":28} },
+    "17": { "points": {"r1":34,"r2":29,"r3":35}, "strokes": {"r1":88,"r2":93,"r3":87},  "birdies": {"r1":1,"r2":0,"r3":2}, "playingHcp": {"r1":14,"r2":14,"r3":14},
+            "ctp": [{"round":"r1","hole":6,"cm":1100},{"round":"r2","hole":4,"cm":800},{"round":"r2","hole":17,"cm":1700}] },
+    "18": { "points": {"r1":29,"r2":43,"r3":32}, "strokes": {"r1":107,"r2":93,"r3":104},"birdies": {"r1":0,"r2":1,"r3":1}, "playingHcp": {"r1":27,"r2":28,"r3":27},
+            "ctp": [{"round":"r1","hole":4,"cm":200},{"round":"r1","hole":17,"cm":280}] }
   }
 }
 </script>
@@ -347,9 +359,9 @@ const PLAYERS = [
 ];
 
 const ROUNDS = [
-  { num:1,  key:"r1",  date:"25. maí",    wday:"Mánudagur",   course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
-  { num:2,  key:"r2",  date:"31. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
-  { num:3,  key:"r3",  date:"7. júní",    wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
+  { num:1,  key:"r1",  date:"17. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
+  { num:2,  key:"r2",  date:"25. maí",    wday:"Mánudagur",   course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
+  { num:3,  key:"r3",  date:"31. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
   { num:4,  key:"r4",  date:"14. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Parakeppni",         label:"M4"  },
   { num:5,  key:"r5",  date:"21. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Stableford",         label:"M5"  },
   { num:6,  key:"r6",  date:"28. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Parakeppni",         label:"M6"  },
@@ -487,6 +499,14 @@ function rankMedal(i) {
   return ["🥇","🥈","🥉"][i] || `${i+1}.`;
 }
 
+/* ── RANK DELTA BADGE ── */
+function rankDelta(delta) {
+  if (delta === null || delta === undefined) return '<span class="prog-new">NY</span>';
+  if (delta > 0) return `<span class="prog-up">▲${delta}</span>`;
+  if (delta < 0) return `<span class="prog-down">▼${Math.abs(delta)}</span>`;
+  return '<span class="prog-same">—</span>';
+}
+
 /* ── CARDS ── */
 function buildCards() {
   const area = document.getElementById("cards-area");
@@ -558,46 +578,81 @@ function buildCards() {
     });
   }
 
-  // Top 3 overall
-  const topPlayers = PLAYERS.map(p => {
-    const vals = rkeys.map(k => getPoints(p.id)[k]).filter(v => typeof v === "number");
-    return { p, total: sumAll(vals) };
-  }).filter(x => x.total > 0).sort((a,b) => b.total - a.total).slice(0,3);
+  // Top 5 MEA stig — with progress tracker
+  const meaRanked = PLAYERS.map(p => ({
+    p, total: filterKey === "all" ? meaScore(p.id) :
+      rkeys.map(k => getPoints(p.id)[k]).filter(v => typeof v === "number").reduce((s,v) => s+v, 0)
+  })).filter(x => x.total > 0).sort((a,b) => b.total - a.total).slice(0, 5);
 
-  if (topPlayers.length && filterKey === "all") {
+  if (meaRanked.length) {
+    const prevRanks = filterKey === "all" ? prevRankMap() : {};
+    const curRanks = {};
+    PLAYERS.map(p => ({ id: p.id, s: meaScore(p.id) })).sort((a,b) => b.s - a.s).forEach((x,i) => { curRanks[x.id] = i+1; });
+    const meaLeader = meaRanked[0].total;
     const card = document.createElement("div");
     card.className = "card";
-    card.innerHTML = `<div class="card-title"><span class="icon">📊</span> Topp 3 stig, bestu 8 hringir</div>
-      <div class="podium">${topPlayers.map((x,i) => `
-        <div class="pod-row">
+    card.innerHTML = `<div class="card-title"><span class="icon">📊</span> Topp 5 stig${filterKey === "all" ? ", bestu 8 hringir" : ""}</div>
+      <div class="podium">${meaRanked.map((x,i) => {
+        const pr = prevRanks[x.p.id], cr = curRanks[x.p.id];
+        const delta = filterKey === "all" && playedRounds.length > 1 && pr && cr ? pr - cr : null;
+        const gap = filterKey === "all" && i > 0 && meaLeader > x.total
+          ? `<span class="pod-sub">-${meaLeader - x.total}</span>` : "";
+        return `<div class="pod-row">
           <span class="pod-rank">${rankMedal(i)}</span>
+          ${filterKey === "all" && playedRounds.length > 1 ? rankDelta(delta) : ""}
           <span class="pod-name">${x.p.short}</span>
-          <span class="pod-val">${meaScore(x.p.id)} stig</span>
-          <span class="pod-sub">(${meaRoundsPlayed(x.p.id)} hringir)</span>
-        </div>`).join("")}
+          <span class="pod-val">${x.total} stig</span>
+          ${gap}
+        </div>`;
+      }).join("")}
       </div>`;
     area.appendChild(card);
   }
 
-  // Fewest strokes — best 8 rounds (lowest stroke totals)
+  // Fæst högg top 5 — only players who played ALL currently played rounds
+  const allRndKeys = playedRounds.map(r => r.key);
   const strokeLeader = PLAYERS.map(p => {
     const s = getStrokes(p.id);
-    const vals = ROUNDS.map(r => s[r.key]).filter(v => typeof v === "number");
-    if (!vals.length) return { p, total: null };
+    const useKeys = filterKey === "all" ? allRndKeys : rkeys;
+    const vals = useKeys.map(k => s[k]).filter(v => typeof v === "number");
+    if (filterKey === "all" && vals.length < allRndKeys.length) return null;
+    if (!vals.length) return null;
     const best8 = vals.slice().sort((a,b) => a-b).slice(0, MEA_TOP_N);
     return { p, total: best8.reduce((s,v) => s+v, 0), n: best8.length };
-  }).filter(x => x.total !== null).sort((a,b) => a.total - b.total).slice(0,3);
+  }).filter(Boolean).sort((a,b) => a.total - b.total).slice(0, 5);
+
+  const strokePrevRanks = (() => {
+    if (playedRounds.length < 2 || filterKey !== "all") return {};
+    const pk = playedRounds.slice(0, -1).map(r => r.key);
+    return PLAYERS.map(p => {
+      const s = getStrokes(p.id);
+      const vals = pk.map(k => s[k]).filter(v => typeof v === "number");
+      if (vals.length < pk.length) return null;
+      const best8 = vals.slice().sort((a,b) => a-b).slice(0, MEA_TOP_N);
+      return { id: p.id, total: best8.reduce((s,v) => s+v, 0) };
+    }).filter(Boolean).sort((a,b) => a.total - b.total)
+      .reduce((m,x,i) => { m[x.id] = i+1; return m; }, {});
+  })();
+  const strokeCurRanks = strokeLeader.reduce((m,x,i) => { m[x.p.id] = i+1; return m; }, {});
+
   if (strokeLeader.length) {
+    const strokeBest = strokeLeader[0].total;
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `<div class="card-title"><span class="icon">⛳</span> Fæst högg, bestu 8 hringir</div>
-      <div class="podium">${strokeLeader.map((x,i) => `
-        <div class="pod-row">
+      <div class="podium">${strokeLeader.map((x,i) => {
+        const pr = strokePrevRanks[x.p.id], cr = strokeCurRanks[x.p.id];
+        const delta = filterKey === "all" && playedRounds.length > 1 && pr && cr ? pr - cr : null;
+        const gap = filterKey === "all" && i > 0 && x.total > strokeBest
+          ? `<span class="pod-sub">+${x.total - strokeBest}</span>` : "";
+        return `<div class="pod-row">
           <span class="pod-rank">${rankMedal(i)}</span>
+          ${filterKey === "all" && playedRounds.length > 1 ? rankDelta(delta) : ""}
           <span class="pod-name">${x.p.short}</span>
           <span class="pod-val">${x.total} högg</span>
-          <span class="pod-sub">(${x.n} hringir)</span>
-        </div>`).join("")}
+          ${gap}
+        </div>`;
+      }).join("")}
       </div>`;
     area.appendChild(card);
   }
@@ -658,18 +713,17 @@ function buildMainTable() {
   const leaderScore = rows.length ? Math.max(...rows.map(r => r.total)) : 0;
 
   let html = "<thead><tr>";
-  html += `<th style="width:32px">#</th>`;
-  if (showProgress) html += `<th style="width:36px" title="Breyting í sæti">△</th>`;
+  html += `<th style="width:32px;text-align:center">#</th>`;
+  if (showProgress) html += `<th style="width:36px;text-align:center" title="Breyting í sæti">△</th>`;
   html += `<th class="${mainSortCol==='name'?'sorted':''}" data-col="name">Nafn <span class="sort-arrow">${mainSortCol==='name'?(mainSortDir===1?'↓':'↑'):'↕'}</span></th>`;
-  html += `<th>Par</th>`;
-  html += `<th>Kyn</th>`;
+  html += `<th style="text-align:center">Kyn</th>`;
   shownRounds.forEach(r => {
     const sc = mainSortCol === r.key ? "sorted" : "";
     const arr = mainSortCol === r.key ? (mainSortDir===1?'↓':'↑') : '↕';
-    html += `<th class="${sc}" data-col="${r.key}">${r.label} <span class="sort-arrow">${arr}</span></th>`;
+    html += `<th class="${sc}" data-col="${r.key}" style="text-align:center">${r.label} <span class="sort-arrow">${arr}</span></th>`;
   });
-  html += `<th class="${mainSortCol==='mea'?'sorted':''}" data-col="mea">${filterKey==="all"?"MEA":"Samtals"} <span class="sort-arrow">${mainSortCol==='mea'?(mainSortDir===1?'↓':'↑'):'↕'}</span></th>`;
-  html += `<th></th>`;
+  html += `<th class="${mainSortCol==='mea'?'sorted':''}" data-col="mea" style="text-align:center">${filterKey==="all"?"MEA":"Samtals"} <span class="sort-arrow">${mainSortCol==='mea'?(mainSortDir===1?'↓':'↑'):'↕'}</span></th>`;
+  html += `<th style="text-align:center"></th>`;
   html += "</tr></thead><tbody>";
 
   rows.forEach((row, i) => {
@@ -688,8 +742,7 @@ function buildMainTable() {
       html += `<td style="text-align:center">${prog}</td>`;
     }
     html += `<td class="name-cell"><a href="player.html?id=${row.p.id}">${row.p.short}</a></td>`;
-    html += `<td>${parBadge(row.p.par)}</td>`;
-    html += `<td><span class="badge-gender ${row.p.gender}">${row.p.gender}</span></td>`;
+    html += `<td style="text-align:center"><span class="badge-gender ${row.p.gender}">${row.p.gender}</span></td>`;
 
     const filteredNums = rkeys.map(k => getPoints(row.p.id)[k]).filter(v => typeof v === "number");
     const bestVal = filteredNums.length ? Math.max(...filteredNums) : -1;
@@ -706,7 +759,7 @@ function buildMainTable() {
 
     const gap = row.total && leaderScore > row.total ? `<span style="font-size:10px;font-weight:500;color:#dc2626;margin-left:5px">-${leaderScore - row.total}</span>` : "";
     html += `<td class="pts-cell">${row.total || "—"}${gap}</td>`;
-    html += `<td class="form-icon">${row.formIcon}</td>`;
+    html += `<td class="form-icon" style="text-align:center">${row.formIcon}</td>`;
     html += `</tr>`;
   });
 
@@ -730,21 +783,52 @@ function buildParTable() {
   const porRounds = ROUNDS.filter(r => r.type === "POR");
   const playedPorRounds = porRounds.filter(r => playedKeys.has(r.key));
 
+  // If a specific POR round is selected, show only that; otherwise show all played POR rounds
+  let shownPorRounds;
+  if (filterKey !== "all" && playedKeys.has(filterKey)) {
+    const sel = ROUNDS.find(r => r.key === filterKey);
+    shownPorRounds = (sel && sel.type === "POR") ? [sel] : playedPorRounds;
+  } else {
+    shownPorRounds = playedPorRounds;
+  }
+
+  const singleRound = shownPorRounds.length === 1;
+  const showProgress = !singleRound && playedPorRounds.length >= 2;
+
   const rows = parNums.map(parNum => {
     const members = PLAYERS.filter(p => p.par === parNum);
-    const roundScores = playedPorRounds.map(r => {
+    const roundScores = shownPorRounds.map(r => {
       const vals = members.map(p => getPoints(p.id)[r.key]).filter(v => typeof v === "number");
       if (!vals.length) return null;
       return { key: r.key, score: vals.reduce((s,v) => s+v, 0) };
     }).filter(v => v !== null);
     const scores = roundScores.map(x => x.score);
-    const total = topN(scores, PAR_TOP_N);
+    const total = singleRound ? (scores[0] || 0) : topN(scores, PAR_TOP_N);
     return { parNum, members, roundScores, total };
   }).sort((a,b) => b.total - a.total);
 
-  let html = "<thead><tr><th>#</th><th>Par</th><th>Leikmenn</th>";
-  playedPorRounds.forEach(r => { html += `<th>${r.label}</th>`; });
-  html += "<th>Samtals</th></tr></thead><tbody>";
+  // Progress: compare rank vs. previous POR round
+  let prevParRanks = {};
+  if (showProgress) {
+    const prevPorRounds = playedPorRounds.slice(0, -1);
+    const prevRows = parNums.map(parNum => {
+      const members = PLAYERS.filter(p => p.par === parNum);
+      const scores = prevPorRounds.map(r => {
+        const vals = members.map(p => getPoints(p.id)[r.key]).filter(v => typeof v === "number");
+        return vals.length ? vals.reduce((s,v) => s+v, 0) : null;
+      }).filter(v => v !== null);
+      return { parNum, total: topN(scores, PAR_TOP_N) };
+    }).sort((a,b) => b.total - a.total);
+    prevRows.forEach((r, i) => { prevParRanks[r.parNum] = i + 1; });
+  }
+  const curParRanks = {};
+  rows.forEach((r, i) => { curParRanks[r.parNum] = i + 1; });
+
+  let html = "<thead><tr><th>#</th>";
+  if (showProgress) html += `<th style="width:36px" title="Breyting í sæti">△</th>`;
+  html += "<th>Par</th><th>Leikmenn</th>";
+  shownPorRounds.forEach(r => { html += `<th>${r.label}</th>`; });
+  html += `<th>${singleRound ? "Stig" : "Samtals"}</th></tr></thead><tbody>`;
 
   const parLeader = rows.length ? rows[0].total : 0;
   rows.forEach((row, i) => {
@@ -753,11 +837,14 @@ function buildParTable() {
       `<span style="display:inline-block;padding:1px 7px;border-radius:5px;background:${pc.bg};color:${pc.color};font-weight:600">${p.short}</span>`
     ).join(" <span style='color:#8a95a5'>&amp;</span> ");
     const gap = row.total && parLeader > row.total ? `<span style="font-size:10px;font-weight:500;color:#dc2626;margin-left:5px">-${parLeader - row.total}</span>` : "";
-    html += `<tr>
-      <td class="rank-cell">${rankMedal(i)}</td>
-      <td>${parBadge(row.parNum)}</td>
+    html += `<tr><td class="rank-cell">${rankMedal(i)}</td>`;
+    if (showProgress) {
+      const delta = prevParRanks[row.parNum] !== undefined ? prevParRanks[row.parNum] - curParRanks[row.parNum] : null;
+      html += `<td style="text-align:center">${rankDelta(delta)}</td>`;
+    }
+    html += `<td>${parBadge(row.parNum)}</td>
       <td class="name-cell">${names}</td>`;
-    playedPorRounds.forEach(r => {
+    shownPorRounds.forEach(r => {
       const entry = row.roundScores.find(x => x.key === r.key);
       html += entry
         ? `<td class="round-cell">${entry.score}</td>`
@@ -852,66 +939,97 @@ function buildQuickStats() {
     ? playedRounds.map(r => r.key)
     : (playedKeys.has(filterKey) ? [filterKey] : []);
 
-  // Birdie leaderboard
+  const showProg = filterKey === "all" && playedRounds.length > 1;
+
+  // ── Fuglarnir — rank-based progress arrow in front of name ──
   const birdieRows = PLAYERS.map(p => {
     const b = getBirdies(p.id);
-    const total = rkeys.reduce((s,k) => s + (b[k] || 0), 0);
-    return { p, total };
-  }).filter(x => x.total > 0).sort((a,b) => b.total - a.total).slice(0,5);
+    return { p, total: rkeys.reduce((s,k) => s + (b[k] || 0), 0) };
+  }).filter(x => x.total > 0).sort((a,b) => b.total - a.total);
+
+  const birdiePrevRanks = (() => {
+    if (!showProg) return {};
+    const pk = playedRounds.slice(0, -1).map(r => r.key);
+    return PLAYERS.map(p => {
+      const b = getBirdies(p.id);
+      return { id: p.id, total: pk.reduce((s,k) => s + (b[k] || 0), 0) };
+    }).filter(x => x.total > 0).sort((a,b) => b.total - a.total)
+      .reduce((m,x,i) => { m[x.id] = i+1; return m; }, {});
+  })();
+  const birdieCurRanks = birdieRows.reduce((m,x,i) => { m[x.p.id] = i+1; return m; }, {});
 
   if (birdieRows.length) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `<div class="card-title"><span class="icon">🐦</span> Fuglarnir</div>
-      <div class="podium">${birdieRows.map((x,i) => `
-        <div class="pod-row">
+      <div class="podium">${birdieRows.map((x,i) => {
+        const pr = birdiePrevRanks[x.p.id];
+        const delta = showProg ? (pr !== undefined ? pr - birdieCurRanks[x.p.id] : null) : null;
+        return `<div class="pod-row">
           <span class="pod-rank">${rankMedal(i)}</span>
+          ${showProg ? rankDelta(delta) : ""}
           <span class="pod-name">${x.p.short}</span>
           <span class="pod-val">${x.total} fuglar</span>
-        </div>`).join("")}
+        </div>`;
+      }).join("")}
       </div>`;
     area.appendChild(card);
   }
 
-  // CTP — distances card
-  const ctpEntries = [];
+  // ── Næst holu — Fjarlægð: best (min) per hole across all rounds, 4 entries ──
+  const ctpByHole = {};
   PLAYERS.forEach(p => {
     getCtp(p.id).forEach(c => {
-      if (rkeys.includes(c.round)) ctpEntries.push({ p, ...c });
+      if (!rkeys.includes(c.round)) return;
+      if (!ctpByHole[c.hole] || c.cm < ctpByHole[c.hole].cm) {
+        ctpByHole[c.hole] = { p, hole: c.hole, cm: c.cm };
+      }
     });
   });
+  const ctpEntries = Object.values(ctpByHole).sort((a,b) => a.hole - b.hole);
+
   if (ctpEntries.length) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `<div class="card-title"><span class="icon">📍</span> Næst holu — Fjarlægð</div>
-      <div class="podium">${ctpEntries.map((c,i) => `
+      <div class="podium">${ctpEntries.map(c => `
         <div class="pod-row">
-          <span class="pod-rank">${rankMedal(i)}</span>
+          <span class="pod-rank" style="font-size:11px;color:#8a95a5;min-width:28px;text-align:center">H${c.hole}</span>
           <span class="pod-name">${c.p.short}</span>
           <span class="pod-val">${c.cm} cm</span>
-          <span class="pod-sub">Hola ${c.hole}, Keilir</span>
         </div>`).join("")}
       </div>`;
     area.appendChild(card);
   }
 
-  // CTP — count card
-  const ctpRows = PLAYERS.map(p => {
-    const ctps = getCtp(p.id).filter(c => rkeys.includes(c.round));
-    return { p, count: ctps.length, best: ctps.reduce((m,c) => Math.min(m, c.cm), Infinity) };
-  }).filter(x => x.count > 0).sort((a,b) => b.count - a.count || a.best - b.best);
+  // ── Næst holu — Fjöldi: rank-based progress arrow in front of name ──
+  const ctpRows = PLAYERS.map(p => ({
+    p, count: getCtp(p.id).filter(c => rkeys.includes(c.round)).length
+  })).filter(x => x.count > 0).sort((a,b) => b.count - a.count);
+
+  const ctpPrevRanks = (() => {
+    if (!showProg) return {};
+    const pk = playedRounds.slice(0, -1).map(r => r.key);
+    return PLAYERS.map(p => ({ id: p.id, count: getCtp(p.id).filter(c => pk.includes(c.round)).length }))
+      .filter(x => x.count > 0).sort((a,b) => b.count - a.count)
+      .reduce((m,x,i) => { m[x.id] = i+1; return m; }, {});
+  })();
+  const ctpCurRanks = ctpRows.reduce((m,x,i) => { m[x.p.id] = i+1; return m; }, {});
 
   if (ctpRows.length) {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `<div class="card-title"><span class="icon">🎯</span> Næst holu — Fjöldi</div>
-      <div class="podium">${ctpRows.map((x,i) => `
-        <div class="pod-row">
+      <div class="podium">${ctpRows.map((x,i) => {
+        const pr = ctpPrevRanks[x.p.id];
+        const delta = showProg ? (pr !== undefined ? pr - ctpCurRanks[x.p.id] : null) : null;
+        return `<div class="pod-row">
           <span class="pod-rank">${rankMedal(i)}</span>
+          ${showProg ? rankDelta(delta) : ""}
           <span class="pod-name">${x.p.short}</span>
           <span class="pod-val">${x.count}×</span>
-          <span class="pod-sub">${x.best !== Infinity ? x.best + " cm" : ""}</span>
-        </div>`).join("")}
+        </div>`;
+      }).join("")}
       </div>`;
     area.appendChild(card);
   }
@@ -1012,98 +1130,192 @@ function buildActiveChart() {
   if (activeChartTab === "par")  buildParChart();
 }
 
-/* ── BAR CHART: stig only, datalabel = "XX punktar | XX högg" ── */
+/* ── BAR CHART ── */
 function buildBarChart() {
   destroyChart("bar");
   if (!playedRounds.length) return;
 
-  const rk = (filterKey !== "all" && playedKeys.has(filterKey)) ? filterKey : playedRounds[playedRounds.length-1].key;
-  const round = ROUNDS.find(r => r.key === rk);
-
-  const data = PLAYERS.map(p => ({
-    p,
-    pts:  getPoints(p.id)[rk],
-    str:  getStrokes(p.id)[rk],
-    phcp: (PDATA[p.id]?.playingHcp ?? {})[rk]
-  })).filter(x => typeof x.pts === "number")
-    .sort((a, b) => b.pts - a.pts);
-
-  const labels = data.map(d => `${d.p.short}${d.phcp !== undefined ? " (" + d.phcp + ")" : ""}`);
-
-  /* dynamic height */
+  const firstTab = document.querySelector(".ctab[data-ct='bar']");
   const wrap = document.getElementById("bar-wrap");
-  wrap.style.height = (data.length * 46 + 70) + "px";
 
-  const ctx = document.getElementById("chart-bar").getContext("2d");
-  _charts.bar = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [{
-        label: "Stig",
-        data: data.map(d => d.pts),
-        backgroundColor: data.map(d => d.p.gender === "M" ? "#2d7a4f" : "#c8488a"),
-        borderRadius: 4,
-        borderWidth: 0
-      }]
-    },
-    options: {
-      indexAxis: "y",
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { right: 160 } },
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            title: items => data[items[0].dataIndex].p.name,
-            label: item => {
-              const d = data[item.dataIndex];
-              return [` Stig: ${d.pts}`, ` Högg: ${d.str ?? "—"}`, ` Forgjöf: ${d.phcp ?? "—"}`];
+  if (filterKey === "all") {
+    /* ── ALL MODE: MEA totals (best 8 rounds), rank delta in label ── */
+    const prevRanks = playedRounds.length > 1 ? prevRankMap() : {};
+
+    const data = PLAYERS.map(p => ({
+      p,
+      mea: meaScore(p.id),
+      n:   meaRoundsPlayed(p.id)
+    })).filter(x => x.mea > 0).sort((a, b) => b.mea - a.mea);
+    data.forEach((d, i) => { d.curRank = i + 1; });
+
+    const labels = data.map(d => {
+      const pr = prevRanks[d.p.id];
+      const delta = (pr !== undefined) ? pr - d.curRank : null;
+      const ds = delta === null ? "" : delta > 0 ? ` ▲${delta}` : delta < 0 ? ` ▼${Math.abs(delta)}` : "";
+      return `${d.p.short} (${d.p.hcp})${ds}`;
+    });
+
+    const maxMea = Math.max(...data.map(d => d.mea));
+    const xMax = Math.ceil((maxMea + 25) / 10) * 10;
+
+    wrap.style.height = (data.length * 46 + 70) + "px";
+
+    const ctx = document.getElementById("chart-bar").getContext("2d");
+    _charts.bar = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [{
+          label: "MEA Stig",
+          data: data.map(d => d.mea),
+          backgroundColor: data.map(d => d.p.gender === "M" ? "#2563eb" : "#ec4899"),
+          borderRadius: 4, borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { right: 175 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: items => data[items[0].dataIndex].p.name,
+              label: item => {
+                const d = data[item.dataIndex];
+                return [` MEA stig: ${d.mea}`, ` Hringir spilaðir: ${d.n}`];
+              }
             }
+          },
+          datalabels: {
+            anchor: "end", align: "end", clamp: false,
+            font: { size: 11.5, weight: "bold" },
+            color: ctx => data[ctx.dataIndex].p.gender === "M" ? "#1d4ed8" : "#9d174d",
+            formatter: (value, ctx) => {
+              const d = data[ctx.dataIndex];
+              return `${value} stig (${d.n} hringir)`;
+            },
+            padding: { left: 6 }
           }
         },
-        datalabels: {
-          anchor: "end",
-          align: "end",
-          clamp: false,
-          font: { size: 11.5, weight: "bold" },
-          color: (ctx) => data[ctx.dataIndex].p.gender === "M" ? "#1a5c35" : "#831a5a",
-          formatter: (value, ctx) => {
-            const d = data[ctx.dataIndex];
-            const hogg = d.str !== undefined ? ` | ${d.str} högg` : "";
-            return `${value} punktar${hogg}`;
+        scales: {
+          y: {
+            grid: { display: false },
+            ticks: {
+              font: { size: 12 },
+              color: ctx => {
+                const d = data[ctx.index];
+                if (!d || playedRounds.length < 2) return "#5b6478";
+                const pr = prevRanks[d.p.id];
+                if (pr === undefined) return "#5b6478";
+                const delta = pr - d.curRank;
+                if (delta > 0) return "#16a34a";
+                if (delta < 0) return "#dc2626";
+                return "#5b6478";
+              }
+            }
           },
-          padding: { left: 6 }
-        }
-      },
-      scales: {
-        y: {
-          grid: { display: false },
-          ticks: { font: { size: 12 }, color: data.map(d => d.p.gender === "M" ? "#1a5c35" : "#9d174d") }
-        },
-        x: {
-          min: 0, max: 50,
-          grid: { color: "rgba(0,0,0,.05)" },
-          ticks: { font: { size: 11 }, color: "#5b6478" },
-          title: { display: true, text: "Stig", color: "#5b6478", font: { size: 11 } }
+          x: {
+            min: 0, max: xMax,
+            grid: { color: "rgba(0,0,0,.05)" },
+            ticks: { font: { size: 11 }, color: "#5b6478" },
+            title: { display: true, text: `MEA Stig (bestu ${MEA_TOP_N} hringir)`, color: "#5b6478", font: { size: 11 } }
+          }
         }
       }
-    }
-  });
+    });
 
-  const firstTab = document.querySelector(".ctab[data-ct='bar']");
-  if (firstTab && round) firstTab.textContent = `Súlurit — ${round.label} · stig & högg`;
+    if (firstTab) firstTab.textContent = `Súlurit — MEA stig, bestu ${MEA_TOP_N} hringir`;
+
+  } else {
+    /* ── SINGLE ROUND MODE: stig & högg ── */
+    const rk = playedKeys.has(filterKey) ? filterKey : playedRounds[playedRounds.length-1].key;
+    const round = ROUNDS.find(r => r.key === rk);
+
+    const data = PLAYERS.map(p => ({
+      p,
+      pts:  getPoints(p.id)[rk],
+      str:  getStrokes(p.id)[rk],
+      phcp: (PDATA[p.id]?.playingHcp ?? {})[rk]
+    })).filter(x => typeof x.pts === "number")
+      .sort((a, b) => b.pts - a.pts);
+
+    const labels = data.map(d => `${d.p.short}${d.phcp !== undefined ? " (" + d.phcp + ")" : ""}`);
+    wrap.style.height = (data.length * 46 + 70) + "px";
+
+    const ctx = document.getElementById("chart-bar").getContext("2d");
+    _charts.bar = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [{
+          label: "Stig",
+          data: data.map(d => d.pts),
+          backgroundColor: data.map(d => d.p.gender === "M" ? "#2d7a4f" : "#c8488a"),
+          borderRadius: 4, borderWidth: 0
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: { padding: { right: 160 } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: items => data[items[0].dataIndex].p.name,
+              label: item => {
+                const d = data[item.dataIndex];
+                return [` Stig: ${d.pts}`, ` Högg: ${d.str ?? "—"}`, ` Forgjöf: ${d.phcp ?? "—"}`];
+              }
+            }
+          },
+          datalabels: {
+            anchor: "end", align: "end", clamp: false,
+            font: { size: 11.5, weight: "bold" },
+            color: ctx => data[ctx.dataIndex].p.gender === "M" ? "#1a5c35" : "#831a5a",
+            formatter: (value, ctx) => {
+              const d = data[ctx.dataIndex];
+              const hogg = d.str !== undefined ? ` | ${d.str} högg` : "";
+              return `${value} punktar${hogg}`;
+            },
+            padding: { left: 6 }
+          }
+        },
+        scales: {
+          y: {
+            grid: { display: false },
+            ticks: { font: { size: 12 }, color: ctx => data[ctx.index]?.p.gender === "M" ? "#1a5c35" : "#9d174d" }
+          },
+          x: {
+            min: 0, max: 50,
+            grid: { color: "rgba(0,0,0,.05)" },
+            ticks: { font: { size: 11 }, color: "#5b6478" },
+            title: { display: true, text: "Stig", color: "#5b6478", font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    if (firstTab && round) firstTab.textContent = `Súlurit — ${round.label} · stig & högg`;
+  }
 }
 
-/* ── LINE CHART: MEA score progression ── */
-const LINE_PALETTE = ["#2d7a4f","#c8488a","#c8a430","#1e40af","#7c3aed","#d4601a","#0891b2","#16a34a"];
+/* ── LINE CHART: MEA score progression — all players ── */
+const LINE_PALETTE = [
+  "#2d7a4f","#c8488a","#c8a430","#1e40af","#7c3aed","#d4601a","#0891b2","#16a34a",
+  "#dc2626","#78350f","#0d9488","#a855f7","#ea580c","#4338ca","#0284c7","#65a30d",
+  "#db2777","#059669"
+];
 
 function buildLineChart() {
   destroyChart("line");
   if (!playedRounds.length) return;
 
-  /* rank players by current MEA score, take top 8 */
+  /* all players who have at least one round, sorted by current MEA score */
   const ranked = PLAYERS.map(p => ({
     p,
     score: meaScore(p.id),
@@ -1112,12 +1324,11 @@ function buildLineChart() {
       return typeof v === "number" ? v : null;
     })
   })).filter(x => x.vals.some(v => v !== null))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 8);
+    .sort((a, b) => b.score - a.score);
 
   const legend = document.getElementById("line-legend");
   legend.innerHTML = ranked.map((x, i) =>
-    `<span><span class="ldot" style="background:${LINE_PALETTE[i]}"></span>${x.p.short}</span>`
+    `<span><span class="ldot" style="background:${LINE_PALETTE[i % LINE_PALETTE.length]}"></span>${x.p.short}</span>`
   ).join("");
 
   const ctx = document.getElementById("chart-line").getContext("2d");
@@ -1128,9 +1339,9 @@ function buildLineChart() {
       datasets: ranked.map((x, i) => ({
         label: x.p.short,
         data: x.vals,
-        borderColor: LINE_PALETTE[i],
-        backgroundColor: LINE_PALETTE[i] + "18",
-        pointBackgroundColor: LINE_PALETTE[i],
+        borderColor: LINE_PALETTE[i % LINE_PALETTE.length],
+        backgroundColor: LINE_PALETTE[i % LINE_PALETTE.length] + "18",
+        pointBackgroundColor: LINE_PALETTE[i % LINE_PALETTE.length],
         pointRadius: 5,
         pointHoverRadius: 7,
         tension: 0.35,
@@ -1162,7 +1373,7 @@ function buildLineChart() {
   });
 }
 
-/* ── PAR CHART: combined Par group scores (POR rounds) ── */
+/* ── PAR CHART: Para keppni — combined group scores, no Par N, totals, progress ── */
 function buildParChart() {
   destroyChart("par");
   const porPlayed = ROUNDS.filter(r => r.type === "POR" && playedKeys.has(r.key));
@@ -1179,10 +1390,27 @@ function buildParChart() {
     return { n, total, names, roundScores };
   }).sort((a, b) => b.total - a.total);
 
-  const labels = parData.map(d => `Par ${d.n} · ${d.names}`);
-  const colors = parData.map((_, i) =>
-    i === 0 ? "#2d7a4f" : i === 1 ? "#3d9a60" : i === 2 ? "#4dba75" : "rgba(45,122,79,.38)"
-  );
+  // Progress: rank change vs. previous POR round
+  let prevParRanks = {};
+  if (porPlayed.length >= 2) {
+    const prevPor = porPlayed.slice(0, -1);
+    [1,2,3,4,5,6,7,8,9].map(n => {
+      const members = PLAYERS.filter(p => p.par === n);
+      const scores = prevPor.map(r => {
+        const vals = members.map(p => getPoints(p.id)[r.key]).filter(v => typeof v === "number");
+        return vals.length ? vals.reduce((s,v) => s+v, 0) : 0;
+      });
+      return { n, total: scores.reduce((s,v) => s+v, 0) };
+    }).sort((a,b) => b.total - a.total).forEach((d,i) => { prevParRanks[d.n] = i+1; });
+  }
+  parData.forEach((d, i) => { d.curRank = i + 1; });
+
+  const labels = parData.map(d => {
+    const pr = prevParRanks[d.n];
+    const delta = pr !== undefined ? pr - d.curRank : null;
+    const ds = delta === null ? "" : delta > 0 ? `▲${delta} ` : delta < 0 ? `▼${Math.abs(delta)} ` : "";
+    return `${ds}${d.names}`;
+  });
 
   const ctx = document.getElementById("chart-par").getContext("2d");
   _charts.par = new Chart(ctx, {
@@ -1203,13 +1431,21 @@ function buildParChart() {
       indexAxis: "y",
       responsive: true,
       maintainAspectRatio: false,
+      layout: { padding: { right: 55 } },
       plugins: {
         legend: {
           display: porPlayed.length > 1,
           position: "bottom",
           labels: { font: { size: 11 }, boxWidth: 12 }
         },
-        datalabels: { display: false },
+        datalabels: {
+          display: ctx => ctx.datasetIndex === porPlayed.length - 1,
+          anchor: "end", align: "end", clamp: false,
+          font: { size: 11.5, weight: "bold" },
+          color: "#1a5c35",
+          formatter: (value, ctx) => `${parData[ctx.dataIndex].total}`,
+          padding: { left: 6 }
+        },
         tooltip: { mode: "index", intersect: false }
       },
       scales: {
@@ -1219,7 +1455,21 @@ function buildParChart() {
           ticks: { font: { size: 11 }, color: "#5b6478" },
           title: { display: true, text: "Samanlögð stig", font: { size: 11 }, color: "#5b6478" }
         },
-        y: { stacked: porPlayed.length > 1, grid: { display: false }, ticks: { font: { size: 11 } } }
+        y: {
+          stacked: porPlayed.length > 1,
+          grid: { display: false },
+          ticks: {
+            font: { size: 11 },
+            color: ctx => {
+              const d = parData[ctx.index];
+              if (!d || prevParRanks[d.n] === undefined) return "#5b6478";
+              const delta = prevParRanks[d.n] - d.curRank;
+              if (delta > 0) return "#16a34a";
+              if (delta < 0) return "#dc2626";
+              return "#5b6478";
+            }
+          }
+        }
       }
     }
   });
