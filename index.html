@@ -215,8 +215,8 @@ tr:hover td { background: #fafbfc; }
 
     <div id="ct-bar">
       <div class="chart-legend">
-        <span><span class="ldot" style="background:#2d7a4f"></span>Karlar</span>
-        <span><span class="ldot" style="background:#c8488a"></span>Konur</span>
+        <span><span class="ldot" style="background:#2d7a4f"></span>Strákar</span>
+        <span><span class="ldot" style="background:#c8488a"></span>Stelpur</span>
         <span style="margin-left:auto;color:#a0a8b8;font-size:11px">Y-ás: nafn (forgjöf) · Merki: punktar | högg</span>
       </div>
       <div style="position:relative;width:100%" id="bar-wrap">
@@ -503,8 +503,8 @@ function buildGenderTabs() {
   el.innerHTML = "";
   [
     { key:"all", label:"Allir" },
-    { key:"M",   label:"👨 Karlar" },
-    { key:"F",   label:"👩 Konur"  }
+    { key:"M",   label:"👨 Strákar" },
+    { key:"F",   label:"👩 Stelpur"  }
   ].forEach(b => {
     const btn = document.createElement("button");
     btn.textContent = b.label;
