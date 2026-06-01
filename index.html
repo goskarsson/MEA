@@ -192,6 +192,10 @@ tr:hover td { background: #fafbfc; }
   <span class="label">Sía eftir leik:</span>
   <div class="filter-tabs" id="filter-tabs"></div>
 </div>
+<div class="stats-filter">
+  <span class="label">Kyn:</span>
+  <div class="filter-tabs" id="gender-tabs"></div>
+</div>
 
 <!-- CARDS (day winner, top3, CTP, strokes) -->
 <div class="cards" id="cards-area"></div>
@@ -286,12 +290,12 @@ tr:hover td { background: #fafbfc; }
       { "p1": 1,  "p2": 15, "winner": 15, "margin": "5&4" }
     ],
     "r2": [
-      { "p1": 14, "p2": 17, "winner": 0 },
+      { "p1": 14, "p2": 2,  "winner": 0 },
       { "p1": 13, "p2": 11, "winner": 11, "margin": "6&5" },
       { "p1": 6,  "p2": 5,  "winner": 6,  "margin": "1UP" },
       { "p1": 8,  "p2": 3,  "winner": 0 },
-      { "p1": 18, "p2": 7,  "winner": 0 },
-      { "p1": 15, "p2": 9,  "winner": 15, "margin": "1UP" },
+      { "p1": 17, "p2": 7,  "winner": 0 },
+      { "p1": 15, "p2": 9,  "winner": 9,  "margin": "1UP" },
       { "p1": 4,  "p2": 12, "winner": 4,  "margin": "1UP" },
       { "p1": 10, "p2": 16, "winner": 16, "margin": "1UP" }
     ],
@@ -454,14 +458,21 @@ const playedRounds = ROUNDS.filter(r => playedKeys.has(r.key));
 const lastPlayed = playedRounds.length ? playedRounds[playedRounds.length - 1] : null;
 
 /* ── FILTER STATE ── */
-let filterKey = "all";
+let filterKey    = "all";
+let filterGender = "all"; // "all" | "M" | "F"
 try {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  if (saved.filterKey) filterKey = saved.filterKey;
+  if (saved.filterKey)    filterKey    = saved.filterKey;
+  if (saved.filterGender) filterGender = saved.filterGender;
 } catch(e) {}
 
 function savePrefs() {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ filterKey })); } catch(e) {}
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ filterKey, filterGender })); } catch(e) {}
+}
+
+/* ── GENDER-FILTERED PLAYERS ── */
+function gP() {
+  return filterGender === "all" ? PLAYERS : PLAYERS.filter(p => p.gender === filterGender);
 }
 
 /* ── FILTER TABS ── */
@@ -480,7 +491,25 @@ function buildFilterTabs() {
       btn.textContent = b.label;
     }
     if (b.key === filterKey) btn.classList.add("active");
-    btn.onclick = () => { filterKey = b.key; savePrefs(); render(); };
+    btn.onclick = () => { filterKey = b.key; savePrefs(); render(); setTimeout(buildActiveChart, 50); };
+    el.appendChild(btn);
+  });
+}
+
+/* ── GENDER TABS ── */
+function buildGenderTabs() {
+  const el = document.getElementById("gender-tabs");
+  if (!el) return;
+  el.innerHTML = "";
+  [
+    { key:"all", label:"Allir" },
+    { key:"M",   label:"👨 Karlar" },
+    { key:"F",   label:"👩 Konur"  }
+  ].forEach(b => {
+    const btn = document.createElement("button");
+    btn.textContent = b.label;
+    if (b.key === filterGender) btn.classList.add("active");
+    btn.onclick = () => { filterGender = b.key; savePrefs(); render(); setTimeout(buildActiveChart, 50); };
     el.appendChild(btn);
   });
 }
@@ -521,7 +550,7 @@ function buildCards() {
   if (filterKey === "all") {
     if (playedRounds.length > 0) {
       const winners = playedRounds.map(r => {
-        const scored = PLAYERS.map(p => ({ p, pts: getPoints(p.id)[r.key] }))
+        const scored = gP().map(p => ({ p, pts: getPoints(p.id)[r.key] }))
           .filter(x => typeof x.pts === "number")
           .sort((a,b) => b.pts - a.pts);
         if (!scored.length) return null;
@@ -553,7 +582,7 @@ function buildCards() {
     rkeys.forEach(rk => {
       const round = ROUNDS.find(r => r.key === rk);
       if (!round) return;
-      const scored = PLAYERS.map(p => ({ p, pts: getPoints(p.id)[rk] }))
+      const scored = gP().map(p => ({ p, pts: getPoints(p.id)[rk] }))
         .filter(x => typeof x.pts === "number")
         .sort((a,b) => b.pts - a.pts);
       if (!scored.length) return;
@@ -579,7 +608,7 @@ function buildCards() {
   }
 
   // Top 5 MEA stig — with progress tracker
-  const meaRanked = PLAYERS.map(p => ({
+  const meaRanked = gP().map(p => ({
     p, total: filterKey === "all" ? meaScore(p.id) :
       rkeys.map(k => getPoints(p.id)[k]).filter(v => typeof v === "number").reduce((s,v) => s+v, 0)
   })).filter(x => x.total > 0).sort((a,b) => b.total - a.total).slice(0, 5);
@@ -587,7 +616,7 @@ function buildCards() {
   if (meaRanked.length) {
     const prevRanks = filterKey === "all" ? prevRankMap() : {};
     const curRanks = {};
-    PLAYERS.map(p => ({ id: p.id, s: meaScore(p.id) })).sort((a,b) => b.s - a.s).forEach((x,i) => { curRanks[x.id] = i+1; });
+    gP().map(p => ({ id: p.id, s: meaScore(p.id) })).sort((a,b) => b.s - a.s).forEach((x,i) => { curRanks[x.id] = i+1; });
     const meaLeader = meaRanked[0].total;
     const card = document.createElement("div");
     card.className = "card";
@@ -611,7 +640,7 @@ function buildCards() {
 
   // Fæst högg top 5 — only players who played ALL currently played rounds
   const allRndKeys = playedRounds.map(r => r.key);
-  const strokeLeader = PLAYERS.map(p => {
+  const strokeLeader = gP().map(p => {
     const s = getStrokes(p.id);
     const useKeys = filterKey === "all" ? allRndKeys : rkeys;
     const vals = useKeys.map(k => s[k]).filter(v => typeof v === "number");
@@ -624,7 +653,7 @@ function buildCards() {
   const strokePrevRanks = (() => {
     if (playedRounds.length < 2 || filterKey !== "all") return {};
     const pk = playedRounds.slice(0, -1).map(r => r.key);
-    return PLAYERS.map(p => {
+    return gP().map(p => {
       const s = getStrokes(p.id);
       const vals = pk.map(k => s[k]).filter(v => typeof v === "number");
       if (vals.length < pk.length) return null;
@@ -666,7 +695,7 @@ let mainSortDir = 1;
 function prevRankMap() {
   if (playedRounds.length < 2) return {};
   const prevKeys = playedRounds.slice(0, -1).map(r => r.key);
-  const scored = PLAYERS.map(p => {
+  const scored = gP().map(p => {
     const vals = prevKeys.map(k => getPoints(p.id)[k]).filter(v => typeof v === "number");
     return { id: p.id, total: topN(vals, MEA_TOP_N) };
   }).sort((a,b) => b.total - a.total);
@@ -681,7 +710,7 @@ function buildMainTable() {
     ? playedRounds.map(r => r.key)
     : (playedKeys.has(filterKey) ? [filterKey] : []);
 
-  const rows = PLAYERS.map(p => {
+  const rows = gP().map(p => {
     const pts = getPoints(p.id);
     const roundVals = ROUNDS.map(r => ({ key: r.key, val: pts[r.key] }));
     const filteredVals = rkeys.map(k => pts[k]).filter(v => typeof v === "number");
@@ -942,7 +971,7 @@ function buildQuickStats() {
   const showProg = filterKey === "all" && playedRounds.length > 1;
 
   // ── Fuglarnir — rank-based progress arrow in front of name ──
-  const birdieRows = PLAYERS.map(p => {
+  const birdieRows = gP().map(p => {
     const b = getBirdies(p.id);
     return { p, total: rkeys.reduce((s,k) => s + (b[k] || 0), 0) };
   }).filter(x => x.total > 0).sort((a,b) => b.total - a.total);
@@ -950,7 +979,7 @@ function buildQuickStats() {
   const birdiePrevRanks = (() => {
     if (!showProg) return {};
     const pk = playedRounds.slice(0, -1).map(r => r.key);
-    return PLAYERS.map(p => {
+    return gP().map(p => {
       const b = getBirdies(p.id);
       return { id: p.id, total: pk.reduce((s,k) => s + (b[k] || 0), 0) };
     }).filter(x => x.total > 0).sort((a,b) => b.total - a.total)
@@ -978,7 +1007,7 @@ function buildQuickStats() {
 
   // ── Næst holu — Fjarlægð: best (min) per hole across all rounds, 4 entries ──
   const ctpByHole = {};
-  PLAYERS.forEach(p => {
+  gP().forEach(p => {
     getCtp(p.id).forEach(c => {
       if (!rkeys.includes(c.round)) return;
       if (!ctpByHole[c.hole] || c.cm < ctpByHole[c.hole].cm) {
@@ -1003,14 +1032,14 @@ function buildQuickStats() {
   }
 
   // ── Næst holu — Fjöldi: rank-based progress arrow in front of name ──
-  const ctpRows = PLAYERS.map(p => ({
+  const ctpRows = gP().map(p => ({
     p, count: getCtp(p.id).filter(c => rkeys.includes(c.round)).length
   })).filter(x => x.count > 0).sort((a,b) => b.count - a.count);
 
   const ctpPrevRanks = (() => {
     if (!showProg) return {};
     const pk = playedRounds.slice(0, -1).map(r => r.key);
-    return PLAYERS.map(p => ({ id: p.id, count: getCtp(p.id).filter(c => pk.includes(c.round)).length }))
+    return gP().map(p => ({ id: p.id, count: getCtp(p.id).filter(c => pk.includes(c.round)).length }))
       .filter(x => x.count > 0).sort((a,b) => b.count - a.count)
       .reduce((m,x,i) => { m[x.id] = i+1; return m; }, {});
   })();
@@ -1045,7 +1074,7 @@ function buildExtraCards() {
   const last = playedRounds[playedRounds.length - 1];
   const prev = playedRounds[playedRounds.length - 2];
 
-  const movers = PLAYERS.map(p => {
+  const movers = gP().map(p => {
     const ptsMap = getPoints(p.id);
     const l  = ptsMap[last.key];
     const pr = ptsMap[prev.key];
@@ -1087,6 +1116,7 @@ function buildExtraCards() {
 /* ── RENDER ── */
 function render() {
   buildFilterTabs();
+  buildGenderTabs();
   buildCards();
   buildQuickStats();
   buildMainTable();
@@ -1142,7 +1172,7 @@ function buildBarChart() {
     /* ── ALL MODE: MEA totals (best 8 rounds), rank delta in label ── */
     const prevRanks = playedRounds.length > 1 ? prevRankMap() : {};
 
-    const data = PLAYERS.map(p => ({
+    const data = gP().map(p => ({
       p,
       mea: meaScore(p.id),
       n:   meaRoundsPlayed(p.id)
@@ -1234,7 +1264,7 @@ function buildBarChart() {
     const rk = playedKeys.has(filterKey) ? filterKey : playedRounds[playedRounds.length-1].key;
     const round = ROUNDS.find(r => r.key === rk);
 
-    const data = PLAYERS.map(p => ({
+    const data = gP().map(p => ({
       p,
       pts:  getPoints(p.id)[rk],
       str:  getStrokes(p.id)[rk],
@@ -1315,8 +1345,8 @@ function buildLineChart() {
   destroyChart("line");
   if (!playedRounds.length) return;
 
-  /* all players who have at least one round, sorted by current MEA score */
-  const ranked = PLAYERS.map(p => ({
+  /* all players (gender-filtered) sorted by current MEA score */
+  const ranked = gP().map(p => ({
     p,
     score: meaScore(p.id),
     vals: playedRounds.map(r => {
