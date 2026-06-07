@@ -934,19 +934,28 @@ function renderBracket() {
 
   let html = "";
 
+  /* --- winners from the latest round that has any completed match --- */
+  const latestRoundWithWins = [...roundDefs].reverse().find(rd => rd.matches.some(m => m.winner > 0));
+  const latestWinners = latestRoundWithWins
+    ? latestRoundWithWins.matches.filter(m => m.winner > 0).map(m => m.winner)
+    : [];
+
   /* --- Active strip --- */
-  if (active.length > 0) {
-    html += `<div class="cup-active-strip">
-      <span class="strip-label" style="color:#2d7a4f">Enn í leik</span>`;
-    active.forEach(id => {
-      const p = pInfo(id);
-      const g = p ? p.gender : "M";
-      html += `<span class="cup-badge ${g}">${pName(id)}</span>`;
-    });
+  if (pending.length > 0 || latestWinners.length > 0) {
+    html += `<div class="cup-active-strip">`;
     if (pending.length > 0) {
-      html += `<span class="strip-label" style="color:#92600a;margin-left:10px">Bíður úrslits</span>`;
+      html += `<span class="strip-label" style="color:#92600a">Eftir að spila</span>`;
       pending.forEach(m => {
         html += `<span class="cup-tbd-badge">${pName(m.p1)} vs ${pName(m.p2)}</span>`;
+      });
+    }
+    if (latestWinners.length > 0) {
+      if (pending.length > 0) html += `<div style="width:100%;height:0"></div>`;
+      html += `<span class="strip-label" style="color:#2d7a4f">Komin áfram</span>`;
+      latestWinners.forEach(id => {
+        const p = pInfo(id);
+        const g = p ? p.gender : "M";
+        html += `<span class="cup-badge ${g}">${pName(id)}</span>`;
       });
     }
     html += `</div>`;
