@@ -84,20 +84,27 @@ tr:hover td { background: #fafbfc; }
 .cup-section summary::-webkit-details-marker { display: none; }
 .cup-section summary::before { content: "▶"; font-size: 10px; color: #b0b8c8; transition: transform .15s; }
 .cup-section[open] summary::before { transform: rotate(90deg); }
-.bracket-wrap { padding: 18px; overflow-x: auto; }
-.bracket { display: flex; gap: 0; align-items: stretch; }
-.b-round { display: flex; flex-direction: column; min-width: 150px; }
-.b-round-title { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #8a95a5; padding: 0 10px 10px; text-align: center; }
-.b-matches { display: flex; flex-direction: column; flex: 1; justify-content: space-around; }
-.b-match { position: relative; display: flex; flex-direction: column; padding: 4px 10px; }
-.b-match::after { content: ""; position: absolute; right: 0; top: 25%; bottom: 25%; width: 1px; background: #e0e4ec; }
-.b-round:last-child .b-match::after { display: none; }
-.b-player { display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 6px; font-size: 12px; margin: 2px 0; }
-.b-player.winner { background: #e8f4ee; font-weight: 700; color: #1a5c35; }
-.b-player.loser { color: #b0b8c8; text-decoration: line-through; }
-.b-player.tbd { color: #c8cdd8; font-style: italic; }
-.b-player .b-seed { font-size: 10px; color: #8a95a5; min-width: 14px; }
-.b-margin { font-size: 10px; color: #8a95a5; text-align: center; margin: 1px 0 3px; }
+.bracket-wrap { padding: 18px; }
+.cup-active-strip { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 10px 14px; background: #f0fbf4; border: 1px solid #c5e8d4; border-radius: 10px; margin-bottom: 18px; }
+.cup-active-strip .strip-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-right: 2px; }
+.cup-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.cup-badge.M { background: #dbeafe; color: #1e40af; }
+.cup-badge.F { background: #fce7f3; color: #9d174d; }
+.cup-tbd-badge { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: #fef3c7; color: #92600a; white-space: nowrap; }
+.cup-round-hdr { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #8a95a5; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+.cup-round-hdr::after { content: ""; flex: 1; height: 1px; background: #e8eaef; }
+.cup-matches-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.cup-match { border-radius: 10px; overflow: hidden; border: 1px solid #e0e4ec; min-width: 136px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.cup-match.tbd { border-style: dashed; border-color: #d0d6e0; background: #fafbfc; box-shadow: none; }
+.cup-match.done { border-color: #b8dfc8; }
+.cup-player { display: flex; align-items: center; gap: 7px; padding: 8px 11px; font-size: 13px; }
+.cup-player.winner { background: #e8f4ee; color: #1a5c35; font-weight: 700; }
+.cup-player.loser { background: #fafbfc; color: #b8bfc8; text-decoration: line-through; }
+.cup-player.pending { color: #4a5468; }
+.cup-player .cp-icon { font-size: 12px; flex-shrink: 0; width: 16px; text-align: center; }
+.cup-divider { text-align: center; font-size: 11px; font-weight: 700; padding: 3px 8px; border-top: 1px solid #eef0f4; border-bottom: 1px solid #eef0f4; letter-spacing: 0.3px; }
+.cup-divider.result { background: #f0fbf4; color: #2d7a4f; }
+.cup-divider.vs { background: #f5f6f8; color: #a0a8b8; }
 
 /* ── SCHEDULE ── */
 .schedule-section { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.04); margin-bottom: 24px; }
@@ -891,10 +898,11 @@ function buildParTable() {
 function renderBracket() {
   const area = document.getElementById("bracket-area");
 
-  function playerName(id) {
-    if (!id) return "?";
-    const p = PLAYERS.find(x => x.id === id);
-    return p ? p.short : "?";
+  function pInfo(id) {
+    return PLAYERS.find(x => x.id === id) || null;
+  }
+  function pName(id) {
+    const p = pInfo(id); return p ? p.short : "?";
   }
 
   const roundDefs = [
@@ -902,41 +910,72 @@ function renderBracket() {
     { key:"r2",  label:"Umferð 2",        matches: BIKAR.r2  || [] },
     { key:"qf",  label:"Fjórðungsúrslit", matches: BIKAR.qf  || [] },
     { key:"sf",  label:"Hálfleikur",      matches: BIKAR.sf  || [] },
-    { key:"f",   label:"Úrslit",          matches: BIKAR.f   || [] }
+    { key:"f",   label:"Úrslit 🏆",       matches: BIKAR.f   || [] }
   ];
 
-  let html = '<div class="bracket">';
+  /* --- who is eliminated and who is still active --- */
+  const eliminated = new Set();
   roundDefs.forEach(rd => {
-    html += `<div class="b-round">`;
-    html += `<div class="b-round-title">${rd.label}</div>`;
-    html += `<div class="b-matches">`;
-    if (!rd.matches.length) {
-      // Show TBD slots
-      const slots = rd.key === "r1" ? 2 : rd.key === "r2" ? 8 : rd.key === "qf" ? 4 : rd.key === "sf" ? 2 : 1;
-      for (let i=0; i<slots; i++) {
-        html += `<div class="b-match">
-          <div class="b-player tbd">TBD</div>
-          <div class="b-margin">vs</div>
-          <div class="b-player tbd">TBD</div>
-        </div>`;
-      }
-    } else {
-      rd.matches.forEach(m => {
-        const n1 = playerName(m.p1);
-        const n2 = playerName(m.p2);
-        const hasResult = m.winner > 0;
-        const p1Class = !hasResult ? "" : m.winner === m.p1 ? "winner" : "loser";
-        const p2Class = !hasResult ? "" : m.winner === m.p2 ? "winner" : "loser";
-        html += `<div class="b-match">
-          <div class="b-player ${p1Class}">${n1}</div>
-          <div class="b-margin">${hasResult && m.margin ? m.margin : "vs"}</div>
-          <div class="b-player ${p2Class}">${n2}</div>
-        </div>`;
+    rd.matches.forEach(m => {
+      if (m.winner > 0) eliminated.add(m.winner === m.p1 ? m.p2 : m.p1);
+    });
+  });
+  const allInBracket = new Set();
+  roundDefs.forEach(rd => rd.matches.forEach(m => { allInBracket.add(m.p1); allInBracket.add(m.p2); }));
+  const active = [...allInBracket].filter(id => !eliminated.has(id));
+
+  /* --- pending (TBD) matches --- */
+  const pending = [];
+  roundDefs.forEach(rd => {
+    rd.matches.forEach(m => {
+      if (!(m.winner > 0)) pending.push({ ...m, roundLabel: rd.label });
+    });
+  });
+
+  let html = "";
+
+  /* --- Active strip --- */
+  if (active.length > 0) {
+    html += `<div class="cup-active-strip">
+      <span class="strip-label" style="color:#2d7a4f">Enn í leik</span>`;
+    active.forEach(id => {
+      const p = pInfo(id);
+      const g = p ? p.gender : "M";
+      html += `<span class="cup-badge ${g}">${pName(id)}</span>`;
+    });
+    if (pending.length > 0) {
+      html += `<span class="strip-label" style="color:#92600a;margin-left:10px">Bíður úrslits</span>`;
+      pending.forEach(m => {
+        html += `<span class="cup-tbd-badge">${pName(m.p1)} vs ${pName(m.p2)}</span>`;
       });
     }
-    html += `</div></div>`;
+    html += `</div>`;
+  }
+
+  /* --- Round panels --- */
+  roundDefs.forEach(rd => {
+    if (!rd.matches.length) return; // skip empty future rounds
+    html += `<div class="cup-round-hdr">${rd.label}</div>`;
+    html += `<div class="cup-matches-grid">`;
+    rd.matches.forEach(m => {
+      const hasResult = m.winner > 0;
+      const p1win = hasResult && m.winner === m.p1;
+      const p2win = hasResult && m.winner === m.p2;
+      const p1Cls = hasResult ? (p1win ? "winner" : "loser") : "pending";
+      const p2Cls = hasResult ? (p2win ? "winner" : "loser") : "pending";
+      const p1Icon = hasResult ? (p1win ? "✅" : "❌") : "◻";
+      const p2Icon = hasResult ? (p2win ? "✅" : "❌") : "◻";
+      const divText = hasResult && m.margin ? m.margin : "vs";
+      const cardCls = hasResult ? "cup-match done" : "cup-match tbd";
+      html += `<div class="${cardCls}">
+        <div class="cup-player ${p1Cls}"><span class="cp-icon">${p1Icon}</span>${pName(m.p1)}</div>
+        <div class="cup-divider ${hasResult ? "result" : "vs"}">${divText}</div>
+        <div class="cup-player ${p2Cls}"><span class="cp-icon">${p2Icon}</span>${pName(m.p2)}</div>
+      </div>`;
+    });
+    html += `</div>`;
   });
-  html += "</div>";
+
   area.innerHTML = html;
 }
 
