@@ -316,8 +316,8 @@ tr:hover td { background: #fafbfc; }
     "f":  []
   },
   "players": {
-    "1":  { "points": {"r2":28,"r3":28,"r5":20}, "strokes": {"r2":92,"r3":94,"r5":103},  "birdies": {"r2":1,"r3":1,"r5":0}, "playingHcp": {"r2":12,"r3":12,"r5":12} },
-    "2":  { "points": {"r2":27,"r3":33,"r5":13}, "strokes": {"r2":98,"r3":92,"r5":49},  "birdies": {"r2":1,"r3":0,"r5":0}, "playingHcp": {"r2":16,"r3":16,"r5":16},
+    "1":  { "points": {"r2":28,"r3":28,"r5":20}, "strokes": {"r2":92,"r3":94},           "birdies": {"r2":1,"r3":1,"r5":0}, "playingHcp": {"r2":12,"r3":12,"r5":12} },
+    "2":  { "points": {"r2":27,"r3":33,"r5":13}, "strokes": {"r2":98,"r3":92},          "birdies": {"r2":1,"r3":0,"r5":0}, "playingHcp": {"r2":16,"r3":16,"r5":16},
             "ctp": [{"round":"r2","hole":12,"cm":600},{"round":"r5","hole":4,"cm":400}] },
     "3":  { "points": {"r1":37,"r2":35,"r3":35,"r4":38,"r5":30}, "strokes": {"r1":88,"r2":90,"r3":90,"r4":87,"r5":94},  "birdies": {"r1":1,"r2":1,"r3":0,"r4":1,"r5":1}, "playingHcp": {"r1":17,"r2":17,"r3":17,"r4":17,"r5":16} },
     "4":  { "points": {"r1":34,"r2":34,"r3":25,"r4":35,"r5":36}, "strokes": {"r1":98,"r2":98,"r3":107,"r4":97,"r5":96}, "birdies": {"r1":0,"r2":0,"r3":0,"r4":0,"r5":1}, "playingHcp": {"r1":24,"r2":24,"r3":24,"r4":24,"r5":24},
@@ -376,25 +376,25 @@ const PLAYERS = [
 ];
 
 const ROUNDS = [
-  { num:1,  key:"r1",  date:"17. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M1"  },
-  { num:2,  key:"r2",  date:"25. maí",    wday:"Mánudagur",   course:"Keilir",          type:"SK",    format:"Stableford",         label:"M2"  },
-  { num:3,  key:"r3",  date:"31. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",         label:"M3"  },
-  { num:4,  key:"r4",  date:"7. júní",    wday:"Sunnudagur",  course:"Hvaleyrar",       type:"POR",   format:"Parakeppni",         label:"M4"  },
-  { num:5,  key:"r5",  date:"14. júní",   wday:"Sunnudagur",  course:"Hvaleyrar",       type:"SK",    format:"Stableford",         label:"M5"  },
-  { num:6,  key:"r6",  date:"21. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni og Stableford", label:"M6"  },
-  { num:7,  key:"r7",  date:"28. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M7"  },
-  { num:8,  key:"r8",  date:"5. júlí",    wday:"Sunnudagur",  course:"Annar völlur",    type:"POR",   format:"Parakeppni og Stableford", label:"M8"  },
+  { num:1,  key:"r1",  date:"17. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M1"  },
+  { num:2,  key:"r2",  date:"25. maí",    wday:"Mánudagur",   course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M2"  },
+  { num:3,  key:"r3",  date:"31. maí",    wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M3"  },
+  { num:4,  key:"r4",  date:"7. júní",    wday:"Sunnudagur",  course:"Hvaleyrar",       type:"POR",   format:"Parakeppni",              label:"M4"  },
+  { num:5,  key:"r5",  date:"14. júní",   wday:"Sunnudagur",  course:"Hvaleyrar",       type:"POR",   format:"Parakeppni",              label:"M5"  },
+  { num:6,  key:"r6",  date:"21. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M6"  },
+  { num:7,  key:"r7",  date:"28. júní",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M7"  },
+  { num:8,  key:"r8",  date:"5. júlí",    wday:"Sunnudagur",  course:"Annar völlur",    type:"SK",    format:"Stableford",              label:"M8"  },
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9"  },
   { num:10, key:"r10", date:"18. júlí",   wday:"Laugardagur", course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sunnudagur",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
   { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M12" },
   { num:13, key:"r13", date:"3. ágúst",   wday:"Mánudagur",   course:"Keilir",          type:"SK",    format:"Stableford",              label:"M13" },
-  { num:14, key:"r14", date:"9. ágúst",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni og Stableford", label:"M14" },
-  { num:15, key:"r15", date:"16. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Parakeppni",              label:"M15" },
-  { num:16, key:"r16", date:"23. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Gulur bolti",             label:"M16" },
-  { num:17, key:"r17", date:"30. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Parakeppni",              label:"M17" },
+  { num:14, key:"r14", date:"9. ágúst",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M14" },
+  { num:15, key:"r15", date:"16. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
+  { num:16, key:"r16", date:"23. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Gulur bolti",             label:"M16" },
+  { num:17, key:"r17", date:"30. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M17" },
   { num:18, key:"r18", date:"6. sept.",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M18" },
-  { num:19, key:"r19", date:"13. sept.",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Bikar + Stableford",      label:"M19" },
+  { num:19, key:"r19", date:"13. sept.",  wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Bikar + Stableford",      label:"M19" },
   { num:20, key:"r20", date:"20. sept.",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M20" }
 ];
 
