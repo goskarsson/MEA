@@ -150,6 +150,14 @@ footer a { color: #2d7a4f; }
   <div style="overflow-x:auto"><table class="rounds-table" id="rounds-table"></table></div>
 </div>
 
+<div class="card" id="hcp-chart-card">
+  <h3><span class="icon">📈</span> Leikforgjöf yfir tíma</h3>
+  <div style="position:relative;width:100%;height:280px">
+    <canvas id="chart-player-hcp" role="img" aria-label="Línurit — leikforgjöf leikmanns yfir tímabilið"></canvas>
+  </div>
+  <p style="font-size:11px;color:#a0a8b8;margin:6px 0 0;font-style:italic">Merki: forgjöf / pt · smelltu á punkt til að sjá nánar</p>
+</div>
+
 <div class="two-col">
   <div class="side-card" id="par-card"></div>
   <div class="side-card" id="cup-card"></div>
@@ -171,64 +179,912 @@ footer a { color: #2d7a4f; }
 <!-- ═══ DATA ═══ -->
 <script type="application/json" id="snapshot">
 {
-  "lastUpdated": "2026-06-14T20:00:00Z",
+  "lastUpdated": "2026-06-21T17:00:00Z",
   "bikar": {
     "r1": [
-      { "p1": 17, "p2": 18, "winner": 18, "margin": "4&3" },
-      { "p1": 1,  "p2": 15, "winner": 15, "margin": "5&4" }
+      {
+        "p1": 17,
+        "p2": 18,
+        "winner": 18,
+        "margin": "4&3"
+      },
+      {
+        "p1": 1,
+        "p2": 15,
+        "winner": 15,
+        "margin": "5&4"
+      }
     ],
     "r2": [
-      { "p1": 14, "p2": 2,  "winner": 14 },
-      { "p1": 13, "p2": 11, "winner": 11, "margin": "6&5" },
-      { "p1": 6,  "p2": 5,  "winner": 6,  "margin": "1UP" },
-      { "p1": 8,  "p2": 3,  "winner": 8,  "margin": "1UP" },
-      { "p1": 18, "p2": 7,  "winner": 18, "margin": "3&1" },
-      { "p1": 15, "p2": 9,  "winner": 9,  "margin": "1UP" },
-      { "p1": 4,  "p2": 12, "winner": 4,  "margin": "1UP" },
-      { "p1": 10, "p2": 16, "winner": 16, "margin": "1UP" }
+      {
+        "p1": 14,
+        "p2": 2,
+        "winner": 14
+      },
+      {
+        "p1": 13,
+        "p2": 11,
+        "winner": 11,
+        "margin": "6&5"
+      },
+      {
+        "p1": 6,
+        "p2": 5,
+        "winner": 6,
+        "margin": "1UP"
+      },
+      {
+        "p1": 8,
+        "p2": 3,
+        "winner": 8,
+        "margin": "1UP"
+      },
+      {
+        "p1": 18,
+        "p2": 7,
+        "winner": 18,
+        "margin": "3&1"
+      },
+      {
+        "p1": 15,
+        "p2": 9,
+        "winner": 9,
+        "margin": "1UP"
+      },
+      {
+        "p1": 4,
+        "p2": 12,
+        "winner": 4,
+        "margin": "1UP"
+      },
+      {
+        "p1": 10,
+        "p2": 16,
+        "winner": 16,
+        "margin": "1UP"
+      }
     ],
     "qf": [
-      { "p1": 16, "p2": 9,  "winner": 0 },
-      { "p1": 14, "p2": 18, "winner": 0 },
-      { "p1": 8,  "p2": 6,  "winner": 0 },
-      { "p1": 11, "p2": 4,  "winner": 0 }
+      {
+        "p1": 16,
+        "p2": 9,
+        "winner": 0
+      },
+      {
+        "p1": 14,
+        "p2": 18,
+        "winner": 18,
+        "margin": "3&1"
+      },
+      {
+        "p1": 8,
+        "p2": 6,
+        "winner": 8,
+        "margin": "4&3"
+      },
+      {
+        "p1": 11,
+        "p2": 4,
+        "winner": 0
+      }
     ],
     "sf": [],
-    "f":  []
+    "f": []
   },
   "players": {
-    "1":  { "points": {"r2":28,"r3":28,"r5":20}, "strokes": {"r2":92,"r3":94},           "birdies": {"r2":1,"r3":1,"r5":0}, "playingHcp": {"r2":12,"r3":12,"r5":12} },
-    "2":  { "points": {"r2":27,"r3":33,"r5":13}, "strokes": {"r2":98,"r3":92},          "birdies": {"r2":1,"r3":0,"r5":0}, "playingHcp": {"r2":16,"r3":16,"r5":16},
-            "ctp": [{"round":"r2","hole":12,"cm":600},{"round":"r5","hole":4,"cm":400}] },
-    "3":  { "points": {"r1":37,"r2":35,"r3":35,"r4":38,"r5":30}, "strokes": {"r1":88,"r2":90,"r3":90,"r4":87,"r5":94},  "birdies": {"r1":1,"r2":1,"r3":0,"r4":1,"r5":1}, "playingHcp": {"r1":17,"r2":17,"r3":17,"r4":17,"r5":16} },
-    "4":  { "points": {"r1":34,"r2":34,"r3":25,"r4":35,"r5":36}, "strokes": {"r1":98,"r2":98,"r3":107,"r4":97,"r5":96}, "birdies": {"r1":0,"r2":0,"r3":0,"r4":0,"r5":1}, "playingHcp": {"r1":24,"r2":24,"r3":24,"r4":24,"r5":24},
-            "ctp": [{"round":"r2","hole":6,"cm":300}] },
-    "5":  { "points": {"r2":29,"r3":33,"r4":28,"r5":31}, "strokes": {"r2":92,"r3":88,"r4":93,"r5":90},  "birdies": {"r2":1,"r3":0,"r4":1,"r5":0}, "playingHcp": {"r2":13,"r3":13,"r4":13,"r5":13},
-            "ctp": [{"round":"r3","hole":4,"cm":500}] },
-    "6":  { "points": {"r2":34,"r3":28,"r4":30,"r5":26}, "strokes": {"r2":96,"r3":102,"r4":99,"r5":103}, "birdies": {"r2":0,"r3":0,"r4":0,"r5":0}, "playingHcp": {"r2":22,"r3":22,"r4":21,"r5":21},
-            "ctp": [{"round":"r2","hole":12,"cm":500}] },
-    "7":  { "points": {"r2":19,"r3":26,"r4":29,"r5":26}, "strokes": {"r2":113,"r3":106,"r4":102,"r5":109},"birdies": {"r2":0,"r3":0,"r4":0,"r5":0}, "playingHcp": {"r2":22,"r3":22,"r4":22,"r5":22} },
-    "8":  { "points": {"r2":31,"r5":30},  "strokes": {"r2":101,"r5":101},  "birdies": {"r2":0,"r5":0}, "playingHcp": {"r2":23,"r5":22},
-            "ctp": [{"round":"r2","hole":12,"cm":1000}] },
-    "9":  { "points": {"r1":32,"r2":30,"r3":32,"r4":31,"r5":25}, "strokes": {"r1":83,"r2":85,"r3":84,"r4":84,"r5":90},  "birdies": {"r1":0,"r2":0,"r3":1,"r4":0,"r5":0}, "playingHcp": {"r1":7,"r2":7,"r3":7,"r4":7,"r5":7},
-            "ctp": [{"round":"r1","hole":12,"cm":800},{"round":"r2","hole":6,"cm":750},{"round":"r5","hole":12,"cm":140}] },
-    "10": { "points": {"r1":33,"r2":37,"r3":34,"r4":28,"r5":28}, "strokes": {"r1":102,"r2":99,"r3":101,"r4":107,"r5":108}, "birdies": {"r1":0,"r2":0,"r3":0,"r4":0,"r5":0}, "playingHcp": {"r1":27,"r2":28,"r3":27,"r4":27,"r5":27} },
-    "11": { "points": {"r2":30,"r3":38,"r4":33,"r5":30}, "strokes": {"r2":90,"r3":81,"r4":85,"r5":91},  "birdies": {"r2":0,"r3":1,"r4":0,"r5":0}, "playingHcp": {"r2":11,"r3":11,"r4":10,"r5":10},
-            "ctp": [{"round":"r3","hole":6,"cm":500},{"round":"r4","hole":6,"cm":450}] },
-    "12": { "points": {"r2":37,"r3":24,"r4":31,"r5":33}, "strokes": {"r2":86,"r3":99,"r4":91,"r5":89},  "birdies": {"r2":0,"r3":0,"r4":0,"r5":1}, "playingHcp": {"r2":14,"r3":14,"r4":14,"r5":14},
-            "ctp": [{"round":"r2","hole":12,"cm":830},{"round":"r3","hole":12,"cm":300},{"round":"r3","hole":17,"cm":1200},{"round":"r5","hole":17,"cm":99}] },
-    "13": { "points": {"r2":28,"r3":27,"r4":25,"r5":28}, "strokes": {"r2":92,"r3":96,"r4":99,"r5":97},  "birdies": {"r2":1,"r3":0,"r4":0,"r5":0}, "playingHcp": {"r2":12,"r3":15,"r4":16,"r5":17},
-            "ctp": [{"round":"r4","hole":6,"cm":800}] },
-    "14": { "points": {"r2":32,"r3":37,"r4":25,"r5":35}, "strokes": {"r2":103,"r3":100,"r4":112,"r5":99},"birdies": {"r2":0,"r3":1,"r4":0,"r5":0}, "playingHcp": {"r2":26,"r3":26,"r4":26,"r5":26},
-            "ctp": [{"round":"r2","hole":4,"cm":750},{"round":"r2","hole":17,"cm":350}] },
-    "15": { "points": {"r2":35,"r3":30,"r5":38}, "strokes": {"r2":79,"r3":84,"r5":76},  "birdies": {"r2":2,"r3":1,"r5":1}, "playingHcp": {"r2":6,"r3":6,"r5":6},
-            "ctp": [{"round":"r2","hole":4,"cm":380},{"round":"r5","hole":6,"cm":600}] },
-    "16": { "points": {"r1":35,"r2":35,"r3":30,"r5":43}, "strokes": {"r1":101,"r2":101,"r3":106,"r5":93},"birdies": {"r1":0,"r2":1,"r3":0,"r5":0}, "playingHcp": {"r1":28,"r2":28,"r3":28,"r5":28} },
-    "17": { "points": {"r1":34,"r2":29,"r3":35,"r5":33}, "strokes": {"r1":88,"r2":93,"r3":87,"r5":92},  "birdies": {"r1":1,"r2":0,"r3":2,"r5":0}, "playingHcp": {"r1":14,"r2":14,"r3":14,"r5":14},
-            "ctp": [{"round":"r1","hole":6,"cm":1100},{"round":"r2","hole":4,"cm":800},{"round":"r2","hole":17,"cm":1700}] },
-    "18": { "points": {"r1":29,"r2":43,"r3":32,"r5":34}, "strokes": {"r1":107,"r2":93,"r3":104,"r5":101},"birdies": {"r1":0,"r2":1,"r3":1,"r5":0}, "playingHcp": {"r1":27,"r2":28,"r3":27,"r5":27},
-            "ctp": [{"round":"r1","hole":4,"cm":200},{"round":"r1","hole":17,"cm":280}] }
+    "1": {
+      "points": {
+        "r2": 28,
+        "r3": 28,
+        "r5": 20,
+        "r6": 28
+      },
+      "strokes": {
+        "r2": 92,
+        "r3": 94,
+        "r6": 92
+      },
+      "birdies": {
+        "r2": 1,
+        "r3": 1,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 12,
+        "r3": 12,
+        "r5": 12,
+        "r6": 12
+      }
+    },
+    "2": {
+      "points": {
+        "r2": 27,
+        "r3": 33,
+        "r5": 13,
+        "r6": 33
+      },
+      "strokes": {
+        "r2": 98,
+        "r3": 92,
+        "r6": 91
+      },
+      "birdies": {
+        "r2": 1,
+        "r3": 0,
+        "r5": 0,
+        "r6": 1
+      },
+      "playingHcp": {
+        "r2": 16,
+        "r3": 16,
+        "r5": 16,
+        "r6": 16
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 12,
+          "cm": 600
+        },
+        {
+          "round": "r5",
+          "hole": 4,
+          "cm": 400
+        }
+      ]
+    },
+    "3": {
+      "points": {
+        "r1": 37,
+        "r2": 35,
+        "r3": 35,
+        "r4": 38,
+        "r5": 30
+      },
+      "strokes": {
+        "r1": 88,
+        "r2": 90,
+        "r3": 90,
+        "r4": 87,
+        "r5": 94
+      },
+      "birdies": {
+        "r1": 1,
+        "r2": 1,
+        "r3": 0,
+        "r4": 1,
+        "r5": 1
+      },
+      "playingHcp": {
+        "r1": 17,
+        "r2": 17,
+        "r3": 17,
+        "r4": 17,
+        "r5": 16
+      }
+    },
+    "4": {
+      "points": {
+        "r1": 34,
+        "r2": 34,
+        "r3": 25,
+        "r4": 35,
+        "r5": 36
+      },
+      "strokes": {
+        "r1": 98,
+        "r2": 98,
+        "r3": 107,
+        "r4": 97,
+        "r5": 96
+      },
+      "birdies": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0,
+        "r4": 0,
+        "r5": 1
+      },
+      "playingHcp": {
+        "r1": 24,
+        "r2": 24,
+        "r3": 24,
+        "r4": 24,
+        "r5": 24
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 6,
+          "cm": 300
+        }
+      ]
+    },
+    "5": {
+      "points": {
+        "r2": 29,
+        "r3": 33,
+        "r4": 28,
+        "r5": 31,
+        "r6": 28
+      },
+      "strokes": {
+        "r2": 92,
+        "r3": 88,
+        "r4": 93,
+        "r5": 90,
+        "r6": 93
+      },
+      "birdies": {
+        "r2": 1,
+        "r3": 0,
+        "r4": 1,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 13,
+        "r3": 13,
+        "r4": 13,
+        "r5": 13,
+        "r6": 13
+      },
+      "ctp": [
+        {
+          "round": "r3",
+          "hole": 4,
+          "cm": 500
+        }
+      ]
+    },
+    "6": {
+      "points": {
+        "r2": 34,
+        "r3": 28,
+        "r4": 30,
+        "r5": 26,
+        "r6": 36
+      },
+      "strokes": {
+        "r2": 96,
+        "r3": 102,
+        "r4": 99,
+        "r5": 103,
+        "r6": 96
+      },
+      "birdies": {
+        "r2": 0,
+        "r3": 0,
+        "r4": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 22,
+        "r3": 22,
+        "r4": 21,
+        "r5": 21,
+        "r6": 22
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 12,
+          "cm": 500
+        }
+      ]
+    },
+    "7": {
+      "points": {
+        "r2": 19,
+        "r3": 26,
+        "r4": 29,
+        "r5": 26,
+        "r6": 20
+      },
+      "strokes": {
+        "r2": 113,
+        "r3": 106,
+        "r4": 102,
+        "r5": 109,
+        "r6": 112
+      },
+      "birdies": {
+        "r2": 0,
+        "r3": 0,
+        "r4": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 22,
+        "r3": 22,
+        "r4": 22,
+        "r5": 22,
+        "r6": 24
+      }
+    },
+    "8": {
+      "points": {
+        "r2": 31,
+        "r5": 30,
+        "r6": 40
+      },
+      "strokes": {
+        "r2": 101,
+        "r5": 101,
+        "r6": 92
+      },
+      "birdies": {
+        "r2": 0,
+        "r5": 0,
+        "r6": 1
+      },
+      "playingHcp": {
+        "r2": 23,
+        "r5": 22,
+        "r6": 23
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 12,
+          "cm": 1000
+        }
+      ]
+    },
+    "9": {
+      "points": {
+        "r1": 32,
+        "r2": 30,
+        "r3": 32,
+        "r4": 31,
+        "r5": 25,
+        "r6": 38
+      },
+      "strokes": {
+        "r1": 83,
+        "r2": 85,
+        "r3": 84,
+        "r4": 84,
+        "r5": 90,
+        "r6": 77
+      },
+      "birdies": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 1,
+        "r4": 0,
+        "r5": 0,
+        "r6": 2
+      },
+      "playingHcp": {
+        "r1": 7,
+        "r2": 7,
+        "r3": 7,
+        "r4": 7,
+        "r5": 7,
+        "r6": 7
+      },
+      "ctp": [
+        {
+          "round": "r1",
+          "hole": 12,
+          "cm": 800
+        },
+        {
+          "round": "r2",
+          "hole": 6,
+          "cm": 750
+        },
+        {
+          "round": "r5",
+          "hole": 12,
+          "cm": 140
+        }
+      ]
+    },
+    "10": {
+      "points": {
+        "r1": 33,
+        "r2": 37,
+        "r3": 34,
+        "r4": 28,
+        "r5": 28
+      },
+      "strokes": {
+        "r1": 102,
+        "r2": 99,
+        "r3": 101,
+        "r4": 107,
+        "r5": 108
+      },
+      "birdies": {
+        "r1": 0,
+        "r2": 0,
+        "r3": 0,
+        "r4": 0,
+        "r5": 0
+      },
+      "playingHcp": {
+        "r1": 27,
+        "r2": 28,
+        "r3": 27,
+        "r4": 27,
+        "r5": 27
+      }
+    },
+    "11": {
+      "points": {
+        "r2": 30,
+        "r3": 38,
+        "r4": 33,
+        "r5": 30,
+        "r6": 24
+      },
+      "strokes": {
+        "r2": 90,
+        "r3": 81,
+        "r4": 85,
+        "r5": 91,
+        "r6": 95
+      },
+      "birdies": {
+        "r2": 0,
+        "r3": 1,
+        "r4": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 11,
+        "r3": 11,
+        "r4": 10,
+        "r5": 10,
+        "r6": 10
+      },
+      "ctp": [
+        {
+          "round": "r3",
+          "hole": 6,
+          "cm": 500
+        },
+        {
+          "round": "r4",
+          "hole": 6,
+          "cm": 450
+        },
+        {
+          "round": "r6",
+          "hole": 17,
+          "cm": 1000
+        }
+      ]
+    },
+    "12": {
+      "points": {
+        "r2": 37,
+        "r3": 24,
+        "r4": 31,
+        "r5": 33,
+        "r6": 36
+      },
+      "strokes": {
+        "r2": 86,
+        "r3": 99,
+        "r4": 91,
+        "r5": 89,
+        "r6": 86
+      },
+      "birdies": {
+        "r2": 0,
+        "r3": 0,
+        "r4": 0,
+        "r5": 1,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 14,
+        "r3": 14,
+        "r4": 14,
+        "r5": 14,
+        "r6": 14
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 12,
+          "cm": 830
+        },
+        {
+          "round": "r3",
+          "hole": 12,
+          "cm": 300
+        },
+        {
+          "round": "r3",
+          "hole": 17,
+          "cm": 1200
+        },
+        {
+          "round": "r5",
+          "hole": 17,
+          "cm": 99
+        }
+      ]
+    },
+    "13": {
+      "points": {
+        "r2": 28,
+        "r3": 27,
+        "r4": 25,
+        "r5": 28,
+        "r6": 29
+      },
+      "strokes": {
+        "r2": 92,
+        "r3": 96,
+        "r4": 99,
+        "r5": 97,
+        "r6": 96
+      },
+      "birdies": {
+        "r2": 1,
+        "r3": 0,
+        "r4": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 12,
+        "r3": 15,
+        "r4": 16,
+        "r5": 17,
+        "r6": 17
+      },
+      "ctp": [
+        {
+          "round": "r4",
+          "hole": 6,
+          "cm": 800
+        },
+        {
+          "round": "r6",
+          "hole": 4,
+          "cm": 420
+        }
+      ]
+    },
+    "14": {
+      "points": {
+        "r2": 32,
+        "r3": 37,
+        "r4": 25,
+        "r5": 35,
+        "r6": 29
+      },
+      "strokes": {
+        "r2": 103,
+        "r3": 100,
+        "r4": 112,
+        "r5": 99,
+        "r6": 110
+      },
+      "birdies": {
+        "r2": 0,
+        "r3": 1,
+        "r4": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r2": 26,
+        "r3": 26,
+        "r4": 26,
+        "r5": 26,
+        "r6": 27
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 4,
+          "cm": 750
+        },
+        {
+          "round": "r2",
+          "hole": 17,
+          "cm": 350
+        },
+        {
+          "round": "r6",
+          "hole": 6,
+          "cm": 250
+        }
+      ]
+    },
+    "15": {
+      "points": {
+        "r2": 35,
+        "r3": 30,
+        "r5": 38
+      },
+      "strokes": {
+        "r2": 79,
+        "r3": 84,
+        "r5": 76
+      },
+      "birdies": {
+        "r2": 2,
+        "r3": 1,
+        "r5": 1
+      },
+      "playingHcp": {
+        "r2": 6,
+        "r3": 6,
+        "r5": 6
+      },
+      "ctp": [
+        {
+          "round": "r2",
+          "hole": 4,
+          "cm": 380
+        },
+        {
+          "round": "r5",
+          "hole": 6,
+          "cm": 600
+        }
+      ]
+    },
+    "16": {
+      "points": {
+        "r1": 35,
+        "r2": 35,
+        "r3": 30,
+        "r5": 43,
+        "r6": 39
+      },
+      "strokes": {
+        "r1": 101,
+        "r2": 101,
+        "r3": 106,
+        "r5": 93,
+        "r6": 98
+      },
+      "birdies": {
+        "r1": 0,
+        "r2": 1,
+        "r3": 0,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r1": 28,
+        "r2": 28,
+        "r3": 28,
+        "r5": 28,
+        "r6": 27
+      },
+      "ctp": [
+        {
+          "round": "r6",
+          "hole": 12,
+          "cm": 130
+        }
+      ]
+    },
+    "17": {
+      "points": {
+        "r1": 34,
+        "r2": 29,
+        "r3": 35,
+        "r5": 33,
+        "r6": 35
+      },
+      "strokes": {
+        "r1": 88,
+        "r2": 93,
+        "r3": 87,
+        "r5": 92,
+        "r6": 87
+      },
+      "birdies": {
+        "r1": 1,
+        "r2": 0,
+        "r3": 2,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r1": 14,
+        "r2": 14,
+        "r3": 14,
+        "r5": 14,
+        "r6": 14
+      },
+      "ctp": [
+        {
+          "round": "r1",
+          "hole": 6,
+          "cm": 1100
+        },
+        {
+          "round": "r2",
+          "hole": 4,
+          "cm": 800
+        },
+        {
+          "round": "r2",
+          "hole": 17,
+          "cm": 1700
+        }
+      ]
+    },
+    "18": {
+      "points": {
+        "r1": 29,
+        "r2": 43,
+        "r3": 32,
+        "r5": 34,
+        "r6": 32
+      },
+      "strokes": {
+        "r1": 107,
+        "r2": 93,
+        "r3": 104,
+        "r5": 101,
+        "r6": 101
+      },
+      "birdies": {
+        "r1": 0,
+        "r2": 1,
+        "r3": 1,
+        "r5": 0,
+        "r6": 0
+      },
+      "playingHcp": {
+        "r1": 27,
+        "r2": 28,
+        "r3": 27,
+        "r5": 27,
+        "r6": 24
+      },
+      "ctp": [
+        {
+          "round": "r1",
+          "hole": 4,
+          "cm": 200
+        },
+        {
+          "round": "r1",
+          "hole": 17,
+          "cm": 280
+        }
+      ]
+    }
   }
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<script>
+Chart.register(ChartDataLabels);
+const _pCharts = {};
+function destroyPChart(id) { if (_pCharts[id]) { _pCharts[id].destroy(); delete _pCharts[id]; } }
+
+const _playedRoundsP = ROUNDS.filter(r =>
+  PLAYERS.some(p => typeof ((PDATA[p.id] || {}).points || {})[r.key] === "number")
+);
+
+function renderHcpChart(p) {
+  destroyPChart("hcp");
+  const card    = document.getElementById("hcp-chart-card");
+  const partner = PLAYERS.find(x => x.par === p.par && x.id !== p.id);
+  const GOLD    = "#c8a430";
+
+  /* Gender-coded colours: M=green, F=rose — player is always primary */
+  const colM = "#2d7a4f", colF = "#c8488a";
+  const pCol = p.gender === "M" ? colM : colF;
+  const kCol = partner ? (partner.gender === "M" ? colM : colF) : "#7c3aed";
+
+  /* Build a dataset for one player */
+  function makeDS(player, color, bw, dsIdx) {
+    const hcpObj = (PDATA[player.id] || {}).playingHcp || {};
+    const ptsObj = (PDATA[player.id] || {}).points   || {};
+    const vals = _playedRoundsP.map(r => ({
+      hcp: typeof hcpObj[r.key] === "number" ? hcpObj[r.key] : null,
+      pts: typeof ptsObj[r.key] === "number" ? ptsObj[r.key] : null
+    }));
+    const good = vals.map(v => v.pts !== null && v.pts > 36);
+    return {
+      label:                player.short,
+      data:                 vals.map(v => v.hcp),
+      _pts:                 vals.map(v => v.pts),
+      _good:                good,
+      _dsIdx:               dsIdx,
+      borderColor:          color,
+      backgroundColor:      color + "18",
+      pointStyle:           good.map(g => g ? "star"    : "circle"),
+      pointRadius:          good.map(g => g ? 9         : 5),
+      pointHoverRadius:     good.map(g => g ? 11        : 7),
+      pointBackgroundColor: good.map(g => g ? GOLD      : color),
+      pointBorderColor:     good.map(g => g ? "#9a7a20" : color),
+      pointBorderWidth:     good.map(g => g ? 1.5       : 0),
+      tension: 0.3, borderWidth: bw, spanGaps: true
+    };
+  }
+
+  const datasets = [makeDS(p, pCol, 2.5, 0)];
+  if (partner) datasets.push(makeDS(partner, kCol, 2, 1));
+
+  if (!datasets.some(ds => ds.data.some(v => v !== null))) {
+    if (card) card.style.display = "none"; return;
+  }
+  if (card) card.style.display = "";
+
+  /* Update card title */
+  const h3 = card.querySelector("h3");
+  if (h3) h3.innerHTML =
+    `<span class="icon">📈</span> Leikforgjöf yfir tíma` +
+    (partner ? ` &nbsp;<span style="font-weight:400;font-size:11px;color:#8a95a5">Par ${p.par}: ${p.short} &amp; ${partner.short}</span>` : "");
+
+  const ctx = document.getElementById("chart-player-hcp").getContext("2d");
+  _pCharts.hcp = new Chart(ctx, {
+    type: "line",
+    data: { labels: _playedRoundsP.map(r => r.label), datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 28, bottom: 4 } },
+      plugins: {
+        legend: {
+          display: !!partner,
+          position: "bottom",
+          labels: { font: { size: 12 }, boxWidth: 12, padding: 14,
+            generateLabels: chart => chart.data.datasets.map((ds, i) => ({
+              text: ds.label, fillStyle: ds.borderColor,
+              strokeStyle: ds.borderColor, lineWidth: 2,
+              datasetIndex: i, hidden: !chart.isDatasetVisible(i)
+            }))
+          }
+        },
+        datalabels: {
+          display: ctx => ctx.dataset.data[ctx.dataIndex] !== null,
+          formatter: (value, ctx) => {
+            const pts = ctx.dataset._pts[ctx.dataIndex];
+            return pts !== null ? `${value}/${pts}pt` : `${value}`;
+          },
+          anchor: "end",
+          /* Stagger: player labels above, partner labels below — no overlap */
+          align: ctx => ctx.dataset._dsIdx === 0 ? "top" : "bottom",
+          color: ctx => ctx.dataset._good[ctx.dataIndex] ? GOLD : ctx.dataset.borderColor,
+          font: { size: 10, weight: "bold" },
+          padding: 2
+        },
+        tooltip: {
+          mode: "index",
+          intersect: false,
+          callbacks: {
+            label: ctx => {
+              const pts  = ctx.dataset._pts[ctx.dataIndex];
+              const star = pts !== null && pts > 36 ? "  ★" : "";
+              return ` ${ctx.dataset.label}: forgjöf ${ctx.parsed.y}${pts !== null ? ` · ${pts} pt${star}` : ""}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          grid:  { color: "rgba(0,0,0,.05)" },
+          ticks: { font: { size: 11 }, color: "#5b6478" },
+          title: { display: true, text: "Leikforgjöf", font: { size: 11 }, color: "#5b6478" }
+        },
+        x: { grid: { display: false }, ticks: { font: { size: 12 } } }
+      }
+    }
+  });
 }
 </script>
 
@@ -261,7 +1117,7 @@ const ROUNDS = [
   { num:3,  key:"r3",  date:"31. maí",    wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M3"  },
   { num:4,  key:"r4",  date:"7. júní",    wday:"Sun",  course:"Hvaleyrar",       type:"POR",   format:"Parakeppni",              label:"M4"  },
   { num:5,  key:"r5",  date:"14. júní",   wday:"Sun",  course:"Hvaleyrar",       type:"POR",   format:"Parakeppni",              label:"M5"  },
-  { num:6,  key:"r6",  date:"21. júní",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M6"  },
+  { num:6,  key:"r6",  date:"21. júní",   wday:"Sun",  course:"Hvaleyrar",       type:"SK",    format:"Stableford",              label:"M6"  },
   { num:7,  key:"r7",  date:"28. júní",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M7"  },
   { num:8,  key:"r8",  date:"5. júlí",    wday:"Sun",  course:"Annar völlur",    type:"SK",    format:"Stableford",              label:"M8"  },
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9"  },
@@ -384,6 +1240,7 @@ function loadPlayer(pid) {
   renderCtpCard(player);
   renderBirdieCard(player);
   renderAchievements(player);
+  renderHcpChart(player);
 }
 
 function renderProfile(p) {
@@ -599,7 +1456,7 @@ function renderAchievements(p) {
     { icon:"⛳", label:"Fyrsti hringurinn", sub:"M1 spilaður", earned: allPts.length >= 1 },
     { icon:"🎯", label:"Næst holu", sub:"1 CTP fengin", earned: ctpCount >= 1 },
     { icon:"🐦", label:"Fuglasöfnuður", sub:"3+ fuglar", earned: totalBirdies >= 3 },
-    { icon:"🔥", label:"40+ stig", sub:"Einn hringur ≥ 40", earned: best >= 40 },
+    { icon:"🔥", label:"40+ pt", sub:"Einn hringur ≥ 40", earned: best >= 40 },
     { icon:"🥊", label:"Bikarinn — Umferð 2", sub:"Kominn í 16", earned: status === "active" && (BIKAR.r2||[]).some(m => m.p1 === p.id || m.p2 === p.id) },
     { icon:"🏆", label:"Sigurvegari", sub:"Bestu 8 hringir", earned: false }
   ];
@@ -626,5 +1483,6 @@ try {
 
 loadPlayer(startId);
 </script>
+
 </body>
 </html>
