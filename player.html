@@ -969,124 +969,6 @@ footer a { color: #2d7a4f; }
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
-<script>
-Chart.register(ChartDataLabels);
-const _pCharts = {};
-function destroyPChart(id) { if (_pCharts[id]) { _pCharts[id].destroy(); delete _pCharts[id]; } }
-
-const _playedRoundsP = ROUNDS.filter(r =>
-  PLAYERS.some(p => typeof ((PDATA[p.id] || {}).points || {})[r.key] === "number")
-);
-
-function renderHcpChart(p) {
-  destroyPChart("hcp");
-  const card    = document.getElementById("hcp-chart-card");
-  const partner = PLAYERS.find(x => x.par === p.par && x.id !== p.id);
-  const GOLD    = "#c8a430";
-
-  /* Gender-coded colours: M=green, F=rose — player is always primary */
-  const colM = "#2d7a4f", colF = "#c8488a";
-  const pCol = p.gender === "M" ? colM : colF;
-  const kCol = partner ? (partner.gender === "M" ? colM : colF) : "#7c3aed";
-
-  /* Build a dataset for one player */
-  function makeDS(player, color, bw, dsIdx) {
-    const hcpObj = (PDATA[player.id] || {}).playingHcp || {};
-    const ptsObj = (PDATA[player.id] || {}).points   || {};
-    const vals = _playedRoundsP.map(r => ({
-      hcp: typeof hcpObj[r.key] === "number" ? hcpObj[r.key] : null,
-      pts: typeof ptsObj[r.key] === "number" ? ptsObj[r.key] : null
-    }));
-    const good = vals.map(v => v.pts !== null && v.pts > 36);
-    return {
-      label:                player.short,
-      data:                 vals.map(v => v.hcp),
-      _pts:                 vals.map(v => v.pts),
-      _good:                good,
-      _dsIdx:               dsIdx,
-      borderColor:          color,
-      backgroundColor:      color + "18",
-      pointStyle:           good.map(g => g ? "star"    : "circle"),
-      pointRadius:          good.map(g => g ? 9         : 5),
-      pointHoverRadius:     good.map(g => g ? 11        : 7),
-      pointBackgroundColor: good.map(g => g ? GOLD      : color),
-      pointBorderColor:     good.map(g => g ? "#9a7a20" : color),
-      pointBorderWidth:     good.map(g => g ? 1.5       : 0),
-      tension: 0.3, borderWidth: bw, spanGaps: true
-    };
-  }
-
-  const datasets = [makeDS(p, pCol, 2.5, 0)];
-  if (partner) datasets.push(makeDS(partner, kCol, 2, 1));
-
-  if (!datasets.some(ds => ds.data.some(v => v !== null))) {
-    if (card) card.style.display = "none"; return;
-  }
-  if (card) card.style.display = "";
-
-  /* Update card title */
-  const h3 = card.querySelector("h3");
-  if (h3) h3.innerHTML =
-    `<span class="icon">📈</span> Leikforgjöf yfir tíma` +
-    (partner ? ` &nbsp;<span style="font-weight:400;font-size:11px;color:#8a95a5">Par ${p.par}: ${p.short} &amp; ${partner.short}</span>` : "");
-
-  const ctx = document.getElementById("chart-player-hcp").getContext("2d");
-  _pCharts.hcp = new Chart(ctx, {
-    type: "line",
-    data: { labels: _playedRoundsP.map(r => r.label), datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      layout: { padding: { top: 28, bottom: 4 } },
-      plugins: {
-        legend: {
-          display: !!partner,
-          position: "bottom",
-          labels: { font: { size: 12 }, boxWidth: 12, padding: 14,
-            generateLabels: chart => chart.data.datasets.map((ds, i) => ({
-              text: ds.label, fillStyle: ds.borderColor,
-              strokeStyle: ds.borderColor, lineWidth: 2,
-              datasetIndex: i, hidden: !chart.isDatasetVisible(i)
-            }))
-          }
-        },
-        datalabels: {
-          display: ctx => ctx.dataset.data[ctx.dataIndex] !== null,
-          formatter: (value, ctx) => {
-            const pts = ctx.dataset._pts[ctx.dataIndex];
-            return pts !== null ? `${value}/${pts}pt` : `${value}`;
-          },
-          anchor: "end",
-          /* Stagger: player labels above, partner labels below — no overlap */
-          align: ctx => ctx.dataset._dsIdx === 0 ? "top" : "bottom",
-          color: ctx => ctx.dataset._good[ctx.dataIndex] ? GOLD : ctx.dataset.borderColor,
-          font: { size: 10, weight: "bold" },
-          padding: 2
-        },
-        tooltip: {
-          mode: "index",
-          intersect: false,
-          callbacks: {
-            label: ctx => {
-              const pts  = ctx.dataset._pts[ctx.dataIndex];
-              const star = pts !== null && pts > 36 ? "  ★" : "";
-              return ` ${ctx.dataset.label}: forgjöf ${ctx.parsed.y}${pts !== null ? ` · ${pts} pt${star}` : ""}`;
-            }
-          }
-        }
-      },
-      scales: {
-        y: {
-          grid:  { color: "rgba(0,0,0,.05)" },
-          ticks: { font: { size: 11 }, color: "#5b6478" },
-          title: { display: true, text: "Leikforgjöf", font: { size: 11 }, color: "#5b6478" }
-        },
-        x: { grid: { display: false }, ticks: { font: { size: 12 } } }
-      }
-    }
-  });
-}
-</script>
 
 <!-- ═══ APP ═══ -->
 <script>
@@ -1480,6 +1362,127 @@ try {
     if (saved.pid) startId = saved.pid;
   }
 } catch(e) {}
+
+
+/* ── HCP Chart ── */
+const _pCharts = {};
+function destroyPChart(id) { if (_pCharts[id]) { _pCharts[id].destroy(); delete _pCharts[id]; } }
+
+function renderHcpChart(p) {
+  destroyPChart("hcp");
+  const card = document.getElementById("hcp-chart-card");
+  if (typeof Chart === "undefined" || typeof ChartDataLabels === "undefined") return;
+  Chart.register(ChartDataLabels);
+  const partner = PLAYERS.find(x => x.par === p.par && x.id !== p.id);
+  const GOLD    = "#c8a430";
+
+  /* Compute played rounds lazily here (ROUNDS + PDATA are now defined) */
+  const playedRs = ROUNDS.filter(r =>
+    PLAYERS.some(pl => typeof ((PDATA[String(pl.id)] || {}).points || {})[r.key] === "number")
+  );
+
+  const colM = "#2d7a4f", colF = "#c8488a";
+  const pCol = p.gender === "M" ? colM : colF;
+  const kCol = partner ? (partner.gender === "M" ? colM : colF) : "#7c3aed";
+
+  function makeDS(player, color, bw, dsIdx) {
+    const hcpObj = (PDATA[String(player.id)] || {}).playingHcp || {};
+    const ptsObj = (PDATA[String(player.id)] || {}).points   || {};
+    const vals = playedRs.map(r => ({
+      hcp: typeof hcpObj[r.key] === "number" ? hcpObj[r.key] : null,
+      pts: typeof ptsObj[r.key] === "number" ? ptsObj[r.key] : null
+    }));
+    const good = vals.map(v => v.pts !== null && v.pts > 36);
+    return {
+      label:                player.short,
+      data:                 vals.map(v => v.hcp),
+      _pts:                 vals.map(v => v.pts),
+      _good:                good,
+      _dsIdx:               dsIdx,
+      borderColor:          color,
+      backgroundColor:      color + "18",
+      pointStyle:           good.map(g => g ? "star"    : "circle"),
+      pointRadius:          good.map(g => g ? 9         : 5),
+      pointHoverRadius:     good.map(g => g ? 11        : 7),
+      pointBackgroundColor: good.map(g => g ? GOLD      : color),
+      pointBorderColor:     good.map(g => g ? "#9a7a20" : color),
+      pointBorderWidth:     good.map(g => g ? 1.5       : 0),
+      tension: 0.3, borderWidth: bw, spanGaps: true
+    };
+  }
+
+  const datasets = [makeDS(p, pCol, 2.5, 0)];
+  if (partner) datasets.push(makeDS(partner, kCol, 2, 1));
+
+  if (!datasets.some(ds => ds.data.some(v => v !== null))) {
+    if (card) card.style.display = "none"; return;
+  }
+  if (card) card.style.display = "";
+
+  const h3 = card ? card.querySelector("h3") : null;
+  if (h3) h3.innerHTML =
+    `<span class="icon">📈</span> Leikforgjöf yfir tíma` +
+    (partner
+      ? ` &nbsp;<span style="font-weight:400;font-size:11px;color:#8a95a5">Par ${p.par}: ${p.short} &amp; ${partner.short}</span>`
+      : "");
+
+  try {
+  const ctx = document.getElementById("chart-player-hcp").getContext("2d");
+  _pCharts.hcp = new Chart(ctx, {
+    type: "line",
+    data: { labels: playedRs.map(r => r.label), datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 28, bottom: 4 } },
+      plugins: {
+        legend: {
+          display: !!partner,
+          position: "bottom",
+          labels: { font: { size: 12 }, boxWidth: 12, padding: 14,
+            generateLabels: chart => chart.data.datasets.map((ds, i) => ({
+              text: ds.label, fillStyle: ds.borderColor,
+              strokeStyle: ds.borderColor, lineWidth: 2,
+              datasetIndex: i, hidden: !chart.isDatasetVisible(i)
+            }))
+          }
+        },
+        datalabels: {
+          display: ctx => ctx.dataset.data[ctx.dataIndex] !== null,
+          formatter: (value, ctx) => {
+            const pts = ctx.dataset._pts[ctx.dataIndex];
+            return pts !== null ? `${value}/${pts}pt` : `${value}`;
+          },
+          anchor: "end",
+          align: ctx => ctx.dataset._dsIdx === 0 ? "top" : "bottom",
+          color: ctx => ctx.dataset._good[ctx.dataIndex] ? GOLD : ctx.dataset.borderColor,
+          font: { size: 10, weight: "bold" },
+          padding: 2
+        },
+        tooltip: {
+          mode: "index",
+          intersect: false,
+          callbacks: {
+            label: ctx => {
+              const pts  = ctx.dataset._pts[ctx.dataIndex];
+              const star = pts !== null && pts > 36 ? "  ★" : "";
+              return ` ${ctx.dataset.label}: forgjöf ${ctx.parsed.y}${pts !== null ? ` · ${pts} pt${star}` : ""}`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          grid:  { color: "rgba(0,0,0,.05)" },
+          ticks: { font: { size: 11 }, color: "#5b6478" },
+          title: { display: true, text: "Leikforgjöf", font: { size: 11 }, color: "#5b6478" }
+        },
+        x: { grid: { display: false }, ticks: { font: { size: 12 } } }
+      }
+    }
+  });
+  } catch(e) { console.error("[HCP chart]", e); }
+}
 
 loadPlayer(startId);
 </script>
