@@ -1151,7 +1151,7 @@ function parScore(parNum) {
 function buildSelect(currentId) {
   const sel = document.getElementById("player-select");
   sel.innerHTML = "";
-  PLAYERS.forEach(p => {
+  PLAYERS.slice().sort((a,b) => a.name.localeCompare(b.name, "is")).forEach(p => {
     const opt = document.createElement("option");
     opt.value = p.id;
     opt.textContent = p.short;
