@@ -1282,7 +1282,7 @@ function renderParCard(p) {
   const el = document.getElementById("par-card");
   const partner = PLAYERS.find(x => x.par === p.par && x.id !== p.id);
   const scores = parScore(p.par);
-  const parTotal = topN(scores, 6);
+  const parTotal = topN(scores, 4);
   const porPlayed = ROUNDS.filter(r => r.type === "POR" && playedKeys.has(r.key));
 
   let roundRows = "";
@@ -1304,7 +1304,7 @@ function renderParCard(p) {
   el.innerHTML = `
     <h3><span class="icon">👫</span> Par ${p.par} — Parakeppni</h3>
     <div class="big">${parTotal}<span class="unit">pt</span></div>
-    <div style="font-size:12px;color:#5b6478;margin-bottom:10px">Bestu 6 Pör hringir · með ${partner ? partner.short : '?'}</div>
+    <div style="font-size:12px;color:#5b6478;margin-bottom:10px">Bestu 4 Pör hringir · með ${partner ? partner.short : '?'}</div>
     ${roundRows || '<div class="empty-note">Engir Pör hringir spilaðir.</div>'}`;
 }
 
