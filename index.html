@@ -2595,4 +2595,10 @@ window.addEventListener("load", () => {
 /* also rebuild bar chart when filter changes (it might target a specific round) */
 document.addEventListener("click", e => {
   if (e.target.closest("#filter-tabs")) {
-    setTimeout(buildActive
+    setTimeout(buildActiveChart, 50);
+  }
+});
+</script>
+
+</body>
+</html>
