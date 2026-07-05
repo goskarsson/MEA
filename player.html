@@ -139,6 +139,13 @@ footer a { color: #2d7a4f; }
 .sc-hole.worse   { background: #0f172a; color: #fff; border-radius: 2px; }
 .sc-pts-cell { color: #2d7a4f; font-weight: 600; font-size: 11px; }
 .sc-pts-cell.zero { color: #c8cdd8; }
+.sc-summary { padding: 14px 16px; display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+.sc-stat { display: flex; flex-direction: column; gap: 3px; }
+.sc-slbl { font-size: 10px; color: #8a95a5; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; }
+.sc-sval { font-size: 22px; font-weight: 800; color: #2d7a4f; }
+.sc-sval.sc-neutral { color: #5b6478; font-size: 18px; }
+.sc-nodata { margin-left: auto; align-self: center; }
+.sc-nodata-txt { font-size: 11px; color: #b0b8c8; font-style: italic; }
 
 @media (max-width: 640px) {
   .wrap { padding: 12px; }
@@ -2267,105 +2274,99 @@ function renderHcpChart(p) {
 function renderScorecards(p) {
   const sec = document.getElementById("scorecards-section");
   if (!sec) return;
-  const d = pd(p.id);
+  const d       = pd(p.id);
   const hscores = d.holeScores || {};
   const hpts    = d.holePts    || {};
   const ptObj   = d.points     || {};
+  const strObj  = d.strokes    || {};
+  const hcpObj  = d.playingHcp || {};
+  const birObj  = d.birdies    || {};
 
-  const rounds = ROUNDS.filter(r => hscores[r.key]);
-  if (!rounds.length) { sec.innerHTML = ""; return; }
+  /* All rounds this player participated in, most-recent first */
+  const played = ROUNDS.filter(r => typeof ptObj[r.key] === "number").slice().reverse();
+  if (!played.length) { sec.innerHTML = ""; return; }
+
+  function strokesOnHole(idx18, hcpIdx, phcpVal) {
+    if (!hcpIdx || !hcpIdx[idx18]) return 0;
+    const full  = Math.floor(phcpVal / 18);
+    const extra = phcpVal % 18;
+    return full + (hcpIdx[idx18] <= extra ? 1 : 0);
+  }
+
+  function holeClass(score, par) {
+    if (!par || !score) return "";
+    const diff = score - par;
+    if (diff <= -2) return "eagle";
+    if (diff === -1) return "birdie";
+    if (diff === 0)  return "par";
+    if (diff === 1)  return "bogey";
+    if (diff === 2)  return "double";
+    return "worse";
+  }
 
   let html = `<div class="card"><h3><span class="icon">🃏</span> Skorkort hring fyrir hring</h3>`;
 
-  rounds.forEach(r => {
-    const scores  = hscores[r.key];
-    const pts     = hpts[r.key] || [];
-    const course  = COURSE_DATA[r.course];
-    const par     = course ? course.par : Array(18).fill(null);
-    const hcpIdx  = course ? course.hcpIdx : Array(18).fill(null);
-    const phcp    = (d.playingHcp || {})[r.key] || 0;
-    const totalPts = ptObj[r.key] || 0;
+  played.forEach((r, idx) => {
+    const totalPts = ptObj[r.key];
+    const totalStr = strObj[r.key];
+    const totalBir = birObj[r.key] || 0;
+    const phcp     = typeof hcpObj[r.key] === "number" ? hcpObj[r.key] : null;
+    const scores   = hscores[r.key];
+    const ptsArr   = hpts[r.key] || [];
+    const isOpen   = idx === 0;   /* auto-open most recent */
 
-    /* how many extra strokes each hole gets */
-    function strokesOnHole(idx18) {
-      if (!hcpIdx[idx18]) return 0;
-      const full = Math.floor(phcp / 18);
-      const extra = phcp % 18;
-      return full + (hcpIdx[idx18] <= extra ? 1 : 0);
-    }
+    const metaParts = [r.date, r.course];
+    if (phcp !== null) metaParts.push(`Forgjöf ${phcp}`);
 
-    function holeClass(score, parVal) {
-      if (!parVal) return "";
-      const diff = score - parVal;
-      if (diff <= -2) return "eagle";
-      if (diff === -1) return "birdie";
-      if (diff === 0)  return "par";
-      if (diff === 1)  return "bogey";
-      if (diff === 2)  return "double";
-      return "worse";
-    }
-
-    function makeRow(label, vals, isTotal, extra="") {
-      const cls = isTotal ? "tot-col" : "";
-      return `<tr><td class="row-lbl">${label}</td>${vals.map((v,i) => {
-        const sub = i === 9 || i === 10;
-        const tot = i === 11;
-        return `<td class="${sub ? "sub-col" : tot ? "tot-col" : ""}">${v ?? ""}</td>`;
-      }).join("")}</tr>`;
-    }
-
-    /* Build 11-column layout: h1-9, Out, h10-18, In, Tot */
-    const cols9  = Array.from({length:9},(_,i)=>i);
-    const cols18 = Array.from({length:9},(_,i)=>i+9);
-
-    function buildCols(idxArr) {
-      return idxArr;
-    }
-
-    const outPar   = par.slice(0,9).reduce((a,b)=>a+(b||0),0);
-    const inPar    = par.slice(9,18).reduce((a,b)=>a+(b||0),0);
-    const outScore = scores.slice(0,9).reduce((a,b)=>a+b,0);
-    const inScore  = scores.slice(9,18).reduce((a,b)=>a+b,0);
-    const outPts   = pts.slice(0,9).reduce((a,b)=>a+b,0);
-    const inPts    = pts.slice(9,18).reduce((a,b)=>a+b,0);
-
-    /* Header row: hole numbers */
-    const hdrOut = cols9.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Út</th>`;
-    const hdrIn  = cols18.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Inn</th><th class="tot-col">Tot</th>`;
-
-    /* Par row */
-    const parOut = cols9.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${outPar||"-"}</td>`;
-    const parIn  = cols18.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${inPar||"-"}</td><td class="tot-col">${outPar+inPar||"-"}</td>`;
-
-    /* Hcp strokes row */
-    const hcpOut = cols9.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i)||""}</td>`).join("") + `<td class="sub-col"></td>`;
-    const hcpIn  = cols18.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i)||""}</td>`).join("") + `<td class="sub-col"></td><td class="tot-col" style="font-size:11px;color:#8a95a5">${phcp}</td>`;
-
-    /* Score row */
-    const scoreOut = cols9.map(i=>{
-      const cl = holeClass(scores[i], par[i]);
-      return `<td><span class="sc-hole ${cl}">${scores[i]}</span></td>`;
-    }).join("") + `<td class="sub-col">${outScore}</td>`;
-    const scoreIn  = cols18.map(i=>{
-      const cl = holeClass(scores[i], par[i]);
-      return `<td><span class="sc-hole ${cl}">${scores[i]}</span></td>`;
-    }).join("") + `<td class="sub-col">${inScore}</td><td class="tot-col">${outScore+inScore}</td>`;
-
-    /* Points row */
-    const ptsOut = cols9.map(i=>`<td class="sc-pts-cell${pts[i]===0?" zero":""}">${pts[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${outPts}</td>`;
-    const ptsIn  = cols18.map(i=>`<td class="sc-pts-cell${pts[i]===0?" zero":""}">${pts[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${inPts}</td><td class="tot-col sc-pts-cell">${outPts+inPts}</td>`;
-
-    html += `<details class="scorecard-round">
-      <summary>
+    const summaryHtml = `<summary>
         <span>${r.label}</span>
-        <span class="sc-meta">${r.date} · ${r.course} · Forgjöf ${phcp}</span>
+        <span class="sc-meta">${metaParts.join(" · ")}</span>
         <span class="sc-pts">${totalPts} pt</span>
-      </summary>
+      </summary>`;
+
+    if (scores && scores.length >= 18) {
+      /* ── Full hole-by-hole scorecard ── */
+      const course  = COURSE_DATA[r.course];
+      const par     = course ? course.par    : Array(18).fill(null);
+      const hcpIdx  = course ? course.hcpIdx : Array(18).fill(null);
+      const phcpVal = phcp || 0;
+
+      const c9  = Array.from({length:9}, (_,i) => i);
+      const c18 = Array.from({length:9}, (_,i) => i+9);
+
+      const outPar   = par.slice(0,9).reduce((a,b)=>a+(b||0),0);
+      const inPar    = par.slice(9,18).reduce((a,b)=>a+(b||0),0);
+      const outScore = scores.slice(0,9).reduce((a,b)=>a+b,0);
+      const inScore  = scores.slice(9,18).reduce((a,b)=>a+b,0);
+      const outPts   = ptsArr.slice(0,9).reduce((a,b)=>a+b,0);
+      const inPts    = ptsArr.slice(9,18).reduce((a,b)=>a+b,0);
+
+      const hdrOut = c9.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Út</th>`;
+      const hdrIn  = c18.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Inn</th><th class="tot-col">Tot</th>`;
+
+      const parOut = c9.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${outPar||"-"}</td>`;
+      const parIn  = c18.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${inPar||"-"}</td><td class="tot-col">${(outPar+inPar)||"-"}</td>`;
+
+      const hcpOut = c9.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i,hcpIdx,phcpVal)||""}</td>`).join("") + `<td class="sub-col"></td>`;
+      const hcpIn  = c18.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i,hcpIdx,phcpVal)||""}</td>`).join("") + `<td class="sub-col"></td><td class="tot-col" style="font-size:11px;color:#8a95a5">${phcpVal}</td>`;
+
+      const scoreOut = c9.map(i=>{
+        const cl = holeClass(scores[i], par[i]);
+        return `<td><span class="sc-hole${cl?" "+cl:""}">${scores[i]}</span></td>`;
+      }).join("") + `<td class="sub-col">${outScore}</td>`;
+      const scoreIn = c18.map(i=>{
+        const cl = holeClass(scores[i], par[i]);
+        return `<td><span class="sc-hole${cl?" "+cl:""}">${scores[i]}</span></td>`;
+      }).join("") + `<td class="sub-col">${inScore}</td><td class="tot-col">${outScore+inScore}</td>`;
+
+      const ptsOut = c9.map(i=>`<td class="sc-pts-cell${ptsArr[i]===0?" zero":""}">${ptsArr[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${outPts}</td>`;
+      const ptsIn  = c18.map(i=>`<td class="sc-pts-cell${ptsArr[i]===0?" zero":""}">${ptsArr[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${inPts}</td><td class="tot-col sc-pts-cell">${outPts+inPts}</td>`;
+
+      html += `<details class="scorecard-round"${isOpen?" open":""}>
+      ${summaryHtml}
       <div class="scorecard-wrap">
         <table class="scorecard-tbl">
-          <thead>
-            <tr><th class="row-lbl">Hola</th>${hdrOut}${hdrIn}</tr>
-          </thead>
+          <thead><tr><th class="row-lbl">Hola</th>${hdrOut}${hdrIn}</tr></thead>
           <tbody>
             <tr><td class="row-lbl">Par</td>${parOut}${parIn}</tr>
             <tr><td class="row-lbl" style="font-size:10px;color:#a0a8b8">Högg+</td>${hcpOut}${hcpIn}</tr>
@@ -2375,6 +2376,27 @@ function renderScorecards(p) {
         </table>
       </div>
     </details>`;
+
+    } else {
+      /* ── Compact summary (no hole data stored yet) ── */
+      const birds   = totalBir > 0
+        ? `<div class="sc-stat"><div class="sc-slbl">Fuglar</div><div class="sc-sval sc-neutral">${"🐦".repeat(Math.min(totalBir,5))}${totalBir>5?` +${totalBir-5}`:""}</div></div>`
+        : "";
+      const strHtml = typeof totalStr === "number"
+        ? `<div class="sc-stat"><div class="sc-slbl">Högg</div><div class="sc-sval sc-neutral">${totalStr}</div></div>`
+        : "";
+      const hcpHtml = phcp !== null
+        ? `<div class="sc-stat"><div class="sc-slbl">Leikforgjöf</div><div class="sc-sval sc-neutral">${phcp}</div></div>`
+        : "";
+      html += `<details class="scorecard-round"${isOpen?" open":""}>
+      ${summaryHtml}
+      <div class="sc-summary">
+        <div class="sc-stat"><div class="sc-slbl">Stig</div><div class="sc-sval">${totalPts}</div></div>
+        ${strHtml}${hcpHtml}${birds}
+        <div class="sc-stat sc-nodata"><div class="sc-nodata-txt">Hringur fyrir hring gögn eru ekki til</div></div>
+      </div>
+    </details>`;
+    }
   });
 
   html += `</div>`;
