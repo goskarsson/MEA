@@ -112,6 +112,34 @@ header.app-header .back:hover { background: rgba(0,0,0,.4); }
 footer { text-align: center; color: #98a0b0; font-size: 12px; padding: 24px 0 8px; }
 footer a { color: #2d7a4f; }
 
+/* ── SCORECARDS ── */
+.scorecard-section { margin-bottom: 24px; }
+.scorecard-round { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.04); margin-bottom: 14px; }
+.scorecard-round summary { padding: 12px 16px; font-size: 13px; font-weight: 700; color: #5b6478; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; gap: 8px; list-style: none; border-bottom: 1px solid #f0f1f4; }
+.scorecard-round summary::-webkit-details-marker { display: none; }
+.scorecard-round summary::before { content: "▶"; font-size: 10px; color: #b0b8c8; transition: transform .15s; }
+.scorecard-round[open] summary::before { transform: rotate(90deg); }
+.scorecard-round summary .sc-pts { font-size: 18px; font-weight: 800; color: #2d7a4f; margin-left: auto; }
+.scorecard-round summary .sc-meta { font-size: 11px; font-weight: 400; color: #8a95a5; text-transform: none; letter-spacing: 0; }
+.scorecard-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 12px; }
+.scorecard-tbl { border-collapse: collapse; font-size: 12px; min-width: 560px; width: 100%; }
+.scorecard-tbl th { padding: 5px 6px; text-align: center; font-size: 10px; font-weight: 700; color: #8a95a5; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid #e8eaef; white-space: nowrap; }
+.scorecard-tbl th.row-lbl { text-align: left; min-width: 60px; }
+.scorecard-tbl td { padding: 4px 6px; text-align: center; border-bottom: 1px solid #f3f4f7; vertical-align: middle; font-variant-numeric: tabular-nums; }
+.scorecard-tbl tr:last-child td { border-bottom: 0; }
+.scorecard-tbl td.row-lbl { text-align: left; font-weight: 700; color: #5b6478; font-size: 11px; }
+.scorecard-tbl td.sub-col { background: #f8fafb; font-weight: 700; }
+.scorecard-tbl td.tot-col { background: #f0f7f3; font-weight: 800; color: #1a5c35; }
+.sc-hole { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 4px; font-weight: 700; font-size: 12px; }
+.sc-hole.birdie  { background: #fde8e8; color: #dc2626; border-radius: 50%; border: 2px solid #dc2626; }
+.sc-hole.eagle   { background: #fde8e8; color: #dc2626; border-radius: 50%; border: 2px solid #dc2626; font-size: 11px; }
+.sc-hole.par     { background: transparent; color: #1d2433; }
+.sc-hole.bogey   { background: #dbeafe; color: #1e3a8a; border-radius: 2px; border: 1px solid #93c5fd; }
+.sc-hole.double  { background: #1e3a8a; color: #fff; border-radius: 2px; }
+.sc-hole.worse   { background: #0f172a; color: #fff; border-radius: 2px; }
+.sc-pts-cell { color: #2d7a4f; font-weight: 600; font-size: 11px; }
+.sc-pts-cell.zero { color: #c8cdd8; }
+
 @media (max-width: 640px) {
   .wrap { padding: 12px; }
   header.app-header h1 { font-size: 20px; }
@@ -170,6 +198,8 @@ footer a { color: #2d7a4f; }
 
 <div class="card" id="achievements-card"></div>
 
+<div id="scorecards-section" class="scorecard-section"></div>
+
 <footer>
   <a href="index.html">← Til baka á aðalmælaborð</a>
 </footer>
@@ -178,7 +208,7 @@ footer a { color: #2d7a4f; }
 
 <!-- ═══ DATA ═══ -->
 <script type="application/json" id="snapshot">{
-  "lastUpdated": "2026-06-28T21:00:00Z",
+  "lastUpdated": "2026-07-05T21:00:00Z",
   "bikar": {
     "r1": [
       {
@@ -276,24 +306,72 @@ footer a { color: #2d7a4f; }
         "r2": 28,
         "r3": 28,
         "r5": 20,
-        "r6": 28
+        "r6": 28,
+        "r8": 23
       },
       "strokes": {
         "r2": 92,
         "r3": 94,
-        "r6": 92
+        "r6": 92,
+        "r8": 101
       },
       "birdies": {
         "r2": 1,
         "r3": 1,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r2": 12,
         "r3": 12,
         "r5": 12,
-        "r6": 12
+        "r6": 12,
+        "r8": 12
+      },
+      "holeScores": {
+        "r8": [
+          8,
+          5,
+          5,
+          5,
+          5,
+          5,
+          7,
+          8,
+          4,
+          6,
+          8,
+          5,
+          4,
+          8,
+          5,
+          3,
+          5,
+          5
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          1,
+          2,
+          2,
+          1,
+          3,
+          1,
+          0,
+          1,
+          1,
+          0,
+          1,
+          3,
+          0,
+          1,
+          2,
+          2,
+          2
+        ]
       }
     },
     "2": {
@@ -302,26 +380,30 @@ footer a { color: #2d7a4f; }
         "r3": 33,
         "r5": 13,
         "r6": 33,
-        "r7": 23
+        "r7": 23,
+        "r8": 24
       },
       "strokes": {
         "r2": 98,
         "r3": 92,
         "r6": 91,
-        "r7": 98
+        "r7": 98,
+        "r8": 98
       },
       "birdies": {
         "r2": 1,
         "r3": 0,
         "r5": 0,
-        "r6": 1
+        "r6": 1,
+        "r8": 0
       },
       "playingHcp": {
         "r2": 16,
         "r3": 16,
         "r5": 16,
         "r6": 16,
-        "r7": 12
+        "r7": 12,
+        "r8": 15
       },
       "ctp": [
         {
@@ -339,7 +421,51 @@ footer a { color: #2d7a4f; }
           "hole": 14,
           "cm": 920
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          4,
+          5,
+          5,
+          5,
+          6,
+          6,
+          8,
+          6,
+          4,
+          7,
+          5,
+          6,
+          5,
+          6,
+          5,
+          5,
+          4,
+          6
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          2,
+          2,
+          2,
+          0,
+          2,
+          0,
+          1,
+          1,
+          0,
+          2,
+          0,
+          2,
+          1,
+          2,
+          0,
+          3,
+          2
+        ]
+      }
     },
     "3": {
       "points": {
@@ -348,7 +474,8 @@ footer a { color: #2d7a4f; }
         "r3": 35,
         "r4": 38,
         "r5": 30,
-        "r7": 29
+        "r7": 29,
+        "r8": 27
       },
       "strokes": {
         "r1": 88,
@@ -356,14 +483,16 @@ footer a { color: #2d7a4f; }
         "r3": 90,
         "r4": 87,
         "r5": 94,
-        "r7": 91
+        "r7": 91,
+        "r8": 96
       },
       "birdies": {
         "r1": 1,
         "r2": 1,
         "r3": 0,
         "r4": 1,
-        "r5": 1
+        "r5": 1,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 17,
@@ -371,7 +500,52 @@ footer a { color: #2d7a4f; }
         "r3": 17,
         "r4": 17,
         "r5": 16,
-        "r7": 12
+        "r7": 12,
+        "r8": 16
+      },
+      "holeScores": {
+        "r8": [
+          6,
+          6,
+          6,
+          6,
+          4,
+          6,
+          6,
+          5,
+          4,
+          5,
+          5,
+          5,
+          5,
+          7,
+          7,
+          3,
+          5,
+          5
+        ]
+      },
+      "holePts": {
+        "r8": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2,
+          0,
+          0,
+          2,
+          2,
+          3
+        ]
       }
     },
     "4": {
@@ -381,7 +555,8 @@ footer a { color: #2d7a4f; }
         "r3": 25,
         "r4": 35,
         "r5": 36,
-        "r7": 27
+        "r7": 27,
+        "r8": 25
       },
       "strokes": {
         "r1": 98,
@@ -389,14 +564,16 @@ footer a { color: #2d7a4f; }
         "r3": 107,
         "r4": 97,
         "r5": 96,
-        "r7": 100
+        "r7": 100,
+        "r8": 105
       },
       "birdies": {
         "r1": 0,
         "r2": 0,
         "r3": 0,
         "r4": 0,
-        "r5": 1
+        "r5": 1,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 24,
@@ -404,7 +581,8 @@ footer a { color: #2d7a4f; }
         "r3": 24,
         "r4": 24,
         "r5": 24,
-        "r7": 19
+        "r7": 19,
+        "r8": 23
       },
       "ctp": [
         {
@@ -412,7 +590,51 @@ footer a { color: #2d7a4f; }
           "hole": 6,
           "cm": 300
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          7,
+          7,
+          7,
+          5,
+          4,
+          8,
+          7,
+          5,
+          4,
+          5,
+          7,
+          7,
+          6,
+          6,
+          4,
+          4,
+          5,
+          7
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          0,
+          1,
+          2,
+          3,
+          0,
+          1,
+          2,
+          2,
+          2,
+          1,
+          0,
+          2,
+          1,
+          3,
+          2,
+          2,
+          1
+        ]
+      }
     },
     "5": {
       "points": {
@@ -421,7 +643,8 @@ footer a { color: #2d7a4f; }
         "r4": 28,
         "r5": 31,
         "r6": 28,
-        "r7": 34
+        "r7": 34,
+        "r8": 32
       },
       "strokes": {
         "r2": 92,
@@ -429,14 +652,16 @@ footer a { color: #2d7a4f; }
         "r4": 93,
         "r5": 90,
         "r6": 93,
-        "r7": 84
+        "r7": 84,
+        "r8": 89
       },
       "birdies": {
         "r2": 1,
         "r3": 0,
         "r4": 1,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r2": 13,
@@ -444,7 +669,8 @@ footer a { color: #2d7a4f; }
         "r4": 13,
         "r5": 13,
         "r6": 13,
-        "r7": 10
+        "r7": 10,
+        "r8": 13
       },
       "ctp": [
         {
@@ -452,7 +678,51 @@ footer a { color: #2d7a4f; }
           "hole": 4,
           "cm": 500
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          4,
+          4,
+          5,
+          6,
+          6,
+          8,
+          6,
+          4,
+          3,
+          6,
+          8,
+          3,
+          4,
+          5,
+          4,
+          3,
+          5,
+          5
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          2,
+          2,
+          1,
+          0,
+          0,
+          2,
+          3,
+          2,
+          1,
+          0,
+          3,
+          3,
+          2,
+          2,
+          2,
+          2,
+          3
+        ]
+      }
     },
     "6": {
       "points": {
@@ -461,7 +731,8 @@ footer a { color: #2d7a4f; }
         "r4": 30,
         "r5": 26,
         "r6": 36,
-        "r7": 29
+        "r7": 29,
+        "r8": 34
       },
       "strokes": {
         "r2": 96,
@@ -469,14 +740,16 @@ footer a { color: #2d7a4f; }
         "r4": 99,
         "r5": 103,
         "r6": 96,
-        "r7": 95
+        "r7": 95,
+        "r8": 95
       },
       "birdies": {
         "r2": 0,
         "r3": 0,
         "r4": 0,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r2": 22,
@@ -484,7 +757,8 @@ footer a { color: #2d7a4f; }
         "r4": 21,
         "r5": 21,
         "r6": 22,
-        "r7": 16
+        "r7": 16,
+        "r8": 21
       },
       "ctp": [
         {
@@ -497,7 +771,51 @@ footer a { color: #2d7a4f; }
           "hole": 3,
           "cm": 180
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          5,
+          5,
+          6,
+          6,
+          4,
+          6,
+          9,
+          6,
+          3,
+          7,
+          4,
+          4,
+          4,
+          5,
+          5,
+          4,
+          5,
+          7
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          2,
+          1,
+          1,
+          3,
+          2,
+          0,
+          1,
+          3,
+          0,
+          4,
+          2,
+          4,
+          2,
+          2,
+          2,
+          2,
+          1
+        ]
+      }
     },
     "7": {
       "points": {
@@ -565,7 +883,8 @@ footer a { color: #2d7a4f; }
         "r3": 32,
         "r4": 31,
         "r5": 25,
-        "r6": 38
+        "r6": 38,
+        "r8": 32
       },
       "strokes": {
         "r1": 83,
@@ -573,7 +892,8 @@ footer a { color: #2d7a4f; }
         "r3": 84,
         "r4": 84,
         "r5": 90,
-        "r6": 77
+        "r6": 77,
+        "r8": 83
       },
       "birdies": {
         "r1": 0,
@@ -581,7 +901,8 @@ footer a { color: #2d7a4f; }
         "r3": 1,
         "r4": 0,
         "r5": 0,
-        "r6": 2
+        "r6": 2,
+        "r8": 2
       },
       "playingHcp": {
         "r1": 7,
@@ -589,7 +910,8 @@ footer a { color: #2d7a4f; }
         "r3": 7,
         "r4": 7,
         "r5": 7,
-        "r6": 7
+        "r6": 7,
+        "r8": 7
       },
       "ctp": [
         {
@@ -607,7 +929,51 @@ footer a { color: #2d7a4f; }
           "hole": 12,
           "cm": 140
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          4,
+          4,
+          4,
+          5,
+          4,
+          4,
+          6,
+          5,
+          5,
+          6,
+          5,
+          3,
+          5,
+          4,
+          3,
+          3,
+          5,
+          8
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2,
+          0,
+          0,
+          2,
+          3,
+          2,
+          3,
+          3,
+          2,
+          1,
+          0
+        ]
+      }
     },
     "10": {
       "points": {
@@ -615,28 +981,76 @@ footer a { color: #2d7a4f; }
         "r2": 37,
         "r3": 34,
         "r4": 28,
-        "r5": 28
+        "r5": 28,
+        "r8": 27
       },
       "strokes": {
         "r1": 102,
         "r2": 99,
         "r3": 101,
         "r4": 107,
-        "r5": 108
+        "r5": 108,
+        "r8": 107
       },
       "birdies": {
         "r1": 0,
         "r2": 0,
         "r3": 0,
         "r4": 0,
-        "r5": 0
+        "r5": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 27,
         "r2": 28,
         "r3": 27,
         "r4": 27,
-        "r5": 27
+        "r5": 27,
+        "r8": 26
+      },
+      "holeScores": {
+        "r8": [
+          8,
+          6,
+          7,
+          6,
+          5,
+          6,
+          6,
+          5,
+          5,
+          5,
+          7,
+          5,
+          5,
+          6,
+          6,
+          6,
+          6,
+          7
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          2,
+          1,
+          0,
+          1,
+          1
+        ]
       }
     },
     "11": {
@@ -645,28 +1059,32 @@ footer a { color: #2d7a4f; }
         "r3": 38,
         "r4": 33,
         "r5": 30,
-        "r6": 24
+        "r6": 24,
+        "r8": 34
       },
       "strokes": {
         "r2": 90,
         "r3": 81,
         "r4": 85,
         "r5": 91,
-        "r6": 95
+        "r6": 95,
+        "r8": 84
       },
       "birdies": {
         "r2": 0,
         "r3": 1,
         "r4": 0,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 2
       },
       "playingHcp": {
         "r2": 11,
         "r3": 11,
         "r4": 10,
         "r5": 10,
-        "r6": 10
+        "r6": 10,
+        "r8": 11
       },
       "ctp": [
         {
@@ -683,8 +1101,57 @@ footer a { color: #2d7a4f; }
           "round": "r6",
           "hole": 17,
           "cm": 1000
+        },
+        {
+          "round": "r8",
+          "hole": 16,
+          "cm": 150
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          6,
+          5,
+          3,
+          4,
+          6,
+          7,
+          5,
+          4,
+          4,
+          4,
+          5,
+          4,
+          5,
+          4,
+          4,
+          2,
+          7,
+          5
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          1,
+          4,
+          3,
+          0,
+          0,
+          3,
+          3,
+          1,
+          3,
+          2,
+          2,
+          2,
+          3,
+          2,
+          3,
+          0,
+          2
+        ]
+      }
     },
     "12": {
       "points": {
@@ -692,28 +1159,32 @@ footer a { color: #2d7a4f; }
         "r3": 24,
         "r4": 31,
         "r5": 33,
-        "r6": 36
+        "r6": 36,
+        "r8": 29
       },
       "strokes": {
         "r2": 86,
         "r3": 99,
         "r4": 91,
         "r5": 89,
-        "r6": 86
+        "r6": 86,
+        "r8": 92
       },
       "birdies": {
         "r2": 0,
         "r3": 0,
         "r4": 0,
         "r5": 1,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r2": 14,
         "r3": 14,
         "r4": 14,
         "r5": 14,
-        "r6": 14
+        "r6": 14,
+        "r8": 14
       },
       "ctp": [
         {
@@ -735,8 +1206,57 @@ footer a { color: #2d7a4f; }
           "round": "r5",
           "hole": 17,
           "cm": 99
+        },
+        {
+          "round": "r8",
+          "hole": 5,
+          "cm": 1500
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          4,
+          4,
+          5,
+          5,
+          3,
+          5,
+          7,
+          5,
+          4,
+          5,
+          5,
+          6,
+          5,
+          6,
+          4,
+          5,
+          6,
+          8
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          3,
+          2,
+          2,
+          3,
+          3,
+          1,
+          2,
+          1,
+          2,
+          2,
+          0,
+          2,
+          1,
+          2,
+          0,
+          1,
+          0
+        ]
+      }
     },
     "13": {
       "points": {
@@ -843,25 +1363,29 @@ footer a { color: #2d7a4f; }
         "r2": 35,
         "r3": 30,
         "r5": 38,
-        "r7": 30
+        "r7": 30,
+        "r8": 31
       },
       "strokes": {
         "r2": 79,
         "r3": 84,
         "r5": 76,
-        "r7": 81
+        "r7": 81,
+        "r8": 81
       },
       "birdies": {
         "r2": 2,
         "r3": 1,
         "r5": 1,
-        "r7": 3
+        "r7": 3,
+        "r8": 1
       },
       "playingHcp": {
         "r2": 6,
         "r3": 6,
         "r5": 6,
-        "r7": 3
+        "r7": 3,
+        "r8": 5
       },
       "ctp": [
         {
@@ -874,7 +1398,51 @@ footer a { color: #2d7a4f; }
           "hole": 6,
           "cm": 600
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          4,
+          5,
+          5,
+          3,
+          5,
+          5,
+          6,
+          5,
+          4,
+          4,
+          5,
+          3,
+          6,
+          4,
+          5,
+          3,
+          4,
+          5
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          1,
+          2,
+          3,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          2,
+          3,
+          1,
+          2,
+          1,
+          2,
+          2,
+          2
+        ]
+      }
     },
     "16": {
       "points": {
@@ -883,7 +1451,8 @@ footer a { color: #2d7a4f; }
         "r3": 30,
         "r5": 43,
         "r6": 39,
-        "r7": 29
+        "r7": 29,
+        "r8": 38
       },
       "strokes": {
         "r1": 101,
@@ -891,14 +1460,16 @@ footer a { color: #2d7a4f; }
         "r3": 106,
         "r5": 93,
         "r6": 98,
-        "r7": 99
+        "r7": 99,
+        "r8": 94
       },
       "birdies": {
         "r1": 0,
         "r2": 1,
         "r3": 0,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 28,
@@ -906,7 +1477,8 @@ footer a { color: #2d7a4f; }
         "r3": 28,
         "r5": 28,
         "r6": 27,
-        "r7": 20
+        "r7": 20,
+        "r8": 25
       },
       "ctp": [
         {
@@ -918,8 +1490,57 @@ footer a { color: #2d7a4f; }
           "round": "r7",
           "hole": 18,
           "cm": 200
+        },
+        {
+          "round": "r8",
+          "hole": 9,
+          "cm": 1500
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          7,
+          6,
+          5,
+          5,
+          5,
+          5,
+          6,
+          5,
+          3,
+          6,
+          6,
+          3,
+          5,
+          5,
+          6,
+          3,
+          6,
+          7
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          1,
+          3,
+          2,
+          2,
+          3,
+          2,
+          3,
+          3,
+          1,
+          2,
+          4,
+          3,
+          3,
+          1,
+          3,
+          1,
+          1
+        ]
+      }
     },
     "17": {
       "points": {
@@ -928,7 +1549,8 @@ footer a { color: #2d7a4f; }
         "r3": 35,
         "r5": 33,
         "r6": 35,
-        "r7": 23
+        "r7": 23,
+        "r8": 25
       },
       "strokes": {
         "r1": 88,
@@ -936,7 +1558,8 @@ footer a { color: #2d7a4f; }
         "r3": 87,
         "r5": 92,
         "r6": 87,
-        "r7": 97
+        "r7": 97,
+        "r8": 97
       },
       "birdies": {
         "r1": 1,
@@ -944,7 +1567,8 @@ footer a { color: #2d7a4f; }
         "r3": 2,
         "r5": 0,
         "r6": 0,
-        "r7": 1
+        "r7": 1,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 14,
@@ -952,7 +1576,8 @@ footer a { color: #2d7a4f; }
         "r3": 14,
         "r5": 14,
         "r6": 14,
-        "r7": 11
+        "r7": 11,
+        "r8": 14
       },
       "ctp": [
         {
@@ -970,7 +1595,51 @@ footer a { color: #2d7a4f; }
           "hole": 17,
           "cm": 1700
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          6,
+          5,
+          8,
+          4,
+          5,
+          6,
+          5,
+          6,
+          4,
+          7,
+          6,
+          5,
+          5,
+          5,
+          5,
+          3,
+          6,
+          6
+        ]
+      },
+      "holePts": {
+        "r8": [
+          0,
+          2,
+          0,
+          3,
+          1,
+          2,
+          3,
+          1,
+          1,
+          0,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1,
+          2
+        ]
+      }
     },
     "18": {
       "points": {
@@ -979,7 +1648,8 @@ footer a { color: #2d7a4f; }
         "r3": 32,
         "r5": 34,
         "r6": 32,
-        "r7": 24
+        "r7": 24,
+        "r8": 32
       },
       "strokes": {
         "r1": 107,
@@ -987,14 +1657,16 @@ footer a { color: #2d7a4f; }
         "r3": 104,
         "r5": 101,
         "r6": 101,
-        "r7": 102
+        "r7": 102,
+        "r8": 101
       },
       "birdies": {
         "r1": 0,
         "r2": 1,
         "r3": 1,
         "r5": 0,
-        "r6": 0
+        "r6": 0,
+        "r8": 0
       },
       "playingHcp": {
         "r1": 27,
@@ -1002,7 +1674,8 @@ footer a { color: #2d7a4f; }
         "r3": 27,
         "r5": 27,
         "r6": 24,
-        "r7": 18
+        "r7": 18,
+        "r8": 24
       },
       "ctp": [
         {
@@ -1015,7 +1688,51 @@ footer a { color: #2d7a4f; }
           "hole": 17,
           "cm": 280
         }
-      ]
+      ],
+      "holeScores": {
+        "r8": [
+          5,
+          8,
+          5,
+          6,
+          7,
+          6,
+          7,
+          4,
+          4,
+          4,
+          5,
+          3,
+          7,
+          6,
+          5,
+          5,
+          5,
+          9
+        ]
+      },
+      "holePts": {
+        "r8": [
+          2,
+          0,
+          3,
+          1,
+          0,
+          2,
+          1,
+          4,
+          2,
+          3,
+          3,
+          4,
+          1,
+          1,
+          2,
+          1,
+          2,
+          0
+        ]
+      }
     }
   }
 }</script>
@@ -1054,7 +1771,7 @@ const ROUNDS = [
   { num:5,  key:"r5",  date:"14. júní",   wday:"Sun",  course:"Keilir",       type:"POR",   format:"Parakeppni",              label:"M5"  },
   { num:6,  key:"r6",  date:"21. júní",   wday:"Sun",  course:"Keilir",       type:"SK",    format:"Stableford",              label:"M6"  },
   { num:7,  key:"r7",  date:"28. júní",   wday:"Sun",  course:"Leynir",          type:"SK",    format:"Stableford",              label:"M7"  },
-  { num:8,  key:"r8",  date:"5. júlí",    wday:"Sun",  course:"Annar völlur",    type:"SK",    format:"Stableford",              label:"M8"  },
+  { num:8,  key:"r8",  date:"5. júlí",    wday:"Sun",  course:"Hólmsvöllur",    type:"SK",    format:"Stableford",              label:"M8"  },
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9"  },
   { num:10, key:"r10", date:"18. júlí",   wday:"Lau",  course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sun",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
@@ -1070,6 +1787,15 @@ const ROUNDS = [
 ];
 
 const MEA_TOP_N = 8;
+
+/* Course par + handicap index data */
+const COURSE_DATA = {
+  "Hólmsvöllur": {
+    par:    [4,4,4,4,3,5,5,4,3, 4,4,3,4,4,4,3,4,5],
+    hcpIdx: [16,14,4,10,2,12,8,6,18, 11,3,5,1,7,15,17,9,13]
+  }
+};
+
 const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
 const PDATA = SNAP.players;
 const BIKAR = SNAP.bikar;
@@ -1176,6 +1902,7 @@ function loadPlayer(pid) {
   renderBirdieCard(player);
   renderAchievements(player);
   renderHcpChart(player);
+  renderScorecards(player);
 }
 
 function renderProfile(p) {
@@ -1535,6 +2262,123 @@ function renderHcpChart(p) {
     }
   });
   } catch(e) { console.error("[HCP chart]", e); }
+}
+
+function renderScorecards(p) {
+  const sec = document.getElementById("scorecards-section");
+  if (!sec) return;
+  const d = pd(p.id);
+  const hscores = d.holeScores || {};
+  const hpts    = d.holePts    || {};
+  const ptObj   = d.points     || {};
+
+  const rounds = ROUNDS.filter(r => hscores[r.key]);
+  if (!rounds.length) { sec.innerHTML = ""; return; }
+
+  let html = `<div class="card"><h3><span class="icon">🃏</span> Skorkort hring fyrir hring</h3>`;
+
+  rounds.forEach(r => {
+    const scores  = hscores[r.key];
+    const pts     = hpts[r.key] || [];
+    const course  = COURSE_DATA[r.course];
+    const par     = course ? course.par : Array(18).fill(null);
+    const hcpIdx  = course ? course.hcpIdx : Array(18).fill(null);
+    const phcp    = (d.playingHcp || {})[r.key] || 0;
+    const totalPts = ptObj[r.key] || 0;
+
+    /* how many extra strokes each hole gets */
+    function strokesOnHole(idx18) {
+      if (!hcpIdx[idx18]) return 0;
+      const full = Math.floor(phcp / 18);
+      const extra = phcp % 18;
+      return full + (hcpIdx[idx18] <= extra ? 1 : 0);
+    }
+
+    function holeClass(score, parVal) {
+      if (!parVal) return "";
+      const diff = score - parVal;
+      if (diff <= -2) return "eagle";
+      if (diff === -1) return "birdie";
+      if (diff === 0)  return "par";
+      if (diff === 1)  return "bogey";
+      if (diff === 2)  return "double";
+      return "worse";
+    }
+
+    function makeRow(label, vals, isTotal, extra="") {
+      const cls = isTotal ? "tot-col" : "";
+      return `<tr><td class="row-lbl">${label}</td>${vals.map((v,i) => {
+        const sub = i === 9 || i === 10;
+        const tot = i === 11;
+        return `<td class="${sub ? "sub-col" : tot ? "tot-col" : ""}">${v ?? ""}</td>`;
+      }).join("")}</tr>`;
+    }
+
+    /* Build 11-column layout: h1-9, Out, h10-18, In, Tot */
+    const cols9  = Array.from({length:9},(_,i)=>i);
+    const cols18 = Array.from({length:9},(_,i)=>i+9);
+
+    function buildCols(idxArr) {
+      return idxArr;
+    }
+
+    const outPar   = par.slice(0,9).reduce((a,b)=>a+(b||0),0);
+    const inPar    = par.slice(9,18).reduce((a,b)=>a+(b||0),0);
+    const outScore = scores.slice(0,9).reduce((a,b)=>a+b,0);
+    const inScore  = scores.slice(9,18).reduce((a,b)=>a+b,0);
+    const outPts   = pts.slice(0,9).reduce((a,b)=>a+b,0);
+    const inPts    = pts.slice(9,18).reduce((a,b)=>a+b,0);
+
+    /* Header row: hole numbers */
+    const hdrOut = cols9.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Út</th>`;
+    const hdrIn  = cols18.map(i=>`<th>${i+1}</th>`).join("") + `<th class="sub-col">Inn</th><th class="tot-col">Tot</th>`;
+
+    /* Par row */
+    const parOut = cols9.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${outPar||"-"}</td>`;
+    const parIn  = cols18.map(i=>`<td>${par[i]??"-"}</td>`).join("") + `<td class="sub-col">${inPar||"-"}</td><td class="tot-col">${outPar+inPar||"-"}</td>`;
+
+    /* Hcp strokes row */
+    const hcpOut = cols9.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i)||""}</td>`).join("") + `<td class="sub-col"></td>`;
+    const hcpIn  = cols18.map(i=>`<td style="font-size:10px;color:#8a95a5">${strokesOnHole(i)||""}</td>`).join("") + `<td class="sub-col"></td><td class="tot-col" style="font-size:11px;color:#8a95a5">${phcp}</td>`;
+
+    /* Score row */
+    const scoreOut = cols9.map(i=>{
+      const cl = holeClass(scores[i], par[i]);
+      return `<td><span class="sc-hole ${cl}">${scores[i]}</span></td>`;
+    }).join("") + `<td class="sub-col">${outScore}</td>`;
+    const scoreIn  = cols18.map(i=>{
+      const cl = holeClass(scores[i], par[i]);
+      return `<td><span class="sc-hole ${cl}">${scores[i]}</span></td>`;
+    }).join("") + `<td class="sub-col">${inScore}</td><td class="tot-col">${outScore+inScore}</td>`;
+
+    /* Points row */
+    const ptsOut = cols9.map(i=>`<td class="sc-pts-cell${pts[i]===0?" zero":""}">${pts[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${outPts}</td>`;
+    const ptsIn  = cols18.map(i=>`<td class="sc-pts-cell${pts[i]===0?" zero":""}">${pts[i]??""}</td>`).join("") + `<td class="sub-col sc-pts-cell">${inPts}</td><td class="tot-col sc-pts-cell">${outPts+inPts}</td>`;
+
+    html += `<details class="scorecard-round">
+      <summary>
+        <span>${r.label}</span>
+        <span class="sc-meta">${r.date} · ${r.course} · Forgjöf ${phcp}</span>
+        <span class="sc-pts">${totalPts} pt</span>
+      </summary>
+      <div class="scorecard-wrap">
+        <table class="scorecard-tbl">
+          <thead>
+            <tr><th class="row-lbl">Hola</th>${hdrOut}${hdrIn}</tr>
+          </thead>
+          <tbody>
+            <tr><td class="row-lbl">Par</td>${parOut}${parIn}</tr>
+            <tr><td class="row-lbl" style="font-size:10px;color:#a0a8b8">Högg+</td>${hcpOut}${hcpIn}</tr>
+            <tr><td class="row-lbl">Högg</td>${scoreOut}${scoreIn}</tr>
+            <tr><td class="row-lbl">Stig</td>${ptsOut}${ptsIn}</tr>
+          </tbody>
+        </table>
+      </div>
+    </details>`;
+  });
+
+  html += `</div>`;
+  sec.innerHTML = html;
 }
 
 loadPlayer(startId);
