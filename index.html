@@ -68,6 +68,7 @@ tr:hover td { background: #fafbfc; }
 .pts-cell { font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; text-align: center; }
 .round-cell { font-variant-numeric: tabular-nums; text-align: center; color: #4a5568; }
 .round-cell.best { color: #2d7a4f; font-weight: 600; }
+.round-cell.counting { background: #d1fae5; color: #1a5c38; font-weight: 700; border-radius: 4px; }
 .round-cell.empty { color: #c8cdd8; }
 .badge-par { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: #e8f4ee; color: #2d7a4f; font-size: 10px; font-weight: 700; }
 .badge-gender { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; font-size: 10px; font-weight: 700; }
@@ -116,6 +117,49 @@ tr:hover td { background: #fafbfc; }
 .sched-item { border: 1px solid #e8eaef; border-radius: 10px; padding: 12px 14px; }
 .sched-item.done { background: #f8fdf9; border-color: #c8e6d0; }
 .sched-item.next { border-color: #2d7a4f; box-shadow: 0 0 0 2px #d1f0e0; }
+.sched-item.cancelled { background: #fef2f2; border-color: #fecaca; opacity: .7; }
+.sched-item.cancelled .si-label { color: #dc2626; }
+
+/* ── RYDER CUP ── */
+.ryder-section { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; padding: 0; box-shadow: 0 1px 3px rgba(0,0,0,.04); margin-bottom: 24px; overflow: hidden; }
+.ryder-section summary { padding: 14px 18px; font-size: 13px; font-weight: 700; color: #5b6478; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; display: flex; align-items: center; gap: 7px; border-bottom: 1px solid #f0f1f4; list-style: none; }
+.ryder-section summary::-webkit-details-marker { display: none; }
+.ryder-section summary::before { content: "▶"; font-size: 10px; color: #b0b8c8; transition: transform .15s; }
+.ryder-section[open] summary::before { transform: rotate(90deg); }
+.ryder-inner { padding: 18px; }
+.ryder-scoreboard { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 24px; border: 1px solid #e8eaef; border-radius: 12px; overflow: hidden; }
+.ryder-team-score { flex: 1; padding: 20px 24px; text-align: center; }
+.ryder-team-score.red { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); }
+.ryder-team-score.blue { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+.ryder-team-name { font-size: 18px; font-weight: 800; letter-spacing: 0.3px; margin-bottom: 6px; }
+.ryder-team-score.red .ryder-team-name { color: #991b1b; }
+.ryder-team-score.blue .ryder-team-name { color: #1e40af; }
+.ryder-team-pts { font-size: 48px; font-weight: 900; line-height: 1; }
+.ryder-team-score.red .ryder-team-pts { color: #dc2626; }
+.ryder-team-score.blue .ryder-team-pts { color: #1d4ed8; }
+.ryder-vs { padding: 16px 20px; font-size: 15px; font-weight: 800; color: #8a95a5; background: #f5f6f8; border-left: 1px solid #e8eaef; border-right: 1px solid #e8eaef; white-space: nowrap; }
+.ryder-day-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.ryder-day-card { border: 1px solid #e8eaef; border-radius: 10px; overflow: hidden; }
+.ryder-day-hdr { padding: 10px 14px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; background: #f5f6f8; color: #5b6478; border-bottom: 1px solid #e8eaef; }
+.ryder-day-body { padding: 12px 14px; }
+.ryder-day-result { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.ryder-day-result .r { color: #dc2626; }
+.ryder-day-result .b { color: #1d4ed8; }
+.ryder-day-result .sep { color: #b0b8c8; font-size: 18px; }
+.ryder-day-format { font-size: 11px; color: #8a95a5; text-align: center; }
+.ryder-teams { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ryder-team-list { border: 1px solid #e8eaef; border-radius: 10px; overflow: hidden; }
+.ryder-team-hdr { padding: 10px 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.3px; }
+.ryder-team-hdr.red { background: #fee2e2; color: #991b1b; }
+.ryder-team-hdr.blue { background: #dbeafe; color: #1e40af; }
+.ryder-team-members { padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.ryder-member { font-size: 13px; color: #1d2433; display: flex; align-items: center; gap: 6px; }
+.ryder-member .guest-tag { font-size: 10px; background: #fef3c7; color: #92600a; padding: 1px 6px; border-radius: 4px; font-weight: 600; }
+@media (max-width: 600px) {
+  .ryder-day-row { grid-template-columns: 1fr; }
+  .ryder-teams { grid-template-columns: 1fr; }
+  .ryder-team-pts { font-size: 36px; }
+}
 .sched-item .si-label { font-size: 11px; font-weight: 700; color: #2d7a4f; text-transform: uppercase; }
 .sched-item .si-date { font-size: 12px; color: #5b6478; margin-top: 2px; }
 .sched-item .si-course { font-size: 13px; font-weight: 600; margin-top: 4px; }
@@ -151,6 +195,29 @@ tr:hover td { background: #fafbfc; }
 .sig-sub { font-size: 11px; color: #8a95a5; margin-top: 1px; }
 .sig-pts { font-size: 15px; font-weight: 800; color: #1c2e10; white-space: nowrap; }
 .sig-count { font-size: 11px; background: #fef9c3; color: #854d0e; padding: 2px 9px; border-radius: 10px; font-weight: 700; }
+/* Sigurvegari compact grid */
+.sig-grid { display:flex; flex-wrap:wrap; gap:6px; padding-top:4px; }
+.sig-card { display:flex; flex-direction:column; gap:2px; padding:7px 10px 8px; border-radius:9px; background:#f8f9fc; min-width:88px; max-width:155px; flex:1 1 88px; border:1px solid #eaecf3; }
+.sig-card-lbl { font-size:10px; font-weight:800; color:#a08030; letter-spacing:.4px; }
+.sig-card-name { font-size:12px; font-weight:700; color:#1a2240; line-height:1.25; }
+.sig-card-pts { font-size:11px; color:#6b7a99; }
+/* Ryder pairing tables */
+.ryder-matches { margin-top:20px; }
+.ryder-match-day { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:#5b6478; margin-bottom:7px; padding-bottom:5px; border-bottom:1px solid #e8eaef; }
+.ryd-table { width:100%; border-collapse:collapse; font-size:12.5px; }
+.ryd-table tr:nth-child(even) td { background:#f9fafb; }
+.ryd-table td { padding:5px 6px; vertical-align:middle; }
+.ryd-home { text-align:right; }
+.ryd-away { text-align:left; }
+.ryd-res { text-align:center; white-space:nowrap; font-size:12px; font-weight:700; padding:4px 8px !important; width:72px; }
+.ryd-res.wh { color:#dc2626; }
+.ryd-res.wb { color:#1d4ed8; }
+.ryd-res.hv { color:#b45309; }
+.ryd-win { font-weight:800; color:#111; }
+.ryd-pt { text-align:center; font-size:12px; font-weight:700; width:18px; padding:4px 2px !important; color:#d1d5e0; }
+.ryd-pt.wh { color:#dc2626; }
+.ryd-pt.wb { color:#1d4ed8; }
+.ryd-pt.hv { color:#b45309; }
 
 /* ── HREYFINGAR DAGSINS ── */
 .hrey-round-tag { font-size: 11px; background: #e8eaef; color: #5b6478; padding: 2px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; }
@@ -284,6 +351,113 @@ tr:hover td { background: #fafbfc; }
 <details class="cup-section" id="cup-details" open>
   <summary>🥊 Bikarinn 2026 — Bracketing</summary>
   <div class="bracket-wrap" id="bracket-area"></div>
+</details>
+
+<!-- RYDER CUP -->
+<details class="ryder-section" open>
+  <summary>⛳ Ryder Cup 2026 — Flúðir &amp; Selfoss</summary>
+  <div class="ryder-inner">
+
+    <!-- Final scoreboard -->
+    <div class="ryder-scoreboard">
+      <div class="ryder-team-score red">
+        <div class="ryder-team-name">⚪ Hvítir</div>
+        <div class="ryder-team-pts">6.5</div>
+      </div>
+      <div class="ryder-vs">—</div>
+      <div class="ryder-team-score blue">
+        <div class="ryder-team-name">🔵 Bláir</div>
+        <div class="ryder-team-pts">8.5</div>
+      </div>
+    </div>
+
+    <!-- Day results -->
+    <div class="ryder-day-row">
+      <div class="ryder-day-card">
+        <div class="ryder-day-hdr">🏌️ 1. dagur — Selsvöllur, Flúðir (18. júlí)</div>
+        <div class="ryder-day-body">
+          <div class="ryder-day-result">
+            <span class="r">1</span>
+            <span class="sep">—</span>
+            <span class="b">4</span>
+          </div>
+          <div class="ryder-day-format">Better Ball Match Play</div>
+        </div>
+      </div>
+      <div class="ryder-day-card">
+        <div class="ryder-day-hdr">🏌️ 2. dagur — Svarfhólsvöllur, Selfoss (19. júlí)</div>
+        <div class="ryder-day-body">
+          <div class="ryder-day-result">
+            <span class="r">5.5</span>
+            <span class="sep">—</span>
+            <span class="b">4.5</span>
+          </div>
+          <div class="ryder-day-format">Singles Match Play</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Teams -->
+    <div class="ryder-teams">
+      <div class="ryder-team-list">
+        <div class="ryder-team-hdr red">⚪ Hvítir</div>
+        <div class="ryder-team-members">
+          <div class="ryder-member">Nína Edvardsdóttir</div>
+          <div class="ryder-member">Eva Harpa Loftsdóttir</div>
+          <div class="ryder-member">Kristjana Björg Arnbjörnsdóttir</div>
+          <div class="ryder-member">Heiðar Bergmann Heiðarsson</div>
+          <div class="ryder-member">Magnús Magnússon</div>
+          <div class="ryder-member">Hrönn Smáradóttir <span class="guest-tag">gestur</span></div>
+          <div class="ryder-member">Hlynur Halldórsson</div>
+          <div class="ryder-member">Ásmundur Edvardsson</div>
+          <div class="ryder-member">Róbert Sævar Magnússon</div>
+          <div class="ryder-member">Berglind Guðmundsdóttir</div>
+        </div>
+      </div>
+      <div class="ryder-team-list">
+        <div class="ryder-team-hdr blue">🔵 Bláir</div>
+        <div class="ryder-team-members">
+          <div class="ryder-member">Ólafur Freyr Guðmundsson</div>
+          <div class="ryder-member">Rósa Ólafsdóttir</div>
+          <div class="ryder-member">Sigurgeir Hlíðar Sigurjónsson</div>
+          <div class="ryder-member">Berglind Ragnarsdóttir</div>
+          <div class="ryder-member">Björk Svarfdal Hauksdóttir</div>
+          <div class="ryder-member">Sigurður Arnar Hermannsson <span class="guest-tag">gestur</span></div>
+          <div class="ryder-member">Andri Ragnarsson</div>
+          <div class="ryder-member">Sigrún Einarsdóttir</div>
+          <div class="ryder-member">Guðmundur Örn Óskarsson</div>
+          <div class="ryder-member">Súsanna Eva Helgadóttir</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Match pairings -->
+    <div class="ryder-matches">
+      <div class="ryder-match-day">🏌️ Dagur 1 — Better Ball · Selsvöllur</div>
+      <table class="ryd-table">
+        <tr><td class="ryd-home ryd-win">Nína + Eva Harpa</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 4&amp;2</td><td class="ryd-pt">0</td><td class="ryd-away">Ólafur + Rósa</td></tr>
+        <tr><td class="ryd-home">Kristjana + Heiðar</td><td class="ryd-pt">0</td><td class="ryd-res wb">5&amp;4 ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Sigurgeir + Berglind R.</td></tr>
+        <tr><td class="ryd-home">Magnús + Hrönn<sup title="gestur">✱</sup></td><td class="ryd-pt">0</td><td class="ryd-res wb">3&amp;1 ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Björk + Sigurður A.<sup title="gestur">✱</sup></td></tr>
+        <tr><td class="ryd-home">Hlynur + Ásmundur</td><td class="ryd-pt">0</td><td class="ryd-res wb">2&amp;1 ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Andri + Sigrún</td></tr>
+        <tr><td class="ryd-home">Róbert + Berglind G.</td><td class="ryd-pt">0</td><td class="ryd-res wb">5&amp;4 ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Guðmundur + Eva Helga</td></tr>
+      </table>
+      <div class="ryder-match-day" style="margin-top:18px">🏌️ Dagur 2 — Singles · Svarfhólsvöllur</div>
+      <table class="ryd-table">
+        <tr><td class="ryd-home">Eva Harpa</td><td class="ryd-pt hv">½</td><td class="ryd-res hv">AS</td><td class="ryd-pt hv">½</td><td class="ryd-away">Sigurður A.<sup title="gestur">✱</sup></td></tr>
+        <tr><td class="ryd-home ryd-win">Kristjana</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 1UP</td><td class="ryd-pt">0</td><td class="ryd-away">Eva Helga</td></tr>
+        <tr><td class="ryd-home">Heiðar</td><td class="ryd-pt">0</td><td class="ryd-res wb">2UP ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Rósa</td></tr>
+        <tr><td class="ryd-home">Hrönn<sup title="gestur">✱</sup></td><td class="ryd-pt">0</td><td class="ryd-res wb">6&amp;5 ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Guðmundur</td></tr>
+        <tr><td class="ryd-home ryd-win">Berglind G.</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 1UP</td><td class="ryd-pt">0</td><td class="ryd-away">Berglind R.</td></tr>
+        <tr><td class="ryd-home">Hlynur</td><td class="ryd-pt">0</td><td class="ryd-res wb">1UP ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Sigrún</td></tr>
+        <tr><td class="ryd-home ryd-win">Magnús</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 3UP</td><td class="ryd-pt">0</td><td class="ryd-away">Sigurgeir</td></tr>
+        <tr><td class="ryd-home">Ásmundur</td><td class="ryd-pt">0</td><td class="ryd-res wb">2UP ▶</td><td class="ryd-pt wb">1</td><td class="ryd-away ryd-win">Andri</td></tr>
+        <tr><td class="ryd-home ryd-win">Róbert</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 2UP</td><td class="ryd-pt">0</td><td class="ryd-away">Ólafur</td></tr>
+        <tr><td class="ryd-home ryd-win">Nína</td><td class="ryd-pt wh">1</td><td class="ryd-res wh">◀ 1UP</td><td class="ryd-pt">0</td><td class="ryd-away">Björk</td></tr>
+      </table>
+      <div style="font-size:10px;color:#a0a8b8;margin-top:8px">✱ gestur</div>
+    </div>
+
+  </div>
 </details>
 
 <!-- SCHEDULE -->
@@ -1247,7 +1421,7 @@ const ROUNDS = [
   { num:6,  key:"r6",  date:"21. júní",   wday:"Sunnudagur",  course:"Keilir",       type:"SK",    format:"Stableford",              label:"M6"  },
   { num:7,  key:"r7",  date:"28. júní",   wday:"Sunnudagur",  course:"Leynir",          type:"SK",    format:"Stableford",              label:"M7"  },
   { num:8,  key:"r8",  date:"5. júlí",    wday:"Sunnudagur",  course:"Hólmsvöllur",    type:"SK",    format:"Stableford",              label:"M8"  },
-  { num:9,  key:"r9",  date:"12. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9"  },
+  { num:9,  key:"r9",  date:"12. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9",  cancelled:true },
   { num:10, key:"r10", date:"18. júlí",   wday:"Laugardagur", course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sunnudagur",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
   { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M12" },
@@ -1285,6 +1459,33 @@ function parBadge(n) {
 const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
 const PDATA = SNAP.players;
 const BIKAR = SNAP.bikar;
+
+/* ── Ryder Cup r10/r11 data patch ── */
+(function() {
+  var r10pts = {"1":26,"2":28,"3":22,"4":28,"5":24,"6":32,"7":22,"8":22,"9":31,"10":28,"11":26,"12":25,"13":26,"14":31,"15":26,"16":27,"17":37,"18":34};
+  var r10str = {"1":90,"2":93,"3":98,"4":100,"5":92,"6":95,"7":104,"8":107,"9":79,"10":103,"11":91,"12":94,"13":94,"14":100,"15":82,"16":102,"17":80,"18":94};
+  var r10hcp = {"1":9,"2":15,"3":12,"4":22,"5":10,"6":21,"7":19,"8":21,"9":4,"10":25,"11":8,"12":13,"13":14,"14":25,"15":2,"16":23,"17":10,"18":22};
+  var r10bir = {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":1,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":0,"17":3,"18":0};
+  var r11pts = {"1":31,"2":34,"3":30,"4":32,"5":35,"6":32,"7":26,"8":28,"9":36,"10":26,"11":40,"12":30,"13":32,"14":29,"15":32,"16":33,"17":33,"18":26};
+  var r11str = {"1":85,"2":81,"3":88,"4":94,"5":81,"6":90,"7":100,"8":97,"9":74,"10":99,"11":74,"12":84,"13":88,"14":96,"15":76,"16":92,"17":83,"18":98};
+  var r11hcp = {"1":10,"2":11,"3":13,"4":18,"5":11,"6":17,"7":20,"8":17,"9":5,"10":20,"11":9,"12":10,"13":15,"14":20,"15":3,"16":18,"17":11,"18":18};
+  var r11bir = {"1":1,"2":1,"3":0,"4":1,"5":1,"6":1,"7":0,"8":0,"9":1,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":1,"17":1,"18":1};
+  Object.keys(r10pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r10     = r10pts[pid];
+    PDATA[pid].strokes.r10    = r10str[pid];
+    PDATA[pid].playingHcp.r10 = r10hcp[pid];
+    PDATA[pid].birdies.r10    = r10bir[pid];
+    PDATA[pid].points.r11     = r11pts[pid];
+    PDATA[pid].strokes.r11    = r11str[pid];
+    PDATA[pid].playingHcp.r11 = r11hcp[pid];
+    PDATA[pid].birdies.r11    = r11bir[pid];
+  });
+})();
 
 function getPoints(pid)   { return (PDATA[pid] || {}).points || {}; }
 function getStrokes(pid)  { return (PDATA[pid] || {}).strokes || {}; }
@@ -1442,14 +1643,11 @@ function buildCards() {
           <span><span class="icon">🥇</span> Sigurvegari dagsins</span>
           <span class="sig-count">ÖLL ${winners.length}</span>
         </div>
-        <div class="sig-list">${winners.map(w => `
-          <div class="sig-row">
-            <div class="sig-badge">${w.round.label}</div>
-            <div class="sig-info">
-              <div class="sig-name">${w.winners.map(x => x.p.short).join(" / ")}</div>
-              <div class="sig-sub">${w.round.date} · ${w.round.course}</div>
-            </div>
-            <div class="sig-pts">${w.pts} pt</div>
+        <div class="sig-grid">${winners.map(w => `
+          <div class="sig-card">
+            <div class="sig-card-lbl">${w.round.label}</div>
+            <div class="sig-card-name">${w.winners.map(x => x.p.short).join(" / ")}</div>
+            <div class="sig-card-pts">${w.pts} pt</div>
           </div>`).join("")}
         </div>`;
         area.appendChild(card);
@@ -1650,16 +1848,22 @@ function buildMainTable() {
     html += `<td class="name-cell"><a href="player.html?id=${row.p.id}">${row.p.short}</a></td>`;
     html += `<td style="text-align:center"><span class="badge-gender ${row.p.gender}">${row.p.gender}</span></td>`;
 
-    const filteredNums = rkeys.map(k => getPoints(row.p.id)[k]).filter(v => typeof v === "number");
-    const bestVal = filteredNums.length ? Math.max(...filteredNums) : -1;
+    // Determine which rounds count towards MEA best-N (only in "all" view)
+    const allRoundPairs = filterKey === "all"
+      ? rkeys.map(k => ({ key: k, val: getPoints(row.p.id)[k] })).filter(x => typeof x.val === "number")
+      : [];
+    const hasExtraRounds = allRoundPairs.length > MEA_TOP_N;
+    const countingKeys = hasExtraRounds
+      ? new Set(allRoundPairs.slice().sort((a,b) => b.val - a.val).slice(0, MEA_TOP_N).map(x => x.key))
+      : null;
 
     shownRounds.forEach(r => {
       const v = row.roundVals.find(x => x.key === r.key)?.val;
       if (typeof v !== "number") {
         html += `<td class="round-cell empty">—</td>`;
       } else {
-        const isBest = v === bestVal && filteredNums.length > 1;
-        html += `<td class="round-cell${isBest?' best':''}">${v}</td>`;
+        const isCounting = hasExtraRounds && countingKeys.has(r.key);
+        html += `<td class="round-cell${isCounting?' counting':''}">${v}</td>`;
       }
     });
 
@@ -1862,16 +2066,17 @@ function buildSchedule() {
   const grid = document.getElementById("schedule-grid");
   const today = new Date();
   let html = "";
-  const nextRound = ROUNDS.find(r => !playedKeys.has(r.key));
+  const nextRound = ROUNDS.find(r => !playedKeys.has(r.key) && !r.cancelled);
   ROUNDS.forEach(r => {
     const done = playedKeys.has(r.key);
-    const isNext = nextRound && nextRound.key === r.key;
-    const cls = done ? "sched-item done" : isNext ? "sched-item next" : "sched-item";
+    const isNext = !r.cancelled && nextRound && nextRound.key === r.key;
+    const cls = r.cancelled ? "sched-item cancelled" : done ? "sched-item done" : isNext ? "sched-item next" : "sched-item";
+    const labelIcon = r.cancelled ? "✗ Aflýst" : done ? "✓" : isNext ? "▶" : "";
     html += `<div class="${cls}">
-      <div class="si-label">${r.label} ${done ? "✓" : isNext ? "▶" : ""}</div>
+      <div class="si-label">${r.label} ${labelIcon}</div>
       <div class="si-date">${r.wday}, ${r.date}</div>
       <div class="si-course">${r.course}</div>
-      <div class="si-format"><span class="rtag ${r.type}">${r.type}</span> ${r.format}</div>
+      <div class="si-format"><span class="rtag ${r.type}">${r.type}</span> ${r.cancelled ? "<em>Texas Scramble — veður</em>" : r.format}</div>
     </div>`;
   });
   grid.innerHTML = html;
