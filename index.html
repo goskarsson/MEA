@@ -475,7 +475,7 @@ tr:hover td { background: #fafbfc; }
 
 <!-- ═══════════════════════════════════════════════════ DATA ═══ -->
 <script type="application/json" id="snapshot">{
-  "lastUpdated": "2026-07-05T21:00:00Z",
+  "lastUpdated": "2026-07-26T12:00:00Z",
   "bikar": {
     "r1": [
       {
@@ -681,7 +681,10 @@ tr:hover td { background: #fafbfc; }
         "r5": 16,
         "r7": 12,
         "r8": 16
-      }
+      },
+      "ctp": [
+        { "round": "r12", "hole": 6, "cm": 290 }
+      ]
     },
     "4": {
       "points": {
@@ -768,7 +771,8 @@ tr:hover td { background: #fafbfc; }
           "round": "r3",
           "hole": 4,
           "cm": 500
-        }
+        },
+        { "round": "r12", "hole": 12, "cm": 1820 }
       ]
     },
     "6": {
@@ -1021,7 +1025,8 @@ tr:hover td { background: #fafbfc; }
           "round": "r8",
           "hole": 16,
           "cm": 150
-        }
+        },
+        { "round": "r12", "hole": 4, "cm": 170 }
       ]
     },
     "12": {
@@ -1333,7 +1338,8 @@ tr:hover td { background: #fafbfc; }
           "round": "r2",
           "hole": 17,
           "cm": 1700
-        }
+        },
+        { "round": "r12", "hole": 17, "cm": 1100 }
       ]
     },
     "18": {
@@ -1424,7 +1430,7 @@ const ROUNDS = [
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9",  cancelled:true },
   { num:10, key:"r10", date:"18. júlí",   wday:"Laugardagur", course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sunnudagur",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
-  { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M12" },
+  { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Hvaleyrarvöllur", type:"SK",    format:"Stableford",              label:"M12" },
   { num:13, key:"r13", date:"3. ágúst",   wday:"Mánudagur",   course:"Keilir",          type:"SK",    format:"Stableford",              label:"M13" },
   { num:14, key:"r14", date:"9. ágúst",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M14" },
   { num:15, key:"r15", date:"16. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
@@ -1459,6 +1465,25 @@ function parBadge(n) {
 const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
 const PDATA = SNAP.players;
 const BIKAR = SNAP.bikar;
+
+/* ── r12 data patch (Hvaleyrarvöllur, 26. júlí 2026) ── */
+(function() {
+  var r12pts = {"1":26,"2":32,"3":34,"4":31,"5":28,"6":33,"8":27,"11":29,"12":21,"13":23,"14":31,"17":27,"18":31};
+  var r12str = {"1":95,"2":92,"3":91,"4":102,"5":94,"6":99,"8":104,"11":90,"12":101,"13":104,"14":104,"17":94,"18":103};
+  var r12hcp = {"1":13,"2":16,"3":17,"4":25,"5":14,"6":23,"8":23,"11":11,"12":14,"13":18,"14":27,"17":13,"18":24};
+  var r12bir = {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"8":0,"11":0,"12":0,"13":0,"14":0,"17":0,"18":0};
+  Object.keys(r12pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r12     = r12pts[pid];
+    PDATA[pid].strokes.r12    = r12str[pid];
+    PDATA[pid].playingHcp.r12 = r12hcp[pid];
+    PDATA[pid].birdies.r12    = r12bir[pid];
+  });
+})();
 
 /* ── Ryder Cup r10/r11 data patch ── */
 (function() {

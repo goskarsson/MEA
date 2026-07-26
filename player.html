@@ -215,7 +215,7 @@ footer a { color: #2d7a4f; }
 
 <!-- ═══ DATA ═══ -->
 <script type="application/json" id="snapshot">{
-  "lastUpdated": "2026-07-05T21:00:00Z",
+  "lastUpdated": "2026-07-26T12:00:00Z",
   "bikar": {
     "r1": [
       {
@@ -510,6 +510,9 @@ footer a { color: #2d7a4f; }
         "r7": 12,
         "r8": 16
       },
+      "ctp": [
+        { "round": "r12", "hole": 6, "cm": 290 }
+      ],
       "holeScores": {
         "r8": [
           6,
@@ -684,7 +687,8 @@ footer a { color: #2d7a4f; }
           "round": "r3",
           "hole": 4,
           "cm": 500
-        }
+        },
+        { "round": "r12", "hole": 12, "cm": 1820 }
       ],
       "holeScores": {
         "r8": [
@@ -1113,7 +1117,8 @@ footer a { color: #2d7a4f; }
           "round": "r8",
           "hole": 16,
           "cm": 150
-        }
+        },
+        { "round": "r12", "hole": 4, "cm": 170 }
       ],
       "holeScores": {
         "r8": [
@@ -1601,7 +1606,8 @@ footer a { color: #2d7a4f; }
           "round": "r2",
           "hole": 17,
           "cm": 1700
-        }
+        },
+        { "round": "r12", "hole": 17, "cm": 1100 }
       ],
       "holeScores": {
         "r8": [
@@ -1782,7 +1788,7 @@ const ROUNDS = [
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9",  cancelled:true },
   { num:10, key:"r10", date:"18. júlí",   wday:"Lau",  course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sun",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
-  { num:12, key:"r12", date:"26. júlí",   wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M12" },
+  { num:12, key:"r12", date:"26. júlí",   wday:"Sun",  course:"Hvaleyrarvöllur", type:"SK",    format:"Stableford",              label:"M12" },
   { num:13, key:"r13", date:"3. ágúst",   wday:"Mán",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M13" },
   { num:14, key:"r14", date:"9. ágúst",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M14" },
   { num:15, key:"r15", date:"16. ágúst",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
@@ -1816,6 +1822,10 @@ const COURSE_DATA = {
   "Selfoss": {
     par:    [5,3,4,4,4,4,3,4,4,3,5,3,4,5,4,3,4,4],
     hcpIdx: [13,14,7,11,2,8,4,1,12,9,5,6,10,3,15,16,17,18]
+  },
+  "Hvaleyrarvöllur": {
+    par:    [5,4,4,3,4,3,5,4,4, 4,4,3,5,4,4,5,3,4],
+    hcpIdx: [8,4,12,16,2,18,14,10,6, 17,9,11,3,15,5,1,13,7]
   }
 };
 
@@ -1847,6 +1857,25 @@ const BIKAR = SNAP.bikar;
     PDATA[pid].strokes.r11    = r11str[pid];
     PDATA[pid].playingHcp.r11 = r11hcp[pid];
     PDATA[pid].birdies.r11    = r11bir[pid];
+  });
+})();
+
+/* ── r12 data patch (Hvaleyrarvöllur, 26. júlí 2026) ── */
+(function() {
+  var r12pts = {"1":26,"2":32,"3":34,"4":31,"5":28,"6":33,"8":27,"11":29,"12":21,"13":23,"14":31,"17":27,"18":31};
+  var r12str = {"1":95,"2":92,"3":91,"4":102,"5":94,"6":99,"8":104,"11":90,"12":101,"13":104,"14":104,"17":94,"18":103};
+  var r12hcp = {"1":13,"2":16,"3":17,"4":25,"5":14,"6":23,"8":23,"11":11,"12":14,"13":18,"14":27,"17":13,"18":24};
+  var r12bir = {"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"8":0,"11":0,"12":0,"13":0,"14":0,"17":0,"18":0};
+  Object.keys(r12pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r12     = r12pts[pid];
+    PDATA[pid].strokes.r12    = r12str[pid];
+    PDATA[pid].playingHcp.r12 = r12hcp[pid];
+    PDATA[pid].birdies.r12    = r12bir[pid];
   });
 })();
 
@@ -2639,6 +2668,47 @@ function renderScorecards(p) {
     PDATA[pid].holePts.r10    = hp10[pid];
     PDATA[pid].holeScores.r11 = hs11[pid];
     PDATA[pid].holePts.r11    = hp11[pid];
+  });
+})();
+
+/* ── r12 holeScores/holePts patch (Hvaleyrarvöllur, 26. júlí 2026) ── */
+(function() {
+  var hs12 = {
+    "1":  [8,6,5,3,6,4,5,4,5, 4,5,6,6,4,5,8,6,5],
+    "2":  [6,5,5,4,5,3,6,6,5, 4,6,3,6,7,5,8,4,4],
+    "3":  [7,4,4,3,5,3,5,6,5, 5,4,5,7,5,5,7,4,7],
+    "4":  [5,6,4,5,7,4,7,6,6, 5,5,6,6,5,8,7,4,6],
+    "5":  [5,6,5,3,4,4,5,6,7, 5,5,4,6,5,5,7,5,7],
+    "6":  [8,5,4,3,6,4,6,6,5, 5,8,4,5,6,6,9,4,5],
+    "8":  [7,6,4,4,6,3,8,7,6, 5,7,5,7,5,6,8,4,6],
+    "11": [6,6,4,3,5,4,7,5,5, 4,4,3,5,6,6,7,5,5],
+    "12": [7,5,6,4,5,4,8,5,5, 5,7,4,7,6,6,6,5,6],
+    "13": [8,8,7,4,5,3,6,6,7, 6,7,4,6,5,6,8,3,5],
+    "14": [7,8,5,3,6,5,7,7,5, 6,8,4,6,5,5,7,5,5],
+    "17": [6,6,4,4,5,4,7,5,5, 4,7,4,6,5,6,8,3,5],
+    "18": [8,7,4,4,7,5,8,5,5, 5,9,4,6,5,6,6,3,6]
+  };
+  var hp12 = {
+    "1":  [0,1,2,2,1,1,2,3,2, 2,2,0,2,2,2,0,0,2],
+    "2":  [2,2,2,2,2,2,2,1,2, 2,1,3,2,0,2,0,2,3],
+    "3":  [1,3,3,3,2,2,3,1,2, 2,3,1,1,2,2,1,2,0],
+    "4":  [3,2,3,1,1,2,1,1,2, 2,2,0,3,2,0,2,2,2],
+    "5":  [3,1,2,2,3,1,3,1,0, 1,2,2,2,1,2,1,1,0],
+    "6":  [0,3,3,3,2,2,2,1,2, 2,0,2,4,1,2,0,2,2],
+    "8":  [1,2,3,2,2,3,0,0,1, 2,0,1,2,2,2,1,2,1],
+    "11": [2,1,2,2,2,1,0,2,2, 2,3,3,3,0,1,1,0,2],
+    "12": [1,2,1,1,2,1,0,2,2, 1,0,2,1,0,1,2,1,1],
+    "13": [0,0,0,2,2,3,2,1,0, 1,0,2,2,2,1,0,3,2],
+    "14": [2,0,2,3,2,1,1,0,3, 1,0,2,3,2,3,2,1,3],
+    "17": [2,1,3,1,2,1,0,2,2, 2,0,2,2,1,1,0,3,2],
+    "18": [0,1,3,2,1,1,0,2,3, 2,0,2,3,2,2,3,3,1]
+  };
+  Object.keys(hs12).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].holeScores) PDATA[pid].holeScores = {};
+    if (!PDATA[pid].holePts)   PDATA[pid].holePts   = {};
+    PDATA[pid].holeScores.r12 = hs12[pid];
+    PDATA[pid].holePts.r12    = hp12[pid];
   });
 })();
 
