@@ -475,7 +475,7 @@ tr:hover td { background: #fafbfc; }
 
 <!-- ═══════════════════════════════════════════════════ DATA ═══ -->
 <script type="application/json" id="snapshot">{
-  "lastUpdated": "2026-07-26T12:00:00Z",
+  "lastUpdated": "2026-08-03T12:00:00Z",
   "bikar": {
     "r1": [
       {
@@ -544,7 +544,8 @@ tr:hover td { background: #fafbfc; }
       {
         "p1": 16,
         "p2": 9,
-        "winner": 0
+        "winner": 16,
+        "margin": "2&1"
       },
       {
         "p1": 14,
@@ -561,10 +562,22 @@ tr:hover td { background: #fafbfc; }
       {
         "p1": 11,
         "p2": 4,
+        "winner": 11,
+        "margin": "3&2"
+      }
+    ],
+    "sf": [
+      {
+        "p1": 11,
+        "p2": 18,
+        "winner": 0
+      },
+      {
+        "p1": 8,
+        "p2": 16,
         "winner": 0
       }
     ],
-    "sf": [],
     "f": []
   },
   "players": {
@@ -643,7 +656,9 @@ tr:hover td { background: #fafbfc; }
           "round": "r7",
           "hole": 14,
           "cm": 920
-        }
+        },
+        { "round": "r13", "hole": 12, "cm": 320 },
+        { "round": "r13", "hole": 17, "cm": 510 }
       ]
     },
     "3": {
@@ -1026,7 +1041,8 @@ tr:hover td { background: #fafbfc; }
           "hole": 16,
           "cm": 150
         },
-        { "round": "r12", "hole": 4, "cm": 170 }
+        { "round": "r12", "hole": 4, "cm": 170 },
+        { "round": "r13", "hole": 6, "cm": 100 }
       ]
     },
     "12": {
@@ -1283,7 +1299,8 @@ tr:hover td { background: #fafbfc; }
           "round": "r8",
           "hole": 9,
           "cm": 1500
-        }
+        },
+        { "round": "r13", "hole": 4, "cm": 120 }
       ]
     },
     "17": {
@@ -1430,7 +1447,7 @@ const ROUNDS = [
   { num:9,  key:"r9",  date:"12. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Texas Scramble",          label:"M9",  cancelled:true },
   { num:10, key:"r10", date:"18. júlí",   wday:"Laugardagur", course:"Flúðir",          type:"RYDER", format:"Ryder",                   label:"M10" },
   { num:11, key:"r11", date:"19. júlí",   wday:"Sunnudagur",  course:"Selfoss",         type:"RYDER", format:"Ryder",                   label:"M11" },
-  { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Hvaleyrarvöllur", type:"SK",    format:"Stableford",              label:"M12" },
+  { num:12, key:"r12", date:"26. júlí",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M12" },
   { num:13, key:"r13", date:"3. ágúst",   wday:"Mánudagur",   course:"Keilir",          type:"SK",    format:"Stableford",              label:"M13" },
   { num:14, key:"r14", date:"9. ágúst",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M14" },
   { num:15, key:"r15", date:"16. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
@@ -1466,7 +1483,7 @@ const SNAP = JSON.parse(document.getElementById("snapshot").textContent);
 const PDATA = SNAP.players;
 const BIKAR = SNAP.bikar;
 
-/* ── r12 data patch (Hvaleyrarvöllur, 26. júlí 2026) ── */
+/* ── r12 data patch (Keilir, 26. júlí 2026) ── */
 (function() {
   var r12pts = {"1":26,"2":32,"3":34,"4":31,"5":29,"6":33,"8":27,"11":29,"12":21,"13":23,"14":31,"17":27,"18":31};
   var r12str = {"1":95,"2":92,"3":91,"4":102,"5":94,"6":99,"8":104,"11":90,"12":101,"13":104,"14":104,"17":94,"18":103};
@@ -1482,6 +1499,25 @@ const BIKAR = SNAP.bikar;
     PDATA[pid].strokes.r12    = r12str[pid];
     PDATA[pid].playingHcp.r12 = r12hcp[pid];
     PDATA[pid].birdies.r12    = r12bir[pid];
+  });
+})();
+
+/* ── r13 data patch (Keilir, 3. ágúst 2026) ── */
+(function() {
+  var r13pts = {"1":32,"2":38,"3":33,"4":37,"5":27,"6":41,"7":28,"8":39,"9":30,"10":28,"11":41,"12":30,"15":34,"16":35,"17":36,"18":36};
+  var r13str = {"1":90,"2":86,"3":92,"4":95,"5":96,"6":90,"7":105,"8":92,"9":86,"10":107,"11":79,"12":92,"15":79,"16":98,"17":85,"18":96};
+  var r13hcp = {"1":14,"2":16,"3":17,"4":24,"5":15,"6":23,"7":24,"8":23,"9":8,"10":27,"11":12,"12":14,"15":5,"16":25,"17":13,"18":24};
+  var r13bir = {"1":0,"2":0,"3":0,"4":0,"5":3,"6":1,"7":0,"8":0,"9":1,"10":0,"11":3,"12":0,"15":2,"16":0,"17":0,"18":0};
+  Object.keys(r13pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r13     = r13pts[pid];
+    PDATA[pid].strokes.r13    = r13str[pid];
+    PDATA[pid].playingHcp.r13 = r13hcp[pid];
+    PDATA[pid].birdies.r13    = r13bir[pid];
   });
 })();
 
@@ -2007,7 +2043,7 @@ function renderBracket() {
     { key:"r1",  label:"Umferð 1",        matches: BIKAR.r1  || [] },
     { key:"r2",  label:"Umferð 2",        matches: BIKAR.r2  || [] },
     { key:"qf",  label:"Fjórðungsúrslit", matches: BIKAR.qf  || [] },
-    { key:"sf",  label:"Hálfleikur",      matches: BIKAR.sf  || [] },
+    { key:"sf",  label:"Undanúrslit",      matches: BIKAR.sf  || [] },
     { key:"f",   label:"Úrslit 🏆",       matches: BIKAR.f   || [] }
   ];
 
@@ -2153,29 +2189,53 @@ function buildQuickStats() {
     area.appendChild(card);
   }
 
-  // ── Næst holu — Fjarlægð: best (min) per hole across all rounds, 4 entries ──
+  // ── Næst holu — Fjarlægð: best (min) per hole across all rounds, sorted by distance ──
   const ctpByHole = {};
   gP().forEach(p => {
     getCtp(p.id).forEach(c => {
       if (!rkeys.includes(c.round)) return;
       if (!ctpByHole[c.hole] || c.cm < ctpByHole[c.hole].cm) {
-        ctpByHole[c.hole] = { p, hole: c.hole, cm: c.cm };
+        ctpByHole[c.hole] = { p, hole: c.hole, cm: c.cm, round: c.round };
       }
     });
   });
-  const ctpEntries = Object.values(ctpByHole).sort((a,b) => a.hole - b.hole);
+  const ctpEntries = Object.values(ctpByHole).sort((a,b) => a.cm - b.cm);
 
   if (ctpEntries.length) {
     const card = document.createElement("div");
     card.className = "card";
-    card.innerHTML = `<div class="card-title"><span class="icon">📍</span> Næst holu — Fjarlægð</div>
-      <div class="podium">${ctpEntries.map(c => `
-        <div class="pod-row">
+
+    function ctpRow(c) {
+      const rnd = ROUNDS.find(x => x.key === c.round);
+      const rlabel = rnd ? rnd.label : c.round;
+      return `<div class="pod-row">
           <span class="pod-rank" style="font-size:11px;color:#8a95a5;min-width:28px;text-align:center">H${c.hole}</span>
           <span class="pod-name">${c.p.short}</span>
+          <span class="pod-sub" style="margin-left:4px">${rlabel}</span>
           <span class="pod-val">${c.cm} cm</span>
-        </div>`).join("")}
-      </div>`;
+        </div>`;
+    }
+    function groupLabel(name) {
+      return `<div style="font-size:10px;font-weight:700;color:#8a95a5;text-transform:uppercase;letter-spacing:0.5px;margin:8px 0 4px;padding-top:6px;border-top:1px solid #f0f1f4">${name}</div>`;
+    }
+
+    const keilirGroup  = ctpEntries.filter(c => { const r = ROUNDS.find(x=>x.key===c.round); return !r || r.course==="Keilir"; });
+    const otherEntries = ctpEntries.filter(c => { const r = ROUNDS.find(x=>x.key===c.round); return r && r.course!=="Keilir"; });
+    const otherGroups  = {};
+    otherEntries.forEach(c => {
+      const r = ROUNDS.find(x=>x.key===c.round);
+      const name = r ? r.course : "Annað";
+      (otherGroups[name] = otherGroups[name] || []).push(c);
+    });
+
+    let body = "";
+    if (keilirGroup.length)  body += groupLabel("Keilir") + keilirGroup.map(ctpRow).join("");
+    Object.entries(otherGroups).forEach(([name, entries]) => {
+      body += groupLabel(name) + entries.map(ctpRow).join("");
+    });
+
+    card.innerHTML = `<div class="card-title"><span class="icon">📍</span> Næst holu yfir tímabilið</div>
+      <div class="podium">${body}</div>`;
     area.appendChild(card);
   }
 
