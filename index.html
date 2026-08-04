@@ -47,6 +47,15 @@ header.app-header .my-page-btn:hover { background: rgba(0,0,0,.4); }
 .card .pod-val { font-weight: 700; color: #2d7a4f; font-variant-numeric: tabular-nums; }
 .card .pod-sub { font-size: 11px; color: #8a95a5; }
 
+/* ── FRÓÐLEIKUR VIKUNNAR ── */
+.funfact { background: linear-gradient(120deg,#f0faf5 0%,#fffdf0 100%); border: 1px solid #d4e9dd; border-left: 4px solid #2d7a4f; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+.funfact .ff-eyebrow { font-size: 10px; font-weight: 700; color: #2d7a4f; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.funfact .ff-headline { font-size: 17px; font-weight: 700; color: #1d2433; margin-bottom: 6px; }
+.funfact .ff-detail { font-size: 13px; color: #5b6478; line-height: 1.5; }
+.funfact .ff-detail strong { color: #1d2433; }
+.funfact .ff-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.funfact .ff-chip { background: rgba(45,122,79,.1); color: #1d5535; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+
 /* ── TABLE ── */
 .table-section { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.04); margin-bottom: 24px; }
 .table-section .ts-header { padding: 14px 18px 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid #f0f1f4; }
@@ -274,6 +283,9 @@ tr:hover td { background: #fafbfc; }
   <span class="label">Kyn:</span>
   <div class="filter-tabs" id="gender-tabs"></div>
 </div>
+
+<!-- FRÓÐLEIKUR VIKUNNAR -->
+<div id="funfact-area"></div>
 
 <!-- CARDS (day winner, top3, CTP, strokes) -->
 <div class="cards" id="cards-area"></div>
@@ -2322,9 +2334,124 @@ function buildExtraCards() {
 }
 
 /* ── RENDER ── */
+/* ══════════════════════════════════════════════════════════
+   FRÓÐLEIKUR VIKUNNAR — rotates through 6 fact types,
+   one new spotlight each round (skRounds.length % 6)
+   ══════════════════════════════════════════════════════════ */
+function buildFunFact() {
+  const el = document.getElementById("funfact-area");
+  if (!el) return;
+
+  const skRounds = playedRounds.filter(r => r.type === "SK");
+  if (!skRounds.length) { el.innerHTML = ""; return; }
+
+  const factIdx = skRounds.length % 6;
+  let emoji = "", headline = "", detail = "", chips = [];
+
+  /* ── 0: Heittasta formið ── */
+  if (factIdx === 0) {
+    const last3 = skRounds.slice(-3);
+    const cands = PLAYERS
+      .filter(p => last3.every(r => typeof getPoints(p.id)[r.key] === "number"))
+      .map(p => { const v = last3.map(r => getPoints(p.id)[r.key]); return { p, avg: v.reduce((s,x)=>s+x,0)/v.length, v }; })
+      .sort((a,b) => b.avg - a.avg);
+    if (!cands.length) { el.innerHTML=""; return; }
+    const t = cands[0];
+    emoji = "🔥"; headline = `${t.p.name} er í heittasta formi`;
+    detail = `Hæsta meðaltal síðustu ${last3.length} hringjum — <strong>${t.avg.toFixed(1)} pt</strong> að meðaltali.`;
+    chips = last3.map((r,i) => `${r.label}: ${t.v[i]} pt`);
+  }
+
+  /* ── 1: Stöðugastur ── */
+  else if (factIdx === 1) {
+    const cands = PLAYERS.map(p => {
+      const vs = skRounds.map(r => getPoints(p.id)[r.key]).filter(v => typeof v === "number");
+      if (vs.length < 4) return null;
+      const avg = vs.reduce((s,v)=>s+v,0)/vs.length;
+      const std = Math.sqrt(vs.map(v=>(v-avg)**2).reduce((s,v)=>s+v,0)/vs.length);
+      return { p, std, avg, n: vs.length };
+    }).filter(Boolean).sort((a,b) => a.std - b.std);
+    if (!cands.length) { el.innerHTML=""; return; }
+    const t = cands[0];
+    emoji = "🎯"; headline = `${t.p.name} er stöðugastur`;
+    detail = `Lægsta staðalfrávik tímabilsins — <strong>${t.std.toFixed(1)} pt</strong> frávik (meðaltal ${t.avg.toFixed(1)} pt yfir ${t.n} hringi).`;
+    chips = cands.slice(0,3).map(c => `${c.p.short}: ±${c.std.toFixed(1)}`);
+  }
+
+  /* ── 2: Fuglakóngur ── */
+  else if (factIdx === 2) {
+    const stats = PLAYERS.map(p => {
+      let total=0, best=0, bestRound=null;
+      playedRounds.forEach(r => { const b=getBirdies(p.id)[r.key]||0; total+=b; if(b>best){best=b;bestRound=r;} });
+      return { p, total, best, bestRound };
+    }).filter(x=>x.total>0).sort((a,b)=>b.total-a.total);
+    if (!stats.length) { el.innerHTML=""; return; }
+    const king = stats[0];
+    const totalAll = stats.reduce((s,x)=>s+x.total,0);
+    emoji = "🐦"; headline = `${king.p.name} er fuglakóngur tímabilsins`;
+    detail = `<strong>${king.total} fuglar</strong> samtals${king.bestRound ? ` — besti hringur: ${king.best} fuglar (${king.bestRound.label})` : ""}. Alls <strong>${totalAll} fuglar</strong> í hópi tímabilsins.`;
+    chips = stats.slice(0,5).map(x=>`${x.p.short}: ${x.total} 🐦`);
+  }
+
+  /* ── 3: Bikar drama ── */
+  else if (factIdx === 3) {
+    const order = [{key:"sf",label:"Undanúrslit"},{key:"qf",label:"Fjórðungsúrslit"},{key:"f",label:"Úrslit"}];
+    let match=null, stageLabel="";
+    for (const s of order) {
+      const m = (SNAP.bikar[s.key]||[]).find(x=>x.winner===0);
+      if (m) { match=m; stageLabel=s.label; break; }
+    }
+    if (!match) {
+      const fin = (SNAP.bikar.f||[]).find(m=>m.winner);
+      if (!fin) { el.innerHTML=""; return; }
+      const wp = PLAYERS.find(p=>p.id===String(fin.winner));
+      emoji="🏆"; headline=`${wp?.name||"Sigurvegari"} vann bikarinn!`;
+      detail=`Til hamingju! Bikarinn 2026 hefur fundið eiganda sinn.`; chips=[];
+    } else {
+      const p1=PLAYERS.find(p=>p.id===String(match.p1)), p2=PLAYERS.find(p=>p.id===String(match.p2));
+      const m1=meaScore(String(match.p1)), m2=meaScore(String(match.p2));
+      emoji="🥊"; headline=`${stageLabel} — ${p1?.short||"?"} gegn ${p2?.short||"?"}`;
+      detail=`Næsti bikarleikur bíður. <strong>${p1?.short}: ${m1} pt</strong> vs <strong>${p2?.short}: ${m2} pt</strong> MEA stigafjöldi.`;
+      chips=[`${p1?.short}: ${m1} pt MEA`,`${p2?.short}: ${m2} pt MEA`];
+    }
+  }
+
+  /* ── 4: Næst holu met ── */
+  else if (factIdx === 4) {
+    let bestCm=Infinity, bestEntry=null, bestPlayer=null;
+    PLAYERS.forEach(p => getCtp(p.id).forEach(c => { if(c.cm<bestCm){bestCm=c.cm;bestEntry=c;bestPlayer=p;} }));
+    if (!bestEntry) { el.innerHTML=""; return; }
+    const r = ROUNDS.find(x=>x.key===bestEntry.round);
+    emoji="📍"; headline=`Met tímabilsins — ${bestCm} cm frá holu`;
+    detail=`<strong>${bestPlayer.name}</strong> náðist aðeins <strong>${bestCm} cm</strong> frá holu ${bestEntry.hole}${r?` í ${r.label} (${r.date})`:""}. Besta næst holu sem slegið hefur verið í hópi!`;
+    chips=[`Hola ${bestEntry.hole}`, r?r.course:"Keilir", r?r.label:""].filter(Boolean);
+  }
+
+  /* ── 5: Þéttni í toppi ── */
+  else {
+    const ranked = PLAYERS.map(p=>({p,mea:meaScore(p.id)})).filter(x=>x.mea>0).sort((a,b)=>b.mea-a.mea);
+    if (ranked.length < 2) { el.innerHTML=""; return; }
+    const gap12 = ranked[0].mea - ranked[1].mea;
+    const gap15 = ranked.length>=5 ? ranked[0].mea-ranked[4].mea : null;
+    emoji="🏆"; headline=`${gap12<=5?"Mjög þétt":"Þétt"} kappræður í toppnum`;
+    detail=`<strong>${gap12} stig</strong> skilja 1. og 2. sæti${gap15!==null?` — ${gap15} stig frá 1. til 5. sætis`:""}. <strong>${ranked[0].p.short}</strong> leiðir með ${ranked[0].mea} pt.`;
+    chips=ranked.slice(0,5).map((x,i)=>`${i+1}. ${x.p.short}: ${x.mea} pt`);
+  }
+
+  const chipsHtml = chips.length
+    ? `<div class="ff-chips">${chips.map(c=>`<span class="ff-chip">${c}</span>`).join("")}</div>`
+    : "";
+  el.innerHTML = `<div class="funfact">
+    <div class="ff-eyebrow">✨ Fróðleikur vikunnar</div>
+    <div class="ff-headline">${emoji} ${headline}</div>
+    <div class="ff-detail">${detail}${chipsHtml}</div>
+  </div>`;
+}
+
 function render() {
   buildFilterTabs();
   buildGenderTabs();
+  buildFunFact();
   buildCards();
   buildQuickStats();
   buildMainTable();

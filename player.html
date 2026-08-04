@@ -2326,7 +2326,7 @@ function renderHcpChart(p) {
   const ctx = document.getElementById("chart-player-hcp").getContext("2d");
   _pCharts.hcp = new Chart(ctx, {
     type: "line",
-    data: { labels: playedRs.map(r => r.label), datasets },
+    data: { labels: playedRs.map(r => r.course && r.course !== "Keilir" ? [r.label, r.course] : r.label), datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
