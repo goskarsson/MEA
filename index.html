@@ -2722,7 +2722,7 @@ function buildFunFact() {
   const skRounds = playedRounds.filter(r => r.type === "SK");
   if (!skRounds.length) { el.innerHTML = ""; return; }
 
-  const factIdx = skRounds.length % 6;
+  const factIdx = (skRounds.length + 1) % 6;
   let emoji = "", headline = "", detail = "", chips = [];
 
   /* ── 0: Heittasta formið ── */
