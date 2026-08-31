@@ -487,7 +487,7 @@ tr:hover td { background: #fafbfc; }
 
 <!-- ═══════════════════════════════════════════════════ DATA ═══ -->
 <script type="application/json" id="snapshot">{
-  "lastUpdated": "2026-08-23T18:00:00Z",
+  "lastUpdated": "2026-08-30T21:00:00Z",
   "bikar": {
     "r1": [
       {
@@ -826,6 +826,11 @@ tr:hover td { background: #fafbfc; }
           "round": "r2",
           "hole": 6,
           "cm": 300
+        },
+        {
+          "round": "r17",
+          "hole": 12,
+          "cm": 90
         }
       ]
     },
@@ -1117,6 +1122,11 @@ tr:hover td { background: #fafbfc; }
           "round": "r16",
           "hole": 4,
           "cm": 340
+        },
+        {
+          "round": "r17",
+          "hole": 17,
+          "cm": 750
         }
       ]
     },
@@ -1160,7 +1170,14 @@ tr:hover td { background: #fafbfc; }
         "r8": 26,
         "r13": 27,
         "r14": 27
-      }
+      },
+      "ctp": [
+        {
+          "round": "r17",
+          "hole": 4,
+          "cm": 850
+        }
+      ]
     },
     "11": {
       "points": {
@@ -1372,6 +1389,11 @@ tr:hover td { background: #fafbfc; }
         {
           "round": "r6",
           "hole": 4,
+          "cm": 420
+        },
+        {
+          "round": "r17",
+          "hole": 6,
           "cm": 420
         }
       ]
@@ -1743,7 +1765,7 @@ const ROUNDS = [
   { num:14, key:"r14", date:"11. ágúst",  wday:"Þriðjudagur", course:"Keilir",          type:"SK",    format:"",              label:"M14" },
   { num:15, key:"r15", date:"16. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
   { num:16, key:"r16", date:"23. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"BLAND", format:"Gulur bolti",             label:"M16" },
-  { num:17, key:"r17", date:"30. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M17" },
+  { num:17, key:"r17", date:"30. ágúst",  wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M17" },
   { num:18, key:"r18", date:"6. sept.",   wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"",              label:"M18" },
   { num:19, key:"r19", date:"13. sept.",  wday:"Sunnudagur",  course:"Keilir",          type:"SK",    format:"Bikar",      label:"M19" },
   { num:20, key:"r20", date:"20. sept.",  wday:"Sunnudagur",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M20" }
@@ -1847,6 +1869,25 @@ const BIKAR = SNAP.bikar;
     PDATA[pid].strokes.r16    = r16str[pid];
     PDATA[pid].playingHcp.r16 = r16hcp[pid];
     PDATA[pid].birdies.r16    = r16bir[pid];
+  });
+})();
+
+/* ── r17 data patch (Keilir, 30. ágúst 2026, Stableford) ── */
+(function() {
+  var r17pts = {"1":32,"2":37,"3":25,"4":35,"5":41,"6":24,"7":36,"9":34,"10":27,"12":25,"13":36,"14":30,"15":35,"16":35,"17":26};
+  var r17str = {"1":90,"2":88,"3":98,"4":97,"5":82,"6":104,"7":97,"9":82,"10":108,"12":97,"13":90,"14":103,"15":79,"16":99,"17":95};
+  var r17hcp = {"1":14,"2":17,"3":15,"4":24,"5":15,"6":20,"7":24,"9":8,"10":26,"12":14,"13":18,"14":25,"15":6,"16":26,"17":13};
+  var r17bir = {"1":3,"2":6,"3":3,"4":5,"5":7,"6":2,"7":8,"9":4,"10":4,"12":2,"13":5,"14":5,"15":5,"16":6,"17":3};
+  Object.keys(r17pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r17     = r17pts[pid];
+    PDATA[pid].strokes.r17    = r17str[pid];
+    PDATA[pid].playingHcp.r17 = r17hcp[pid];
+    PDATA[pid].birdies.r17    = r17bir[pid];
   });
 })();
 

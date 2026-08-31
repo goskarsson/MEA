@@ -205,6 +205,8 @@ footer a { color: #2d7a4f; }
 
 <div class="card" id="achievements-card"></div>
 
+<div class="card" id="hole-stats-card"></div>
+
 <div id="scorecards-section" class="scorecard-section"></div>
 
 <footer>
@@ -2745,7 +2747,7 @@ const ROUNDS = [
   { num:14, key:"r14", date:"11. ágúst",  wday:"Þri",  course:"Keilir",          type:"SK",    format:"",              label:"M14" },
   { num:15, key:"r15", date:"16. ágúst",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M15" },
   { num:16, key:"r16", date:"23. ágúst",  wday:"Sun",  course:"Keilir",          type:"BLAND", format:"Gulur bolti",             label:"M16" },
-  { num:17, key:"r17", date:"30. ágúst",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M17" },
+  { num:17, key:"r17", date:"30. ágúst",  wday:"Sun",  course:"Keilir",          type:"SK",    format:"Stableford",              label:"M17" },
   { num:18, key:"r18", date:"6. sept.",   wday:"Sun",  course:"Keilir",          type:"SK",    format:"",              label:"M18" },
   { num:19, key:"r19", date:"13. sept.",  wday:"Sun",  course:"Keilir",          type:"SK",    format:"Bikar",      label:"M19" },
   { num:20, key:"r20", date:"20. sept.",  wday:"Sun",  course:"Keilir",          type:"POR",   format:"Parakeppni",              label:"M20" }
@@ -2884,6 +2886,25 @@ const BIKAR = SNAP.bikar;
   });
 })();
 
+/* ── r17 data patch (Keilir, 30. ágúst 2026, Stableford) ── */
+(function() {
+  var r17pts = {"1":32,"2":37,"3":25,"4":35,"5":41,"6":24,"7":36,"9":34,"10":27,"12":25,"13":36,"14":30,"15":35,"16":35,"17":26};
+  var r17str = {"1":90,"2":88,"3":98,"4":97,"5":82,"6":104,"7":97,"9":82,"10":108,"12":97,"13":90,"14":103,"15":79,"16":99,"17":95};
+  var r17hcp = {"1":14,"2":17,"3":15,"4":24,"5":15,"6":20,"7":24,"9":8,"10":26,"12":14,"13":18,"14":25,"15":6,"16":26,"17":13};
+  var r17bir = {"1":3,"2":6,"3":3,"4":5,"5":7,"6":2,"7":8,"9":4,"10":4,"12":2,"13":5,"14":5,"15":5,"16":6,"17":3};
+  Object.keys(r17pts).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].points)     PDATA[pid].points     = {};
+    if (!PDATA[pid].strokes)    PDATA[pid].strokes    = {};
+    if (!PDATA[pid].birdies)    PDATA[pid].birdies    = {};
+    if (!PDATA[pid].playingHcp) PDATA[pid].playingHcp = {};
+    PDATA[pid].points.r17     = r17pts[pid];
+    PDATA[pid].strokes.r17    = r17str[pid];
+    PDATA[pid].playingHcp.r17 = r17hcp[pid];
+    PDATA[pid].birdies.r17    = r17bir[pid];
+  });
+})();
+
 const STORAGE_KEY = "mea_player_prefs";
 
 function pd(pid)    { return PDATA[String(pid)] || {}; }
@@ -3003,6 +3024,7 @@ function loadPlayer(pid) {
   renderBirdieCard(player);
   renderAchievements(player);
   renderHcpChart(player);
+  renderHoleStats(player);
   renderScorecards(player);
 }
 
@@ -3366,6 +3388,131 @@ function renderHcpChart(p) {
     }
   });
   } catch(e) { console.error("[HCP chart]", e); }
+}
+
+function renderHoleStats(p) {
+  const el = document.getElementById("hole-stats-card");
+  if (!el) return;
+  const d       = pd(p.id);
+  const hscores = d.holeScores || {};
+  const hpts    = d.holePts    || {};
+
+  /* Group rounds by course — only those with full hole data */
+  const byCourse = {};
+  ROUNDS.forEach(function(r) {
+    if (!hscores[r.key] || hscores[r.key].length < 18) return;
+    if (!byCourse[r.course]) byCourse[r.course] = [];
+    byCourse[r.course].push(r);
+  });
+
+  const courses = Object.keys(byCourse);
+  if (!courses.length) { el.innerHTML = ""; return; }
+
+  function segDiv(n, color, title) {
+    if (!n) return "";
+    return '<div title="' + title + ': ' + n + '" style="flex:' + n + ';background:' + color + ';min-width:2px"></div>';
+  }
+
+  const LEGEND = [
+    ["#15803d","Eagle/Albatross"],
+    ["#4ade80","Birdie"],
+    ["#d1d5db","Par"],
+    ["#93c5fd","Bogey"],
+    ["#3b82f6","Double bogey"],
+    ["#1e3a8a","Þristigur+"]
+  ];
+
+  let html = '<h3><span class="icon">📊</span> Holutölfræði</h3>';
+
+  courses.forEach(function(courseName) {
+    const rounds = byCourse[courseName];
+    const course = COURSE_DATA[courseName];
+    if (!course) return;
+    const par = course.par;
+
+    /* Aggregate per hole */
+    var holeData = par.map(function(holePar, hi) {
+      var count=0, scoreSum=0, ptsSum=0;
+      var eagle=0, birdie=0, parCnt=0, bogey=0, dbl=0, worse=0;
+      rounds.forEach(function(r) {
+        var sc = hscores[r.key][hi];
+        var pt = (hpts[r.key] || [])[hi];
+        if (typeof sc !== "number" || sc === 0) return;
+        count++;
+        scoreSum += sc;
+        if (typeof pt === "number") ptsSum += pt;
+        var diff = sc - holePar;
+        if      (diff <= -2) eagle++;
+        else if (diff === -1) birdie++;
+        else if (diff ===  0) parCnt++;
+        else if (diff ===  1) bogey++;
+        else if (diff ===  2) dbl++;
+        else                  worse++;
+      });
+      return { par: holePar, count: count,
+               avgScore: count ? scoreSum/count : null,
+               avgPts:   count ? ptsSum/count   : null,
+               eagle: eagle, birdie: birdie, parCnt: parCnt,
+               bogey: bogey, dbl: dbl, worse: worse };
+    });
+
+    if (courses.length > 1) {
+      html += '<div style="font-size:12px;font-weight:700;color:#5b6478;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:8px">'
+            + courseName + ' &nbsp;·&nbsp; ' + rounds.length + ' hringir</div>';
+    }
+
+    html += '<div style="overflow-x:auto;margin-bottom:18px">'
+          + '<table class="rounds-table" style="min-width:500px">'
+          + '<thead><tr>'
+          + '<th style="width:36px">H</th>'
+          + '<th class="num" style="width:40px">Par</th>'
+          + '<th class="num">Meðalskor</th>'
+          + '<th class="num">Meðalstig</th>'
+          + '<th>Dreifing</th>'
+          + '</tr></thead><tbody>';
+
+    holeData.forEach(function(h, hi) {
+      if (!h.count) {
+        html += '<tr><td style="font-weight:700">' + (hi+1) + '</td>'
+              + '<td class="num">' + h.par + '</td>'
+              + '<td class="num empty" colspan="3">—</td></tr>';
+        return;
+      }
+      var diff     = h.avgScore - h.par;
+      var diffStr  = (diff >= 0 ? "+" : "") + diff.toFixed(2);
+      var diffColor = diff < -0.05 ? "#16a34a" : diff > 1.0 ? "#dc2626" : diff > 0.35 ? "#d97706" : "#5b6478";
+
+      var bar = '<div style="display:flex;height:16px;border-radius:3px;overflow:hidden;width:100%;min-width:80px">'
+              + segDiv(h.eagle,  "#15803d", "Eagle/Albatross")
+              + segDiv(h.birdie, "#4ade80", "Birdie")
+              + segDiv(h.parCnt, "#d1d5db", "Par")
+              + segDiv(h.bogey,  "#93c5fd", "Bogey")
+              + segDiv(h.dbl,    "#3b82f6", "Double bogey")
+              + segDiv(h.worse,  "#1e3a8a", "Þristigur+")
+              + '</div>';
+
+      html += '<tr>'
+            + '<td style="font-weight:700">' + (hi+1) + '</td>'
+            + '<td class="num">' + h.par + '</td>'
+            + '<td class="num"><span style="font-variant-numeric:tabular-nums">' + h.avgScore.toFixed(2) + '</span>'
+            + ' <span style="font-size:10px;color:' + diffColor + ';font-weight:600">(' + diffStr + ')</span></td>'
+            + '<td class="num">' + h.avgPts.toFixed(1) + '</td>'
+            + '<td style="padding:5px 10px;min-width:90px">' + bar + '</td>'
+            + '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+  });
+
+  /* Legend */
+  html += '<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:#5b6478">'
+        + LEGEND.map(function(item) {
+            return '<span><span style="display:inline-block;width:10px;height:10px;background:' + item[0]
+                 + ';border-radius:2px;vertical-align:middle;margin-right:3px"></span>' + item[1] + '</span>';
+          }).join("")
+        + '</div>';
+
+  el.innerHTML = html;
 }
 
 function renderScorecards(p) {
@@ -3868,6 +4015,51 @@ function renderScorecards(p) {
     if (!PDATA[pid].holePts)   PDATA[pid].holePts   = {};
     PDATA[pid].holeScores.r16 = hs16[pid];
     PDATA[pid].holePts.r16    = hp16[pid];
+  });
+})();
+
+/* ── r17 holeScores/holePts patch (Keilir, 30. ágúst 2026, Stableford) ── */
+(function() {
+  var hs17 = {
+    "1":  [7,5,6,3,4,4,6,5,6, 5,5,3,6,5,5,7,3,5],
+    "2":  [7,6,5,4,5,4,5,5,6, 4,3,3,6,4,7,6,4,4],
+    "3":  [7,4,4,3,5,5,5,5,5, 6,6,6,8,5,6,8,5,5],
+    "4":  [6,5,4,4,7,4,8,6,6, 4,5,2,6,6,6,8,5,5],
+    "5":  [5,6,4,3,6,3,5,6,5, 3,5,2,6,4,5,5,4,5],
+    "6":  [7,6,4,5,4,5,6,6,5, 6,6,6,6,6,5,8,6,7],
+    "7":  [9,5,5,4,4,4,5,4,7, 6,4,3,9,4,5,9,4,6],
+    "9":  [6,4,4,3,5,3,5,4,4, 6,4,3,5,5,7,6,4,4],
+    "10": [9,5,5,4,7,5,7,8,7, 6,7,3,6,6,6,7,3,7],
+    "12": [8,6,5,3,4,3,8,5,5, 4,5,3,7,6,7,8,5,5],
+    "13": [5,7,5,4,4,2,5,6,6, 5,5,4,6,5,5,6,3,7],
+    "14": [8,5,6,3,4,5,7,6,7, 5,6,3,5,6,7,9,4,7],
+    "15": [6,5,5,3,3,3,5,4,4, 5,4,3,5,5,4,5,4,6],
+    "16": [7,5,6,4,5,4,7,6,5, 4,7,4,5,7,7,7,4,5],
+    "17": [5,6,7,3,5,5,5,5,7, 6,7,6,4,4,5,7,3,5]
+  };
+  var hp17 = {
+    "1":  [1,2,1,2,3,1,2,2,1, 1,2,3,2,1,2,1,3,2],
+    "2":  [1,1,2,2,2,1,3,2,1, 3,4,3,2,3,0,2,2,3],
+    "3":  [1,3,3,2,2,0,3,2,2, 0,1,0,0,2,1,0,1,2],
+    "4":  [2,3,3,2,1,2,0,1,2, 3,2,4,3,1,2,1,1,2],
+    "5":  [3,1,3,2,1,2,3,1,2, 3,2,4,2,3,2,3,2,2],
+    "6":  [1,1,3,1,4,1,2,1,2, 1,1,0,2,1,2,1,0,0],
+    "7":  [0,3,2,2,4,2,3,3,1, 1,3,3,0,3,3,0,2,1],
+    "9":  [2,3,2,2,2,2,2,2,3, 0,2,2,3,1,0,2,1,3],
+    "10": [0,3,2,2,1,1,1,0,1, 1,0,3,3,1,2,2,3,1],
+    "12": [0,1,2,2,3,2,0,2,2, 2,2,3,1,0,0,0,1,2],
+    "13": [3,0,2,2,3,4,3,1,1, 2,2,2,2,2,2,2,3,0],
+    "14": [0,3,1,3,4,1,1,1,1, 2,1,3,4,1,1,0,2,1],
+    "15": [1,2,1,2,4,2,2,2,3, 1,2,2,3,1,3,3,1,0],
+    "16": [2,3,1,2,3,2,1,1,3, 3,0,2,4,0,1,2,2,3],
+    "17": [3,1,0,2,2,0,2,2,0, 0,0,0,4,2,2,1,3,2]
+  };
+  Object.keys(hs17).forEach(function(pid) {
+    if (!PDATA[pid]) return;
+    if (!PDATA[pid].holeScores) PDATA[pid].holeScores = {};
+    if (!PDATA[pid].holePts)   PDATA[pid].holePts   = {};
+    PDATA[pid].holeScores.r17 = hs17[pid];
+    PDATA[pid].holePts.r17    = hp17[pid];
   });
 })();
 

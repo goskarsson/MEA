@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="is">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Holuröðun — Keilir 2026</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; background: #f5f6f8; color: #1d2433; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+header.app-header { position: relative; color: #fff; padding: 24px 24px; border-radius: 14px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(0,0,0,.3); overflow: hidden; min-height: 100px; background: linear-gradient(120deg, #0e1c08 0%, #1c2e10 30%, #2a4a1c 55%, #c8a430 85%, #d4601a 100%); }
+header.app-header .overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,16,4,.6) 0%, rgba(8,16,4,.25) 55%, rgba(8,16,4,.05) 100%); z-index: 1; }
+header.app-header .hcontent { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+header.app-header h1 { margin: 0; font-size: 22px; letter-spacing: 0.3px; text-shadow: 0 2px 6px rgba(0,0,0,.5); }
+header.app-header .sub { opacity: .9; margin-top: 4px; font-size: 13px; }
+header.app-header .back { color: #fff; font-size: 13px; text-decoration: none; padding: 6px 12px; border: 1px solid rgba(200,164,48,.5); border-radius: 999px; background: rgba(0,0,0,.25); white-space: nowrap; }
+header.app-header .back:hover { background: rgba(0,0,0,.4); }
+
+.info-bar { background: #fff; border: 1px solid #e8eaef; border-radius: 10px; padding: 10px 16px; margin-bottom: 20px; font-size: 12px; color: #5b6478; display: flex; align-items: center; gap: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+.info-bar .dot { width: 8px; height: 8px; background: #2d7a4f; border-radius: 50%; flex-shrink: 0; }
+
+.hole-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 24px; }
+
+.hole-card { background: #fff; border: 1px solid #e8eaef; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+.hole-card-header { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fafbfc; border-bottom: 1px solid #e8eaef; }
+.hole-num { font-size: 20px; font-weight: 800; color: #1d2433; line-height: 1; }
+.par-badge { display: inline-flex; align-items: center; justify-content: center; padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; background: #e8f4ee; color: #1a5c35; }
+.par-badge.p3 { background: #fde8e8; color: #b91c1c; }
+.par-badge.p5 { background: #eff6ff; color: #1e40af; }
+.hole-label { font-size: 11px; color: #9aa0ad; font-weight: 500; margin-left: auto; }
+
+.player-list { padding: 6px 0; }
+.player-row { display: flex; align-items: center; gap: 8px; padding: 5px 14px; transition: background 0.1s; }
+.player-row:hover { background: #f8f9fb; }
+.rank-num { font-size: 11px; font-weight: 700; color: #b0b8c8; width: 16px; text-align: right; flex-shrink: 0; }
+.rank-num.gold   { color: #b8860b; }
+.rank-num.silver { color: #6b7280; }
+.rank-num.bronze { color: #92400e; }
+.player-name { font-size: 13px; font-weight: 500; flex: 1; }
+.player-name.M { color: #1e40af; }
+.player-name.F { color: #9d174d; }
+.avg-pts { font-size: 13px; font-weight: 700; width: 34px; text-align: right; flex-shrink: 0; }
+.avg-pts.great  { color: #15803d; }
+.avg-pts.good   { color: #2d7a4f; }
+.avg-pts.ok     { color: #5b6478; }
+.avg-pts.poor   { color: #d97706; }
+.avg-pts.bad    { color: #dc2626; }
+.rnd-count { font-size: 10px; color: #b0b8c8; width: 22px; text-align: right; flex-shrink: 0; }
+
+.nine-label { font-size: 11px; font-weight: 700; color: #9aa0ad; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 8px; padding: 0 4px; }
+
+footer { text-align: center; padding: 20px; font-size: 12px; color: #9aa0ad; }
+footer a { color: #2d7a4f; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="app-header">
+  <div class="overlay"></div>
+  <div class="hcontent">
+    <div>
+      <h1>🏌️ Holuröðun — Keilir</h1>
+      <div class="sub">Má ég aðeins 2026 · Meðalstig Stableford á hverja holu</div>
+    </div>
+    <a href="index.html" class="back">← Aðalmælaborð</a>
+  </div>
+</header>
+
+<div class="info-bar">
+  <span class="dot"></span>
+  <span id="info-text">Sæki gögn…</span>
+</div>
+
+<div style="font-size:12px;font-weight:700;color:#5b6478;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px" class="nine-label">Framhlið (Holur 1–9)</div>
+<div class="hole-grid" id="front-nine"></div>
+
+<div style="font-size:12px;font-weight:700;color:#5b6478;text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px" class="nine-label">Bakhlið (Holur 10–18)</div>
+<div class="hole-grid" id="back-nine"></div>
+
+<footer><a href="index.html">← Til baka á aðalmælaborð</a></footer>
+</div>
+
+<script>
+const PLAYERS = [
+  { id:1,  short:"Hlynur",    gender:"M" },
+  { id:2,  short:"Eva Harpa", gender:"F" },
+  { id:3,  short:"Óli",       gender:"M" },
+  { id:4,  short:"Kristjana", gender:"F" },
+  { id:5,  short:"Robbi",     gender:"M" },
+  { id:6,  short:"Begga",     gender:"F" },
+  { id:7,  short:"Ási",       gender:"M" },
+  { id:8,  short:"Berglind",  gender:"F" },
+  { id:9,  short:"Maggi",     gender:"M" },
+  { id:10, short:"Nína",      gender:"F" },
+  { id:11, short:"Gummi",     gender:"M" },
+  { id:12, short:"Björk",     gender:"F" },
+  { id:13, short:"Heisi",     gender:"M" },
+  { id:14, short:"Sigrún",    gender:"F" },
+  { id:15, short:"Andri",     gender:"M" },
+  { id:16, short:"Rósa",      gender:"F" },
+  { id:17, short:"Sigurgeir", gender:"M" },
+  { id:18, short:"Eva Helga", gender:"F" }
+];
+
+const PAR = [5,4,4,3,4,3,5,4,4, 4,4,3,5,4,4,5,3,4];
+
+const HOLE_PTS = {"1":{"r2":[2,2,0,3,1,1,1,3,3,2,3,0,1,2,2,0,1,1],"r3":[0,2,1,1,0,0,1,3,2,0,3,4,3,1,1,3,1,2],"r5":[2,0,2,1,0,1,1,2,3,2,0,2,3,0,1,0,0,0],"r6":[2,3,0,1,0,2,1,2,3,1,1,3,2,1,3,0,0,3],"r12":[0,1,2,2,1,1,2,3,2,2,2,0,2,2,2,0,0,2],"r13":[0,0,3,1,2,2,3,2,2,1,2,0,3,2,2,3,2,2],"r15":[3,3,1,1,2,2,0,2,2,3,3,3,2,1,3,0,2,2],"r16":[1,1,3,0,3,3,2,3,2,2,1,3,3,1,0,2,2,2],"r17":[1,2,1,2,3,1,2,2,1,1,2,3,2,1,2,1,3,2]},"2":{"r2":[1,2,1,2,0,1,1,2,1,0,3,4,2,0,2,3,1,1],"r3":[1,3,3,3,2,0,3,3,2,1,1,2,1,1,2,2,2,1],"r6":[2,2,1,2,3,1,2,2,2,2,2,4,2,2,0,0,1,3],"r12":[2,2,2,2,2,2,2,1,2,2,1,3,2,0,2,0,2,3],"r13":[2,2,3,2,0,2,3,2,3,2,2,3,0,3,3,1,3,2],"r15":[2,0,2,2,2,1,1,1,1,2,2,3,0,2,3,2,3,2],"r16":[0,1,2,3,2,1,2,1,2,2,2,3,3,1,1,0,3,2],"r17":[1,1,2,2,2,1,3,2,1,3,4,3,2,3,0,2,2,3]},"3":{"r1":[1,2,2,2,3,1,1,3,3,3,1,3,3,1,2,1,4,1],"r2":[2,0,3,3,2,2,2,3,0,3,1,4,3,2,2,0,2,1],"r3":[2,2,3,2,2,1,1,2,1,2,2,1,2,3,3,2,2,2],"r4":[2,3,2,2,2,1,4,2,2,3,0,2,2,3,2,2,2,2],"r5":[4,1,1,3,2,1,2,1,2,0,2,2,2,1,2,1,2,1],"r12":[1,3,3,3,2,2,3,1,2,2,3,1,1,2,2,1,2,0],"r13":[3,1,2,1,2,1,3,3,2,3,0,2,1,1,2,0,3,3],"r14":[2,3,0,2,2,3,3,2,3,2,3,3,3,2,3,0,2,3],"r16":[2,3,1,1,3,2,3,2,1,0,2,2,1,0,2,2,1,2],"r17":[1,3,3,2,2,0,3,2,2,0,1,0,0,2,1,0,1,2]},"4":{"r1":[1,0,2,3,2,1,2,3,2,3,2,3,3,0,2,2,2,1],"r2":[1,2,1,2,4,3,1,3,2,1,1,3,3,0,2,2,2,1],"r3":[1,1,1,2,4,2,2,1,2,2,0,0,3,0,2,1,0,1],"r4":[0,4,2,3,1,1,2,2,3,2,0,2,1,2,3,2,3,2],"r5":[2,3,2,2,1,4,0,0,2,2,2,2,3,1,3,2,3,2],"r12":[3,2,3,1,1,2,1,1,2,2,2,0,3,2,0,2,2,2],"r13":[2,1,1,3,1,2,0,0,3,3,2,2,3,2,3,3,3,3],"r14":[0,1,2,2,3,3,0,1,3,3,2,2,0,0,1,0,2,1],"r17":[2,3,3,2,1,2,0,1,2,3,2,4,3,1,2,1,1,2]},"5":{"r2":[2,2,0,2,2,1,3,3,2,2,2,0,2,1,1,1,1,2],"r3":[3,0,2,2,1,2,1,3,2,2,3,2,3,0,1,2,2,2],"r4":[3,3,1,1,1,1,3,1,2,0,3,2,0,1,2,1,2,1],"r5":[2,3,2,2,2,0,2,3,2,2,2,1,0,1,3,0,3,1],"r6":[0,3,3,2,3,1,0,1,0,2,3,2,3,0,1,1,2,1],"r12":[3,1,2,2,3,1,3,1,0,1,2,2,2,2,2,1,1,0],"r13":[1,1,4,0,2,0,4,2,0,3,2,2,0,3,2,0,0,1],"r14":[2,2,2,1,0,0,3,2,0,3,2,2,3,1,3,1,1,0],"r15":[3,0,3,0,0,2,4,0,1,1,2,1,1,2,2,1,3,3],"r16":[1,2,1,1,1,0,1,2,2,2,0,2,3,2,2,0,1,1],"r17":[3,1,3,2,1,2,3,1,2,3,2,4,2,3,2,3,2,2]},"6":{"r2":[2,1,1,3,3,1,2,2,1,3,2,3,2,2,2,1,2,1],"r3":[1,1,3,1,2,2,3,0,1,1,2,3,1,1,0,2,3,1],"r4":[1,3,2,2,3,3,0,0,2,2,1,3,3,2,0,1,2,0],"r5":[0,0,2,3,0,2,2,1,2,3,0,3,3,0,1,1,2,1],"r6":[2,4,3,2,3,2,3,0,2,3,2,3,1,0,0,2,2,2],"r12":[0,3,3,3,2,2,2,1,2,2,0,2,4,1,2,0,2,2],"r13":[0,3,3,3,3,1,3,2,3,2,2,1,5,3,3,1,1,2],"r14":[0,0,2,3,2,2,2,2,0,2,3,3,2,2,2,1,3,3],"r15":[2,1,3,3,2,3,2,1,2,2,2,4,4,1,3,2,3,2],"r16":[3,1,2,1,4,3,0,0,2,3,2,2,2,1,0,1,3,1],"r17":[1,1,3,1,4,1,2,1,2,1,1,0,2,1,2,1,0,0]},"7":{"r2":[0,1,1,1,4,0,2,0,2,1,0,0,3,1,0,0,2,1],"r3":[2,1,2,1,2,1,0,2,0,3,1,2,3,1,0,4,0,1],"r4":[1,0,2,2,3,2,3,1,2,2,0,3,2,2,2,2,0,0],"r5":[0,3,0,1,3,3,2,1,0,2,2,2,4,0,2,0,0,1],"r6":[2,0,0,3,0,1,0,2,3,2,2,1,1,2,1,0,0,0],"r13":[1,3,0,2,2,3,1,1,1,1,3,0,1,2,4,0,2,1],"r14":[0,2,1,1,1,3,3,2,1,1,0,0,3,2,4,1,3,3],"r16":[0,1,0,1,4,2,2,1,1,0,0,0,0,0,0,2,3,2],"r17":[0,3,2,2,4,2,3,3,1,1,3,3,0,3,3,0,2,1]},"8":{"r2":[2,4,2,2,0,0,1,0,2,1,0,2,4,3,3,3,2,0],"r5":[1,2,1,2,3,3,2,0,3,3,1,0,1,1,1,2,2,2],"r6":[2,3,3,2,4,3,3,2,2,4,1,3,1,0,3,1,1,2],"r12":[1,2,3,2,2,3,0,0,1,2,0,1,2,2,2,1,2,1],"r13":[1,3,2,2,4,2,2,0,3,2,1,1,3,2,3,3,2,3],"r14":[2,0,2,1,2,2,0,0,1,0,2,1,4,1,1,2,3,3],"r15":[1,3,3,0,3,3,1,1,2,2,3,2,0,2,1,1,2,2],"r16":[2,3,3,2,3,1,0,1,1,1,1,3,0,1,2,0,2,3]},"9":{"r1":[1,2,2,2,3,2,2,1,2,2,0,2,3,0,2,2,2,2],"r2":[1,2,2,1,2,2,2,2,1,1,1,2,1,1,2,3,2,2],"r3":[2,1,0,2,2,1,3,1,3,2,1,1,3,2,1,3,2,2],"r4":[2,3,1,1,3,2,2,1,3,1,1,0,2,2,2,2,0,3],"r5":[2,1,0,2,1,2,1,0,2,1,2,2,2,1,2,1,0,3],"r6":[2,3,3,1,3,2,3,2,3,2,1,1,3,1,1,3,1,3],"r13":[3,2,0,0,2,1,2,1,3,2,2,0,1,2,2,2,1,4],"r14":[3,2,2,0,2,1,3,2,1,1,1,1,2,2,3,1,1,3],"r15":[3,1,2,2,2,1,3,1,2,1,2,2,2,2,3,2,1,2],"r16":[1,2,0,2,2,2,3,0,1,0,1,2,2,1,4,1,1,2],"r17":[2,3,2,2,2,2,2,2,3,0,2,2,3,1,0,2,1,3]},"10":{"r1":[0,3,2,2,2,0,2,1,3,2,3,2,1,0,3,3,3,1],"r2":[2,3,2,2,2,2,2,2,2,2,1,3,1,1,4,3,1,2],"r3":[3,3,2,3,2,2,1,2,2,1,2,3,3,0,1,2,0,2],"r4":[0,1,1,3,2,1,2,0,3,0,3,3,2,2,3,0,1,1],"r5":[2,3,0,2,2,2,0,1,0,3,3,1,3,2,2,1,0,1],"r13":[2,3,1,3,3,1,1,0,3,1,0,1,0,1,2,2,2,2],"r14":[2,3,1,1,0,0,1,0,2,1,2,3,3,0,2,0,3,2],"r15":[0,2,0,2,2,3,1,1,2,3,3,1,3,2,2,2,0,2],"r16":[1,3,2,2,3,2,2,1,3,1,1,2,3,1,0,1,3,3],"r17":[0,3,2,2,1,1,1,0,1,1,0,3,3,1,2,2,3,1]},"11":{"r2":[2,3,2,2,3,2,1,1,1,0,3,1,2,1,3,1,1,1],"r3":[3,3,2,1,2,2,1,2,2,2,3,2,4,0,3,2,1,3],"r4":[2,3,2,2,2,1,1,2,1,2,2,0,3,2,2,2,2,2],"r5":[2,2,0,2,2,2,2,3,3,0,3,1,3,1,2,0,1,1],"r6":[1,0,0,1,2,1,0,1,1,2,2,2,2,2,3,0,2,2],"r12":[2,1,2,2,2,1,0,2,2,2,3,3,3,0,1,1,0,2],"r13":[2,3,3,1,1,3,3,3,3,3,3,3,0,1,3,3,1,2],"r14":[2,2,3,1,2,2,2,2,3,1,1,1,0,1,3,1,2,3],"r15":[0,2,0,3,3,2,1,2,2,1,3,2,2,0,3,2,1,3],"r16":[1,3,0,1,0,2,3,3,0,2,1,3,0,3,3,2,0,2]},"12":{"r2":[3,2,2,2,2,0,2,3,3,0,2,3,2,2,3,2,3,1],"r3":[2,2,0,1,2,0,1,0,0,2,1,3,1,1,2,2,2,2],"r4":[2,1,3,1,2,2,2,0,2,2,1,3,0,1,3,2,1,3],"r5":[1,2,2,2,3,0,1,1,2,2,3,2,0,1,3,1,4,3],"r6":[1,3,3,1,2,0,3,1,3,2,1,2,2,1,2,3,3,3],"r12":[1,2,1,1,2,1,0,2,2,1,0,2,1,0,1,2,1,1],"r13":[2,1,1,1,2,1,1,3,3,1,1,3,0,1,2,2,2,3],"r14":[1,0,3,2,0,2,3,1,3,1,2,2,0,2,2,1,2,3],"r15":[1,2,3,0,0,1,1,0,2,0,2,3,2,2,0,0,3,2],"r16":[2,2,2,1,2,1,3,2,1,2,0,0,2,1,2,1,1,3],"r17":[0,1,2,2,3,2,0,2,2,2,2,3,1,0,0,0,1,2]},"13":{"r2":[1,2,3,0,2,0,3,3,0,2,1,2,2,1,1,3,1,1],"r3":[2,2,1,2,1,0,1,2,1,1,1,3,1,2,2,1,3,1],"r4":[1,1,3,2,1,1,0,3,2,1,2,2,1,1,0,2,2,0],"r5":[1,1,3,2,1,0,2,0,0,3,2,2,3,1,3,0,3,1],"r6":[2,2,1,3,2,1,3,1,1,3,2,0,1,3,0,1,2,1],"r12":[0,0,0,2,2,3,2,1,0,1,0,2,2,2,1,0,3,2],"r14":[1,1,2,3,2,3,2,2,2,2,2,2,1,2,2,0,1,3],"r15":[2,2,1,3,2,3,2,3,1,2,3,0,1,2,3,2,3,1],"r16":[1,2,2,1,2,2,1,3,2,2,2,2,3,3,1,2,3,1],"r17":[3,0,2,2,3,4,3,1,1,2,2,2,2,2,2,2,3,0]},"14":{"r2":[0,3,0,3,1,2,3,0,1,2,1,2,1,1,3,4,3,2],"r3":[2,3,0,2,1,2,1,2,2,2,1,2,5,2,3,4,0,3],"r4":[1,2,0,2,3,0,3,0,1,2,0,1,3,0,3,0,2,2],"r5":[2,4,0,0,3,2,2,1,3,2,2,1,4,1,3,2,1,2],"r6":[1,3,0,0,2,3,0,0,2,2,2,3,3,3,1,1,1,2],"r12":[2,0,2,3,2,1,1,0,3,1,0,2,3,2,3,2,1,3],"r14":[2,1,3,3,4,3,3,1,3,1,2,3,0,2,3,0,3,4],"r15":[2,3,0,2,3,0,0,2,4,0,3,3,2,0,3,0,2,3],"r16":[2,3,2,3,4,1,0,0,2,2,0,2,0,1,3,1,1,2],"r17":[0,3,1,3,4,1,1,1,1,2,1,3,4,1,1,0,2,1]},"15":{"r2":[2,3,1,2,3,2,3,2,0,2,3,1,2,2,2,2,1,2],"r3":[1,0,1,2,3,2,1,1,3,0,2,2,4,1,3,3,0,1],"r5":[3,3,2,1,3,2,2,1,2,1,2,2,3,2,3,2,2,2],"r13":[3,1,1,1,2,2,3,1,2,2,2,2,3,2,1,3,1,2],"r14":[2,3,0,2,2,1,1,1,1,2,0,1,1,1,3,2,2,3],"r17":[1,2,1,2,4,2,2,2,3,1,2,2,3,1,3,3,1,0]},"16":{"r1":[1,2,2,3,2,2,2,3,1,2,2,2,3,1,3,1,1,2],"r2":[5,3,0,3,2,2,2,3,3,1,3,1,2,1,1,0,0,3],"r3":[0,3,2,0,3,2,2,3,3,1,2,0,1,1,0,3,2,2],"r5":[4,3,2,1,3,2,3,4,2,1,3,2,3,1,3,1,2,3],"r6":[4,3,2,2,1,3,2,3,2,3,3,3,3,1,0,1,0,3],"r13":[0,3,3,3,2,0,0,1,3,0,2,3,3,2,3,1,2,4],"r14":[1,2,2,1,3,1,3,1,3,1,2,2,2,2,2,2,3,3],"r15":[1,2,3,1,3,0,3,1,1,3,1,3,2,2,3,0,0,4],"r17":[2,3,1,2,3,2,1,1,3,3,0,2,4,0,1,2,2,3]},"17":{"r1":[2,3,2,1,2,1,3,0,3,2,3,2,2,1,1,1,4,1],"r2":[3,2,1,1,3,0,2,3,1,2,2,2,1,1,0,1,3,1],"r3":[3,4,0,2,2,2,0,1,4,2,0,3,2,1,2,3,2,2],"r5":[1,2,0,1,2,0,3,3,2,2,1,3,3,2,2,1,2,3],"r6":[2,2,3,2,0,1,3,1,1,1,2,3,2,2,3,3,2,2],"r12":[2,1,3,1,2,1,0,2,2,2,0,2,2,1,1,0,3,2],"r13":[3,2,1,1,3,1,2,3,3,2,2,0,2,2,3,1,2,3],"r14":[3,3,1,1,1,1,1,2,2,2,2,2,3,3,3,1,2,2],"r15":[0,2,1,1,1,1,0,3,2,2,3,2,1,0,1,2,1,3],"r16":[2,1,1,1,2,2,0,0,0,2,1,3,2,1,3,2,2,1],"r17":[3,1,0,2,2,0,2,2,0,0,0,0,4,2,2,1,3,2]},"18":{"r1":[2,3,1,3,3,2,0,3,0,1,2,2,0,0,0,3,3,1],"r2":[1,4,3,1,2,2,3,3,2,2,3,1,3,2,2,5,2,2],"r3":[2,0,2,2,4,1,0,2,0,4,1,2,3,2,3,0,2,2],"r5":[1,0,2,2,3,1,1,3,3,2,2,3,2,2,0,1,2,4],"r6":[1,2,1,2,3,2,1,0,3,1,2,2,2,0,3,2,2,3],"r12":[0,1,3,2,1,1,0,2,3,2,0,2,3,2,2,3,3,1],"r13":[1,3,2,2,2,2,1,2,3,3,2,0,1,3,3,3,0,3],"r14":[0,2,3,3,4,3,0,0,1,3,0,3,1,1,5,2,3,2],"r15":[0,2,2,3,2,2,3,1,2,2,1,2,1,1,0,0,2,1],"r16":[1,3,0,3,2,3,2,0,4,2,1,2,4,1,2,1,1,1]}};
+
+const ROUND_LABELS = { r1:"M1",r2:"M2",r3:"M3",r4:"M4",r5:"M5",r6:"M6",r12:"M12",r13:"M13",r14:"M14",r15:"M15",r16:"M16",r17:"M17" };
+const KEILIR_ROUNDS = Object.keys(ROUND_LABELS);
+
+function ptsClass(avg) {
+  if (avg >= 2.8) return "great";
+  if (avg >= 2.3) return "good";
+  if (avg >= 1.7) return "ok";
+  if (avg >= 1.2) return "poor";
+  return "bad";
+}
+
+function rankClass(i) {
+  if (i === 0) return "gold";
+  if (i === 1) return "silver";
+  if (i === 2) return "bronze";
+  return "";
+}
+
+function rankIcon(i) {
+  if (i === 0) return "🥇";
+  if (i === 1) return "🥈";
+  if (i === 2) return "🥉";
+  return String(i + 1) + ".";
+}
+
+function buildCard(holeIdx) {
+  const holePar  = PAR[holeIdx];
+  const holeNum  = holeIdx + 1;
+
+  // Compute per-player avg
+  const stats = [];
+  let totalRoundsAllPlayers = 0;
+  for (const p of PLAYERS) {
+    const pid = String(p.id);
+    const rounds = HOLE_PTS[pid] || {};
+    let sum = 0, count = 0;
+    for (const rk of KEILIR_ROUNDS) {
+      const arr = rounds[rk];
+      if (arr && typeof arr[holeIdx] === "number") {
+        sum += arr[holeIdx];
+        count++;
+      }
+    }
+    if (count > 0) {
+      stats.push({ player: p, avg: sum / count, count });
+      totalRoundsAllPlayers = Math.max(totalRoundsAllPlayers, count);
+    }
+  }
+  stats.sort((a, b) => b.avg - a.avg || b.count - a.count);
+
+  const parClass = holePar === 3 ? "p3" : holePar === 5 ? "p5" : "";
+
+  let html = `<div class="hole-card">`;
+  html += `<div class="hole-card-header">`;
+  html += `<span class="hole-num">${holeNum}</span>`;
+  html += `<span class="par-badge ${parClass}">Par ${holePar}</span>`;
+  html += `<span class="hole-label">${stats.length} leikmenn</span>`;
+  html += `</div>`;
+  html += `<div class="player-list">`;
+
+  for (let i = 0; i < stats.length; i++) {
+    const s = stats[i];
+    html += `<div class="player-row">`;
+    html += `<span class="rank-num ${rankClass(i)}">${rankIcon(i)}</span>`;
+    html += `<span class="player-name ${s.player.gender}">${s.player.short}</span>`;
+    html += `<span class="avg-pts ${ptsClass(s.avg)}">${s.avg.toFixed(1)}</span>`;
+    html += `<span class="rnd-count">${s.count}r</span>`;
+    html += `</div>`;
+  }
+
+  html += `</div></div>`;
+  return html;
+}
+
+// Build all 18 holes
+let frontHtml = "", backHtml = "";
+for (let i = 0; i < 9;  i++) frontHtml += buildCard(i);
+for (let i = 9; i < 18; i++) backHtml  += buildCard(i);
+
+document.getElementById("front-nine").innerHTML = frontHtml;
+document.getElementById("back-nine").innerHTML  = backHtml;
+
+// Info bar
+const roundList = Object.values(ROUND_LABELS).join(", ");
+const playerCount = Object.keys(HOLE_PTS).length;
+document.getElementById("info-text").textContent =
+  `${playerCount} leikmenn · Keilir-hringir: ${roundList} · Stig = Stableford-stig á holu (2 = par, 3 = birdie, 1 = bogey)`;
+</script>
+</body>
+</html>
