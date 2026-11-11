@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Má ég aðeins · Lokahóf 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#E8893A;--gold-l:#F7DFB4;--gold-d:#9C3D14;--plum:#5B2A4E;
+  --silver:#C0C0C0;--bronze:#CD7F32;
+  --bg:#0D080C;--muted:rgba(255,255,255,.42);
+}
+html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
+  font-family:'Montserrat','Arial',sans-serif;color:#fff;user-select:none}
+
+/* SLIDES */
+.slide{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:clamp(16px,3vw,50px);
+  opacity:0;pointer-events:none;
+  transition:opacity .65s ease,transform .65s ease;transform:translateY(14px)}
+.slide.on{opacity:1;pointer-events:all;transform:translateY(0)}
+
+/* NAV */
+.nav-wrap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:6px;z-index:900}
+.nbtn{width:40px;height:40px;border-radius:50%;
+  border:1.5px solid rgba(232,137,58,.3);background:rgba(232,137,58,.07);
+  color:var(--gold);font-size:1rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s}
+.nbtn:hover{background:rgba(232,137,58,.22);border-color:var(--gold)}
+
+/* SLIDE MENU */
+.smenu-btn{position:fixed;right:20px;top:50%;transform:translateY(-50%);
+  width:38px;height:38px;border-radius:50%;
+  border:1.5px solid rgba(232,137,58,.3);background:rgba(0,0,0,.55);
+  color:var(--gold);font-size:1rem;cursor:pointer;z-index:950;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;backdrop-filter:blur(4px)}
+.smenu-btn:hover{background:rgba(232,137,58,.2);border-color:var(--gold)}
+.smenu-panel{position:fixed;right:66px;top:50%;
+  transform:translateY(-50%) translateX(10px);
+  background:rgba(8,6,2,.93);border:1px solid rgba(232,137,58,.25);
+  border-radius:12px;padding:8px 0;z-index:940;min-width:210px;
+  backdrop-filter:blur(10px);
+  opacity:0;pointer-events:none;
+  transition:opacity .22s,transform .22s}
+.smenu-panel.open{opacity:1;pointer-events:auto;
+  transform:translateY(-50%) translateX(0)}
+.smenu-item{display:block;padding:7px 16px;cursor:pointer;
+  color:rgba(255,255,255,.65);font-size:.76rem;letter-spacing:.04em;
+  border-left:2px solid transparent;transition:all .16s}
+.smenu-item:hover{color:#fff;background:rgba(232,137,58,.1)}
+.smenu-item.on{color:var(--gold);border-left-color:var(--gold);font-weight:600}
+.smenu-num{display:inline-block;width:22px;color:rgba(232,137,58,.45);
+  font-size:.7rem;font-variant-numeric:tabular-nums}
+
+/* COMMON */
+.eyebrow{font-size:clamp(.7rem,1.4vw,.88rem);letter-spacing:.38em;color:var(--gold);
+  text-transform:uppercase;font-weight:600;margin-bottom:9px;text-align:center}
+.h1{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.9rem,6vw,4.5rem);font-weight:900;line-height:1.06;
+  text-align:center;color:#fff}
+.rule{width:72px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:14px auto}
+.sub{font-size:clamp(.78rem,1.7vw,1rem);color:var(--muted);
+  letter-spacing:.12em;text-align:center;font-weight:300;line-height:1.5}
+
+/* ===== S0: TITLE ===== */
+#s0{background:var(--bg)}
+.grid-bg{position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(232,137,58,.033) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(232,137,58,.033) 60px)}
+.glow-ring{position:absolute;width:58vmin;height:58vmin;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(110,44,86,.55) 0%,transparent 72%)}
+.main-t{white-space:nowrap;font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.4rem,9.5vw,7.4rem);font-weight:900;letter-spacing:.05em;
+  background:linear-gradient(135deg,var(--gold-d) 0%,var(--gold) 28%,var(--gold-l) 52%,var(--gold) 76%,var(--gold-d) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;text-transform:uppercase;animation:glow 3.5s ease-in-out infinite;
+  position:relative;z-index:1}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 22px rgba(232,137,58,.48))}
+  50%{filter:drop-shadow(0 0 55px rgba(232,137,58,.95))}}
+.main-sub{font-size:clamp(.9rem,3vw,1.8rem);letter-spacing:.52em;
+  color:rgba(247,223,180,.7);font-weight:300;text-transform:uppercase;
+  margin-top:12px;position:relative;z-index:1}
+.main-course{font-size:clamp(.66rem,1.4vw,.88rem);letter-spacing:.3em;
+  color:rgba(232,137,58,.4);text-transform:uppercase;
+  margin-top:7px;position:relative;z-index:1}
+.spin{animation:spin 9s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== S1: DUGLEGASTI ===== */
+#s1{background:radial-gradient(ellipse at 50% 42%,#25112A 0%,var(--bg) 65%)}
+.prow{display:flex;gap:clamp(12px,2.8vw,36px);justify-content:center;
+  flex-wrap:wrap;margin-top:22px}
+.pcard{display:flex;flex-direction:column;align-items:center;gap:9px}
+.pp{width:clamp(65px,8.5vw,125px);height:clamp(65px,8.5vw,125px);
+  border-radius:50%;object-fit:cover;object-position:center 35%;
+  border:2.5px solid var(--gold);box-shadow:0 0 20px rgba(232,137,58,.22);transition:transform .3s}
+.pp:hover{transform:scale(1.06)}
+.pn{font-size:clamp(.62rem,1.4vw,.82rem);font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;text-align:center}
+.ps{font-size:clamp(.64rem,1.2vw,.78rem);color:rgba(232,137,58,.75);letter-spacing:.06em}
+
+/* ===== S3: BESTI HRINGUR ===== */
+#s3{background:radial-gradient(ellipse at 50% 35%,#2A1408 0%,var(--bg) 65%)}
+.hero-wrap{display:flex;align-items:center;
+  gap:clamp(24px,5vw,68px);margin-top:18px;flex-wrap:wrap;justify-content:center}
+.hero-img{width:clamp(125px,16vw,220px);height:clamp(125px,16vw,220px);
+  object-fit:cover;object-position:center 35%;border-radius:12px;
+  border:2px solid rgba(232,137,58,.38);
+  box-shadow:0 20px 55px rgba(0,0,0,.65),0 0 36px rgba(232,137,58,.14)}
+.hero-num{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(5rem,16vw,11.5rem);font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-unit{font-size:clamp(1rem,3vw,2rem);color:rgba(247,223,180,.62);
+  letter-spacing:.25em;text-transform:uppercase;font-weight:300;margin-top:-6px}
+.hero-name-lbl{font-size:clamp(1rem,3vw,2rem);font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:4px}
+.hero-meta{font-size:clamp(.6rem,1.3vw,.78rem);color:var(--muted);letter-spacing:.12em;margin-top:4px}
+
+/* ===== S6: FUGLAMEISTARI ===== */
+#s6{background:radial-gradient(ellipse at 50% 38%,#1E0F22 0%,var(--bg) 65%)}
+.fugla-podium{display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(14px,3.5vw,50px);margin-top:18px}
+.fp-card{display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:clamp(12px,2vw,22px) clamp(14px,2.5vw,28px);border-radius:12px;
+  border:1.5px solid rgba(232,137,58,.12)}
+.fp-card.elevated{transform:translateY(-16px)}
+.fp-card.gold-b{background:rgba(232,137,58,.07);border-color:rgba(232,137,58,.3)}
+.fp-card.silver-b{background:rgba(192,192,192,.05);border-color:rgba(192,192,192,.2)}
+.fp-card.bronze-b{background:rgba(205,127,50,.05);border-color:rgba(205,127,50,.2)}
+.fp-medal{font-size:clamp(1.4rem,3.5vw,2.2rem);line-height:1}
+.fp-photo{width:clamp(80px,10vw,140px);height:clamp(80px,10vw,140px);
+  border-radius:50%;object-fit:cover;object-position:center 35%;border:2.5px solid rgba(232,137,58,.45)}
+.fp-card.gold-b .fp-photo{border-color:var(--gold);box-shadow:0 0 28px rgba(232,137,58,.35)}
+.fp-card.silver-b .fp-photo{border-color:var(--silver)}
+.fp-card.bronze-b .fp-photo{border-color:var(--bronze)}
+.fp-name{font-weight:700;letter-spacing:.15em;text-transform:uppercase;
+  font-size:clamp(.8rem,2vw,1.1rem)}
+.fp-count{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.5rem,7vw,5rem);font-weight:900;line-height:1}
+.fp-card.gold-b .fp-count{
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.fp-card.silver-b .fp-count{color:var(--silver)}
+.fp-card.bronze-b .fp-count{color:var(--bronze)}
+.fp-label{font-size:clamp(.55rem,1.2vw,.72rem);letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted)}
+
+/* ===== S4: HOLUMEISTARI ===== */
+#s4{background:radial-gradient(ellipse at 50% 40%,#1A0E1E 0%,var(--bg) 65%);
+  justify-content:flex-start;padding-top:clamp(14px,2.5vh,36px)}
+.holu-grid{display:grid;grid-template-columns:repeat(6,1fr);
+  gap:clamp(5px,1vw,10px);width:100%;max-width:1400px;margin-top:10px}
+.hc{display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:8px 5px;background:rgba(232,137,58,.05);
+  border:1px solid rgba(232,137,58,.12);border-radius:8px;text-align:center;
+  opacity:0;transform:scale(0.82) translateY(10px);
+  transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+.hc.vis{opacity:1;transform:scale(1) translateY(0);pointer-events:all}
+.hc.medal-gold{border:2.5px solid var(--gold);background:rgba(232,137,58,.1)}
+.hc.medal-silver{border:2.5px solid var(--silver);background:rgba(192,192,192,.07)}
+.hc.medal-bronze{border:2.5px solid var(--bronze);background:rgba(205,127,50,.08)}
+.hc.gold-glow{box-shadow:0 0 20px rgba(232,137,58,.45)}
+.hc-hdr{font-size:clamp(.64rem,1.1vw,.76rem);color:var(--gold);
+  font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
+.hc-photo{width:clamp(36px,4.5vw,52px);height:clamp(36px,4.5vw,52px);
+  border-radius:50%;object-fit:cover;object-position:center 35%;border:1.5px solid rgba(232,137,58,.4)}
+.hc-avatar{width:clamp(36px,4.5vw,52px);height:clamp(36px,4.5vw,52px);
+  border-radius:50%;background:rgba(232,137,58,.12);
+  border:1.5px solid rgba(232,137,58,.4);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:clamp(.9rem,1.5vw,1.2rem);color:var(--gold)}
+.hc-name{font-size:clamp(.62rem,1.1vw,.76rem);font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:#fff}
+.hc-avg{font-size:clamp(.68rem,1.2vw,.82rem);font-weight:700;color:var(--gold);line-height:1.1}
+.hc-vs{font-size:clamp(.56rem,.95vw,.68rem);color:rgba(255,255,255,.35);line-height:1.1}
+.hc-diff{font-size:clamp(.56rem,.95vw,.68rem);color:#5cbd5c;font-weight:600}
+
+/* ===== S9: STIGATAFLAN ===== */
+#s10{background:radial-gradient(ellipse at 50% 42%,#200F24 0%,var(--bg) 65%)}
+.stbl{width:min(650px,88vw);border-collapse:collapse;margin-top:12px}
+.stbl thead tr{border-bottom:1px solid rgba(232,137,58,.35)}
+.stbl thead td{padding:4px 8px;font-size:clamp(.64rem,1.2vw,.76rem);
+  color:rgba(232,137,58,.6);text-transform:uppercase;letter-spacing:.12em;font-weight:600}
+.stbl tbody tr{border-bottom:1px solid rgba(232,137,58,.07)}
+.stbl tbody td{padding:4px 8px;font-size:clamp(.65rem,1.3vw,.82rem)}
+.rk{color:rgba(232,137,58,.48);width:32px;font-weight:600;font-variant-numeric:tabular-nums}
+.nm{color:#fff;font-weight:500}
+.sc{color:var(--gold);font-weight:700;text-align:right;font-variant-numeric:tabular-nums;width:56px}
+.av{color:rgba(247,223,180,.6);text-align:right;font-variant-numeric:tabular-nums;
+  font-size:clamp(.68rem,1.2vw,.82rem);width:70px}
+.rd{color:rgba(255,255,255,.35);text-align:right;font-size:clamp(.66rem,1.1vw,.78rem);width:58px}
+.stbl-teaser{margin-top:12px;font-size:clamp(.68rem,1.3vw,.82rem);
+  color:rgba(232,137,58,.38);letter-spacing:.26em;text-transform:uppercase;text-align:center}
+
+/* ===== S2: SEKTARKÓNGURINN ===== */
+#s2{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
+.sekt-list{display:flex;flex-direction:column;gap:clamp(5px,1.2vw,10px);
+  margin-top:14px;width:min(460px,90vw)}
+.sekt-row{display:flex;align-items:center;gap:clamp(8px,2vw,16px);
+  padding:clamp(7px,1.2vw,12px) clamp(10px,2vw,18px);border-radius:10px;
+  border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);
+  transition:opacity .4s ease,transform .4s ease}
+.sekt-row.sekt-hidden{opacity:0;transform:translateX(-20px);pointer-events:none}
+.sekt-row.first{border-color:rgba(232,137,58,.52);background:rgba(232,137,58,.10)}
+.sekt-pos{font-size:clamp(.7rem,1.5vw,.9rem);font-weight:700;min-width:1.6em;
+  text-align:right;color:rgba(255,255,255,.32)}
+.sekt-row.first .sekt-pos{color:var(--gold)}
+.sekt-icon{font-size:clamp(1rem,2.2vw,1.4rem)}
+.sekt-name{font-size:clamp(.88rem,2vw,1.2rem);font-weight:700;flex:1}
+.sekt-row.first .sekt-name{color:var(--gold)}
+.sekt-amt{font-size:clamp(.82rem,1.8vw,1.05rem);font-weight:700;
+  color:rgba(255,255,255,.55);white-space:nowrap}
+.sekt-row.first .sekt-amt{color:var(--gold)}
+
+/* ===== S11: BRONZE ===== */
+#s12{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
+.pod-img{width:clamp(140px,20vw,270px);height:clamp(140px,20vw,270px);
+  object-fit:cover;object-position:center 35%;border-radius:10px;display:block;margin:16px auto}
+.bronze-frm{border:3px solid var(--bronze);box-shadow:0 0 48px rgba(205,127,50,.28),0 20px 60px rgba(0,0,0,.7)}
+.silver-frm{border:3px solid var(--silver);box-shadow:0 0 48px rgba(192,192,192,.32),0 20px 60px rgba(0,0,0,.7)}
+.rank-lbl{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.2rem,3.5vw,2.5rem);font-weight:700;letter-spacing:.12em;text-align:center}
+.bronze-c{color:var(--bronze)}.silver-c{color:var(--silver)}.gold-c{color:var(--gold)}
+.w-name{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2.8rem,9vw,6.5rem);font-weight:900;text-align:center;
+  line-height:1;color:#fff;margin:5px 0}
+.w-score{font-size:clamp(.8rem,2.2vw,1.3rem);color:rgba(247,223,180,.58);
+  letter-spacing:.3em;font-weight:300;text-transform:uppercase;text-align:center}
+
+/* ===== S12: SILVER ===== */
+#s13{background:radial-gradient(ellipse at 50% 35%,#0C0C18 0%,var(--bg) 65%)}
+.vs-row{display:flex;align-items:center;
+  gap:clamp(16px,4vw,52px);margin-top:16px;flex-wrap:wrap;justify-content:center}
+.vs-card{display:flex;flex-direction:column;align-items:center;gap:11px}
+.vs-img{width:clamp(100px,14vw,195px);height:clamp(100px,14vw,195px);
+  object-fit:cover;object-position:center 35%;border-radius:10px;
+  border:2px solid rgba(232,137,58,.45);box-shadow:0 14px 46px rgba(0,0,0,.6)}
+.vs-name{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(1.4rem,4vw,2.8rem);font-weight:900;text-align:center}
+.vs-sc{font-size:clamp(.58rem,1.2vw,.76rem);color:rgba(232,137,58,.7);
+  letter-spacing:.2em;text-transform:uppercase}
+.vs-div{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(2rem,6.5vw,4.8rem);color:rgba(232,137,58,.2);font-weight:900;flex-shrink:0}
+.drama-line{margin-top:20px;font-size:clamp(.58rem,1.4vw,.82rem);
+  color:rgba(255,255,255,.28);letter-spacing:.3em;text-transform:uppercase;
+  text-align:center;animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.45;transform:scale(.98)}50%{opacity:1;transform:scale(1.02)}}
+
+/* ===== S13: CHAMPION ===== */
+#s14{background:radial-gradient(ellipse at 50% 30%,#3A1A08 0%,#1A0A10 45%,var(--bg) 70%);overflow:hidden}
+#confettiCanvas{position:absolute;inset:0;pointer-events:none;z-index:0}
+.champ-inner{position:relative;z-index:1;text-align:center}
+.champ-eye{font-size:clamp(.58rem,1.3vw,.8rem);letter-spacing:.5em;
+  text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:9px}
+.champ-q{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(5rem,18vw,14rem);font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l),var(--gold),var(--gold-d));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:glow 2.2s ease-in-out infinite}
+.champ-hint{font-size:clamp(.6rem,1.3vw,.78rem);color:rgba(232,137,58,.32);
+  letter-spacing:.3em;text-transform:uppercase;margin-top:9px}
+.champ-note{font-size:clamp(.62rem,1.2vw,.78rem);color:rgba(255,255,255,.16);
+  letter-spacing:.18em;text-transform:uppercase;margin-top:22px}
+
+/* ===== S5: RYDER CUP ===== */
+#s5{background:radial-gradient(ellipse at 30% 40%,#0B1A33 0%,#140A12 50%,var(--bg) 75%)}
+.rt-faces{display:flex;gap:clamp(4px,1vw,8px);justify-content:center;margin-top:5px;flex-wrap:wrap}
+.rt-face{width:clamp(26px,3.2vw,40px);height:clamp(26px,3.2vw,40px);
+  border-radius:50%;object-fit:cover;object-position:center 35%;border:1.5px solid currentColor}
+.rt-blues .rt-face{border-color:rgba(59,130,246,.7)}
+.rt-reds .rt-face{border-color:rgba(239,68,68,.7)}
+.fun-grid{display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(10px,2vw,22px);width:min(900px,90vw);margin-top:14px}
+.fun-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;padding:clamp(12px,2vw,22px);display:flex;flex-direction:column;
+  align-items:center;gap:6px;text-align:center}
+.fc-ico{font-size:clamp(1.6rem,4vw,2.6rem);line-height:1}
+.fc-cat{font-size:clamp(.48rem,1vw,.62rem);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(232,137,58,.55);font-weight:600;margin-bottom:2px}
+.fc-who{font-size:clamp(.9rem,2.2vw,1.3rem);font-weight:700;color:#fff;line-height:1.1}
+.fc-val{font-size:clamp(.62rem,1.3vw,.8rem);color:rgba(247,223,180,.55);margin-top:2px}
+
+/* ===== S8: MEISTARAHELGI ===== */
+#s8{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
+.race-wrap{width:min(820px,90vw);margin-top:8px}
+#raceCanvas{width:100%;border-radius:6px}
+
+/* ===== S7: BIKAR ===== */
+#s7{background:radial-gradient(ellipse at 50% 40%,#0D0D1A 0%,var(--bg) 65%)}
+.ryder-score{display:flex;align-items:center;justify-content:center;
+  gap:clamp(18px,5vw,60px);margin:10px 0 4px}
+.ryder-team{display:flex;flex-direction:column;align-items:center;gap:4px}
+.rt-pts{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(3.5rem,12vw,8rem);font-weight:900;line-height:1}
+.rt-blues .rt-pts{color:#3b82f6}.rt-reds .rt-pts{color:#ef4444}
+.rt-label{font-size:clamp(.55rem,1.3vw,.78rem);letter-spacing:.3em;
+  text-transform:uppercase;font-weight:600}
+.rt-blues .rt-label{color:#93c5fd}.rt-reds .rt-label{color:#fca5a5}
+.rt-names{font-size:clamp(.64rem,1.2vw,.78rem);color:rgba(255,255,255,.38);
+  letter-spacing:.06em;line-height:1.5;margin-top:3px}
+.ryder-sep{font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,6vw,4rem);color:rgba(255,255,255,.1);font-weight:900}
+.ryder-rounds{display:flex;gap:clamp(8px,2vw,20px);justify-content:center;
+  flex-wrap:wrap;margin-top:6px}
+.rr-card{padding:8px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.1);
+  text-align:center;background:rgba(255,255,255,.03);min-width:110px}
+.rr-label{font-size:clamp(.62rem,1.1vw,.76rem);color:rgba(255,255,255,.35);
+  letter-spacing:.18em;text-transform:uppercase}
+.rr-sc{font-size:clamp(.9rem,2.2vw,1.3rem);font-weight:700;margin-top:2px}
+.rr-fmt{font-size:clamp(.60rem,1vw,.72rem);color:rgba(255,255,255,.25);margin-top:2px}
+
+/* ===== S10: BEST-8 KEPPNIN ===== */
+#s11{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
+.meistara-podium{display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(10px,3vw,36px);margin-top:14px}
+.mp-card{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.mp-photo{width:clamp(70px,9vw,115px);height:clamp(70px,9vw,115px);
+  border-radius:50%;object-fit:cover;object-position:center 35%;display:block}
+.mp-medal{font-size:clamp(1.4rem,3.5vw,2.2rem);line-height:1}
+.mp-name{font-size:clamp(.85rem,2vw,1.2rem);font-weight:700}
+.mp-pts{font-size:clamp(.75rem,1.6vw,1rem);color:var(--gold);font-weight:600}
+.mp-detail{font-size:clamp(.48rem,.9vw,.62rem);color:rgba(255,255,255,.35);margin-top:2px}
+.mp-card.first .mp-photo{width:clamp(90px,13vw,160px);height:clamp(90px,13vw,160px);
+  border:2.5px solid var(--gold);box-shadow:0 0 28px rgba(232,137,58,.5)}
+.mp-card.second .mp-photo{border:2px solid var(--silver)}
+.mp-card.third .mp-photo{border:2px solid var(--bronze)}
+
+.bracket-outer{display:flex;gap:clamp(4px,1.2vw,12px);align-items:center;
+  justify-content:center;margin-top:6px;overflow:visible;flex-shrink:1;min-width:0}
+.bracket-col{display:flex;flex-direction:column;gap:clamp(5px,1.2vw,10px);align-items:center;min-width:0}
+.bracket-col-label{font-size:clamp(.52rem,.9vw,.64rem);letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(232,137,58,.42);margin-bottom:2px;white-space:nowrap}
+
+/* Match card wraps both players + score as one unit */
+.bm-pair{display:flex;flex-direction:column;gap:0;
+  border:1px solid rgba(255,255,255,.14);border-radius:8px;
+  overflow:hidden;background:rgba(255,255,255,.03);
+  min-width:clamp(64px,7.5vw,90px);width:clamp(64px,7.5vw,90px)}
+
+/* Player rows inside a card */
+.bm{padding:clamp(4px,.7vw,7px) clamp(6px,1vw,11px);
+  text-align:center;font-size:clamp(.55rem,1vw,.7rem);font-weight:600;white-space:nowrap;
+  border-radius:0;border:none;border-bottom:1px solid rgba(255,255,255,.07)}
+.bm:last-child{border-bottom:none}
+.bm.won{background:rgba(232,137,58,.1);color:var(--gold)}
+.bm.lost{color:rgba(255,255,255,.25);background:transparent}
+.bm.tbd{color:rgba(255,255,255,.28);font-style:italic}
+.bm.champion{background:rgba(232,137,58,.18);color:var(--gold);
+  box-shadow:0 0 18px rgba(232,137,58,.3)}
+.bracket-arrow{color:rgba(232,137,58,.28);font-size:clamp(.7rem,1.4vw,1rem);
+  flex-shrink:0;align-self:center}
+
+/* Score strip between the two players */
+.bm-score{font-size:clamp(.44rem,.72vw,.58rem);color:rgba(232,137,58,.9);
+  text-align:center;padding:1px 4px;letter-spacing:.04em;font-weight:700;
+  background:rgba(232,137,58,.08);
+  border-top:1px solid rgba(232,137,58,.18);
+  border-bottom:1px solid rgba(232,137,58,.18)}
+
+.bikar-note{font-size:clamp(.56rem,1vw,.7rem);color:rgba(232,137,58,.35);
+  letter-spacing:.12em;text-transform:uppercase;margin-top:8px;text-align:center}
+.bm-seed{font-size:.75em;color:rgba(232,137,58,.4);margin-right:2px}
+.bm-final-vs{font-size:clamp(.44rem,.72vw,.58rem);color:rgba(232,137,58,.9);
+  text-align:center;padding:1px 4px;letter-spacing:.04em;font-weight:700;
+  background:rgba(232,137,58,.08);
+  border-top:1px solid rgba(232,137,58,.18);
+  border-bottom:1px solid rgba(232,137,58,.18)}
+.bm.finalist{background:rgba(232,137,58,.07);color:rgba(255,255,255,.75)}
+.bm.champ{border-color:var(--gold);border-width:2px;background:rgba(232,137,58,.28);
+  color:#fff;text-shadow:0 0 8px rgba(232,137,58,.9);
+  box-shadow:0 0 18px rgba(232,137,58,.65),0 0 36px rgba(232,137,58,.2),inset 0 0 10px rgba(232,137,58,.15);
+  font-weight:800}
+.bikar-hero{display:flex;flex-direction:column;align-items:center;gap:5px;
+  flex-shrink:0;position:relative;z-index:1}
+.bikar-hero img{width:clamp(64px,9vw,110px);height:clamp(64px,9vw,110px);
+  object-fit:cover;object-position:center 20%;border-radius:50%;
+  border:2px solid var(--gold);
+  box-shadow:0 0 28px rgba(232,137,58,.7),0 0 56px rgba(232,137,58,.22)}
+.bikar-hero-name{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(.85rem,2vw,1.3rem);color:var(--gold);font-weight:700;letter-spacing:.05em}
+.bikar-hero-sub{font-size:clamp(.5rem,.9vw,.64rem);color:rgba(232,137,58,.6);
+  letter-spacing:.16em;text-transform:uppercase}
+.bikar-layout{display:flex;align-items:center;justify-content:center;
+  gap:clamp(8px,2vw,22px);width:100%;max-width:100%;overflow:hidden}
+
+/* ===== COUNTDOWN ===== */
+.cd-num{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(9rem,28vw,20rem);font-weight:900;line-height:1;
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:cdPulse 1s ease-out forwards}
+@keyframes cdPulse{
+  0%{transform:scale(1.6);opacity:0}
+  25%{opacity:1}
+  75%{transform:scale(1);opacity:1}
+  100%{transform:scale(.7);opacity:0}}
+
+/* ===== S0: TITLE PLAYERS ===== */
+.title-players{display:flex;flex-wrap:wrap;justify-content:center;
+  gap:clamp(5px,1.2vw,10px);margin-top:14px;max-width:min(960px,90vw)}
+.tp-item{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tp-photo{width:clamp(36px,4.2vw,54px);height:clamp(36px,4.2vw,54px);
+  border-radius:50%;object-fit:cover;
+  border:1.5px solid rgba(232,137,58,.4);
+  transition:transform .25s,border-color .25s}
+.tp-photo:hover{transform:scale(1.12);border-color:var(--gold)}
+.tp-name{font-size:clamp(.36rem,.75vw,.5rem);letter-spacing:.06em;
+  text-transform:uppercase;color:rgba(232,137,58,.5);font-weight:600;
+  text-align:center;white-space:nowrap}
+
+/* ===== LOGO ===== */
+.logo-corner{position:fixed;top:16px;right:20px;z-index:950;
+  display:flex;align-items:center;gap:9px;pointer-events:none}
+.logo-corner img{width:clamp(34px,4.5vw,52px);height:clamp(34px,4.5vw,52px);
+  object-fit:cover;object-position:center 30%;border-radius:50%;
+  border:1.5px solid rgba(232,137,58,.4);
+  filter:drop-shadow(0 1px 6px rgba(0,0,0,.55))}
+.logo-corner-text{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15}
+.logo-corner-text .lct1{font-family:'Playfair Display',Georgia,serif;
+  font-size:clamp(.62rem,1.3vw,.82rem);font-weight:700;
+  color:var(--gold);letter-spacing:.08em}
+.logo-corner-text .lct2{font-size:clamp(.58rem,1.1vw,.70rem);
+  color:rgba(232,137,58,.5);letter-spacing:.16em;text-transform:uppercase}
+.logo-hero{width:clamp(90px,14vw,180px);height:clamp(90px,14vw,180px);
+  object-fit:cover;object-position:center 30%;border-radius:50%;position:relative;z-index:1;
+  border:3px solid var(--gold);
+  box-shadow:0 0 40px rgba(232,137,58,.55),0 0 80px rgba(232,137,58,.2);
+  margin-bottom:10px}
+
+/* ===== MÁ ÉG AÐEINS: extras ===== */
+#s11 .h1{font-size:clamp(1.6rem,4.5vw,3.2rem)}
+#s11 .rule{margin:8px auto}
+.race-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:6px;position:relative;z-index:2}
+.race-tab{font-family:inherit;font-size:clamp(.62rem,1.1vw,.76rem);letter-spacing:.14em;text-transform:uppercase;font-weight:600;
+  padding:6px 14px;border-radius:999px;cursor:pointer;color:rgba(255,255,255,.55);
+  background:rgba(232,137,58,.06);border:1px solid rgba(232,137,58,.25);transition:all .2s}
+.race-tab:hover{color:#fff;border-color:rgba(232,137,58,.6)}
+.race-tab.on{background:rgba(232,137,58,.22);border-color:var(--gold);color:var(--gold-l)}
+.sky{position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 45% at 50% 105%,rgba(232,137,58,.28) 0%,transparent 70%),
+  radial-gradient(ellipse 60% 50% at 50% 0%,rgba(91,42,78,.35) 0%,transparent 70%)}
+.rt-whites .rt-face{border-color:rgba(240,240,240,.8)}
+.rt-whites .rt-pts{color:#f3f4f6}.rt-whites .rt-label{color:#e5e7eb}
+.pair-list{display:flex;flex-direction:column;gap:clamp(3px,.6vh,6px);margin-top:8px;width:min(560px,92vw)}
+.pair-row{display:flex;align-items:center;gap:clamp(8px,1.6vw,14px);
+  padding:clamp(3px,.7vh,7px) clamp(10px,1.8vw,16px);border-radius:10px;
+  border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);
+  transition:opacity .45s ease,transform .45s ease}
+.pair-row.hid{opacity:0;transform:translateX(-22px);pointer-events:none}
+.pair-row.first{border-color:rgba(232,137,58,.6);background:rgba(232,137,58,.12);box-shadow:0 0 22px rgba(232,137,58,.18)}
+.pair-row.third{border-color:rgba(205,127,50,.4);background:rgba(205,127,50,.07)}
+.pair-pos{font-weight:700;min-width:1.6em;text-align:right;color:rgba(255,255,255,.32);font-size:clamp(.7rem,1.4vw,.9rem)}
+.pair-row.first .pair-pos{color:var(--gold)}
+.pair-faces{display:flex}
+.pair-faces img,.pair-faces .hc-avatar{width:clamp(24px,4.2vh,38px);height:clamp(24px,4.2vh,38px);border-radius:50%;
+  object-fit:cover;border:1.5px solid rgba(232,137,58,.45);font-size:.8rem}
+.pair-faces > :nth-child(2){margin-left:-9px}
+.pair-name{flex:1;font-weight:700;font-size:clamp(.8rem,1.7vw,1.1rem)}
+.pair-row.first .pair-name{color:var(--gold-l)}
+.pair-pts{font-weight:700;color:rgba(255,255,255,.6);font-variant-numeric:tabular-nums;font-size:clamp(.8rem,1.6vw,1rem)}
+.pair-row.first .pair-pts{color:var(--gold)}
+.tie-banner{margin-top:12px;font-size:clamp(.66rem,1.3vw,.84rem);letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold-l);text-align:center;transition:opacity .4s}
+.fc-photo{width:clamp(54px,7vw,90px);height:clamp(54px,7vw,90px);border-radius:50%;object-fit:cover;
+  border:2px solid rgba(232,137,58,.55);margin:4px 0}
+.hc-pair{display:flex}.hc-pair .hc-photo:nth-child(2){margin-left:-10px}
+.stbl tbody td{padding:3px 8px}
+.sum-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1.2vw,12px);width:100%;max-width:700px;margin-top:clamp(8px,1.4vw,14px)}
+.sum-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:10px;
+  padding:clamp(6px,1vw,11px);display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.sum-lbl{font-size:clamp(.44rem,.78vw,.58rem);letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:700}
+.sum-box img,.sum-box .hc-avatar{width:clamp(32px,5vw,56px);height:clamp(32px,5vw,56px);object-fit:cover;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+.sum-nm{font-weight:700;font-size:clamp(.66rem,1.2vw,.86rem)}
+.sum-top{flex:1;max-width:260px;border-radius:12px;padding:clamp(10px,1.8vw,18px);display:flex;flex-direction:column;align-items:center;gap:6px}
+.sum-top img{width:clamp(60px,9vw,100px);height:clamp(60px,9vw,100px);object-fit:cover;border-radius:50%}
+.sum-top .sum-lbl{color:var(--gold)}
+.sum-top .sum-nm{font-weight:800;font-size:clamp(.9rem,1.8vw,1.3rem);color:var(--gold-l)}
+@media (max-width:700px){
+  .holu-grid{grid-template-columns:repeat(3,1fr)}
+  .fun-grid{grid-template-columns:1fr}
+  .sum-grid{grid-template-columns:repeat(2,1fr)}
+  .smenu-btn{top:auto;bottom:22px;transform:none;right:14px}
+  .smenu-panel{top:auto;bottom:70px;right:14px;transform:translateX(10px)}
+  .smenu-panel.open{transform:translateX(0)}
+}
+
+.fact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(8px,1.6vw,16px);width:min(980px,92vw);margin-top:10px}
+.fact{background:rgba(255,255,255,.035);border:1px solid rgba(232,137,58,.22);border-radius:14px;
+  padding:clamp(10px,1.6vw,18px) clamp(12px,2vw,22px);display:flex;flex-direction:column;gap:6px;
+  transition:opacity .5s ease,transform .5s ease}
+.fact.hid{opacity:0;transform:translateY(14px) scale(.97)}
+.fact-top{display:flex;align-items:center;gap:clamp(10px,1.6vw,16px)}
+.fact-photo{width:clamp(48px,6vw,74px);height:clamp(48px,6vw,74px);border-radius:50%;object-fit:cover;
+  border:2px solid rgba(232,137,58,.6);flex-shrink:0}
+.fact-ico{display:flex;align-items:center;justify-content:center;font-size:clamp(1.4rem,3vw,2.2rem);background:rgba(232,137,58,.1)}
+.fact-big{font-family:'Playfair Display',Georgia,serif;font-weight:900;line-height:1;font-size:clamp(1.8rem,4.2vw,3.2rem);
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.fact-unit{font-size:clamp(.56rem,1vw,.7rem);letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px}
+.fact-t{font-weight:700;font-size:clamp(.82rem,1.6vw,1.08rem);color:var(--gold-l);letter-spacing:.02em}
+.fact-x{font-size:clamp(.66rem,1.2vw,.84rem);color:rgba(255,255,255,.66);line-height:1.5}
+@media (max-width:700px){.fact-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- S0: TITLE -->
+<div class="slide on" id="s0">
+  <div class="grid-bg"></div><div class="sky"></div>
+  <div class="glow-ring"></div>
+  <img src="MaEgAdeins2026.png" class="logo-hero" alt="Má ég aðeins">
+  <div class="main-t">Má ég aðeins</div>
+  <div class="main-sub">Lokahóf 2026</div>
+  <div class="main-course">Mótaröðin 2026 · 19 mót · 18 kylfingar</div>
+  <div class="rule"></div>
+  <div class="title-players">
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><div class="tp-name">Andri</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Asi.jpg" alt="Ási" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Á</div>'"><div class="tp-name">Ási</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div class="tp-name">Begga</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Berglind.jpg" alt="Berglind" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div class="tp-name">Berglind</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div class="tp-name">Björk</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Eva.jpg" alt="Eva Harpa" style="object-position:60% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><div class="tp-name">Eva Harpa</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/EvaHelga.jpg" alt="Eva Helga" style="object-position:55% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><div class="tp-name">Eva Helga</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="tp-name">Gummi</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div class="tp-name">Heisi</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div class="tp-name">Hlynur</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'"><div class="tp-name">Kristjana</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'"><div class="tp-name">Maggi</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Nina.jpg" alt="Nína" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>N</div>'"><div class="tp-name">Nína</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'"><div class="tp-name">Óli</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Robbi.jpg" alt="Robbi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><div class="tp-name">Robbi</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><div class="tp-name">Rósa</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><div class="tp-name">Sigrún</div></div>
+    <div class="tp-item"><img class="tp-photo" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><div class="tp-name">Sigurgeir</div></div>
+  </div>
+</div>
+
+<!-- S1: DUGLEGASTI -->
+<div class="slide" id="s1">
+  <div class="eyebrow">🏅 Sérstök verðlaun</div>
+  <div class="h1">Duglegasti Kylfingurinn</div>
+  <div class="rule"></div>
+  <div class="sub">Þrír kylfingar mættu á <strong style="color:var(--gold)">17 af 19</strong> mótum</div>
+  <div class="prow">
+    <div class="pcard">
+      <img class="pp" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+      <div class="pn">Begga</div><div class="ps">17 mót</div>
+    </div>
+    <div class="pcard">
+      <img class="pp" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+      <div class="pn">Björk</div><div class="ps">17 mót</div>
+    </div>
+    <div class="pcard">
+      <img class="pp" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'">
+      <div class="pn">Sigurgeir</div><div class="ps">17 mót</div>
+    </div>
+  </div>
+</div>
+
+<!-- S2: PARAKEPPNIN -->
+<div class="slide" id="s2">
+  <div class="eyebrow" style="margin-bottom:4px">👫 Parakeppni 2026</div>
+  <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Parakeppnin</div>
+  <div class="rule" style="margin:8px auto"></div>
+  <div class="sub" style="font-size:clamp(.66rem,1.3vw,.82rem)">Samanlögð stig parsins · bestu 4 parahringir telja</div>
+  <div class="pair-list">
+    <div class="pair-row first hid" data-pr="2">
+      <span class="pair-pos">1</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"></span>
+      <span class="pair-name">👑 Andri &amp; Rósa</span><span class="pair-pts">280 stig</span>
+    </div>
+    <div class="pair-row first hid" data-pr="2">
+      <span class="pair-pos">1</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><img class="" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"></span>
+      <span class="pair-name">👑 Heisi &amp; Sigrún</span><span class="pair-pts">280 stig</span>
+    </div>
+    <div class="pair-row third hid" data-pr="1">
+      <span class="pair-pos">3</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'"><img class="" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'"></span>
+      <span class="pair-name">🥉 Óli &amp; Kristjana</span><span class="pair-pts">273 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">4</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Robbi.jpg" alt="Robbi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><img class="" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"></span>
+      <span class="pair-name"> Robbi &amp; Begga</span><span class="pair-pts">262 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">5</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><img class="" src="KylfingarMyndir/EvaHelga.jpg" alt="Eva Helga" style="object-position:55% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"></span>
+      <span class="pair-name"> Sigurgeir &amp; Eva Helga</span><span class="pair-pts">261 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">6</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><img class="" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"></span>
+      <span class="pair-name"> Gummi &amp; Björk</span><span class="pair-pts">255 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">7</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'"><img class="" src="KylfingarMyndir/Nina.jpg" alt="Nína" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>N</div>'"></span>
+      <span class="pair-name"> Maggi &amp; Nína</span><span class="pair-pts">252 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">8</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><img class="" src="KylfingarMyndir/Eva.jpg" alt="Eva Harpa" style="object-position:60% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"></span>
+      <span class="pair-name"> Hlynur &amp; Eva Harpa</span><span class="pair-pts">249 stig</span>
+    </div>
+    <div class="pair-row" >
+      <span class="pair-pos">9</span><span class="pair-faces"><img class="" src="KylfingarMyndir/Asi.jpg" alt="Ási" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Á</div>'"><img class="" src="KylfingarMyndir/Berglind.jpg" alt="Berglind" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"></span>
+      <span class="pair-name"> Ási &amp; Berglind</span><span class="pair-pts">174 stig</span>
+    </div>
+  </div>
+  <div class="tie-banner" id="tieBanner" style="opacity:0">🤝 Jafnt á toppnum — 280 stig hvort par</div>
+</div>
+
+<!-- S3: BESTI HRINGUR -->
+<div class="slide" id="s3">
+  <div class="eyebrow">🏌️ Sérstök verðlaun</div>
+  <div class="h1">Besti Hringur Tímabilsins</div>
+  <div class="rule"></div>
+  <div class="hero-wrap">
+    <img class="hero-img" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'">
+    <div>
+      <div class="hero-name-lbl">Heisi</div>
+      <div style="display:flex;align-items:baseline;gap:12px">
+        <div class="hero-num">44</div>
+        <div class="hero-unit">stig</div>
+      </div>
+      <div class="hero-meta">M20 &nbsp;·&nbsp; 20. sept. 2026</div>
+      <div class="hero-meta">Hvaleyrarvöllur · Parakeppni</div>
+      <div class="hero-meta" style="margin-top:10px">Næst: Rósa &amp; Eva Helga · 43 stig</div>
+    </div>
+  </div>
+</div>
+
+<!-- S4: HOLUMEISTARI -->
+<div class="slide" id="s4">
+  <div class="eyebrow" style="margin-bottom:4px">⛳ Sérstök verðlaun</div>
+  <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Holumeistari 2026</div>
+  <div class="rule" style="margin:8px auto"></div>
+  <div class="sub" style="font-size:clamp(.66rem,1.3vw,.82rem);margin-bottom:6px">
+    Hæsta meðaltal stiga á hverri holu Hvaleyrarvallar &nbsp;·&nbsp; lágmark 4 hringir
+  </div>
+  <div class="holu-grid" id="holuGrid"></div>
+  <div id="holuProgress" style="margin-top:8px;font-size:clamp(.64rem,1.2vw,.76rem);
+    letter-spacing:.28em;color:rgba(232,137,58,.4);text-transform:uppercase;
+    text-align:center;min-height:1.4em;transition:opacity .4s">
+    Ýttu á → til að birta
+  </div>
+</div>
+
+<!-- S5: RYDER CUP -->
+<div class="slide" id="s5">
+  <div class="eyebrow">⚔️ Flúðir &amp; Selfoss · 18.–19. júlí</div>
+  <div class="h1">Ryder Cup</div>
+  <div class="rule"></div>
+  <div class="ryder-score">
+    <div class="ryder-team rt-blues">
+      <div class="rt-pts">8½</div>
+      <div class="rt-label">🔵 Bláir</div>
+      <div class="rt-faces">
+        <img class="rt-face" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Berglind.jpg" alt="Berglind" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+        <img class="rt-face" src="KylfingarMyndir/EvaHelga.jpg" alt="Eva Helga" style="object-position:55% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'">
+      </div>
+      <div class="rt-names">Óli · Rósa · Sigurgeir · Berglind · Björk · Andri · Sigrún · Gummi · Eva Helga · Sigurður A. (gestur)</div>
+    </div>
+    <div class="ryder-sep">–</div>
+    <div class="ryder-team rt-whites">
+      <div class="rt-pts">6½</div>
+      <div class="rt-label">⚪ Hvítir</div>
+      <div class="rt-faces">
+        <img class="rt-face" src="KylfingarMyndir/Nina.jpg" alt="Nína" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>N</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Eva.jpg" alt="Eva Harpa" style="object-position:60% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Asi.jpg" alt="Ási" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Á</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Robbi.jpg" alt="Robbi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+        <img class="rt-face" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+      </div>
+      <div class="rt-names">Nína · Eva Harpa · Kristjana · Heisi · Maggi · Hlynur · Ási · Robbi · Begga · Hrönn (gestur)</div>
+    </div>
+  </div>
+  <div class="ryder-rounds">
+    <div class="rr-card">
+      <div class="rr-label">1. dagur</div>
+      <div class="rr-sc" style="color:#93c5fd">4 – 1</div>
+      <div class="rr-fmt">Selsvöllur, Flúðir · Better Ball</div>
+    </div>
+    <div class="rr-card">
+      <div class="rr-label">2. dagur</div>
+      <div class="rr-sc" style="color:#e5e7eb">4½ – 5½</div>
+      <div class="rr-fmt">Svarfhólsvöllur, Selfossi · Singles</div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: FUGLAMEISTARI -->
+<div class="slide" id="s6">
+  <div class="eyebrow">🦅 Sérstök verðlaun</div>
+  <div class="h1">Fuglameistari 2026</div>
+  <div class="rule"></div>
+  <div class="sub" style="margin-bottom:6px">Flestir fuglar á tímabilinu &nbsp;·&nbsp; 1 högg undir pari</div>
+  <div class="fugla-podium">
+    <div class="fp-card silver-b">
+      <div class="fp-medal">🥈</div>
+      <img class="fp-photo" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'">
+      <div class="fp-name">Maggi</div>
+      <div class="fp-count">14</div>
+      <div class="fp-label">fuglar</div>
+    </div>
+    <div class="fp-card gold-b elevated">
+      <div class="fp-medal">🥇</div>
+      <img class="fp-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="fp-name">Gummi</div>
+      <div class="fp-count">15</div>
+      <div class="fp-label">fuglar</div>
+    </div>
+    <div class="fp-card bronze-b">
+      <div class="fp-medal">🥉</div>
+      <img class="fp-photo" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'">
+      <div class="fp-name">Andri</div>
+      <div class="fp-count">12</div>
+      <div class="fp-label">fuglar</div>
+    </div>
+  </div>
+</div>
+
+<!-- S7: BIKAR BRACKET -->
+<div class="slide" id="s7">
+  <canvas id="bikarConfetti" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
+  <div class="eyebrow">🏆 Bikar Má ég aðeins 2026</div>
+  <div class="h1">Bikarinn</div>
+  <div class="rule"></div>
+  <div class="bikar-layout">
+    <div class="bracket-outer" style="margin-top:0">
+      <div class="bracket-col">
+        <div class="bracket-col-label">8 manna</div>
+        <div class="bm-pair"><div class="bm won">Rósa</div><div class="bm-score">2og1</div><div class="bm lost">Maggi</div></div><div class="bm-pair"><div class="bm lost">Sigrún</div><div class="bm-score">3og1</div><div class="bm won">Eva Helga</div></div><div class="bm-pair"><div class="bm won">Berglind</div><div class="bm-score">4og3</div><div class="bm lost">Begga</div></div><div class="bm-pair"><div class="bm won champ">Gummi</div><div class="bm-score">3og2</div><div class="bm lost">Kristjana</div></div>
+      </div>
+      <div class="bracket-arrow">→</div>
+      <div class="bracket-col">
+        <div class="bracket-col-label">Undanúrslit</div>
+        <div class="bm-pair"><div class="bm won champ">Gummi</div><div class="bm-score">3og2</div><div class="bm lost">Eva Helga</div></div><div class="bm-pair"><div class="bm lost">Berglind</div><div class="bm-score">3og2</div><div class="bm won">Rósa</div></div>
+      </div>
+      <div class="bracket-arrow">→</div>
+      <div class="bracket-col">
+        <div class="bracket-col-label">Úrslitaleikur</div>
+        <div>
+          <div class="bm-pair"><div class="bm won champ">Gummi</div><div class="bm-final-vs">2og1</div><div class="bm lost">Rósa</div></div>
+          <div class="bikar-note" style="margin-top:10px">🏆 Gummi vann 2&amp;1</div>
+        </div>
+      </div>
+    </div>
+    <div class="bikar-hero">
+      <img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="bikar-hero-name">Gummi</div>
+      <div class="bikar-hero-sub">Bikarmeistari 2026</div>
+    </div>
+  </div>
+  <div class="bikar-note">18 keppendur · holukeppni með forgjöf</div>
+</div>
+
+<!-- S8: FLEIRI VERÐLAUN -->
+<div class="slide" id="s8">
+  <div class="eyebrow">🎯 Sérstök verðlaun</div>
+  <div class="h1">Nákvæmni &amp; högg</div>
+  <div class="rule"></div>
+  <div class="fun-grid">
+    <div class="fun-card">
+      <div class="fc-ico">🎯</div><div class="fc-cat">Næstur holu</div>
+      <img class="fc-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="fc-who">Gummi</div>
+      <div class="fc-val">35 cm · 6. hola · M20</div>
+    </div>
+    <div class="fun-card">
+      <div class="fc-ico">📍</div><div class="fc-cat">Oftast næstur holu</div>
+      <img class="fc-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="fc-who">Gummi</div>
+      <div class="fc-val">10 sinnum · næst Björk 6×</div>
+    </div>
+    <div class="fun-card">
+      <div class="fc-ico">⛳</div><div class="fc-cat">Fæst högg</div>
+      <img class="fc-photo" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'">
+      <div class="fc-who">Andri</div>
+      <div class="fc-val">632 högg · 8 bestu hringir</div>
+    </div>
+  </div>
+</div>
+
+<!-- S9: ÁHUGAVERÐAR STAÐREYNDIR -->
+<div class="slide" id="s9">
+  <div class="eyebrow" style="margin-bottom:4px">💡 Tímabilið 2026</div>
+  <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Áhugaverðar staðreyndir</div>
+  <div class="rule" style="margin:8px auto"></div>
+  <div class="fact-grid">
+    <div class="fact hid" data-fact="1">
+      <div class="fact-top"><img class="fact-photo" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><div><div class="fact-big">13</div><div class="fact-unit">mót í röð</div></div></div>
+      <div class="fact-t">1. Áskrifandi að toppsætinu</div>
+      <div class="fact-x">Rósa fór á toppinn eftir M7 og lét hann aldrei af hendi. Hún átti líka flesta hringi yfir 36 stigum, alls 5.</div>
+    </div>
+    <div class="fact hid" data-fact="2">
+      <div class="fact-top"><img class="fact-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div><div class="fact-big">14.→2.</div><div class="fact-unit">sæti</div></div></div>
+      <div class="fact-t">2. Lokasprettur sumarsins</div>
+      <div class="fact-x">Gummi missti af fyrsta mótinu og var enn í 13. sæti eftir M7. Á lokadeginum (M20) skilaði hann 40 stigum og 4 fuglum og tók 2. sætið af Beggu.</div>
+    </div>
+    <div class="fact hid" data-fact="3">
+      <div class="fact-top"><img class="fact-photo" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div><div class="fact-big">12→18</div><div class="fact-unit">leikforgjöf</div></div></div>
+      <div class="fact-t">3. Sá sem hló síðast</div>
+      <div class="fact-x">Leikforgjöf Heisa hækkaði um 6 högg yfir sumarið. Svo kom besti hringur tímabilsins, 44 stig, á allra síðasta mótinu.</div>
+    </div>
+    <div class="fact hid" data-fact="4">
+      <div class="fact-top"><div class="fact-photo fact-ico">👩‍🦰</div><div><div class="fact-big">31,1</div><div class="fact-unit">vs 30,5</div></div></div>
+      <div class="fact-t">4. Stelpurnar skoruðu betur</div>
+      <div class="fact-x">Stelpurnar fengu að meðaltali 31,1 stig á hring en strákarnir 30,5. Fimm af átta efstu í MEA eru stelpur, þar á meðal meistarinn.</div>
+    </div>
+  </div>
+  <div id="factHint" style="margin-top:10px;font-size:clamp(.62rem,1.1vw,.74rem);letter-spacing:.28em;color:rgba(232,137,58,.4);text-transform:uppercase">Ýttu á → til að birta</div>
+</div>
+
+<!-- S10: STIGATAFLAN -->
+<div class="slide" id="s10">
+  <div class="eyebrow">📊 MEA meistarinn 2026</div>
+  <div class="h1">Stigataflan</div>
+  <div class="rule"></div>
+  <div class="sub" style="font-size:clamp(.68rem,1.3vw,.82rem);margin-bottom:2px">
+    Bestu 8 hringir &nbsp;·&nbsp; M1–M20
+  </div>
+  <table class="stbl">
+    <thead><tr><td class="rk"></td><td class="nm"></td><td class="sc">Stig</td><td class="av">Meðaltal</td><td class="rd">Hringir</td></tr></thead>
+    <tbody>
+      <tr><td class="rk">6.</td><td class="nm">Sigurgeir</td><td class="sc">281</td><td class="av">35,1</td><td class="rd">17</td></tr>
+      <tr><td class="rk">7.</td><td class="nm">Sigrún</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">14</td></tr>
+      <tr><td class="rk">7.</td><td class="nm">Eva Helga</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">15</td></tr>
+      <tr><td class="rk">9.</td><td class="nm">Heisi</td><td class="sc">275</td><td class="av">34,4</td><td class="rd">14</td></tr>
+      <tr><td class="rk">10.</td><td class="nm">Maggi</td><td class="sc">273</td><td class="av">34,1</td><td class="rd">16</td></tr>
+      <tr><td class="rk">11.</td><td class="nm">Eva Harpa</td><td class="sc">269</td><td class="av">33,6</td><td class="rd">14</td></tr>
+      <tr><td class="rk">12.</td><td class="nm">Andri</td><td class="sc">268</td><td class="av">33,5</td><td class="rd">12</td></tr>
+      <tr><td class="rk">13.</td><td class="nm">Robbi</td><td class="sc">264</td><td class="av">33,0</td><td class="rd">16</td></tr>
+      <tr><td class="rk">14.</td><td class="nm">Berglind</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">10</td></tr>
+      <tr><td class="rk">14.</td><td class="nm">Björk</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">17</td></tr>
+      <tr><td class="rk">16.</td><td class="nm">Nína</td><td class="sc">253</td><td class="av">31,6</td><td class="rd">14</td></tr>
+      <tr><td class="rk">17.</td><td class="nm">Hlynur</td><td class="sc">250</td><td class="av">31,3</td><td class="rd">13</td></tr>
+      <tr><td class="rk">18.</td><td class="nm">Ási</td><td class="sc">235</td><td class="av">29,4</td><td class="rd">12</td></tr>
+    </tbody>
+  </table>
+  <div class="stbl-teaser">⬆ &nbsp; Topp 5 birtur síðar &nbsp; ⬆</div>
+</div>
+
+<!-- S10: RACE -->
+<div class="slide" id="s11">
+  <div class="eyebrow">📈 MEA meistarinn 2026</div>
+  <div class="h1">Bardagi á toppnum</div>
+  <div class="rule"></div>
+  <div class="sub" style="margin-bottom:8px">Bestu 8 hringir · M1–M20 · Topp 8</div>
+  <div class="race-tabs">
+    <button class="race-tab on" onclick="setRaceFilter('all',this)">Allir</button>
+    <button class="race-tab" onclick="setRaceFilter('M',this)">Strákar</button>
+    <button class="race-tab" onclick="setRaceFilter('F',this)">Stelpur</button>
+  </div>
+  <div class="race-wrap"><canvas id="raceCanvas" height="300"></canvas></div>
+</div>
+
+<!-- S11: 3RD -->
+<div class="slide" id="s12">
+  <div class="eyebrow">🥉 MEA meistarinn 2026</div>
+  <div class="rule"></div>
+  <div class="rank-lbl bronze-c">Þriðja sætið</div>
+  <img class="pod-img bronze-frm" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+  <div class="w-name">Begga</div>
+  <div class="w-score">290 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,3</div>
+</div>
+
+<!-- S12: 2ND -->
+<div class="slide" id="s13">
+  <div class="eyebrow">🥈 MEA meistarinn 2026</div>
+  <div class="rule"></div>
+  <div class="rank-lbl silver-c">Annað sætið</div>
+  <img class="pod-img silver-frm" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+  <div class="w-name">Gummi</div>
+  <div class="w-score">292 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,5</div>
+</div>
+
+<!-- S13: CHAMPION -->
+<div class="slide" id="s14">
+  <canvas id="confettiCanvas"></canvas>
+  <div class="champ-inner" id="champInner">
+    <div class="champ-eye">🏆 &nbsp; MEA meistarinn 2026 &nbsp; 🏆</div>
+    <div class="rule"></div>
+    <img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;width:clamp(100px,16vw,200px);height:clamp(100px,16vw,200px);object-fit:cover;border-radius:50%;border:4px solid var(--gold);box-shadow:0 0 50px rgba(232,137,58,.8),0 0 100px rgba(232,137,58,.35);display:block;margin:0 auto 8px" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+    <div class="champ-q" id="champName">Rósa</div>
+    <div class="champ-hint">Sigurvegari Má ég aðeins 2026</div>
+    <div class="champ-note">Rósa 297 &nbsp;·&nbsp; Gummi 292 &nbsp;|&nbsp; 5 stiga munur</div>
+  </div>
+  <div id="cdOverlay" style="display:none;position:absolute;inset:0;
+    align-items:center;justify-content:center;z-index:10;background:var(--bg)">
+    <div class="cd-num" id="cdNum"></div>
+  </div>
+</div>
+
+<!-- S14: SUMMARY -->
+<div class="slide" id="s15">
+  <div class="eyebrow">🏅 Má ég aðeins 2026</div>
+  <div class="h1" style="font-size:clamp(1.6rem,4vw,2.8rem)">Verðlaunahafar 2026</div>
+  <div class="rule"></div>
+  <div style="display:flex;gap:clamp(10px,2vw,20px);justify-content:center;width:100%;max-width:700px;margin-top:12px">
+    <div class="sum-top" style="background:rgba(232,137,58,.14);border:2px solid rgba(232,137,58,.55)">
+      <div class="sum-lbl">🏆 MEA meistarinn</div>
+      <img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;border:2.5px solid var(--gold);box-shadow:0 0 24px rgba(232,137,58,.4)" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+      <div class="sum-nm">Rósa</div>
+    </div>
+    <div class="sum-top" style="background:rgba(232,137,58,.09);border:1.5px solid rgba(232,137,58,.38)">
+      <div class="sum-lbl">🏆 Bikarinn</div>
+      <img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;border:2px solid rgba(232,137,58,.6)" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="sum-nm">Gummi</div>
+    </div>
+  </div>
+  <div class="sum-grid">
+    <div class="sum-box"><div class="sum-lbl">👫 Parakeppnin</div>
+      <div class="pair-faces"><img class="" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><img class="" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><img class="" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"></div>
+      <div class="sum-nm">Andri &amp; Rósa / Heisi &amp; Sigrún</div></div>
+    <div class="sum-box"><div class="sum-lbl">🦅 Fuglameistari</div><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="sum-nm">Gummi</div></div>
+    <div class="sum-box"><div class="sum-lbl">⭐ Besti hringur</div><img class="" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div class="sum-nm">Heisi</div></div>
+    <div class="sum-box"><div class="sum-lbl">⛳ Holumeistari</div><img class="" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><div class="sum-nm">Andri</div></div>
+    <div class="sum-box"><div class="sum-lbl">🎯 Næstur holu</div><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="sum-nm">Gummi</div></div>
+    <div class="sum-box"><div class="sum-lbl">🏅 Duglegust</div><div class="pair-faces"><img class="" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><img class="" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><img class="" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"></div><div class="sum-nm">Begga · Björk · Sigurgeir</div></div>
+  </div>
+</div>
+
+<!-- CORNER LOGO (all slides) -->
+<div class="logo-corner">
+  <div class="logo-corner-text">
+    <span class="lct1">Má ég aðeins</span>
+    <span class="lct2">Lokahóf 2026</span>
+  </div>
+  <img src="MaEgAdeins2026.png" alt="Má ég aðeins">
+</div>
+
+<a href="index.html" style="position:fixed;top:18px;left:20px;z-index:950;
+  color:rgba(232,137,58,.45);font-size:.68rem;letter-spacing:.1em;text-decoration:none;
+  font-family:'Montserrat',sans-serif;text-transform:uppercase;transition:color .2s"
+  onmouseover="this.style.color='rgba(232,137,58,.9)'"
+  onmouseout="this.style.color='rgba(232,137,58,.45)'">← Mælaborð</a>
+
+<div class="nav-wrap">
+  <button class="nbtn" id="btnPrev" onclick="go(-1)">&#8592;</button>
+  <button class="nbtn" id="btnNext" onclick="go(1)">&#8594;</button>
+</div>
+
+<button class="smenu-btn" id="smenuBtn" onclick="toggleMenu()" title="Glæruyfirlit">☰</button>
+<div class="smenu-panel" id="smenuPanel"></div>
+
+<script>
+const POS = {"Begga": "50% 12%", "Andri": "50% 25%", "Hlynur": "62% 30%", "Kristjana": "50% 22%", "Eva Helga": "55% 35%", "Eva Harpa": "60% 35%", "Rósa": "50% 30%", "Sigurgeir": "50% 30%"};
+const FILE = {"Andri": "Andri", "Ási": "Asi", "Begga": "Begga", "Berglind": "Berglind", "Björk": "Bjork", "Eva Harpa": "Eva", "Eva Helga": "EvaHelga", "Gummi": "Gummi", "Heisi": "Heisi", "Hlynur": "Hlynur", "Kristjana": "Kristjana", "Maggi": "Maggi", "Nína": "Nina", "Óli": "Oli", "Robbi": "Robbi", "Rósa": "Rosa", "Sigrún": "Sigrun", "Sigurgeir": "Sigurgeir"};
+function pimg(n, cls){
+  return '<img class="'+cls+'" src="KylfingarMyndir/'+FILE[n]+'.jpg" alt="'+n+'" style="object-position:'+(POS[n]||'50% 35%')+'" '+
+    'onerror="this.outerHTML=\'<div class=hc-avatar>'+n.charAt(0)+'</div>\'">';
+}
+// ===== HOLUMEISTARI =====
+// group 1 = 1 hola / deildar holur, 2 = 2 holur, 3 = holumeistarinn (birtur síðast)
+const HOLES = [{"h": 1, "par": 5, "nicks": ["Sigurgeir"], "avg": 2.18, "overall": 1.53, "group": 1}, {"h": 2, "par": 4, "nicks": ["Nína"], "avg": 2.7, "overall": 1.97, "group": 1}, {"h": 3, "par": 4, "nicks": ["Begga"], "avg": 2.45, "overall": 1.66, "group": 1}, {"h": 4, "par": 3, "nicks": ["Eva Helga"], "avg": 2.3, "overall": 1.79, "group": 1}, {"h": 5, "par": 4, "nicks": ["Andri"], "avg": 2.83, "overall": 2.11, "group": 3}, {"h": 6, "par": 3, "nicks": ["Kristjana"], "avg": 2.22, "overall": 1.55, "group": 2}, {"h": 7, "par": 5, "nicks": ["Óli"], "avg": 2.5, "overall": 1.71, "group": 1}, {"h": 8, "par": 4, "nicks": ["Hlynur"], "avg": 2.44, "overall": 1.51, "group": 1}, {"h": 9, "par": 4, "nicks": ["Kristjana", "Rósa"], "avg": 2.33, "overall": 1.86, "group": 1}, {"h": 10, "par": 4, "nicks": ["Kristjana"], "avg": 2.33, "overall": 1.72, "group": 2}, {"h": 11, "par": 4, "nicks": ["Gummi"], "avg": 2.4, "overall": 1.62, "group": 1}, {"h": 12, "par": 3, "nicks": ["Eva Harpa"], "avg": 3.12, "overall": 1.97, "group": 1}, {"h": 13, "par": 5, "nicks": ["Andri"], "avg": 2.67, "overall": 2.05, "group": 3}, {"h": 14, "par": 4, "nicks": ["Heisi"], "avg": 1.9, "overall": 1.35, "group": 2}, {"h": 15, "par": 4, "nicks": ["Gummi", "Sigrún"], "avg": 2.6, "overall": 1.95, "group": 1}, {"h": 16, "par": 5, "nicks": ["Andri"], "avg": 2.5, "overall": 1.42, "group": 3}, {"h": 17, "par": 3, "nicks": ["Heisi"], "avg": 2.4, "overall": 1.75, "group": 2}, {"h": 18, "par": 4, "nicks": ["Rósa"], "avg": 3.0, "overall": 1.89, "group": 1}];
+const GROUP_LABELS = ["", "11 holur · Begga · Eva Harpa · Eva Helga · Gummi · Hlynur · Kristjana · Nína · Óli · Rósa · Sigrún · Sigurgeir", "2 holur hvert · Heisi · Kristjana", "🏆 3 holur · Andri"];
+const HOLU_TOTAL = 3;
+const grid = document.getElementById('holuGrid');
+HOLES.forEach(hd => {
+  const diff = (hd.avg - hd.overall).toFixed(2);
+  const card = document.createElement('div');
+  const medalClass = {2:'medal-silver', 3:'medal-gold'}[hd.group] || '';
+  card.className = 'hc' + (medalClass ? ' ' + medalClass : '');
+  card.setAttribute('data-group', hd.group);
+  const photos = hd.nicks.length > 1
+    ? '<div class="hc-pair">' + hd.nicks.map(n => pimg(n,'hc-photo')).join('') + '</div>'
+    : pimg(hd.nicks[0],'hc-photo');
+  card.innerHTML =
+    '<div class="hc-hdr">H' + hd.h + ' &nbsp;·&nbsp; Par ' + hd.par + '</div>' + photos +
+    '<div class="hc-name">' + hd.nicks.join(' / ') + '</div>' +
+    '<div class="hc-avg">' + hd.avg.toFixed(2) + ' pt</div>' +
+    '<div class="hc-vs">vs ' + hd.overall.toFixed(2) + ' meðaltal</div>' +
+    '<div class="hc-diff">+' + diff + ' ↑</div>';
+  grid.appendChild(card);
+});
+let holuStep = 0;
+const progEl = document.getElementById('holuProgress');
+function revealGroup(g) {
+  const isLast = (g === HOLU_TOTAL);
+  document.querySelectorAll('#holuGrid [data-group="' + g + '"]').forEach((card, i) => {
+    setTimeout(() => { card.classList.add('vis'); if (isLast) card.classList.add('gold-glow'); }, i * 140);
+  });
+  progEl.textContent = GROUP_LABELS[g];
+  progEl.style.color = isLast ? 'rgba(232,137,58,.8)' : 'rgba(232,137,58,.45)';
+}
+function hideGroup(g) {
+  document.querySelectorAll('#holuGrid [data-group="' + g + '"]').forEach(c => c.classList.remove('vis','gold-glow'));
+  progEl.textContent = g > 1 ? GROUP_LABELS[g - 1] : 'Ýttu á → til að birta';
+  progEl.style.color = 'rgba(232,137,58,.45)';
+}
+function resetHolu() {
+  holuStep = 0;
+  document.querySelectorAll('#holuGrid .hc').forEach(c => c.classList.remove('vis','gold-glow'));
+  progEl.textContent = 'Ýttu á → til að birta';
+  progEl.style.color = 'rgba(232,137,58,.45)';
+}
+
+// ===== RACE CHART (topp 8, bestu 8 hringir · Allir / Strákar / Stelpur) =====
+const RACE_LABELS = ["M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M19", "M20"];
+const RACE_ALL = [
+  {name:"Hlynur",g:"M",data:[0, 28, 56, 56, 76, 104, 104, 127, 153, 184, 210, 222, 222, 234, 242, 248, 248, 248, 250]},
+  {name:"Eva Harpa",g:"F",data:[0, 27, 60, 60, 73, 106, 129, 153, 181, 215, 234, 249, 249, 256, 260, 269, 269, 269, 269]},
+  {name:"Óli",g:"M",data:[37, 72, 107, 145, 175, 175, 204, 231, 253, 261, 268, 272, 283, 283, 283, 283, 283, 283, 283]},
+  {name:"Kristjana",g:"F",data:[34, 68, 93, 128, 164, 164, 191, 216, 244, 251, 257, 267, 267, 267, 267, 274, 283, 283, 283]},
+  {name:"Robbi",g:"M",data:[0, 29, 62, 90, 121, 149, 183, 215, 239, 250, 251, 251, 251, 252, 252, 264, 264, 264, 264]},
+  {name:"Begga",g:"F",data:[0, 34, 62, 92, 118, 154, 183, 217, 249, 255, 260, 272, 276, 286, 286, 286, 287, 287, 290]},
+  {name:"Ási",g:"M",data:[0, 19, 45, 74, 100, 120, 120, 120, 142, 168, 168, 196, 208, 208, 208, 224, 235, 235, 235]},
+  {name:"Berglind",g:"F",data:[0, 31, 31, 31, 61, 101, 101, 101, 123, 151, 178, 217, 244, 254, 256, 256, 256, 256, 256]},
+  {name:"Maggi",g:"M",data:[32, 62, 94, 125, 150, 188, 188, 220, 251, 262, 262, 262, 263, 266, 266, 269, 271, 273, 273]},
+  {name:"Nína",g:"F",data:[33, 70, 104, 132, 160, 160, 160, 187, 215, 241, 241, 243, 243, 247, 253, 253, 253, 253, 253]},
+  {name:"Gummi",g:"M",data:[0, 30, 68, 101, 131, 155, 155, 189, 215, 255, 260, 275, 278, 280, 280, 280, 280, 284, 292]},
+  {name:"Björk",g:"F",data:[0, 37, 61, 92, 125, 161, 161, 190, 215, 245, 245, 251, 256, 256, 256, 256, 256, 256, 256]},
+  {name:"Heisi",g:"M",data:[0, 28, 55, 80, 108, 137, 167, 167, 193, 225, 225, 225, 233, 243, 251, 259, 259, 259, 275]},
+  {name:"Sigrún",g:"F",data:[0, 32, 69, 94, 129, 158, 196, 196, 227, 256, 262, 262, 274, 277, 277, 277, 277, 277, 280]},
+  {name:"Andri",g:"M",data:[0, 35, 65, 65, 103, 103, 133, 164, 190, 222, 222, 256, 258, 258, 258, 265, 268, 268, 268]},
+  {name:"Rósa",g:"F",data:[35, 70, 100, 100, 143, 182, 211, 249, 276, 282, 282, 288, 294, 294, 294, 296, 297, 297, 297]},
+  {name:"Sigurgeir",g:"M",data:[34, 63, 98, 98, 131, 166, 189, 214, 251, 261, 263, 272, 278, 278, 278, 278, 278, 278, 281]},
+  {name:"Eva Helga",g:"F",data:[29, 72, 104, 104, 138, 170, 194, 226, 260, 262, 267, 274, 279, 279, 280, 280, 280, 280, 280]}
+];
+const RACE_COLORS = ['#E8893A','#60a5fa','#f472b6','#34d399','#a78bfa','#facc15','#f87171','#d1d5db'];
+const RACE_TOP = 8;
+let raceFilter = 'all';
+function raceSet(){
+  const n = RACE_LABELS.length;
+  const pool = RACE_ALL.filter(r => raceFilter === 'all' || r.g === raceFilter)
+    .slice().sort((a,b) => b.data[n-1] - a.data[n-1]).slice(0, RACE_TOP)
+    .map((r, i) => ({...r, color: RACE_COLORS[i], rank: []}));
+  for (let w = 0; w < n; w++) {
+    pool.map((r, pi) => ({pi, s:r.data[w]})).sort((a,b) => b.s - a.s || a.pi - b.pi)
+      .forEach((o, rank) => pool[o.pi].rank.push(rank + 1));
+  }
+  return pool;
+}
+function setRaceFilter(f, btn){
+  raceFilter = f;
+  document.querySelectorAll('.race-tab').forEach(b => b.classList.toggle('on', b === btn));
+  drawRaceChart();
+}
+function drawRaceChart() {
+  const cvs = document.getElementById('raceCanvas'); if (!cvs) return;
+  const RACE = raceSet(), K = RACE.length;
+  const W = cvs.parentElement.offsetWidth || 700, H = Math.max(300, Math.min(420, Math.round(window.innerHeight * 0.48)));
+  cvs.width = W; cvs.height = H; cvs.style.height = H + 'px';
+  const ctx = cvs.getContext('2d');
+  const PAD = {t:20,r:Math.max(120,Math.round(W*0.17)),b:30,l:46};
+  const cW = W - PAD.l - PAD.r, cH = H - PAD.t - PAD.b, n = RACE_LABELS.length;
+  const px = i => PAD.l + i * cW / (n - 1);
+  const py = r => PAD.t + (r - 1) / Math.max(1, K - 1) * cH;
+  ctx.strokeStyle = 'rgba(255,255,255,.06)'; ctx.lineWidth = 1;
+  for (let r = 1; r <= K; r++) {
+    ctx.beginPath(); ctx.moveTo(PAD.l, py(r)); ctx.lineTo(PAD.l + cW, py(r)); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,.3)';
+    ctx.font = `bold ${Math.max(10,Math.round(W*0.018))}px Montserrat,Arial,sans-serif`;
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle'; ctx.fillText(r + '.', PAD.l - 8, py(r));
+  }
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillStyle = 'rgba(255,255,255,.35)'; ctx.textAlign = 'center';
+  ctx.font = `${Math.max(9,Math.round(W*0.016))}px Montserrat,Arial,sans-serif`;
+  RACE_LABELS.forEach((l, i) => { if (i % 2 === 0 || i === n - 1) ctx.fillText(l, px(i), H - 8); });
+  RACE.slice().reverse().forEach((r, k, arr) => {
+    const lw = k === arr.length - 1 ? 2.8 : 1.8;
+    ctx.strokeStyle = r.color; ctx.lineWidth = lw; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.beginPath(); r.rank.forEach((v, i) => i ? ctx.lineTo(px(i), py(v)) : ctx.moveTo(px(i), py(v))); ctx.stroke();
+    r.rank.forEach((v, i) => { ctx.beginPath(); ctx.arc(px(i), py(v), lw + .4, 0, Math.PI*2); ctx.fillStyle = r.color; ctx.fill(); });
+  });
+  // Nöfn hægra megin, við enda hverrar línu, með lokastigum
+  const fs = Math.max(11, Math.round(W * 0.019));
+  ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+  RACE.forEach(r => {
+    const y = py(r.rank[r.rank.length-1]), x0 = px(n-1);
+    ctx.strokeStyle = r.color; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(x0 + 6, y); ctx.lineTo(x0 + 14, y); ctx.stroke();
+    ctx.font = `700 ${fs}px Montserrat,Arial,sans-serif`;
+    ctx.fillStyle = r.color; ctx.fillText(r.name, x0 + 19, y);
+    const w = ctx.measureText(r.name).width;
+    ctx.font = `500 ${Math.round(fs*0.82)}px Montserrat,Arial,sans-serif`;
+    ctx.fillStyle = 'rgba(255,255,255,.45)'; ctx.fillText(r.data[n-1], x0 + 25 + w, y);
+  });
+  ctx.textBaseline = 'alphabetic';
+}
+window.addEventListener('resize', () => { if (cur === 11) drawRaceChart(); });
+
+// ===== NAVIGATION =====
+const TOTAL = 16;
+let cur = 0;
+function gotoSlide(n){
+  const prev = cur;
+  document.getElementById('s'+cur).classList.remove('on');
+  cur = Math.max(0, Math.min(n, TOTAL-1));
+  if (cur===4 && prev!==4) resetHolu();
+  if (cur===11) setTimeout(drawRaceChart, 400);
+  if (cur===9 && prev!==9) resetFacts();
+  if (cur===2 && prev!==2) resetPairs();
+  document.getElementById('s'+cur).classList.add('on');
+  document.getElementById('btnPrev').style.opacity = cur===0 ? '0.3' : '1';
+  document.getElementById('btnNext').style.opacity = cur===TOTAL-1 ? '0.3' : '1';
+  if (cur===14) startChampionSequence();
+  if (cur===7) launchBikarConfetti();
+  updateMenuHighlight();
+}
+// Parakeppnin: skref 1 = 3. sæti, skref 2 = toppurinn
+let pairStep = 0; const PAIR_TOTAL = 2;
+function pairShow(s, on){
+  document.querySelectorAll('#s2 [data-pr="'+s+'"]').forEach(el => el.classList.toggle('hid', !on));
+  if (s === 2) document.getElementById('tieBanner').style.opacity = on ? '1' : '0';
+}
+let factStep = 0;
+function factShow(k, on){ const el = document.querySelector('#s9 [data-fact="'+k+'"]'); if (el) el.classList.toggle('hid', !on);
+  document.getElementById('factHint').style.opacity = factStep >= 4 ? '0' : '1'; }
+function resetFacts(){ factStep = 0; document.querySelectorAll('#s9 .fact').forEach(e => e.classList.add('hid')); document.getElementById('factHint').style.opacity = '1'; }
+function resetPairs(){ pairStep = 0; pairShow(1,false); pairShow(2,false); }
+
+const SLIDE_NAMES = ['Lokahóf 2026','Duglegasti Kylfingurinn','Parakeppnin','Besti Hringur','Holumeistari',
+  'Ryder Cup','Fuglameistari','Bikarinn','Nákvæmni & högg','Áhugaverðar staðreyndir','Stigataflan','Bardagi á toppnum',
+  '3. sæti','2. sæti','MEA meistarinn','Verðlaunahafar'];
+const smenuPanel = document.getElementById('smenuPanel');
+SLIDE_NAMES.forEach((name, i) => {
+  const el = document.createElement('div');
+  el.className = 'smenu-item' + (i===0 ? ' on' : '');
+  el.innerHTML = `<span class="smenu-num">${i+1}</span>${name}`;
+  el.onclick = () => { gotoSlide(i); toggleMenu(false); };
+  smenuPanel.appendChild(el);
+});
+function updateMenuHighlight(){ document.querySelectorAll('.smenu-item').forEach((el,i) => el.classList.toggle('on', i===cur)); }
+function toggleMenu(force){
+  const open = force!==undefined ? force : !smenuPanel.classList.contains('open');
+  smenuPanel.classList.toggle('open', open);
+  if (open) updateMenuHighlight();
+}
+document.addEventListener('click', e => { if (!e.target.closest('#smenuPanel') && !e.target.closest('#smenuBtn')) toggleMenu(false); });
+document.addEventListener('keydown', e => { if (e.key==='Escape') toggleMenu(false); });
+function go(d){
+  if (cur===4){
+    if (d===1 && holuStep < HOLU_TOTAL){ holuStep++; revealGroup(holuStep); return; }
+    if (d===-1 && holuStep > 0){ hideGroup(holuStep); holuStep--; return; }
+  }
+  if (cur===9){
+    if (d===1 && factStep < 4){ factStep++; factShow(factStep, true); return; }
+    if (d===-1 && factStep > 0){ factShow(factStep, false); factStep--; return; }
+  }
+  if (cur===2){
+    if (d===1 && pairStep < PAIR_TOTAL){ pairStep++; pairShow(pairStep, true); return; }
+    if (d===-1 && pairStep > 0){ pairShow(pairStep, false); pairStep--; return; }
+  }
+  gotoSlide(cur+d);
+}
+document.addEventListener('keydown', e => {
+  if (e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(1)}
+  else if (e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1)}
+});
+let tx0 = 0;
+document.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX }, {passive:true});
+document.addEventListener('touchend', e => { const dx = e.changedTouches[0].clientX - tx0; if (Math.abs(dx) > 40) go(dx<0?1:-1) });
+document.getElementById('btnPrev').style.opacity = '0.3';
+
+// ===== COUNTDOWN → CHAMPION =====
+let champDone = false;
+function startChampionSequence() {
+  if (champDone) { launchConfetti(); return; }
+  const overlay = document.getElementById('cdOverlay');
+  const numEl = document.getElementById('cdNum');
+  overlay.style.display = 'flex';
+  const counts = [3,2,1];
+  let i = 0;
+  function tick() {
+    if (cur !== 14) { overlay.style.display = 'none'; return; }
+    numEl.textContent = counts[i];
+    // Re-trigger animation by cloning
+    numEl.style.animation = 'none'; void numEl.offsetWidth; numEl.style.animation = '';
+    i++;
+    if (i < counts.length) {
+      setTimeout(tick, 1050);
+    } else {
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        champDone = true;
+        launchConfetti();
+      }, 1050);
+    }
+  }
+  tick();
+}
+
+// ===== BIKAR CONFETTI =====
+let bikarRunning=false;
+function launchBikarConfetti(){
+  if(bikarRunning)return; bikarRunning=true;
+  const cvs=document.getElementById('bikarConfetti');
+  const ctx=cvs.getContext('2d');
+  cvs.width=window.innerWidth; cvs.height=window.innerHeight;
+  const COLS=['#E8893A','#F7DFB4','#ffffff','#9C3D14','#C8A430','#8E3B76'];
+  const pp=Array.from({length:90},()=>mkBP());
+  function mkBP(){return{
+    x:Math.random()*cvs.width, y:-Math.random()*cvs.height*.4,
+    vx:(Math.random()-.5)*1.5, vy:Math.random()*2.2+0.8,
+    c:COLS[Math.floor(Math.random()*COLS.length)],
+    w:Math.random()*9+3, h:Math.random()*4+2,
+    r:Math.random()*360, rs:(Math.random()-.5)*5
+  }}
+  let t=0;
+  (function fr(){
+    if(cur!==7){bikarRunning=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
+    t++;
+    ctx.clearRect(0,0,cvs.width,cvs.height);
+    const fade=t>180?Math.max(0,1-(t-180)/60):1;
+    ctx.globalAlpha=fade;
+    pp.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy; p.r+=p.rs;
+      if(p.y>cvs.height+10){Object.assign(p,mkBP());p.y=-10;}
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);
+      ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+    });
+    ctx.globalAlpha=1;
+    if(t<240) requestAnimationFrame(fr);
+    else{bikarRunning=false;ctx.clearRect(0,0,cvs.width,cvs.height);}
+  })();
+}
+
+// ===== CONFETTI =====
+let running=false;
+function launchConfetti(){
+  if(running)return; running=true;
+  const cvs=document.getElementById('confettiCanvas');
+  const ctx=cvs.getContext('2d');
+  cvs.width=window.innerWidth; cvs.height=window.innerHeight;
+  const COLS=['#E8893A','#F7DFB4','#ffffff','#9C3D14','#C8A430','#8E3B76'];
+  const pp=Array.from({length:140},()=>mkP());
+  function mkP(){return{
+    x:Math.random()*cvs.width,y:-Math.random()*cvs.height*.5,
+    vx:(Math.random()-.5)*1.8,vy:Math.random()*2.6+1,
+    c:COLS[Math.floor(Math.random()*COLS.length)],
+    w:Math.random()*10+4,h:Math.random()*5+2,
+    r:Math.random()*360,rs:(Math.random()-.5)*6
+  }}
+  (function fr(){
+    if(cur!==14){running=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
+    ctx.clearRect(0,0,cvs.width,cvs.height);
+    pp.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.r+=p.rs;
+      if(p.y>cvs.height+10){Object.assign(p,mkP());p.y=-10;}
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r*Math.PI/180);
+      ctx.fillStyle=p.c;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+    });
+    requestAnimationFrame(fr);
+  })();
+}
+window.addEventListener('resize',()=>{
+  const c=document.getElementById('confettiCanvas');
+  if(c){c.width=window.innerWidth;c.height=window.innerHeight}
+  const b=document.getElementById('bikarConfetti');
+  if(b){b.width=window.innerWidth;b.height=window.innerHeight}
+});
+
+</script>
+</body>
+</html>
