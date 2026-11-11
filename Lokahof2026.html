@@ -435,6 +435,13 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   margin-bottom:10px}
 
 /* ===== MÁ ÉG AÐEINS: extras ===== */
+#s7{padding-top:clamp(10px,2vh,30px);padding-bottom:70px}
+#s7 .bracket-col{gap:clamp(3px,.7vh,7px)}
+#s7 .bm{padding:clamp(2px,.35vh,5px) clamp(5px,.8vw,9px);font-size:clamp(.52rem,.9vw,.68rem)}
+#s7 .bm-score,#s7 .bm-final-vs{padding:0 4px;font-size:clamp(.44rem,.7vw,.56rem)}
+#s7 .bm-pair{min-width:clamp(64px,7vw,92px);width:clamp(64px,7vw,92px)}
+#s7 .bracket-outer{gap:clamp(3px,.9vw,10px)}
+#s7 .bikar-note{margin-top:4px}
 .hc{position:relative}
 .hc-medal{position:absolute;top:6px;left:8px;font-size:clamp(1rem,1.8vw,1.5rem);line-height:1;
   opacity:0;transform:scale(.4) rotate(-20deg);transition:all .45s cubic-bezier(.3,1.6,.5,1);pointer-events:none;
@@ -746,14 +753,24 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 <!-- S7: BIKAR BRACKET -->
 <div class="slide" id="s7">
   <canvas id="bikarConfetti" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
-  <div class="eyebrow">🏆 Bikar Má ég aðeins 2026</div>
-  <div class="h1">Bikarinn</div>
-  <div class="rule"></div>
+  <div class="eyebrow" style="margin-bottom:2px">🏆 Bikar Má ég aðeins 2026</div>
+  <div class="h1" style="font-size:clamp(1.5rem,4vw,2.8rem)">Bikarinn</div>
+  <div class="rule" style="margin:6px auto 8px"></div>
   <div class="bikar-layout">
     <div class="bracket-outer" style="margin-top:0">
       <div class="bracket-col">
+        <div class="bracket-col-label">Umferð 1</div>
+        <div class="bm-pair" style="visibility:hidden"><div class="bm lost">Heisi</div><div class="bm-score">6og5</div><div class="bm won champ">Gummi</div></div><div class="bm-pair" style="visibility:hidden"><div class="bm won">Kristjana</div><div class="bm-score">1UP</div><div class="bm lost">Björk</div></div><div class="bm-pair" style="visibility:hidden"><div class="bm won">Sigrún</div><div class="bm-score">AS (seinni 9)</div><div class="bm lost">Eva Harpa</div></div><div class="bm-pair"><div class="bm lost">Sigurgeir</div><div class="bm-score">4og3</div><div class="bm won">Eva Helga</div></div><div class="bm-pair" style="visibility:hidden"><div class="bm won">Berglind</div><div class="bm-score">1UP</div><div class="bm lost">Óli</div></div><div class="bm-pair" style="visibility:hidden"><div class="bm won">Begga</div><div class="bm-score">1UP</div><div class="bm lost">Robbi</div></div><div class="bm-pair" style="visibility:hidden"><div class="bm lost">Nína</div><div class="bm-score">1UP</div><div class="bm won">Rósa</div></div><div class="bm-pair"><div class="bm lost">Hlynur</div><div class="bm-score">5og4</div><div class="bm won">Andri</div></div>
+      </div>
+      <div class="bracket-arrow">→</div>
+      <div class="bracket-col">
+        <div class="bracket-col-label">Umferð 2</div>
+        <div class="bm-pair"><div class="bm lost">Heisi</div><div class="bm-score">6og5</div><div class="bm won champ">Gummi</div></div><div class="bm-pair"><div class="bm won">Kristjana</div><div class="bm-score">1UP</div><div class="bm lost">Björk</div></div><div class="bm-pair"><div class="bm won">Sigrún</div><div class="bm-score">AS (seinni 9)</div><div class="bm lost">Eva Harpa</div></div><div class="bm-pair"><div class="bm won">Eva Helga</div><div class="bm-score">3og1</div><div class="bm lost">Ási</div></div><div class="bm-pair"><div class="bm won">Berglind</div><div class="bm-score">1UP</div><div class="bm lost">Óli</div></div><div class="bm-pair"><div class="bm won">Begga</div><div class="bm-score">1UP</div><div class="bm lost">Robbi</div></div><div class="bm-pair"><div class="bm lost">Nína</div><div class="bm-score">1UP</div><div class="bm won">Rósa</div></div><div class="bm-pair"><div class="bm lost">Andri</div><div class="bm-score">1UP</div><div class="bm won">Maggi</div></div>
+      </div>
+      <div class="bracket-arrow">→</div>
+      <div class="bracket-col">
         <div class="bracket-col-label">8 manna</div>
-        <div class="bm-pair"><div class="bm won">Rósa</div><div class="bm-score">2og1</div><div class="bm lost">Maggi</div></div><div class="bm-pair"><div class="bm lost">Sigrún</div><div class="bm-score">3og1</div><div class="bm won">Eva Helga</div></div><div class="bm-pair"><div class="bm won">Berglind</div><div class="bm-score">4og3</div><div class="bm lost">Begga</div></div><div class="bm-pair"><div class="bm won champ">Gummi</div><div class="bm-score">3og2</div><div class="bm lost">Kristjana</div></div>
+        <div class="bm-pair"><div class="bm won champ">Gummi</div><div class="bm-score">3og2</div><div class="bm lost">Kristjana</div></div><div class="bm-pair"><div class="bm lost">Sigrún</div><div class="bm-score">3og1</div><div class="bm won">Eva Helga</div></div><div class="bm-pair"><div class="bm won">Berglind</div><div class="bm-score">4og3</div><div class="bm lost">Begga</div></div><div class="bm-pair"><div class="bm won">Rósa</div><div class="bm-score">2og1</div><div class="bm lost">Maggi</div></div>
       </div>
       <div class="bracket-arrow">→</div>
       <div class="bracket-col">
