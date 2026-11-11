@@ -183,7 +183,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .hc-diff{font-size:clamp(.56rem,.95vw,.68rem);color:#5cbd5c;font-weight:600}
 
 /* ===== S9: STIGATAFLAN ===== */
-#s10{background:radial-gradient(ellipse at 50% 42%,#200F24 0%,var(--bg) 65%)}
+#s9{background:radial-gradient(ellipse at 50% 42%,#200F24 0%,var(--bg) 65%)}
 .stbl{width:min(650px,88vw);border-collapse:collapse;margin-top:12px}
 .stbl thead tr{border-bottom:1px solid rgba(232,137,58,.35)}
 .stbl thead td{padding:4px 8px;font-size:clamp(.64rem,1.2vw,.76rem);
@@ -220,7 +220,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .sekt-row.first .sekt-amt{color:var(--gold)}
 
 /* ===== S11: BRONZE ===== */
-#s12{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
+#s10{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
 .pod-img{width:clamp(140px,20vw,270px);height:clamp(140px,20vw,270px);
   object-fit:cover;object-position:center 35%;border-radius:10px;display:block;margin:16px auto}
 .bronze-frm{border:3px solid var(--bronze);box-shadow:0 0 48px rgba(205,127,50,.28),0 20px 60px rgba(0,0,0,.7)}
@@ -235,7 +235,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   letter-spacing:.3em;font-weight:300;text-transform:uppercase;text-align:center}
 
 /* ===== S12: SILVER ===== */
-#s13{background:radial-gradient(ellipse at 50% 35%,#0C0C18 0%,var(--bg) 65%)}
+#s11{background:radial-gradient(ellipse at 50% 35%,#0C0C18 0%,var(--bg) 65%)}
 .vs-row{display:flex;align-items:center;
   gap:clamp(16px,4vw,52px);margin-top:16px;flex-wrap:wrap;justify-content:center}
 .vs-card{display:flex;flex-direction:column;align-items:center;gap:11px}
@@ -254,7 +254,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 @keyframes breathe{0%,100%{opacity:.45;transform:scale(.98)}50%{opacity:1;transform:scale(1.02)}}
 
 /* ===== S13: CHAMPION ===== */
-#s14{background:radial-gradient(ellipse at 50% 30%,#3A1A08 0%,#1A0A10 45%,var(--bg) 70%);overflow:hidden}
+#s12{background:radial-gradient(ellipse at 50% 30%,#3A1A08 0%,#1A0A10 45%,var(--bg) 70%);overflow:hidden}
 #confettiCanvas{position:absolute;inset:0;pointer-events:none;z-index:0}
 .champ-inner{position:relative;z-index:1;text-align:center}
 .champ-eye{font-size:clamp(.58rem,1.3vw,.8rem);letter-spacing:.5em;
@@ -317,7 +317,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .rr-fmt{font-size:clamp(.60rem,1vw,.72rem);color:rgba(255,255,255,.25);margin-top:2px}
 
 /* ===== S10: BEST-8 KEPPNIN ===== */
-#s11{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
+#s14{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
 .meistara-podium{display:flex;align-items:flex-end;justify-content:center;
   gap:clamp(10px,3vw,36px);margin-top:14px}
 .mp-card{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
@@ -435,8 +435,20 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   margin-bottom:10px}
 
 /* ===== MÁ ÉG AÐEINS: extras ===== */
-#s11 .h1{font-size:clamp(1.6rem,4.5vw,3.2rem)}
-#s11 .rule{margin:8px auto}
+.hc{position:relative}
+.hc-medal{position:absolute;top:6px;left:8px;font-size:clamp(1rem,1.8vw,1.5rem);line-height:1;
+  opacity:0;transform:scale(.4) rotate(-20deg);transition:all .45s cubic-bezier(.3,1.6,.5,1);pointer-events:none;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.6))}
+.hc.top3{box-shadow:0 0 0 3px var(--gold-l),0 0 26px 6px rgba(247,223,180,.45)!important;z-index:2;
+  animation:topPulse 2.2s ease-in-out infinite}
+.hc.top3 .hc-medal{opacity:1;transform:scale(1) rotate(0)}
+.hc-diff{transition:all .4s ease;border-radius:999px}
+.hc.top3 .hc-diff{background:#22c55e;color:#06210f;font-weight:800;padding:2px 9px;
+  font-size:clamp(.72rem,1.2vw,.9rem);box-shadow:0 0 14px rgba(34,197,94,.75)}
+@keyframes topPulse{0%,100%{box-shadow:0 0 0 3px var(--gold-l),0 0 18px 3px rgba(247,223,180,.35)}
+  50%{box-shadow:0 0 0 3px var(--gold-l),0 0 34px 10px rgba(247,223,180,.6)}}
+#s14 .h1{font-size:clamp(1.6rem,4.5vw,3.2rem)}
+#s14 .rule{margin:8px auto}
 .race-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:6px;position:relative;z-index:2}
 .race-tab{font-family:inherit;font-size:clamp(.62rem,1.1vw,.76rem);letter-spacing:.14em;text-transform:uppercase;font-weight:600;
   padding:6px 14px;border-radius:999px;cursor:pointer;color:rgba(255,255,255,.55);
@@ -707,17 +719,17 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   <div class="rule"></div>
   <div class="sub" style="margin-bottom:6px">Flestir fuglar á tímabilinu &nbsp;·&nbsp; 1 högg undir pari</div>
   <div class="fugla-podium">
-    <div class="fp-card silver-b">
-      <div class="fp-medal">🥈</div>
-      <img class="fp-photo" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'">
-      <div class="fp-name">Maggi</div>
-      <div class="fp-count">14</div>
-      <div class="fp-label">fuglar</div>
-    </div>
     <div class="fp-card gold-b elevated">
       <div class="fp-medal">🥇</div>
       <img class="fp-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
       <div class="fp-name">Gummi</div>
+      <div class="fp-count">15</div>
+      <div class="fp-label">fuglar</div>
+    </div>
+    <div class="fp-card gold-b elevated">
+      <div class="fp-medal">🥇</div>
+      <img class="fp-photo" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'">
+      <div class="fp-name">Maggi</div>
       <div class="fp-count">15</div>
       <div class="fp-label">fuglar</div>
     </div>
@@ -793,8 +805,76 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   </div>
 </div>
 
-<!-- S9: ÁHUGAVERÐAR STAÐREYNDIR -->
+<!-- S10: STIGATAFLAN -->
 <div class="slide" id="s9">
+  <div class="eyebrow">📊 MEA meistarinn 2026</div>
+  <div class="h1">Stigataflan</div>
+  <div class="rule"></div>
+  <div class="sub" style="font-size:clamp(.68rem,1.3vw,.82rem);margin-bottom:2px">
+    Bestu 8 hringir &nbsp;·&nbsp; M1–M20
+  </div>
+  <table class="stbl">
+    <thead><tr><td class="rk"></td><td class="nm"></td><td class="sc">Stig</td><td class="av">Meðaltal</td><td class="rd">Hringir</td></tr></thead>
+    <tbody>
+      <tr><td class="rk">4.</td><td class="nm">Óli</td><td class="sc">283</td><td class="av">35,4</td><td class="rd">15</td></tr>
+      <tr><td class="rk">4.</td><td class="nm">Kristjana</td><td class="sc">283</td><td class="av">35,4</td><td class="rd">14</td></tr>
+      <tr><td class="rk">6.</td><td class="nm">Sigurgeir</td><td class="sc">281</td><td class="av">35,1</td><td class="rd">17</td></tr>
+      <tr><td class="rk">7.</td><td class="nm">Sigrún</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">14</td></tr>
+      <tr><td class="rk">7.</td><td class="nm">Eva Helga</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">15</td></tr>
+      <tr><td class="rk">9.</td><td class="nm">Heisi</td><td class="sc">275</td><td class="av">34,4</td><td class="rd">14</td></tr>
+      <tr><td class="rk">10.</td><td class="nm">Maggi</td><td class="sc">273</td><td class="av">34,1</td><td class="rd">16</td></tr>
+      <tr><td class="rk">11.</td><td class="nm">Eva Harpa</td><td class="sc">269</td><td class="av">33,6</td><td class="rd">14</td></tr>
+      <tr><td class="rk">12.</td><td class="nm">Andri</td><td class="sc">268</td><td class="av">33,5</td><td class="rd">12</td></tr>
+      <tr><td class="rk">13.</td><td class="nm">Robbi</td><td class="sc">264</td><td class="av">33,0</td><td class="rd">16</td></tr>
+      <tr><td class="rk">14.</td><td class="nm">Berglind</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">10</td></tr>
+      <tr><td class="rk">14.</td><td class="nm">Björk</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">17</td></tr>
+      <tr><td class="rk">16.</td><td class="nm">Nína</td><td class="sc">253</td><td class="av">31,6</td><td class="rd">14</td></tr>
+      <tr><td class="rk">17.</td><td class="nm">Hlynur</td><td class="sc">250</td><td class="av">31,3</td><td class="rd">13</td></tr>
+      <tr><td class="rk">18.</td><td class="nm">Ási</td><td class="sc">235</td><td class="av">29,4</td><td class="rd">12</td></tr>
+    </tbody>
+  </table>
+  <div class="stbl-teaser">⬆ &nbsp; Topp 3 birtur síðar &nbsp; ⬆</div>
+</div>
+
+<!-- S11: 3RD -->
+<div class="slide" id="s10">
+  <div class="eyebrow">🥉 MEA meistarinn 2026</div>
+  <div class="rule"></div>
+  <div class="rank-lbl bronze-c">Þriðja sætið</div>
+  <img class="pod-img bronze-frm" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+  <div class="w-name">Begga</div>
+  <div class="w-score">290 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,3</div>
+</div>
+
+<!-- S12: 2ND -->
+<div class="slide" id="s11">
+  <div class="eyebrow">🥈 MEA meistarinn 2026</div>
+  <div class="rule"></div>
+  <div class="rank-lbl silver-c">Annað sætið</div>
+  <img class="pod-img silver-frm" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+  <div class="w-name">Gummi</div>
+  <div class="w-score">292 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,5</div>
+</div>
+
+<!-- S13: CHAMPION -->
+<div class="slide" id="s12">
+  <canvas id="confettiCanvas"></canvas>
+  <div class="champ-inner" id="champInner">
+    <div class="champ-eye">🏆 &nbsp; MEA meistarinn 2026 &nbsp; 🏆</div>
+    <div class="rule"></div>
+    <img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;width:clamp(100px,16vw,200px);height:clamp(100px,16vw,200px);object-fit:cover;border-radius:50%;border:4px solid var(--gold);box-shadow:0 0 50px rgba(232,137,58,.8),0 0 100px rgba(232,137,58,.35);display:block;margin:0 auto 8px" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+    <div class="champ-q" id="champName">Rósa</div>
+    <div class="champ-hint">Sigurvegari Má ég aðeins 2026</div>
+    <div class="champ-note">Rósa 297 &nbsp;·&nbsp; Gummi 292 &nbsp;|&nbsp; 5 stiga munur</div>
+  </div>
+  <div id="cdOverlay" style="display:none;position:absolute;inset:0;
+    align-items:center;justify-content:center;z-index:10;background:var(--bg)">
+    <div class="cd-num" id="cdNum"></div>
+  </div>
+</div>
+
+<!-- S9: ÁHUGAVERÐAR STAÐREYNDIR -->
+<div class="slide" id="s13">
   <div class="eyebrow" style="margin-bottom:4px">💡 Tímabilið 2026</div>
   <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Áhugaverðar staðreyndir</div>
   <div class="rule" style="margin:8px auto"></div>
@@ -823,37 +903,8 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   <div id="factHint" style="margin-top:10px;font-size:clamp(.62rem,1.1vw,.74rem);letter-spacing:.28em;color:rgba(232,137,58,.4);text-transform:uppercase">Ýttu á → til að birta</div>
 </div>
 
-<!-- S10: STIGATAFLAN -->
-<div class="slide" id="s10">
-  <div class="eyebrow">📊 MEA meistarinn 2026</div>
-  <div class="h1">Stigataflan</div>
-  <div class="rule"></div>
-  <div class="sub" style="font-size:clamp(.68rem,1.3vw,.82rem);margin-bottom:2px">
-    Bestu 8 hringir &nbsp;·&nbsp; M1–M20
-  </div>
-  <table class="stbl">
-    <thead><tr><td class="rk"></td><td class="nm"></td><td class="sc">Stig</td><td class="av">Meðaltal</td><td class="rd">Hringir</td></tr></thead>
-    <tbody>
-      <tr><td class="rk">6.</td><td class="nm">Sigurgeir</td><td class="sc">281</td><td class="av">35,1</td><td class="rd">17</td></tr>
-      <tr><td class="rk">7.</td><td class="nm">Sigrún</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">14</td></tr>
-      <tr><td class="rk">7.</td><td class="nm">Eva Helga</td><td class="sc">280</td><td class="av">35,0</td><td class="rd">15</td></tr>
-      <tr><td class="rk">9.</td><td class="nm">Heisi</td><td class="sc">275</td><td class="av">34,4</td><td class="rd">14</td></tr>
-      <tr><td class="rk">10.</td><td class="nm">Maggi</td><td class="sc">273</td><td class="av">34,1</td><td class="rd">16</td></tr>
-      <tr><td class="rk">11.</td><td class="nm">Eva Harpa</td><td class="sc">269</td><td class="av">33,6</td><td class="rd">14</td></tr>
-      <tr><td class="rk">12.</td><td class="nm">Andri</td><td class="sc">268</td><td class="av">33,5</td><td class="rd">12</td></tr>
-      <tr><td class="rk">13.</td><td class="nm">Robbi</td><td class="sc">264</td><td class="av">33,0</td><td class="rd">16</td></tr>
-      <tr><td class="rk">14.</td><td class="nm">Berglind</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">10</td></tr>
-      <tr><td class="rk">14.</td><td class="nm">Björk</td><td class="sc">256</td><td class="av">32,0</td><td class="rd">17</td></tr>
-      <tr><td class="rk">16.</td><td class="nm">Nína</td><td class="sc">253</td><td class="av">31,6</td><td class="rd">14</td></tr>
-      <tr><td class="rk">17.</td><td class="nm">Hlynur</td><td class="sc">250</td><td class="av">31,3</td><td class="rd">13</td></tr>
-      <tr><td class="rk">18.</td><td class="nm">Ási</td><td class="sc">235</td><td class="av">29,4</td><td class="rd">12</td></tr>
-    </tbody>
-  </table>
-  <div class="stbl-teaser">⬆ &nbsp; Topp 5 birtur síðar &nbsp; ⬆</div>
-</div>
-
 <!-- S10: RACE -->
-<div class="slide" id="s11">
+<div class="slide" id="s14">
   <div class="eyebrow">📈 MEA meistarinn 2026</div>
   <div class="h1">Bardagi á toppnum</div>
   <div class="rule"></div>
@@ -864,43 +915,6 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
     <button class="race-tab" onclick="setRaceFilter('F',this)">Stelpur</button>
   </div>
   <div class="race-wrap"><canvas id="raceCanvas" height="300"></canvas></div>
-</div>
-
-<!-- S11: 3RD -->
-<div class="slide" id="s12">
-  <div class="eyebrow">🥉 MEA meistarinn 2026</div>
-  <div class="rule"></div>
-  <div class="rank-lbl bronze-c">Þriðja sætið</div>
-  <img class="pod-img bronze-frm" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
-  <div class="w-name">Begga</div>
-  <div class="w-score">290 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,3</div>
-</div>
-
-<!-- S12: 2ND -->
-<div class="slide" id="s13">
-  <div class="eyebrow">🥈 MEA meistarinn 2026</div>
-  <div class="rule"></div>
-  <div class="rank-lbl silver-c">Annað sætið</div>
-  <img class="pod-img silver-frm" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
-  <div class="w-name">Gummi</div>
-  <div class="w-score">292 &nbsp;stig &nbsp;·&nbsp; meðaltal 36,5</div>
-</div>
-
-<!-- S13: CHAMPION -->
-<div class="slide" id="s14">
-  <canvas id="confettiCanvas"></canvas>
-  <div class="champ-inner" id="champInner">
-    <div class="champ-eye">🏆 &nbsp; MEA meistarinn 2026 &nbsp; 🏆</div>
-    <div class="rule"></div>
-    <img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;width:clamp(100px,16vw,200px);height:clamp(100px,16vw,200px);object-fit:cover;border-radius:50%;border:4px solid var(--gold);box-shadow:0 0 50px rgba(232,137,58,.8),0 0 100px rgba(232,137,58,.35);display:block;margin:0 auto 8px" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
-    <div class="champ-q" id="champName">Rósa</div>
-    <div class="champ-hint">Sigurvegari Má ég aðeins 2026</div>
-    <div class="champ-note">Rósa 297 &nbsp;·&nbsp; Gummi 292 &nbsp;|&nbsp; 5 stiga munur</div>
-  </div>
-  <div id="cdOverlay" style="display:none;position:absolute;inset:0;
-    align-items:center;justify-content:center;z-index:10;background:var(--bg)">
-    <div class="cd-num" id="cdNum"></div>
-  </div>
 </div>
 
 <!-- S14: SUMMARY -->
@@ -924,7 +938,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
     <div class="sum-box"><div class="sum-lbl">👫 Parakeppnin</div>
       <div class="pair-faces"><img class="" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><img class="" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><img class="" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><img class="" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"></div>
       <div class="sum-nm">Andri &amp; Rósa / Heisi &amp; Sigrún</div></div>
-    <div class="sum-box"><div class="sum-lbl">🦅 Fuglameistari</div><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="sum-nm">Gummi</div></div>
+    <div class="sum-box"><div class="sum-lbl">🦅 Fuglameistari</div><div class="pair-faces"><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><img class="" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'"></div><div class="sum-nm">Gummi &amp; Maggi</div></div>
     <div class="sum-box"><div class="sum-lbl">⭐ Besti hringur</div><img class="" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div class="sum-nm">Heisi</div></div>
     <div class="sum-box"><div class="sum-lbl">⛳ Holumeistari</div><img class="" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><div class="sum-nm">Andri</div></div>
     <div class="sum-box"><div class="sum-lbl">🎯 Næstur holu</div><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="sum-nm">Gummi</div></div>
@@ -983,8 +997,25 @@ HOLES.forEach(hd => {
     '<div class="hc-avg">' + hd.avg.toFixed(2) + ' pt</div>' +
     '<div class="hc-vs">vs ' + hd.overall.toFixed(2) + ' meðaltal</div>' +
     '<div class="hc-diff">+' + diff + ' ↑</div>';
+  card.dataset.diff = (hd.avg - hd.overall);
   grid.appendChild(card);
 });
+// Þrjár holur með mestan mun yfir meðaltali fá hring + highlight þegar allt er birt
+[...document.querySelectorAll('#holuGrid .hc')]
+  .sort((a, b) => b.dataset.diff - a.dataset.diff).slice(0, 3)
+  .forEach((c, i) => { c.dataset.top = i + 1;
+    c.insertAdjacentHTML('beforeend', '<div class="hc-medal">' + ['🥇','🥈','🥉'][i] + '</div>'); });
+let topTimer = null;
+function showTop3(on) {
+  clearTimeout(topTimer);
+  const cards = document.querySelectorAll('#holuGrid .hc[data-top]');
+  if (!on) { cards.forEach(c => c.classList.remove('top3')); return; }
+  topTimer = setTimeout(() => {
+    if (cur !== 4 || holuStep !== HOLU_TOTAL + 1) return;
+    [...cards].sort((a,b) => b.dataset.top - a.dataset.top)
+      .forEach((c, i) => setTimeout(() => c.classList.add('top3'), i * 450));
+  }, 50);
+}
 let holuStep = 0;
 const progEl = document.getElementById('holuProgress');
 function revealGroup(g) {
@@ -996,12 +1027,14 @@ function revealGroup(g) {
   progEl.style.color = isLast ? 'rgba(232,137,58,.8)' : 'rgba(232,137,58,.45)';
 }
 function hideGroup(g) {
+  showTop3(false);
   document.querySelectorAll('#holuGrid [data-group="' + g + '"]').forEach(c => c.classList.remove('vis','gold-glow'));
   progEl.textContent = g > 1 ? GROUP_LABELS[g - 1] : 'Ýttu á → til að birta';
   progEl.style.color = 'rgba(232,137,58,.45)';
 }
 function resetHolu() {
   holuStep = 0;
+  showTop3(false);
   document.querySelectorAll('#holuGrid .hc').forEach(c => c.classList.remove('vis','gold-glow'));
   progEl.textContent = 'Ýttu á → til að birta';
   progEl.style.color = 'rgba(232,137,58,.45)';
@@ -1090,7 +1123,7 @@ function drawRaceChart() {
   });
   ctx.textBaseline = 'alphabetic';
 }
-window.addEventListener('resize', () => { if (cur === 11) drawRaceChart(); });
+window.addEventListener('resize', () => { if (cur === 14) drawRaceChart(); });
 
 // ===== NAVIGATION =====
 const TOTAL = 16;
@@ -1100,13 +1133,13 @@ function gotoSlide(n){
   document.getElementById('s'+cur).classList.remove('on');
   cur = Math.max(0, Math.min(n, TOTAL-1));
   if (cur===4 && prev!==4) resetHolu();
-  if (cur===11) setTimeout(drawRaceChart, 400);
-  if (cur===9 && prev!==9) resetFacts();
+  if (cur===14) setTimeout(drawRaceChart, 400);
+  if (cur===13 && prev!==13) resetFacts();
   if (cur===2 && prev!==2) resetPairs();
   document.getElementById('s'+cur).classList.add('on');
   document.getElementById('btnPrev').style.opacity = cur===0 ? '0.3' : '1';
   document.getElementById('btnNext').style.opacity = cur===TOTAL-1 ? '0.3' : '1';
-  if (cur===14) startChampionSequence();
+  if (cur===12) startChampionSequence();
   if (cur===7) launchBikarConfetti();
   updateMenuHighlight();
 }
@@ -1117,14 +1150,14 @@ function pairShow(s, on){
   if (s === 2) document.getElementById('tieBanner').style.opacity = on ? '1' : '0';
 }
 let factStep = 0;
-function factShow(k, on){ const el = document.querySelector('#s9 [data-fact="'+k+'"]'); if (el) el.classList.toggle('hid', !on);
+function factShow(k, on){ const el = document.querySelector('#s13 [data-fact="'+k+'"]'); if (el) el.classList.toggle('hid', !on);
   document.getElementById('factHint').style.opacity = factStep >= 4 ? '0' : '1'; }
-function resetFacts(){ factStep = 0; document.querySelectorAll('#s9 .fact').forEach(e => e.classList.add('hid')); document.getElementById('factHint').style.opacity = '1'; }
+function resetFacts(){ factStep = 0; document.querySelectorAll('#s13 .fact').forEach(e => e.classList.add('hid')); document.getElementById('factHint').style.opacity = '1'; }
 function resetPairs(){ pairStep = 0; pairShow(1,false); pairShow(2,false); }
 
 const SLIDE_NAMES = ['Lokahóf 2026','Duglegasti Kylfingurinn','Parakeppnin','Besti Hringur','Holumeistari',
-  'Ryder Cup','Fuglameistari','Bikarinn','Nákvæmni & högg','Áhugaverðar staðreyndir','Stigataflan','Bardagi á toppnum',
-  '3. sæti','2. sæti','MEA meistarinn','Verðlaunahafar'];
+  'Ryder Cup','Fuglameistari','Bikarinn','Nákvæmni & högg','Stigataflan',
+  '3. sæti','2. sæti','MEA meistarinn','Áhugaverðar staðreyndir','Bardagi á toppnum','Verðlaunahafar'];
 const smenuPanel = document.getElementById('smenuPanel');
 SLIDE_NAMES.forEach((name, i) => {
   const el = document.createElement('div');
@@ -1144,9 +1177,11 @@ document.addEventListener('keydown', e => { if (e.key==='Escape') toggleMenu(fal
 function go(d){
   if (cur===4){
     if (d===1 && holuStep < HOLU_TOTAL){ holuStep++; revealGroup(holuStep); return; }
+    if (d===1 && holuStep === HOLU_TOTAL){ holuStep++; showTop3(true); return; }
+    if (d===-1 && holuStep === HOLU_TOTAL + 1){ showTop3(false); holuStep--; return; }
     if (d===-1 && holuStep > 0){ hideGroup(holuStep); holuStep--; return; }
   }
-  if (cur===9){
+  if (cur===13){
     if (d===1 && factStep < 4){ factStep++; factShow(factStep, true); return; }
     if (d===-1 && factStep > 0){ factShow(factStep, false); factStep--; return; }
   }
@@ -1175,7 +1210,7 @@ function startChampionSequence() {
   const counts = [3,2,1];
   let i = 0;
   function tick() {
-    if (cur !== 14) { overlay.style.display = 'none'; return; }
+    if (cur !== 12) { overlay.style.display = 'none'; return; }
     numEl.textContent = counts[i];
     // Re-trigger animation by cloning
     numEl.style.animation = 'none'; void numEl.offsetWidth; numEl.style.animation = '';
@@ -1245,7 +1280,7 @@ function launchConfetti(){
     r:Math.random()*360,rs:(Math.random()-.5)*6
   }}
   (function fr(){
-    if(cur!==14){running=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
+    if(cur!==12){running=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
     ctx.clearRect(0,0,cvs.width,cvs.height);
     pp.forEach(p=>{
       p.x+=p.vx;p.y+=p.vy;p.r+=p.rs;
