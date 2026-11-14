@@ -220,7 +220,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .sekt-row.first .sekt-amt{color:var(--gold)}
 
 /* ===== S11: BRONZE ===== */
-#s10{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
+#s11{background:radial-gradient(ellipse at 50% 35%,#2A1206 0%,var(--bg) 65%)}
 .pod-img{width:clamp(140px,20vw,270px);height:clamp(140px,20vw,270px);
   object-fit:cover;object-position:center 35%;border-radius:10px;display:block;margin:16px auto}
 .bronze-frm{border:3px solid var(--bronze);box-shadow:0 0 48px rgba(205,127,50,.28),0 20px 60px rgba(0,0,0,.7)}
@@ -235,7 +235,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   letter-spacing:.3em;font-weight:300;text-transform:uppercase;text-align:center}
 
 /* ===== S12: SILVER ===== */
-#s11{background:radial-gradient(ellipse at 50% 35%,#0C0C18 0%,var(--bg) 65%)}
+#s12{background:radial-gradient(ellipse at 50% 35%,#0C0C18 0%,var(--bg) 65%)}
 .vs-row{display:flex;align-items:center;
   gap:clamp(16px,4vw,52px);margin-top:16px;flex-wrap:wrap;justify-content:center}
 .vs-card{display:flex;flex-direction:column;align-items:center;gap:11px}
@@ -254,7 +254,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 @keyframes breathe{0%,100%{opacity:.45;transform:scale(.98)}50%{opacity:1;transform:scale(1.02)}}
 
 /* ===== S13: CHAMPION ===== */
-#s12{background:radial-gradient(ellipse at 50% 30%,#3A1A08 0%,#1A0A10 45%,var(--bg) 70%);overflow:hidden}
+#s13{background:radial-gradient(ellipse at 50% 30%,#3A1A08 0%,#1A0A10 45%,var(--bg) 70%);overflow:hidden}
 #confettiCanvas{position:absolute;inset:0;pointer-events:none;z-index:0}
 .champ-inner{position:relative;z-index:1;text-align:center}
 .champ-eye{font-size:clamp(.58rem,1.3vw,.8rem);letter-spacing:.5em;
@@ -317,7 +317,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .rr-fmt{font-size:clamp(.60rem,1vw,.72rem);color:rgba(255,255,255,.25);margin-top:2px}
 
 /* ===== S10: BEST-8 KEPPNIN ===== */
-#s14{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
+#s15{background:radial-gradient(ellipse at 50% 40%,#261206 0%,var(--bg) 65%)}
 .meistara-podium{display:flex;align-items:flex-end;justify-content:center;
   gap:clamp(10px,3vw,36px);margin-top:14px}
 .mp-card{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
@@ -454,8 +454,8 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   font-size:clamp(.72rem,1.2vw,.9rem);box-shadow:0 0 14px rgba(34,197,94,.75)}
 @keyframes topPulse{0%,100%{box-shadow:0 0 0 3px var(--gold-l),0 0 18px 3px rgba(247,223,180,.35)}
   50%{box-shadow:0 0 0 3px var(--gold-l),0 0 34px 10px rgba(247,223,180,.6)}}
-#s14 .h1{font-size:clamp(1.6rem,4.5vw,3.2rem)}
-#s14 .rule{margin:8px auto}
+#s15 .h1{font-size:clamp(1.6rem,4.5vw,3.2rem)}
+#s15 .rule{margin:8px auto}
 .race-tabs{display:flex;gap:6px;justify-content:center;margin-bottom:6px;position:relative;z-index:2}
 .race-tab{font-family:inherit;font-size:clamp(.62rem,1.1vw,.76rem);letter-spacing:.14em;text-transform:uppercase;font-weight:600;
   padding:6px 14px;border-radius:999px;cursor:pointer;color:rgba(255,255,255,.55);
@@ -525,6 +525,91 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 .fact-t{font-weight:700;font-size:clamp(.82rem,1.6vw,1.08rem);color:var(--gold-l);letter-spacing:.02em}
 .fact-x{font-size:clamp(.66rem,1.2vw,.84rem);color:rgba(255,255,255,.66);line-height:1.5}
 @media (max-width:700px){.fact-grid{grid-template-columns:1fr}}
+
+#sG,.gp-slide{}
+.gp-wrap{display:flex;align-items:flex-end;justify-content:center;gap:clamp(14px,3vw,46px);width:100%;max-width:1300px;margin-top:6px;position:relative;z-index:1}
+.gp-col{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0}
+.gp-title{font-size:clamp(.7rem,1.4vw,.95rem);letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--gold-l);
+  margin-bottom:clamp(14px,2.4vh,26px);padding-bottom:6px;border-bottom:1px solid rgba(232,137,58,.35)}
+.gp-div{width:1px;align-self:stretch;background:linear-gradient(transparent,rgba(232,137,58,.35),transparent)}
+.gp-podium{margin-top:0;gap:clamp(8px,1.6vw,22px)}
+.gp-podium .fp-card{padding:clamp(8px,1.4vw,16px) clamp(8px,1.4vw,18px)}
+.gp-podium .fp-photo{width:clamp(66px,8vw,118px);height:clamp(66px,8vw,118px)}
+.gp-podium .fp-count{font-size:clamp(1.9rem,4.6vw,3.6rem)}
+.gp-podium .fp-name{font-size:clamp(.72rem,1.5vw,1rem)}
+.gp-podium .fp-card{transition:opacity .6s ease,transform .6s cubic-bezier(.3,1.4,.5,1),filter .6s}
+.gp-podium .fp-card.gp-hid{opacity:0;transform:translateY(40px) scale(.9);filter:blur(4px)}
+.gp-podium .fp-card.elevated.gp-hid{transform:translateY(24px) scale(.9)}
+.gp-podium .fp-card.gold-b:not(.gp-hid){box-shadow:0 0 40px rgba(232,137,58,.35)}
+.gp-hint{margin-top:14px;font-size:clamp(.62rem,1.1vw,.74rem);letter-spacing:.28em;color:rgba(232,137,58,.45);text-transform:uppercase;transition:opacity .4s;position:relative;z-index:1}
+@media (max-width:700px){.gp-wrap{flex-direction:column;align-items:center}.gp-div{display:none}}
+
+.ct-wrap{display:flex;gap:clamp(14px,2.6vw,34px);align-items:center;justify-content:center;width:min(1180px,96vw)}
+.ct-hero{flex:0 0 clamp(200px,24vw,300px);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;
+  padding:clamp(14px,2vw,24px);border-radius:16px;border:2px solid rgba(232,137,58,.6);
+  background:linear-gradient(160deg,rgba(232,137,58,.2),rgba(91,42,78,.22));box-shadow:0 0 50px rgba(232,137,58,.25);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.3,1.5,.5,1),filter .7s}
+.ct-hero.ct-hid{opacity:0;transform:scale(.85) translateY(20px);filter:blur(6px)}
+.ct-medal{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1}
+.ct-hph{width:clamp(96px,11vw,150px);height:clamp(96px,11vw,150px);border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 0 30px rgba(232,137,58,.5)}
+.ct-hnm{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(1.4rem,2.8vw,2.2rem);color:var(--gold-l)}
+.ct-hd{font-family:'Playfair Display',Georgia,serif;font-weight:900;line-height:1;font-size:clamp(2.6rem,5.4vw,4.4rem);
+  background:linear-gradient(135deg,var(--gold-d),var(--gold),var(--gold-l));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ct-hd small{font-size:.35em;-webkit-text-fill-color:rgba(255,255,255,.5)}
+.ct-hmeta{font-size:clamp(.6rem,1vw,.76rem);color:rgba(255,255,255,.55);letter-spacing:.06em;line-height:1.5}
+.ct-list{list-style:none;flex:1;max-width:720px;display:flex;flex-direction:column;gap:clamp(3px,.6vh,6px)}
+.ct-row{display:grid;grid-template-columns:2.6em clamp(30px,3.4vw,42px) 1fr auto;align-items:center;gap:clamp(8px,1.2vw,14px);
+  padding:clamp(3px,.6vh,6px) clamp(10px,1.4vw,16px) clamp(3px,.6vh,6px) 6px;border-radius:10px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07)}
+.ct-row.ct-pod{border-color:rgba(192,192,192,.4);background:rgba(192,192,192,.06)}
+.ct-rk{text-align:right;font-weight:700;color:rgba(255,255,255,.45);font-size:clamp(.72rem,1.3vw,.92rem);font-variant-numeric:tabular-nums}
+.ct-rk em{font-style:normal;color:rgba(232,137,58,.7);margin-left:2px}
+.ct-pod .ct-rk{color:var(--silver)}
+.ct-ph,.ct-row .hc-avatar{width:clamp(30px,3.4vw,42px);height:clamp(30px,3.4vw,42px);border-radius:50%;object-fit:cover;border:1.5px solid rgba(232,137,58,.45);font-size:.8rem}
+.ct-nm{font-weight:700;font-size:clamp(.78rem,1.4vw,1rem);display:flex;flex-direction:column;line-height:1.2}
+.ct-nm small{font-weight:400;font-size:clamp(.54rem,.85vw,.68rem);color:rgba(255,255,255,.45);letter-spacing:.03em;margin-top:2px}
+.ct-d{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(1.05rem,2vw,1.55rem);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ct-d small{font-family:'Montserrat',sans-serif;font-weight:400;font-size:.5em;color:rgba(255,255,255,.45)}
+.ct-hint{margin-top:10px;font-size:clamp(.6rem,1.05vw,.72rem);letter-spacing:.26em;color:rgba(232,137,58,.45);text-transform:uppercase;transition:opacity .4s}
+@media (max-width:700px){.ct-wrap{flex-direction:column}.ct-hero{flex-basis:auto}}
+
+.adv-slide{justify-content:flex-start;padding-top:clamp(30px,5vh,56px);padding-bottom:70px}
+.gunna-head{display:flex;align-items:center;gap:clamp(12px,2vw,22px)}
+.gunna{width:clamp(72px,9vw,120px);height:clamp(72px,9vw,120px);flex-shrink:0;filter:drop-shadow(0 6px 18px rgba(232,137,58,.35));animation:gunnaNod 4s ease-in-out infinite;transform-origin:50% 90%}
+@keyframes gunnaNod{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
+.gunna-txt .sub{text-align:left}
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(8px,1.4vw,16px);width:min(1160px,calc(100vw - 150px))}
+.adv-card{background:rgba(255,255,255,.04);border:1px solid rgba(232,137,58,.25);border-radius:14px;
+  padding:clamp(10px,1.4vw,16px);display:flex;flex-direction:column;gap:8px;
+  transition:opacity .55s ease,transform .55s cubic-bezier(.3,1.4,.5,1),filter .55s}
+.adv-card.adv-hid{opacity:0;transform:translateY(24px) scale(.94);filter:blur(4px)}
+.adv-card.adv-new{border-color:var(--gold);box-shadow:0 0 34px rgba(232,137,58,.3);background:rgba(232,137,58,.08)}
+.adv-top{display:flex;align-items:center;gap:12px}
+.adv-ph,.adv-top .hc-avatar{width:clamp(48px,5.4vw,72px);height:clamp(48px,5.4vw,72px);border-radius:50%;object-fit:cover;border:2px solid rgba(232,137,58,.6);flex-shrink:0}
+.adv-nm{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(1.05rem,2vw,1.5rem);color:var(--gold-l);line-height:1.1}
+.adv-chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.adv-chips span{font-size:clamp(.5rem,.8vw,.64rem);padding:2px 7px;border-radius:999px;background:rgba(232,137,58,.12);
+  color:rgba(255,255,255,.75);border:1px solid rgba(232,137,58,.22);white-space:nowrap}
+.adv-txt{font-size:clamp(.66rem,1.05vw,.84rem);line-height:1.5;color:rgba(255,255,255,.82)}
+.adv-txt b{color:var(--gold)}
+.adv-hint{margin-top:10px;font-size:clamp(.6rem,1.05vw,.72rem);letter-spacing:.26em;color:rgba(232,137,58,.45);text-transform:uppercase}
+@media (max-width:900px){.adv-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.adv-grid{grid-template-columns:1fr}}
+
+.fr-list{margin-top:clamp(14px,2.6vh,28px);display:flex;flex-direction:column;align-items:center;gap:8px;width:min(1100px,94vw)}
+.fr-lbl{font-size:clamp(.56rem,1vw,.7rem);letter-spacing:.3em;text-transform:uppercase;color:rgba(232,137,58,.6);font-weight:600}
+.fr-row{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(5px,.7vw,9px);max-width:calc(100vw - 140px)}
+.fr-item{display:flex;align-items:center;gap:6px;padding:4px 10px 4px 5px;border-radius:999px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(232,137,58,.22)}
+.fr-rk{font-size:clamp(.6rem,1vw,.74rem);color:rgba(255,255,255,.4);font-weight:700;min-width:1.4em;text-align:right}
+.fr-ph,.fr-item .hc-avatar{width:clamp(26px,2.8vw,36px);height:clamp(26px,2.8vw,36px);border-radius:50%;object-fit:cover;border:1.5px solid rgba(232,137,58,.45);font-size:.7rem}
+.fr-nm{font-weight:600;font-size:clamp(.7rem,1.2vw,.88rem)}
+.fr-c{font-family:'Playfair Display',Georgia,serif;font-weight:900;color:var(--gold);font-size:clamp(.9rem,1.6vw,1.2rem);margin-left:2px}
+#s6{padding-top:clamp(10px,2vh,30px);padding-bottom:80px}
+#s6 .fp-photo{width:clamp(70px,8vw,112px);height:clamp(70px,8vw,112px)}
+#s6 .fp-count{font-size:clamp(2.2rem,5.4vw,4rem)}
+#s6 .fp-card{padding:clamp(8px,1.4vw,16px) clamp(12px,2vw,24px)}
+#s6 .h1{font-size:clamp(1.8rem,5vw,3.6rem)}
 </style>
 </head>
 <body>
@@ -748,6 +833,10 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
       <div class="fp-label">fuglar</div>
     </div>
   </div>
+  <div class="fr-list">
+    <div class="fr-lbl">Fleiri en 3 fuglar</div>
+    <div class="fr-row"><div class="fr-item"><span class="fr-rk">4.</span><img class="fr-ph" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><span class="fr-nm">Sigurgeir</span><span class="fr-c">11</span></div><div class="fr-item"><span class="fr-rk">5.</span><img class="fr-ph" src="KylfingarMyndir/Robbi.jpg" alt="Robbi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><span class="fr-nm">Robbi</span><span class="fr-c">9</span></div><div class="fr-item"><span class="fr-rk">6.</span><img class="fr-ph" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><span class="fr-nm">Hlynur</span><span class="fr-c">5</span></div><div class="fr-item"><span class="fr-rk">7.</span><img class="fr-ph" src="KylfingarMyndir/Eva.jpg" alt="Eva Harpa" style="object-position:60% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><span class="fr-nm">Eva Harpa</span><span class="fr-c">4</span></div><div class="fr-item"><span class="fr-rk">7.</span><img class="fr-ph" src="KylfingarMyndir/EvaHelga.jpg" alt="Eva Helga" style="object-position:55% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><span class="fr-nm">Eva Helga</span><span class="fr-c">4</span></div><div class="fr-item"><span class="fr-rk">7.</span><img class="fr-ph" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'"><span class="fr-nm">Óli</span><span class="fr-c">4</span></div><div class="fr-item"><span class="fr-rk">7.</span><img class="fr-ph" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><span class="fr-nm">Rósa</span><span class="fr-c">4</span></div></div>
+  </div>
 </div>
 
 <!-- S7: BIKAR BRACKET -->
@@ -795,31 +884,68 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   <div class="bikar-note">18 keppendur · holukeppni með forgjöf</div>
 </div>
 
-<!-- S8: FLEIRI VERÐLAUN -->
+<!-- S8: NÆST HOLU TOPP 10 -->
 <div class="slide" id="s8">
-  <div class="eyebrow">🎯 Sérstök verðlaun</div>
-  <div class="h1">Nákvæmni &amp; högg</div>
-  <div class="rule"></div>
-  <div class="fun-grid">
-    <div class="fun-card">
-      <div class="fc-ico">🎯</div><div class="fc-cat">Næstur holu</div>
-      <img class="fc-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
-      <div class="fc-who">Gummi</div>
-      <div class="fc-val">35 cm · 6. hola · M20</div>
+  <div class="eyebrow" style="margin-bottom:2px">🎯 Bestu upphafshöggin á par 3</div>
+  <div class="h1" style="font-size:clamp(1.5rem,4vw,2.8rem)">Næst holu · Topp 10</div>
+  <div class="rule" style="margin:6px auto 10px"></div>
+  <div class="ct-wrap">
+    <div class="ct-hero ct-hid" id="ctHero">
+      <div class="ct-medal">🥇</div>
+      <img class="ct-hph" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+      <div class="ct-hnm">Gummi</div>
+      <div class="ct-hd">0,35<small> m</small></div>
+      <div class="ct-hmeta">6. hola · Hvaleyrarvöllur<br>20. september 2026 · M20</div>
     </div>
-    <div class="fun-card">
-      <div class="fc-ico">📍</div><div class="fc-cat">Oftast næstur holu</div>
-      <img class="fc-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
-      <div class="fc-who">Gummi</div>
-      <div class="fc-val">10 sinnum · næst Björk 6×</div>
-    </div>
-    <div class="fun-card">
-      <div class="fc-ico">⛳</div><div class="fc-cat">Fæst högg</div>
-      <img class="fc-photo" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'">
-      <div class="fc-who">Andri</div>
-      <div class="fc-val">632 högg · 8 bestu hringir</div>
-    </div>
+    <ol class="ct-list">
+      <li class="ct-row ct-pod">
+        <span class="ct-rk">2.<em>=</em></span><img class="ct-ph" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'">
+        <span class="ct-nm">Hlynur<small>6. hola · Hvaleyri · 23. ágúst · M16</small></span>
+        <span class="ct-d">0,90<small> m</small></span>
+      </li>
+      <li class="ct-row ct-pod">
+        <span class="ct-rk">2.<em>=</em></span><img class="ct-ph" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'">
+        <span class="ct-nm">Kristjana<small>12. hola · Hvaleyri · 30. ágúst · M17</small></span>
+        <span class="ct-d">0,90<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">4.</span><img class="ct-ph" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+        <span class="ct-nm">Björk<small>17. hola · Hvaleyri · 14. júní · M5</small></span>
+        <span class="ct-d">0,99<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">5.</span><img class="ct-ph" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+        <span class="ct-nm">Gummi<small>6. hola · Hvaleyri · 3. ágúst · M13</small></span>
+        <span class="ct-d">1,00<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">6.</span><img class="ct-ph" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+        <span class="ct-nm">Begga<small>4. hola · Hvaleyri · 16. ágúst · M15</small></span>
+        <span class="ct-d">1,19<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">7.</span><img class="ct-ph" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+        <span class="ct-nm">Rósa<small>4. hola · Hvaleyri · 3. ágúst · M13</small></span>
+        <span class="ct-d">1,20<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">8.<em>=</em></span><img class="ct-ph" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'">
+        <span class="ct-nm">Andri<small>17. hola · Hvaleyri · 11. ágúst · M14</small></span>
+        <span class="ct-d">1,30<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">8.<em>=</em></span><img class="ct-ph" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+        <span class="ct-nm">Rósa<small>12. hola · Hvaleyri · 21. júní · M6</small></span>
+        <span class="ct-d">1,30<small> m</small></span>
+      </li>
+      <li class="ct-row">
+        <span class="ct-rk">10.</span><img class="ct-ph" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'">
+        <span class="ct-nm">Maggi<small>12. hola · Hvaleyri · 14. júní · M5</small></span>
+        <span class="ct-d">1,40<small> m</small></span>
+      </li>
+    </ol>
   </div>
+  <div class="ct-hint" id="ctHint">Ýttu á → til að sjá hver var næstur holu í sumar</div>
 </div>
 
 <!-- S10: STIGATAFLAN -->
@@ -853,8 +979,72 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
   <div class="stbl-teaser">⬆ &nbsp; Topp 3 birtur síðar &nbsp; ⬆</div>
 </div>
 
-<!-- S11: 3RD -->
+<!-- SG: TOPP 3 KARLA & KVENNA -->
 <div class="slide" id="s10">
+  <canvas id="gpConfetti" style="position:absolute;inset:0;pointer-events:none;z-index:0"></canvas>
+  <div class="eyebrow" style="margin-bottom:4px">🏆 MEA meistarinn 2026 · Bestu 8 hringir</div>
+  <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Karla- og kvennaflokkur</div>
+  <div class="rule" style="margin:8px auto"></div>
+  <div class="gp-wrap">
+    <div class="gp-col">
+      <div class="gp-title">♂ Karlaflokkur</div>
+      <div class="fugla-podium gp-podium">
+      <div class="fp-card silver-b gp-hid" data-gp="2">
+        <div class="fp-medal">🥈</div>
+        <img class="fp-photo" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'">
+        <div class="fp-name">Óli</div>
+        <div class="fp-count">283</div>
+        <div class="fp-label">stig · 2. sæti</div>
+      </div>
+      <div class="fp-card gold-b elevated gp-hid" data-gp="3">
+        <div class="fp-medal">🥇</div>
+        <img class="fp-photo" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'">
+        <div class="fp-name">Gummi</div>
+        <div class="fp-count">292</div>
+        <div class="fp-label">stig · 1. sæti</div>
+      </div>
+      <div class="fp-card bronze-b gp-hid" data-gp="1">
+        <div class="fp-medal">🥉</div>
+        <img class="fp-photo" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'">
+        <div class="fp-name">Sigurgeir</div>
+        <div class="fp-count">281</div>
+        <div class="fp-label">stig · 3. sæti</div>
+      </div>
+      </div>
+    </div>
+    <div class="gp-div"></div>
+    <div class="gp-col">
+      <div class="gp-title">♀ Kvennaflokkur</div>
+      <div class="fugla-podium gp-podium">
+      <div class="fp-card silver-b gp-hid" data-gp="2">
+        <div class="fp-medal">🥈</div>
+        <img class="fp-photo" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'">
+        <div class="fp-name">Begga</div>
+        <div class="fp-count">290</div>
+        <div class="fp-label">stig · 2. sæti</div>
+      </div>
+      <div class="fp-card gold-b elevated gp-hid" data-gp="3">
+        <div class="fp-medal">🥇</div>
+        <img class="fp-photo" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'">
+        <div class="fp-name">Rósa</div>
+        <div class="fp-count">297</div>
+        <div class="fp-label">stig · 1. sæti</div>
+      </div>
+      <div class="fp-card bronze-b gp-hid" data-gp="1">
+        <div class="fp-medal">🥉</div>
+        <img class="fp-photo" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'">
+        <div class="fp-name">Kristjana</div>
+        <div class="fp-count">283</div>
+        <div class="fp-label">stig · 3. sæti</div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div id="gpHint" class="gp-hint">Ýttu á → til að birta 3. sætið</div>
+</div>
+
+<!-- S11: 3RD -->
+<div class="slide" id="s11">
   <div class="eyebrow">🥉 MEA meistarinn 2026</div>
   <div class="rule"></div>
   <div class="rank-lbl bronze-c">Þriðja sætið</div>
@@ -864,7 +1054,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 </div>
 
 <!-- S12: 2ND -->
-<div class="slide" id="s11">
+<div class="slide" id="s12">
   <div class="eyebrow">🥈 MEA meistarinn 2026</div>
   <div class="rule"></div>
   <div class="rank-lbl silver-c">Annað sætið</div>
@@ -874,7 +1064,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 </div>
 
 <!-- S13: CHAMPION -->
-<div class="slide" id="s12">
+<div class="slide" id="s13">
   <canvas id="confettiCanvas"></canvas>
   <div class="champ-inner" id="champInner">
     <div class="champ-eye">🏆 &nbsp; MEA meistarinn 2026 &nbsp; 🏆</div>
@@ -891,7 +1081,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 </div>
 
 <!-- S9: ÁHUGAVERÐAR STAÐREYNDIR -->
-<div class="slide" id="s13">
+<div class="slide" id="s14">
   <div class="eyebrow" style="margin-bottom:4px">💡 Tímabilið 2026</div>
   <div class="h1" style="font-size:clamp(1.6rem,4.5vw,3.2rem)">Áhugaverðar staðreyndir</div>
   <div class="rule" style="margin:8px auto"></div>
@@ -921,7 +1111,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 </div>
 
 <!-- S10: RACE -->
-<div class="slide" id="s14">
+<div class="slide" id="s15">
   <div class="eyebrow">📈 MEA meistarinn 2026</div>
   <div class="h1">Bardagi á toppnum</div>
   <div class="rule"></div>
@@ -935,7 +1125,7 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
 </div>
 
 <!-- S14: SUMMARY -->
-<div class="slide" id="s15">
+<div class="slide" id="s16">
   <div class="eyebrow">🏅 Má ég aðeins 2026</div>
   <div class="h1" style="font-size:clamp(1.6rem,4vw,2.8rem)">Verðlaunahafar 2026</div>
   <div class="rule"></div>
@@ -961,6 +1151,144 @@ html,body{width:100%;height:100vh;background:var(--bg);overflow:hidden;
     <div class="sum-box"><div class="sum-lbl">🎯 Næstur holu</div><img class="" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div class="sum-nm">Gummi</div></div>
     <div class="sum-box"><div class="sum-lbl">🏅 Duglegust</div><div class="pair-faces"><img class="" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><img class="" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><img class="" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"></div><div class="sum-nm">Begga · Björk · Sigurgeir</div></div>
   </div>
+</div>
+
+<!-- S17: RÁÐGJAFINN 1 -->
+<div class="slide adv-slide" id="s17">
+  <div class="gunna-head">
+    <img class="gunna" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgMjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkdlcnZpIEd1bm5hIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2ctYmciIGN4PSI1MCUiIGN5PSI0NSUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzVCMkE0RSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFhMGQxOCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ2ctc2tpbiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNmNmYjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlN2IwOGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdnLXBvbG8iIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRTg4OTNBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYjk1ODFjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnZy1oYWlyIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2U5ZTZlMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I5YjRhZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iZ2ctY2xpcCI+PGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDgiLz48L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMjAiIHI9IjEwOCIgZmlsbD0idXJsKCNnZy1iZykiLz4KICA8ZyBjbGlwLXBhdGg9InVybCgjZ2ctY2xpcCkiPgogICAgPCEtLSBoYWlyIGJhY2sgKHNpbHZlciBib2IpIC0tPgogICAgPHBhdGggZD0iTTUyIDExMiBDNDggNzAgNzIgNDYgMTEwIDQ2IEMxNDggNDYgMTcyIDcwIDE2OCAxMTIgQzE3MCAxNDAgMTYyIDE2MCAxNTIgMTY4IEw2OCAxNjggQzU4IDE2MCA1MCAxNDAgNTIgMTEyIFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gc2hvdWxkZXJzIC8gcG9sbyAtLT4KICAgIDxwYXRoIGQ9Ik0yNCAyNDAgQzI4IDE5NiA2MCAxNzggOTIgMTcyIEwxMjggMTcyIEMxNjAgMTc4IDE5MiAxOTYgMTk2IDI0MCBaIiBmaWxsPSJ1cmwoI2dnLXBvbG8pIi8+CiAgICA8IS0tIG5lY2sgLS0+CiAgICA8cGF0aCBkPSJNOTQgMTUwIEwxMjYgMTUwIEwxMjggMTc4IEMxMjAgMTg2IDEwMCAxODYgOTIgMTc4IFoiIGZpbGw9IiNlMmE5ODIiLz4KICAgIDwhLS0gY29sbGFyIC0tPgogICAgPHBhdGggZD0iTTkwIDE3MiBMMTEwIDE5MCBMOTggMjA0IEw4MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTEzMCAxNzIgTDExMCAxOTAgTDEyMiAyMDQgTDE0MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTExMCAxOTAgTDExMCAyMzIiIHN0cm9rZT0iIzlDM0QxNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIyMDIiIHI9IjIuNiIgZmlsbD0iI2ZmZjRlNiIvPjxjaXJjbGUgY3g9IjExMCIgY3k9IjIxNiIgcj0iMi42IiBmaWxsPSIjZmZmNGU2Ii8+CiAgICA8IS0tIGxpdHRsZSBnb2xmLWZsYWcgbG9nbyBvbiBwb2xvIC0tPgogICAgPHBhdGggZD0iTTE1MiAyMDAgTDE1MiAyMTgiIHN0cm9rZT0iI2ZmZjRlNiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDxwYXRoIGQ9Ik0xNTIgMjAwIEwxNjMgMjA0IEwxNTIgMjA4IFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDwhLS0gZmFjZSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTAiIGN5PSIxMTQiIHJ4PSI0MCIgcnk9IjQ2IiBmaWxsPSJ1cmwoI2dnLXNraW4pIi8+CiAgICA8IS0tIGVhcnMgKyBwZWFybCBlYXJyaW5ncyAtLT4KICAgIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExOCIgcng9IjYiIHJ5PSIxMCIgZmlsbD0iI2U3YjA4YyIvPjxlbGxpcHNlIGN4PSIxNTAiIGN5PSIxMTgiIHJ4PSI2IiByeT0iMTAiIGZpbGw9IiNlN2IwOGMiLz4KICAgIDxjaXJjbGUgY3g9IjcwIiBjeT0iMTMxIiByPSIzLjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMzEiIHI9IjMuMiIgZmlsbD0iI2ZmZiIvPgogICAgPCEtLSBoYWlyIGZyb250IGZyaW5nZSAtLT4KICAgIDxwYXRoIGQ9Ik02OCAxMDQgQzcwIDgwIDg4IDcwIDExMiA3MCBDMTM0IDcwIDE1MCA4MiAxNTIgMTA0IEMxNDAgOTIgMTI2IDg2IDExMiA5MCBDOTggODYgODIgOTIgNjggMTA0IFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gdmlzb3IgLS0+CiAgICA8cGF0aCBkPSJNNjQgODQgQzc2IDY2IDE0NCA2NiAxNTYgODQgTDE1NiA5MiBDMTQwIDg0IDgwIDg0IDY0IDkyIFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDxwYXRoIGQ9Ik01OCA5MiBDODAgODIgMTQwIDgyIDE2MiA5MiBDMTcwIDk2IDE3MiAxMDIgMTY2IDEwNCBDMTQwIDk2IDgwIDk2IDU0IDEwNCBDNDggMTAyIDUwIDk2IDU4IDkyIFoiIGZpbGw9IiNFODg5M0EiLz4KICAgIDx0ZXh0IHg9IjExMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJNb250c2VycmF0LEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iOSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzlDM0QxNCIgbGV0dGVyLXNwYWNpbmc9IjEiPlBSTzwvdGV4dD4KICAgIDwhLS0gZXllYnJvd3M6IG9uZSByYWlzZWQsIGtub3dpbmcgbG9vayAtLT4KICAgIDxwYXRoIGQ9Ik04NiAxMDYgQzkyIDEwMCAxMDAgMTAwIDEwNCAxMDMiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMTggMTAxIEMxMjQgOTUgMTMyIDk1IDEzOCAxMDAiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gcmVhZGluZyBnbGFzc2VzIG9uIG5vc2UgLS0+CiAgICA8Y2lyY2xlIGN4PSI5NSIgY3k9IjExNyIgcj0iMTAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjE4KSIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPGNpcmNsZSBjeD0iMTI3IiBjeT0iMTE3IiByPSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwuMTgpIiBzdHJva2U9IiMyYjFhMjQiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cGF0aCBkPSJNMTA1IDExNyBMMTE3IDExNyIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPCEtLSBleWVzIGxvb2tpbmcgb3ZlciB0aGUgZ2xhc3NlcyAocHVwaWxzIGhpZ2gpIC0tPgogICAgPGNpcmNsZSBjeD0iOTUiIGN5PSIxMTQiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz48Y2lyY2xlIGN4PSIxMjciIGN5PSIxMTMiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz4KICAgIDxjaXJjbGUgY3g9Ijk2IiBjeT0iMTEzIiByPSIxIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTEyIiByPSIxIiBmaWxsPSIjZmZmIi8+CiAgICA8IS0tIG5vc2UgLS0+CiAgICA8cGF0aCBkPSJNMTExIDEyMCBDMTEyIDEyOCAxMTMgMTMyIDEwOCAxMzQiIHN0cm9rZT0iI2M5OGQ2YSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gY2hlZWtzIC0tPgogICAgPGNpcmNsZSBjeD0iODYiIGN5PSIxMzIiIHI9IjYiIGZpbGw9IiNmMDlhODYiIG9wYWNpdHk9Ii40NSIvPjxjaXJjbGUgY3g9IjEzNiIgY3k9IjEzMiIgcj0iNiIgZmlsbD0iI2YwOWE4NiIgb3BhY2l0eT0iLjQ1Ii8+CiAgICA8IS0tIGNvbmZpZGVudCBoYWxmIHNtaWxlIC0tPgogICAgPHBhdGggZD0iTTk4IDE0NCBDMTA2IDE0OCAxMTggMTQ4IDEyNiAxNDAiIHN0cm9rZT0iI2EyNGEzYSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMjYgMTQwIEwxMjkgMTM4IiBzdHJva2U9IiNhMjRhM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gc2NvcmVjYXJkIHBlbmNpbCBiZWhpbmQgZWFyIC0tPgogICAgPHBhdGggZD0iTTE1MCA5NiBMMTY4IDc2IiBzdHJva2U9IiNmMmMxNGUiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDc2IEwxNzIgNzEiIHN0cm9rZT0iIzJiMWEyNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U4ODkzQSIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjwvc3ZnPgo=" alt="Gervi Gunna">
+    <div class="gunna-txt">
+      <div class="eyebrow" style="margin-bottom:2px;text-align:left">⛳ Góð ráð fyrir 2027 · 1. hluti af 3</div>
+      <div class="h1" style="font-size:clamp(1.6rem,4vw,3rem);text-align:left">Ráð Gervi Gunnu</div>
+      <div class="sub" style="font-size:clamp(.62rem,1.2vw,.8rem);margin-top:4px">Þau sem fóru tómhent heim (í bili)</div>
+    </div>
+  </div>
+  <div class="rule" style="margin:8px auto 10px"></div>
+  <div class="adv-grid">
+      <div class="adv-card adv-hid" data-adv="1">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Asi.jpg" alt="Ási" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Á</div>'"><div><div class="adv-nm">Ási</div>
+          <div class="adv-chips"><span>18. sæti · 235 stig</span><span>12 mót</span><span>Besta hola: 5. (2,56 pt)</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Fyrsta holan gaf þér 0,67 punkta að meðaltali. Ráð: byrjaðu að telja á 1. teig, ekki 5. Og 1,50 m á 6. holunni var einu sæti frá topp 10 í næst holu. Hársbreidd frá frægðinni!</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="2">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Hlynur.jpg" alt="Hlynur" style="object-position:62% 30%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div><div class="adv-nm">Hlynur</div>
+          <div class="adv-chips"><span>17. sæti · 250 stig</span><span>5 fuglar</span><span>Næst holu 0,90 m 🥈</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Þú hittir flaggið af 0,90 m en 16. holan gefur þér bara 1,0 punkt að meðaltali. Ráð: spilaðu 16. eins og hún sé par 3. Þú virðist ráða vel við þær.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="3">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Nina.jpg" alt="Nína" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>N</div>'"><div><div class="adv-nm">Nína</div>
+          <div class="adv-chips"><span>16. sæti · 253 stig</span><span>14 mót</span><span>2. sæti eftir M3 og M4!</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Eini kylfingurinn án fugls í sumar. Fuglaveiðileyfið gildir líka 2027! Þú varst samt í 2. sæti eftir fjögur mót og tapaðir bikarleiknum gegn sjálfum meistaranum með 1UP. Byrjaðu á 2. holunni, hún elskar þig (2,7 pt).</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="4">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Berglind.jpg" alt="Berglind" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div><div class="adv-nm">Berglind</div>
+          <div class="adv-chips"><span>14. sæti · 256 stig</span><span>Undanúrslit í bikar</span><span>Besti hringur 40 pt</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Aðeins 10 mót, samt 40 punkta hringur og undanúrslit í bikarnum. Ráð nr. 1: mættu oftar. Ráð nr. 2: 8. holan gefur 0,5 punkta að meðaltali, svo hugsaðu um hana sem göngutúr.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="5">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Robbi.jpg" alt="Robbi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><div><div class="adv-nm">Robbi</div>
+          <div class="adv-chips"><span>13. sæti · 264 stig</span><span>9 fuglar</span><span>Besti hringur 41 pt</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Níu fuglar og 41 punkta hringur, svo hæfileikarnir eru til staðar. En 6. holan (par 3) gefur 0,91 punkt að meðaltali. Ráð: taktu einni kylfu meira á 6. og þakkaðu svo fyrir þig.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="6">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Eva.jpg" alt="Eva Harpa" style="object-position:60% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><div><div class="adv-nm">Eva Harpa</div>
+          <div class="adv-chips"><span>11. sæti · 269 stig</span><span>Holumeistari á 12. (3,12 pt)</span><span>10× mæld í næst holu</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Þú átt 12. holuna með hæsta holumeðaltal sumarsins! Í næst holu varstu 10 sinnum á blaði en aldrei nær en 3,20 m. Ráð: miðaðu á flaggið, ekki bara á flötina. Bikarleikurinn tapaðist á seinni 9, svo spilaðu fyrri 9 aðeins hægar næst 😉</div>
+      </div>
+  </div>
+  <div class="adv-hint">Ýttu á → til að birta næsta kylfing</div>
+</div>
+
+<!-- S18: RÁÐGJAFINN 2 -->
+<div class="slide adv-slide" id="s18">
+  <div class="gunna-head">
+    <img class="gunna" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgMjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkdlcnZpIEd1bm5hIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2ctYmciIGN4PSI1MCUiIGN5PSI0NSUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzVCMkE0RSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFhMGQxOCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ2ctc2tpbiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNmNmYjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlN2IwOGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdnLXBvbG8iIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRTg4OTNBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYjk1ODFjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnZy1oYWlyIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2U5ZTZlMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I5YjRhZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iZ2ctY2xpcCI+PGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDgiLz48L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMjAiIHI9IjEwOCIgZmlsbD0idXJsKCNnZy1iZykiLz4KICA8ZyBjbGlwLXBhdGg9InVybCgjZ2ctY2xpcCkiPgogICAgPCEtLSBoYWlyIGJhY2sgKHNpbHZlciBib2IpIC0tPgogICAgPHBhdGggZD0iTTUyIDExMiBDNDggNzAgNzIgNDYgMTEwIDQ2IEMxNDggNDYgMTcyIDcwIDE2OCAxMTIgQzE3MCAxNDAgMTYyIDE2MCAxNTIgMTY4IEw2OCAxNjggQzU4IDE2MCA1MCAxNDAgNTIgMTEyIFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gc2hvdWxkZXJzIC8gcG9sbyAtLT4KICAgIDxwYXRoIGQ9Ik0yNCAyNDAgQzI4IDE5NiA2MCAxNzggOTIgMTcyIEwxMjggMTcyIEMxNjAgMTc4IDE5MiAxOTYgMTk2IDI0MCBaIiBmaWxsPSJ1cmwoI2dnLXBvbG8pIi8+CiAgICA8IS0tIG5lY2sgLS0+CiAgICA8cGF0aCBkPSJNOTQgMTUwIEwxMjYgMTUwIEwxMjggMTc4IEMxMjAgMTg2IDEwMCAxODYgOTIgMTc4IFoiIGZpbGw9IiNlMmE5ODIiLz4KICAgIDwhLS0gY29sbGFyIC0tPgogICAgPHBhdGggZD0iTTkwIDE3MiBMMTEwIDE5MCBMOTggMjA0IEw4MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTEzMCAxNzIgTDExMCAxOTAgTDEyMiAyMDQgTDE0MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTExMCAxOTAgTDExMCAyMzIiIHN0cm9rZT0iIzlDM0QxNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIyMDIiIHI9IjIuNiIgZmlsbD0iI2ZmZjRlNiIvPjxjaXJjbGUgY3g9IjExMCIgY3k9IjIxNiIgcj0iMi42IiBmaWxsPSIjZmZmNGU2Ii8+CiAgICA8IS0tIGxpdHRsZSBnb2xmLWZsYWcgbG9nbyBvbiBwb2xvIC0tPgogICAgPHBhdGggZD0iTTE1MiAyMDAgTDE1MiAyMTgiIHN0cm9rZT0iI2ZmZjRlNiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDxwYXRoIGQ9Ik0xNTIgMjAwIEwxNjMgMjA0IEwxNTIgMjA4IFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDwhLS0gZmFjZSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTAiIGN5PSIxMTQiIHJ4PSI0MCIgcnk9IjQ2IiBmaWxsPSJ1cmwoI2dnLXNraW4pIi8+CiAgICA8IS0tIGVhcnMgKyBwZWFybCBlYXJyaW5ncyAtLT4KICAgIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExOCIgcng9IjYiIHJ5PSIxMCIgZmlsbD0iI2U3YjA4YyIvPjxlbGxpcHNlIGN4PSIxNTAiIGN5PSIxMTgiIHJ4PSI2IiByeT0iMTAiIGZpbGw9IiNlN2IwOGMiLz4KICAgIDxjaXJjbGUgY3g9IjcwIiBjeT0iMTMxIiByPSIzLjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMzEiIHI9IjMuMiIgZmlsbD0iI2ZmZiIvPgogICAgPCEtLSBoYWlyIGZyb250IGZyaW5nZSAtLT4KICAgIDxwYXRoIGQ9Ik02OCAxMDQgQzcwIDgwIDg4IDcwIDExMiA3MCBDMTM0IDcwIDE1MCA4MiAxNTIgMTA0IEMxNDAgOTIgMTI2IDg2IDExMiA5MCBDOTggODYgODIgOTIgNjggMTA0IFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gdmlzb3IgLS0+CiAgICA8cGF0aCBkPSJNNjQgODQgQzc2IDY2IDE0NCA2NiAxNTYgODQgTDE1NiA5MiBDMTQwIDg0IDgwIDg0IDY0IDkyIFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDxwYXRoIGQ9Ik01OCA5MiBDODAgODIgMTQwIDgyIDE2MiA5MiBDMTcwIDk2IDE3MiAxMDIgMTY2IDEwNCBDMTQwIDk2IDgwIDk2IDU0IDEwNCBDNDggMTAyIDUwIDk2IDU4IDkyIFoiIGZpbGw9IiNFODg5M0EiLz4KICAgIDx0ZXh0IHg9IjExMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJNb250c2VycmF0LEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iOSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzlDM0QxNCIgbGV0dGVyLXNwYWNpbmc9IjEiPlBSTzwvdGV4dD4KICAgIDwhLS0gZXllYnJvd3M6IG9uZSByYWlzZWQsIGtub3dpbmcgbG9vayAtLT4KICAgIDxwYXRoIGQ9Ik04NiAxMDYgQzkyIDEwMCAxMDAgMTAwIDEwNCAxMDMiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMTggMTAxIEMxMjQgOTUgMTMyIDk1IDEzOCAxMDAiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gcmVhZGluZyBnbGFzc2VzIG9uIG5vc2UgLS0+CiAgICA8Y2lyY2xlIGN4PSI5NSIgY3k9IjExNyIgcj0iMTAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjE4KSIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPGNpcmNsZSBjeD0iMTI3IiBjeT0iMTE3IiByPSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwuMTgpIiBzdHJva2U9IiMyYjFhMjQiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cGF0aCBkPSJNMTA1IDExNyBMMTE3IDExNyIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPCEtLSBleWVzIGxvb2tpbmcgb3ZlciB0aGUgZ2xhc3NlcyAocHVwaWxzIGhpZ2gpIC0tPgogICAgPGNpcmNsZSBjeD0iOTUiIGN5PSIxMTQiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz48Y2lyY2xlIGN4PSIxMjciIGN5PSIxMTMiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz4KICAgIDxjaXJjbGUgY3g9Ijk2IiBjeT0iMTEzIiByPSIxIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTEyIiByPSIxIiBmaWxsPSIjZmZmIi8+CiAgICA8IS0tIG5vc2UgLS0+CiAgICA8cGF0aCBkPSJNMTExIDEyMCBDMTEyIDEyOCAxMTMgMTMyIDEwOCAxMzQiIHN0cm9rZT0iI2M5OGQ2YSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gY2hlZWtzIC0tPgogICAgPGNpcmNsZSBjeD0iODYiIGN5PSIxMzIiIHI9IjYiIGZpbGw9IiNmMDlhODYiIG9wYWNpdHk9Ii40NSIvPjxjaXJjbGUgY3g9IjEzNiIgY3k9IjEzMiIgcj0iNiIgZmlsbD0iI2YwOWE4NiIgb3BhY2l0eT0iLjQ1Ii8+CiAgICA8IS0tIGNvbmZpZGVudCBoYWxmIHNtaWxlIC0tPgogICAgPHBhdGggZD0iTTk4IDE0NCBDMTA2IDE0OCAxMTggMTQ4IDEyNiAxNDAiIHN0cm9rZT0iI2EyNGEzYSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMjYgMTQwIEwxMjkgMTM4IiBzdHJva2U9IiNhMjRhM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gc2NvcmVjYXJkIHBlbmNpbCBiZWhpbmQgZWFyIC0tPgogICAgPHBhdGggZD0iTTE1MCA5NiBMMTY4IDc2IiBzdHJva2U9IiNmMmMxNGUiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDc2IEwxNzIgNzEiIHN0cm9rZT0iIzJiMWEyNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U4ODkzQSIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjwvc3ZnPgo=" alt="Gervi Gunna">
+    <div class="gunna-txt">
+      <div class="eyebrow" style="margin-bottom:2px;text-align:left">⛳ Góð ráð fyrir 2027 · 2. hluti af 3</div>
+      <div class="h1" style="font-size:clamp(1.6rem,4vw,3rem);text-align:left">Ráð Gervi Gunnu</div>
+      <div class="sub" style="font-size:clamp(.62rem,1.2vw,.8rem);margin-top:4px">Miðjan: stutt frá toppnum</div>
+    </div>
+  </div>
+  <div class="rule" style="margin:8px auto 10px"></div>
+  <div class="adv-grid">
+      <div class="adv-card adv-hid" data-adv="1">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Bjork.jpg" alt="Björk" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div><div class="adv-nm">Björk</div>
+          <div class="adv-chips"><span>14. sæti · 256 stig</span><span>17 mót · duglegust</span><span>Næst holu 0,99 m</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Mættir á 17 af 19 mótum. Ef einhver á skilið verðlaun fyrir þrautseigju ert það þú. 0,99 m á 17. holu var 4. besta högg sumarsins. Ráð: 6. holan (0,91 pt). Þú veist hvað þú gerðir.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="2">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/EvaHelga.jpg" alt="Eva Helga" style="object-position:55% 35%;" onerror="this.outerHTML='<div class=hc-avatar>E</div>'"><div><div class="adv-nm">Eva Helga</div>
+          <div class="adv-chips"><span>7. sæti · 280 stig</span><span>Forgjöf 27 → 24</span><span>Undanúrslit í bikar</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Lækkaðir forgjöfina um 3 högg, áttir 43 punkta hring og slóst út þrjá í bikarnum. Eina vandamálið er 1. holan (0,9 pt). Ráð: mættu 10 mínútum fyrr og spilaðu hana á æfingasvæðinu.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="3">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Oli.jpg" alt="Óli" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>Ó</div>'"><div><div class="adv-nm">Óli</div>
+          <div class="adv-chips"><span>4. sæti · 283 stig</span><span>Forgjöf 17 → 14</span><span>Efstur eftir M1–M5</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Leiddir mótaröðina allan maí og fram í júní og lækkaðir forgjöfina um 3 högg. Ráð: næsta sumar þarftu að halda forystunni lengur en til 14. júní. 16. holan (0,9 pt) bíður líka eftir þér.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="4">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Kristjana.jpg" alt="Kristjana" style="object-position:50% 22%;" onerror="this.outerHTML='<div class=hc-avatar>K</div>'"><div><div class="adv-nm">Kristjana</div>
+          <div class="adv-chips"><span>4. sæti · 283 stig</span><span>Næst holu 0,90 m 🥈</span><span>Besti hringur 40 pt</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> 0,90 m á 12. holu. Spurning hvort þú hefðir ekki átt að hringja í pútterinn strax. Ráð: taktu sömu einbeitingu með þér á 7. og 14. holu (0,89 pt hvor).</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="5">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Sigurgeir.jpg" alt="Sigurgeir" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><div><div class="adv-nm">Sigurgeir</div>
+          <div class="adv-chips"><span>6. sæti · 281 stig</span><span>17 mót · 11 fuglar</span><span>Duglegastur</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> 17 mót, 11 fuglar og frægasta „0,00 m“ sumarsins, sem reyndist vera 4 högg. Ráð: í GameBook má bara skrá holu í höggi ef kúlan fór í raun ofan í 😄</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="6">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Sigrun.jpg" alt="Sigrún" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>S</div>'"><div><div class="adv-nm">Sigrún</div>
+          <div class="adv-chips"><span>7. sæti · 280 stig</span><span>Parakeppni: jöfn á toppnum</span><span>Forgjöf 26 → 25</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Jöfn á toppnum í parakeppninni með Heisa og 2,00 m á Leyni. Ráð: einn fugl í sumar er góð byrjun, en við viljum sjá heilan fuglahóp 2027 🐦</div>
+      </div>
+  </div>
+  <div class="adv-hint">Ýttu á → til að birta næsta kylfing</div>
+</div>
+
+<!-- S19: RÁÐGJAFINN 3 -->
+<div class="slide adv-slide" id="s19">
+  <div class="gunna-head">
+    <img class="gunna" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMjAgMjQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkdlcnZpIEd1bm5hIj4KICA8ZGVmcz4KICAgIDxyYWRpYWxHcmFkaWVudCBpZD0iZ2ctYmciIGN4PSI1MCUiIGN5PSI0NSUiIHI9IjYwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzVCMkE0RSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFhMGQxOCIvPgogICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ2ctc2tpbiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNmNmNmYjAiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlN2IwOGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdnLXBvbG8iIHgxPSIwIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRTg4OTNBIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjYjk1ODFjIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnZy1oYWlyIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2U5ZTZlMSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2I5YjRhZCIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxjbGlwUGF0aCBpZD0iZ2ctY2xpcCI+PGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDgiLz48L2NsaXBQYXRoPgogIDwvZGVmcz4KICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIxMjAiIHI9IjEwOCIgZmlsbD0idXJsKCNnZy1iZykiLz4KICA8ZyBjbGlwLXBhdGg9InVybCgjZ2ctY2xpcCkiPgogICAgPCEtLSBoYWlyIGJhY2sgKHNpbHZlciBib2IpIC0tPgogICAgPHBhdGggZD0iTTUyIDExMiBDNDggNzAgNzIgNDYgMTEwIDQ2IEMxNDggNDYgMTcyIDcwIDE2OCAxMTIgQzE3MCAxNDAgMTYyIDE2MCAxNTIgMTY4IEw2OCAxNjggQzU4IDE2MCA1MCAxNDAgNTIgMTEyIFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gc2hvdWxkZXJzIC8gcG9sbyAtLT4KICAgIDxwYXRoIGQ9Ik0yNCAyNDAgQzI4IDE5NiA2MCAxNzggOTIgMTcyIEwxMjggMTcyIEMxNjAgMTc4IDE5MiAxOTYgMTk2IDI0MCBaIiBmaWxsPSJ1cmwoI2dnLXBvbG8pIi8+CiAgICA8IS0tIG5lY2sgLS0+CiAgICA8cGF0aCBkPSJNOTQgMTUwIEwxMjYgMTUwIEwxMjggMTc4IEMxMjAgMTg2IDEwMCAxODYgOTIgMTc4IFoiIGZpbGw9IiNlMmE5ODIiLz4KICAgIDwhLS0gY29sbGFyIC0tPgogICAgPHBhdGggZD0iTTkwIDE3MiBMMTEwIDE5MCBMOTggMjA0IEw4MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTEzMCAxNzIgTDExMCAxOTAgTDEyMiAyMDQgTDE0MCAxODAgWiIgZmlsbD0iI2ZmZjRlNiIvPgogICAgPHBhdGggZD0iTTExMCAxOTAgTDExMCAyMzIiIHN0cm9rZT0iIzlDM0QxNCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8Y2lyY2xlIGN4PSIxMTAiIGN5PSIyMDIiIHI9IjIuNiIgZmlsbD0iI2ZmZjRlNiIvPjxjaXJjbGUgY3g9IjExMCIgY3k9IjIxNiIgcj0iMi42IiBmaWxsPSIjZmZmNGU2Ii8+CiAgICA8IS0tIGxpdHRsZSBnb2xmLWZsYWcgbG9nbyBvbiBwb2xvIC0tPgogICAgPHBhdGggZD0iTTE1MiAyMDAgTDE1MiAyMTgiIHN0cm9rZT0iI2ZmZjRlNiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgIDxwYXRoIGQ9Ik0xNTIgMjAwIEwxNjMgMjA0IEwxNTIgMjA4IFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDwhLS0gZmFjZSAtLT4KICAgIDxlbGxpcHNlIGN4PSIxMTAiIGN5PSIxMTQiIHJ4PSI0MCIgcnk9IjQ2IiBmaWxsPSJ1cmwoI2dnLXNraW4pIi8+CiAgICA8IS0tIGVhcnMgKyBwZWFybCBlYXJyaW5ncyAtLT4KICAgIDxlbGxpcHNlIGN4PSI3MCIgY3k9IjExOCIgcng9IjYiIHJ5PSIxMCIgZmlsbD0iI2U3YjA4YyIvPjxlbGxpcHNlIGN4PSIxNTAiIGN5PSIxMTgiIHJ4PSI2IiByeT0iMTAiIGZpbGw9IiNlN2IwOGMiLz4KICAgIDxjaXJjbGUgY3g9IjcwIiBjeT0iMTMxIiByPSIzLjIiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMzEiIHI9IjMuMiIgZmlsbD0iI2ZmZiIvPgogICAgPCEtLSBoYWlyIGZyb250IGZyaW5nZSAtLT4KICAgIDxwYXRoIGQ9Ik02OCAxMDQgQzcwIDgwIDg4IDcwIDExMiA3MCBDMTM0IDcwIDE1MCA4MiAxNTIgMTA0IEMxNDAgOTIgMTI2IDg2IDExMiA5MCBDOTggODYgODIgOTIgNjggMTA0IFoiIGZpbGw9InVybCgjZ2ctaGFpcikiLz4KICAgIDwhLS0gdmlzb3IgLS0+CiAgICA8cGF0aCBkPSJNNjQgODQgQzc2IDY2IDE0NCA2NiAxNTYgODQgTDE1NiA5MiBDMTQwIDg0IDgwIDg0IDY0IDkyIFoiIGZpbGw9IiNmZmY0ZTYiLz4KICAgIDxwYXRoIGQ9Ik01OCA5MiBDODAgODIgMTQwIDgyIDE2MiA5MiBDMTcwIDk2IDE3MiAxMDIgMTY2IDEwNCBDMTQwIDk2IDgwIDk2IDU0IDEwNCBDNDggMTAyIDUwIDk2IDU4IDkyIFoiIGZpbGw9IiNFODg5M0EiLz4KICAgIDx0ZXh0IHg9IjExMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJNb250c2VycmF0LEFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iOSIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzlDM0QxNCIgbGV0dGVyLXNwYWNpbmc9IjEiPlBSTzwvdGV4dD4KICAgIDwhLS0gZXllYnJvd3M6IG9uZSByYWlzZWQsIGtub3dpbmcgbG9vayAtLT4KICAgIDxwYXRoIGQ9Ik04NiAxMDYgQzkyIDEwMCAxMDAgMTAwIDEwNCAxMDMiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMTggMTAxIEMxMjQgOTUgMTMyIDk1IDEzOCAxMDAiIHN0cm9rZT0iIzhhODU4MCIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gcmVhZGluZyBnbGFzc2VzIG9uIG5vc2UgLS0+CiAgICA8Y2lyY2xlIGN4PSI5NSIgY3k9IjExNyIgcj0iMTAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsLjE4KSIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPGNpcmNsZSBjeD0iMTI3IiBjeT0iMTE3IiByPSIxMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwuMTgpIiBzdHJva2U9IiMyYjFhMjQiIHN0cm9rZS13aWR0aD0iMi40Ii8+CiAgICA8cGF0aCBkPSJNMTA1IDExNyBMMTE3IDExNyIgc3Ryb2tlPSIjMmIxYTI0IiBzdHJva2Utd2lkdGg9IjIuNCIvPgogICAgPCEtLSBleWVzIGxvb2tpbmcgb3ZlciB0aGUgZ2xhc3NlcyAocHVwaWxzIGhpZ2gpIC0tPgogICAgPGNpcmNsZSBjeD0iOTUiIGN5PSIxMTQiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz48Y2lyY2xlIGN4PSIxMjciIGN5PSIxMTMiIHI9IjMiIGZpbGw9IiMyYjFhMjQiLz4KICAgIDxjaXJjbGUgY3g9Ijk2IiBjeT0iMTEzIiByPSIxIiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTEyIiByPSIxIiBmaWxsPSIjZmZmIi8+CiAgICA8IS0tIG5vc2UgLS0+CiAgICA8cGF0aCBkPSJNMTExIDEyMCBDMTEyIDEyOCAxMTMgMTMyIDEwOCAxMzQiIHN0cm9rZT0iI2M5OGQ2YSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gY2hlZWtzIC0tPgogICAgPGNpcmNsZSBjeD0iODYiIGN5PSIxMzIiIHI9IjYiIGZpbGw9IiNmMDlhODYiIG9wYWNpdHk9Ii40NSIvPjxjaXJjbGUgY3g9IjEzNiIgY3k9IjEzMiIgcj0iNiIgZmlsbD0iI2YwOWE4NiIgb3BhY2l0eT0iLjQ1Ii8+CiAgICA8IS0tIGNvbmZpZGVudCBoYWxmIHNtaWxlIC0tPgogICAgPHBhdGggZD0iTTk4IDE0NCBDMTA2IDE0OCAxMTggMTQ4IDEyNiAxNDAiIHN0cm9rZT0iI2EyNGEzYSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDxwYXRoIGQ9Ik0xMjYgMTQwIEwxMjkgMTM4IiBzdHJva2U9IiNhMjRhM2EiIHN0cm9rZS13aWR0aD0iMi40IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgIDwhLS0gc2NvcmVjYXJkIHBlbmNpbCBiZWhpbmQgZWFyIC0tPgogICAgPHBhdGggZD0iTTE1MCA5NiBMMTY4IDc2IiBzdHJva2U9IiNmMmMxNGUiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICA8cGF0aCBkPSJNMTY4IDc2IEwxNzIgNzEiIHN0cm9rZT0iIzJiMWEyNCIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8L2c+CiAgPGNpcmNsZSBjeD0iMTEwIiBjeT0iMTIwIiByPSIxMDYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0U4ODkzQSIgc3Ryb2tlLXdpZHRoPSI0Ii8+Cjwvc3ZnPgo=" alt="Gervi Gunna">
+    <div class="gunna-txt">
+      <div class="eyebrow" style="margin-bottom:2px;text-align:left">⛳ Góð ráð fyrir 2027 · 3. hluti af 3</div>
+      <div class="h1" style="font-size:clamp(1.6rem,4vw,3rem);text-align:left">Ráð Gervi Gunnu</div>
+      <div class="sub" style="font-size:clamp(.62rem,1.2vw,.8rem);margin-top:4px">Verðlaunahafarnir fá líka ráð</div>
+    </div>
+  </div>
+  <div class="rule" style="margin:8px auto 10px"></div>
+  <div class="adv-grid">
+      <div class="adv-card adv-hid" data-adv="1">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Maggi.jpg" alt="Maggi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>M</div>'"><div><div class="adv-nm">Maggi</div>
+          <div class="adv-chips"><span>10. sæti · 273 stig</span><span>15 fuglar · Fuglameistari</span><span>74 högg á Selfossi</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Fuglameistari og 74 högg á Selfossi, jafnfæst högg á einum hring í sumar (ásamt Gumma). Samt 10. sæti í MEA. Ráð: fuglarnir eru skemmtilegir en skrambarnir telja líka. Forgjöf 7 er engin afsökun!</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="2">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Heisi.jpg" alt="Heisi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>H</div>'"><div><div class="adv-nm">Heisi</div>
+          <div class="adv-chips"><span>9. sæti · 275 stig</span><span>Besti hringur: 44 pt</span><span>Forgjöf 12 → 18</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Leikforgjöfin hækkaði um 6 högg yfir sumarið og á lokadeginum kom 44 punkta hringur. Mjög grunsamlegt… Forgjafarnefndin hefur verið látin vita 😉</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="3">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Andri.jpg" alt="Andri" style="object-position:50% 25%;" onerror="this.outerHTML='<div class=hc-avatar>A</div>'"><div><div class="adv-nm">Andri</div>
+          <div class="adv-chips"><span>12. sæti · 268 stig</span><span>Holumeistari · fæst högg</span><span>Forgjöf 6 · 12 fuglar</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Besti kylfingur hópsins á pappírnum: holumeistari, fæst högg og 12 fuglar. En þú mættir bara á 12 mót og datst út í bikarnum gegn Magga. Ráð: mættu oftar og þá er bikarinn þinn.</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="4">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Begga.jpg" alt="Begga" style="object-position:50% 12%;" onerror="this.outerHTML='<div class=hc-avatar>B</div>'"><div><div class="adv-nm">Begga</div>
+          <div class="adv-chips"><span>3. sæti · 290 stig</span><span>17 mót · duglegust</span><span>Næst holu 1,19 m</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Þriðja sætið, 17 mót og 1,19 m á 4. holu. Eini gallinn er að þú tapaðir fyrir nöfnu þinni í bikarnum. Berglind gegn Berglindi, það gat aldrei endað vel!</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="5">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Gummi.jpg" alt="Gummi" style="object-position:50% 35%;" onerror="this.outerHTML='<div class=hc-avatar>G</div>'"><div><div class="adv-nm">Gummi</div>
+          <div class="adv-chips"><span>2. sæti · 292 stig</span><span>Bikarmeistari · 15 fuglar</span><span>Næst holu 0,35 m 🥇</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Bikar, fuglar og næst holu, en samt „bara“ 2. sæti. Ráð: mættu á fyrsta mótið næst. Og hættu að smíða mælaborð þar sem þú vinnur allt 😉</div>
+      </div>
+      <div class="adv-card adv-hid" data-adv="6">
+        <div class="adv-top"><img class="adv-ph" src="KylfingarMyndir/Rosa.jpg" alt="Rósa" style="object-position:50% 30%;" onerror="this.outerHTML='<div class=hc-avatar>R</div>'"><div><div class="adv-nm">Rósa</div>
+          <div class="adv-chips"><span>🏆 1. sæti · 297 stig</span><span>Á toppnum frá M7</span><span>Forgjöf 28 → 26</span></div></div></div>
+        <div class="adv-txt"><b>Gunna segir:</b> Sat á toppnum frá M7 til loka og lét engan komast nálægt. Eina ráðið: ekki leyfa Gumma að vinna bikarinn aftur. Og passaðu forgjöfina, nefndin fylgist með 👀</div>
+      </div>
+  </div>
+  <div class="adv-hint">Ýttu á → til að birta næsta kylfing</div>
 </div>
 
 <!-- CORNER LOGO (all slides) -->
@@ -1140,23 +1468,26 @@ function drawRaceChart() {
   });
   ctx.textBaseline = 'alphabetic';
 }
-window.addEventListener('resize', () => { if (cur === 14) drawRaceChart(); });
+window.addEventListener('resize', () => { if (cur === 15) drawRaceChart(); });
 
 // ===== NAVIGATION =====
-const TOTAL = 16;
+const TOTAL = 20;
 let cur = 0;
 function gotoSlide(n){
   const prev = cur;
   document.getElementById('s'+cur).classList.remove('on');
   cur = Math.max(0, Math.min(n, TOTAL-1));
   if (cur===4 && prev!==4) resetHolu();
-  if (cur===14) setTimeout(drawRaceChart, 400);
-  if (cur===13 && prev!==13) resetFacts();
+  if (cur===15) setTimeout(drawRaceChart, 400);
+  if (cur===10 && prev!==10) resetGp();
+  if (cur===8 && prev!==8){ ctStep = 0; ctShow(false); }
+  if (cur>=ADV_FIRST && cur<=ADV_LAST && prev!==cur) resetAdv();
+  if (cur===14 && prev!==14) resetFacts();
   if (cur===2 && prev!==2) resetPairs();
   document.getElementById('s'+cur).classList.add('on');
   document.getElementById('btnPrev').style.opacity = cur===0 ? '0.3' : '1';
   document.getElementById('btnNext').style.opacity = cur===TOTAL-1 ? '0.3' : '1';
-  if (cur===12) startChampionSequence();
+  if (cur===13) startChampionSequence();
   if (cur===7) launchBikarConfetti();
   updateMenuHighlight();
 }
@@ -1167,14 +1498,15 @@ function pairShow(s, on){
   if (s === 2) document.getElementById('tieBanner').style.opacity = on ? '1' : '0';
 }
 let factStep = 0;
-function factShow(k, on){ const el = document.querySelector('#s13 [data-fact="'+k+'"]'); if (el) el.classList.toggle('hid', !on);
+function factShow(k, on){ const el = document.querySelector('#s14 [data-fact="'+k+'"]'); if (el) el.classList.toggle('hid', !on);
   document.getElementById('factHint').style.opacity = factStep >= 4 ? '0' : '1'; }
-function resetFacts(){ factStep = 0; document.querySelectorAll('#s13 .fact').forEach(e => e.classList.add('hid')); document.getElementById('factHint').style.opacity = '1'; }
+function resetFacts(){ factStep = 0; document.querySelectorAll('#s14 .fact').forEach(e => e.classList.add('hid')); document.getElementById('factHint').style.opacity = '1'; }
 function resetPairs(){ pairStep = 0; pairShow(1,false); pairShow(2,false); }
 
 const SLIDE_NAMES = ['Lokahóf 2026','Duglegasti Kylfingurinn','Parakeppnin','Besti Hringur','Holumeistari',
-  'Ryder Cup','Fuglameistari','Bikarinn','Nákvæmni & högg','Stigataflan',
-  '3. sæti','2. sæti','MEA meistarinn','Áhugaverðar staðreyndir','Bardagi á toppnum','Verðlaunahafar'];
+  'Ryder Cup','Fuglameistari','Bikarinn','Næst holu · Topp 10','Stigataflan',
+  'Karla- og kvennaflokkur','3. sæti','2. sæti','MEA meistarinn','Áhugaverðar staðreyndir','Bardagi á toppnum','Verðlaunahafar',
+  'Ráð Gervi Gunnu 1','Ráð Gervi Gunnu 2','Ráð Gervi Gunnu 3'];
 const smenuPanel = document.getElementById('smenuPanel');
 SLIDE_NAMES.forEach((name, i) => {
   const el = document.createElement('div');
@@ -1191,14 +1523,74 @@ function toggleMenu(force){
 }
 document.addEventListener('click', e => { if (!e.target.closest('#smenuPanel') && !e.target.closest('#smenuBtn')) toggleMenu(false); });
 document.addEventListener('keydown', e => { if (e.key==='Escape') toggleMenu(false); });
+
+
+// ===== NÆST HOLU (s8): → birtir sigurvegarann =====
+let ctStep = 0;
+function ctShow(on){ document.getElementById('ctHero').classList.toggle('ct-hid', !on);
+  document.getElementById('ctHint').style.opacity = on ? '0' : '1'; }
+// ===== RÁÐGJAFINN (s17–s19): einn kylfingur í hverjum smelli =====
+const ADV_FIRST = 17, ADV_LAST = 19, ADV_N = 6;
+let advStep = 0;
+function advShow(k, on){
+  const s = document.getElementById('s' + cur);
+  s.querySelectorAll('.adv-card').forEach(c => c.classList.remove('adv-new'));
+  const el = s.querySelector('[data-adv="' + k + '"]');
+  if (el){ el.classList.toggle('adv-hid', !on); if (on) el.classList.add('adv-new'); }
+  if (!on && k > 1){ const p = s.querySelector('[data-adv="' + (k-1) + '"]'); if (p) p.classList.add('adv-new'); }
+  s.querySelector('.adv-hint').style.opacity = (on && k === ADV_N) ? '0' : '1';
+}
+function resetAdv(){ advStep = 0; const s = document.getElementById('s' + cur);
+  s.querySelectorAll('.adv-card').forEach(c => { c.classList.add('adv-hid'); c.classList.remove('adv-new'); });
+  s.querySelector('.adv-hint').style.opacity = '1'; }
+// ===== TOPP 3 KARLA & KVENNA: skref 1 = 3. sæti, 2 = 2. sæti, 3 = toppsætin =====
+let gpStep = 0; const GP_TOTAL = 3;
+const GP_HINTS = ['Ýttu á → til að birta 3. sætið','Ýttu á → til að birta 2. sætið','Ýttu á → til að birta sigurvegarana',''];
+function gpShow(k, on){
+  document.querySelectorAll('#s10 [data-gp="'+k+'"]').forEach(el => el.classList.toggle('gp-hid', !on));
+  document.getElementById('gpHint').textContent = GP_HINTS[on ? k : k-1];
+  if (k === 3 && on) launchGpConfetti();
+}
+function resetGp(){ gpStep = 0; document.querySelectorAll('#s10 .fp-card').forEach(e => e.classList.add('gp-hid')); document.getElementById('gpHint').textContent = GP_HINTS[0]; }
+let gpRunning = false;
+function launchGpConfetti(){
+  if (gpRunning) return; gpRunning = true;
+  const cvs = document.getElementById('gpConfetti'), ctx = cvs.getContext('2d');
+  cvs.width = window.innerWidth; cvs.height = window.innerHeight;
+  const COLS = ['#E8893A','#F7DFB4','#ffffff','#9C3D14','#C8A430','#8E3B76'];
+  const mk = () => ({x:Math.random()*cvs.width, y:-Math.random()*cvs.height*.4, vx:(Math.random()-.5)*1.5, vy:Math.random()*2.2+.8,
+    c:COLS[Math.floor(Math.random()*COLS.length)], w:Math.random()*9+3, h:Math.random()*4+2, r:Math.random()*360, rs:(Math.random()-.5)*5});
+  const pp = Array.from({length:90}, mk); let t = 0;
+  (function fr(){
+    if (cur !== 10 || gpStep < 3){ gpRunning = false; ctx.clearRect(0,0,cvs.width,cvs.height); return; }
+    t++; ctx.clearRect(0,0,cvs.width,cvs.height);
+    ctx.globalAlpha = t > 180 ? Math.max(0, 1-(t-180)/60) : 1;
+    pp.forEach(p => { p.x+=p.vx; p.y+=p.vy; p.r+=p.rs; if (p.y>cvs.height+10){Object.assign(p,mk()); p.y=-10;}
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r*Math.PI/180); ctx.fillStyle=p.c; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore(); });
+    ctx.globalAlpha = 1;
+    if (t < 240) requestAnimationFrame(fr); else { gpRunning = false; ctx.clearRect(0,0,cvs.width,cvs.height); }
+  })();
+}
 function go(d){
+  if (cur===8){
+    if (d===1 && ctStep===0){ ctStep=1; ctShow(true); return; }
+    if (d===-1 && ctStep===1){ ctStep=0; ctShow(false); return; }
+  }
+  if (cur>=ADV_FIRST && cur<=ADV_LAST){
+    if (d===1 && advStep < ADV_N){ advStep++; advShow(advStep, true); return; }
+    if (d===-1 && advStep > 0){ advShow(advStep, false); advStep--; return; }
+  }
   if (cur===4){
     if (d===1 && holuStep < HOLU_TOTAL){ holuStep++; revealGroup(holuStep); return; }
     if (d===1 && holuStep === HOLU_TOTAL){ holuStep++; showTop3(true); return; }
     if (d===-1 && holuStep === HOLU_TOTAL + 1){ showTop3(false); holuStep--; return; }
     if (d===-1 && holuStep > 0){ hideGroup(holuStep); holuStep--; return; }
   }
-  if (cur===13){
+  if (cur===10){
+    if (d===1 && gpStep < GP_TOTAL){ gpStep++; gpShow(gpStep, true); return; }
+    if (d===-1 && gpStep > 0){ gpShow(gpStep, false); gpStep--; return; }
+  }
+  if (cur===14){
     if (d===1 && factStep < 4){ factStep++; factShow(factStep, true); return; }
     if (d===-1 && factStep > 0){ factShow(factStep, false); factStep--; return; }
   }
@@ -1227,7 +1619,7 @@ function startChampionSequence() {
   const counts = [3,2,1];
   let i = 0;
   function tick() {
-    if (cur !== 12) { overlay.style.display = 'none'; return; }
+    if (cur !== 13) { overlay.style.display = 'none'; return; }
     numEl.textContent = counts[i];
     // Re-trigger animation by cloning
     numEl.style.animation = 'none'; void numEl.offsetWidth; numEl.style.animation = '';
@@ -1297,7 +1689,7 @@ function launchConfetti(){
     r:Math.random()*360,rs:(Math.random()-.5)*6
   }}
   (function fr(){
-    if(cur!==12){running=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
+    if(cur!==13){running=false;ctx.clearRect(0,0,cvs.width,cvs.height);return}
     ctx.clearRect(0,0,cvs.width,cvs.height);
     pp.forEach(p=>{
       p.x+=p.vx;p.y+=p.vy;p.r+=p.rs;

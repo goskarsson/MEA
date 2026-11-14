@@ -10,8 +10,9 @@ Mælaborð og lokahóf golfhópsins **Má ég aðeins** fyrir tímabilið 2026. 
 |---|---|
 | `index.html` | Aðalmælaborðið: staðan, MEA meistarinn, Parakeppni, Bikarinn, Ryder Cup, fuglar, næst holu og mótaröðin |
 | `player.html` | „Mín síða“: persónuleg síða hvers kylfings |
+| `naest-holu.html` | Næst holu · Topp 10 (staðfest af GameBook skjáskotum) |
 | `holes.html` | Holuröðun á Hvaleyrarvelli (meðalpunktar á hverri holu) |
-| `Lokahof2026.html` | Glærusýning fyrir lokahófið (16 glærur) |
+| `Lokahof2026.html` | Glærusýning fyrir lokahófið (20 glærur) |
 | `KylfingarMyndir/` | Myndir af kylfingunum (notaðar í lokahófinu) |
 | `MaEgAdeins2026.png` | Merki hópsins |
 | `README.md` | Þessi skrá |
@@ -46,9 +47,9 @@ Player IDs (par í sviga):
 
 ## Hvað sýnir aðalmælaborðið (index.html)?
 
-- **Haus** með merki hópsins og hnapp á „Mín síða“
+- **Haus** með merki hópsins og hnöppum á „Lokahóf 2026“ og „Mín síða“
 - **Sía** eftir móti (Allir / M1 … M20) og kyni (Allir / Strákar / Stelpur)
-- **Fróðleikur vikunnar**
+- **Topp 3 karlar og topp 3 konur** (MEA, bestu 8 hringir), með myndum. Smelltu á mynd til að opna síðu kylfingsins.
 - **Spjöld:** 🥇 Sigurvegari dagsins · 📊 Topp 5 (bestu 8 hringir) · ⛳ Fæst högg · 🐦 Fuglarnir · 📍 Næst holu · 🎯 Næst holu – fjöldi
 - **Myndir og gröf:** súlurit (punktar, högg og forgjöf) · þróun tímabils · Parakeppni · leikforgjöf yfir tíma
 - **MEA meistarinn – stigatafla** (hringir sem telja eru merktir, smelltu á dálk til að raða)
@@ -65,14 +66,9 @@ Player IDs (par í sviga):
 - Bikarferill kylfingsins
 - Verðlaunaskápur – sjálfvirk merki (t.d. fyrsti hringurinn, 40+ pt, fuglar, næst holu, Bikarinn)
 
-## Faldir hnappar (fyrir úrslitakvöldið)
+## Úrslitakvöldið er búið
 
-Neðst í hægra horninu á `index.html` eru tveir litlir gráir punktar:
-
-| Punktur | Hvað gerir hann |
-|---|---|
-| Lengst til hægri | Opnar **síðustu þrjá hringina (M18, M19, M20)** sem eru faldir fram að úrslitakvöldinu. Smellt aftur = endurhlaða. Sami punktur er á `player.html`. |
-| Vinstra megin við hann | Opnar **Lokahófið** (`Lokahof2026.html`) |
+Síðustu þrír hringirnir (M18, M19 og M20) eru nú opnir öllum á bæði `index.html` og `player.html`. Földu gráu punktarnir hafa verið fjarlægðir og hnappurinn **🏆 Lokahóf 2026** efst á mælaborðinu opnar lokahófið.
 
 ## Lokahófið (Lokahof2026.html)
 
@@ -84,16 +80,18 @@ Glærusýning í litum hópsins. Fletta með **→ / ←**, bilslá, eða strjú
 4. Besti hringur tímabilsins
 5. Holumeistari (→ birtir holurnar í 3 hópum, næsta → setur áherslu á 3 bestu)
 6. Ryder Cup
-7. Fuglameistari
-8. Bikarinn
-9. Nákvæmni & högg
+7. Fuglameistari (topp 3 + allir með fleiri en 3 fugla)
+8. Bikarinn (Umferð 1 → úrslit)
+9. Næst holu · Topp 10 (→ birtir sigurvegarann)
 10. Stigataflan (4.–18. sæti)
-11. 3. sæti
-12. 2. sæti
-13. MEA meistarinn (niðurtalning + konfettí)
-14. Áhugaverðar staðreyndir (→ birtir eina í einu)
-15. Bardagi á toppnum (topp 8 · Allir / Strákar / Stelpur)
-16. Verðlaunahafar 2026
+11. Karla- og kvennaflokkur (→ 3. sæti, → 2. sæti, → sigurvegararnir)
+12. 3. sæti
+13. 2. sæti
+14. MEA meistarinn (niðurtalning + konfettí)
+15. Áhugaverðar staðreyndir (→ birtir eina í einu)
+16. Bardagi á toppnum (topp 8 · Allir / Strákar / Stelpur)
+17. Verðlaunahafar 2026
+18.–20. Ráð Gervi Gunnu 1–3 (→ birtir einn kylfing í einu, 6 á hverri glæru)
 
 Lokahófið er hljóðlaust. Myndirnar eru sóttar úr `KylfingarMyndir/` – sú mappa verður að fylgja með upp á GitHub.
 
